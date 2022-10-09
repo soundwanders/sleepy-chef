@@ -15,6 +15,10 @@
 # production
 /build
 
+# locks
+package-lock.json
+yarn.lock
+
 # misc
 .DS_Store
 *.pem
@@ -27,6 +31,8 @@ yarn-error.log*
 
 # local env files
 .env*.local
+.env.dev
+.env*
 
 # vercel
 .vercel
