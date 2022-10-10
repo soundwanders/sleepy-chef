@@ -18,10 +18,10 @@ export default function Navbar() {
     <div className="max-w-6xl mx-auto px-4 py-6 md:py-10">
       <div className="flex md:flex-row justify-between items-center">
 
-        <div className="flex flex-col">
+        <div className="flex flex-col w-48 md:w-full">
           <Link href="/">
             <a>
-              <h1 className="font-regular text-sm dark:text-gray-100 py-3">
+              <h1 className="font-regular text-sm dark:text-gray-100 pt-4">
                 {userData.description}
               </h1>
             </a>
@@ -67,17 +67,17 @@ export default function Navbar() {
       <div className="space-x-10 block md:hidden mt-4">
         <Link href="/placeholder">
           <a className="text-base font-normal text-gray-600 dark:text-gray-300">
-            placeholder 1
+            Home
           </a>
         </Link>
         <Link href="/placeholder">
           <a className="text-base font-normal text-gray-600 dark:text-gray-300">
-            placeholder 2
+            About
           </a>
         </Link>
         <Link href="/placeholder">
           <a className="text-base font-normal text-gray-600 dark:text-gray-300">
-            placeholder 3
+            Source
           </a>
         </Link>
       </div>
