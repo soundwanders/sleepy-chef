@@ -9,7 +9,7 @@ export const Highlighter = ({ color, children }) => {
     <RoughNotation
       type="highlight"
       multiline={true}
-      padding={[0, 10]}
+      padding={[0, 8]}
       iterations={1}
       animationDuration={animationDuration}
       color={color}

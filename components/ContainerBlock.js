@@ -9,7 +9,7 @@ export default function ContainerBlock({ children, ...customMeta }) {
 
   const meta = {
     title:
-      "Quina's Kitchen 🍥",
+      "Sleepy Chef 🍥",
     description: [
       `On a journey to the center of the yummiverse`],
     image: "/avatar.png",
@@ -25,7 +25,7 @@ export default function ContainerBlock({ children, ...customMeta }) {
         <meta content={meta.description} name="description" />
 
         <meta property="og:type" content={meta.type} />
-        <meta property="og:site_name" content="quina's_kitchen" />
+        <meta property="og:site_name" content="sleepy_chef" />
         <meta property="og:description" content={meta.description} />
         <meta property="og:title" content={meta.title} />
         <meta property="og:image" content={meta.image} />
@@ -39,7 +39,7 @@ export default function ContainerBlock({ children, ...customMeta }) {
         )}
       </Head>
       
-      <main className="dark:bg-gray-800 w-full">
+      <main className="dark:bg-gray-800 w-full h-screen">
         <Navbar />
         <div>{children}</div>
         <Footer />

@@ -4,7 +4,7 @@ export default function Search() {
   return (
     <form class="max-w-4xl mx-auto">
       <div class="flex justify-center">
-        <div class="mb-3 xl:w-1/2 pt-20 md:pt-0">
+        <div class="w-1/2 pt-20 pb-40">
           <div class="input-group relative flex flex-nowrap items-stretch w-full mb-4 rounded">
             <input type="search" 
               class="form-control relative flex-auto min-w-0 block w-full px-5 py-2 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-gray-300 border-solid rounded-lg transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" 

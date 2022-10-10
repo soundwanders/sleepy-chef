@@ -21,7 +21,7 @@ export default function Navbar() {
         <div className="flex flex-col">
           <Link href="/">
             <a>
-              <h1 className="font-semibold text-xl dark:text-gray-100 py-3">
+              <h1 className="font-regular text-sm dark:text-gray-100 py-3">
                 {userData.description}
               </h1>
             </a>

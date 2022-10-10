@@ -8,10 +8,10 @@ export default function Footer() {
         <div className="h-0.5 w-full bg-white dark:bg-gray-700"></div>
           <div className="flex flex-col space-y-4 md:space-y-0 md:flex-row justify-between md:items-center mt-12">
             <div>
-              <p className="text-red-300 hover:bg-red-200 rounded-md px-2 py-1 hover:text-red-500">
+              <p className="text-red-400 hover:bg-red-200 rounded-md px-2 py-1 hover:text-red-600">
                 <div className="inline-block transform hover:scale-110 hover:-rotate-2 transition duration-300">
                   <a
-                    href="https://github.com/soundwanders/quina's-kitchen"
+                    href="https://github.com/soundwanders/sleepy-chef"
                   >
                     Built with &#10084; 
                   </a>
@@ -21,7 +21,7 @@ export default function Footer() {
 
             <a
               href={userData.githubLink.github}
-              className="text-base font-normal text-gray-600 dark:text-gray-300"
+              className="text-base font-normal text-gray-600 dark:text-gray-300 px-4 lg:px-0"
             >
               <svg 
                 width="24"
