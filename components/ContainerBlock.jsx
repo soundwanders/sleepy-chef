@@ -23,9 +23,16 @@ export default function ContainerBlock({ children, ...customMeta }) {
         <title>{meta.title}</title>
         <meta name="robots" content="follow, index" />
         <meta content={meta.description} name="description" />
-
+        <meta
+          property="og:url"
+          content={`https://sleepychef.vercel.app${router.asPath}`}
+        />
+        <link
+          rel="canonical"
+          href={`https://sleepychef.vercel.app${router.asPath}`}
+        />
         <meta property="og:type" content={meta.type} />
-        <meta property="og:site_name" content="sleepy_chef" />
+        <meta property="og:site_name" content="sleepychef" />
         <meta property="og:description" content={meta.description} />
         <meta property="og:title" content={meta.title} />
         <meta property="og:image" content={meta.image} />
@@ -40,9 +47,9 @@ export default function ContainerBlock({ children, ...customMeta }) {
       </Head>
       
       <main className="dark:bg-gray-800 w-full">
-        <Navbar />
-        <div>{children}</div>
-        <Footer />
+          <Navbar />
+          <div>{children}</div>
+          <Footer />
       </main>
     </div>
   )

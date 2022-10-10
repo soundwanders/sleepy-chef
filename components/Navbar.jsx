@@ -7,7 +7,7 @@ import userData from "@constants/data";
 export default function Navbar() {
   const router = useRouter();
   console.log(router.asPath);
-  const { theme, setTheme } = useTheme();
+  const {theme, setTheme} = useTheme();
   const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
@@ -21,9 +21,11 @@ export default function Navbar() {
         <div className="flex flex-col w-48 md:w-full">
           <Link href="/">
             <a>
-              <h1 className="font-regular text-sm dark:text-gray-100 pt-4">
-                {userData.description}
-              </h1>
+              <img
+                src={userData.chefUrl}
+                alt="portfolio"
+                className="w-12 h-12 p-3 hover:scale-110 transition duration-2000 ease-out"
+              />
             </a>
           </Link>
         </div>
@@ -32,7 +34,7 @@ export default function Navbar() {
           <button
             aria-label="Toggle Dark Mode"
             type="button"
-            className="w-10 h-10 p-3 rounded focus:outline-none"
+            className="w-12 h-12 p-3 rounded focus:outline-none"
             onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
           >
             {mounted && (
@@ -65,19 +67,19 @@ export default function Navbar() {
       </div>
       
       <div className="space-x-10 block md:hidden mt-4">
-        <Link href="/placeholder">
+        <Link href="/">
           <a className="text-base font-normal text-gray-600 dark:text-gray-300">
             Home
           </a>
         </Link>
-        <Link href="/placeholder">
+        <Link href="/">
           <a className="text-base font-normal text-gray-600 dark:text-gray-300">
             About
           </a>
         </Link>
-        <Link href="/placeholder">
-          <a className="text-base font-normal text-gray-600 dark:text-gray-300">
-            Source
+        <Link href="https://github.com/soundwanders/sleepy-chef">
+          <a target="_blank" className="text-base font-normal text-gray-600 dark:text-gray-300">
+            Code
           </a>
         </Link>
       </div>
