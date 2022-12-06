@@ -1,7 +1,7 @@
 import React from "react";
 import { RoughNotation, RoughNotationGroup } from "react-rough-notation";
 import { Highlighter } from "./Highlighter";
-import Search from "./Search";
+import Searchbar from "./Searchbar";
 import userData from "@constants/data";
 
 export default function Hero() {
@@ -23,7 +23,7 @@ export default function Hero() {
         </h1>
       </div>
 
-      <Search />
+      <Searchbar />
 
     </div>
   )

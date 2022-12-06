@@ -1,24 +1,18 @@
-import React from "react";
-import ContainerBlock from "@components/ContainerBlock";
-import Recipes from "@components/Recipes";
-import { ContextProvider } from '@components/Context';
+import React from 'react';
+import { useRouter } from 'next/router';
 
-export default function Results(recipes) {
+const Results = () => {
+  const router = useRouter();
+  // const searchResults = router.query.results;
+  const searchResults = JSON.parse(decodeURIComponent(router.query.results));
+
   return (
-    <ContextProvider>
-      <ContainerBlock title="Results">
-        <Recipes key={recipes.id} />
-      </ContainerBlock>
-    </ContextProvider>
-  )
+    <div>
+      {searchResults.map((result) => (
+        <div key={result.id}>{result.name} {result.type}</div>
+      ))}
+    </div>
+  );
 };
 
-export async function getStaticProps() {
-  const res = await fetch("http://localhost:3000/api/recipes")
-  const recipes = await res.json()
-  return {
-    props: {
-      recipes
-    }
-  }
-};
+export default Results;
