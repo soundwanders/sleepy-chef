@@ -24,7 +24,7 @@ export default function Hero() {
       </div>
 
       <Searchbar />
-
+      
     </div>
   )
 };
