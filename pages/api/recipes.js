@@ -59,13 +59,6 @@ const recipes = [{
   ]
 }];
 
-// export default (req, res) => {
-//   const { query } = req.query;
-//   const results = recipes.filter(recipe => recipe.includes(query));
-//   res.json(results);
-// };
-
-
 export default function handler(req, res) {
   // Get data from your database
   res.status(200).json(recipes)

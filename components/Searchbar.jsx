@@ -4,14 +4,14 @@ import { useRouter } from 'next/router';
 export async function getServerSideProps() {
   // Fetch the search results from the local API using fetch
   // and return them as props to the results page
-  const response = await fetch(`http://localhost:3000/api/recipes?q=${searchInput}`);
+  const response = await fetch(`https://sleepychef.vercel.app/api/recipes?q=${searchInput}`);
   const searchResults = await response.json();
   
   return {
     props: {
       searchResults,
     },
-  };
+  }
 };
 
 const Searchbar = ({ searchResults }) => {
@@ -26,7 +26,7 @@ const Searchbar = ({ searchResults }) => {
   const handleSearch = (e) => {
     e.preventDefault();
 
-    fetch(`http://localhost:3000/api/recipes?q=${searchInput}`)
+    fetch(`https://sleepychef.vercel.app/api/recipes?q=${searchInput}`)
     .then((response) => {
       // Check if the response is in a valid JSON format
       if (response.headers.get('Content-Type').indexOf('application/json') === 0) {

@@ -12,8 +12,9 @@ const Results = () => {
 
   useEffect(() => {
     const search = async () => {
-      const response = await fetch(`http://localhost:3000/api/recipes?q=${searchResults}`);
+      const response = await fetch(`https://sleepychef.vercel.app/api/recipes?q=${searchResults}`);
       setResults(response.data);
+      console.log(response.data);
     };
     search();
   }, []);
