@@ -22,13 +22,12 @@ yarn.lock
 # misc
 .DS_Store
 *.pem
-components/ServerRecipes.jsx
-components/StaticRecipes.jsx
-pages/api/hello.js
+
+pages/results2.js
+components/Searchbar2.jsx
 
 # data
 foods.json
-oldSearch.js
 
 # debug
 npm-debug.log*

@@ -1,70 +1,36 @@
-import React, { useState } from "react";
+import { useState } from 'react';
 import { useRouter } from 'next/router';
 
-export async function getServerSideProps() {
-  // Fetch the search results from the local API using fetch
-  // and return them as props to the results page
-  const response = await fetch(`https://sleepychef.vercel.app/api/recipes?q=${searchInput}`);
-  const searchResults = await response.json();
-  
-  return {
-    props: {
-      searchResults,
-    },
-  }
-};
-
-const Searchbar = ({ searchResults }) => {
+const SearchPage = () => {
   const router = useRouter();
-  const [searchInput, setSearchInput] = useState("");
-  const [searchResultsState, setSearchResultsState] = useState(searchResults);
+  const [query, setQuery] = useState('');
 
-  const handleSearchInputChange = (event) => {
-    setSearchInput(event.target.value);
-  };
-
-  const handleSearch = (e) => {
+  const handleSubmit = e => {
     e.preventDefault();
 
-    fetch(`https://sleepychef.vercel.app/api/recipes?q=${searchInput}`)
-    .then((response) => {
-      // Check if the response is in a valid JSON format
-      if (response.headers.get('Content-Type').indexOf('application/json') === 0) {
-        return response.json();
-      } else {
-        throw new Error('Invalid JSON format');
-      }
-    })
-    .then((results) => {
-      setSearchResultsState(results);
-    })
-    .catch((error) => {
-      console.error(error);
-    });
-
+    // Redirect to the RecipesPage with the query parameter in the URL
     router.push({
-      pathname: `/results`,
-      query: { results: JSON.stringify(searchInput) },
+      pathname: '/results',
+      query: { type: query },
     });
   };
 
-  return (
+  return (    
     <div className="max-w-6xl mx-auto">
       <div className="max-w-screen-lg md:w-full mx-auto md:mx-4 flex justify-center">
         <div className="w-full pt-20 pb-60 md:pb-40">
           <div className="input-group relative flex flex-nowrap justify-center items-stretch w-full mb-4 rounded">
-            <form className="inline-flex" onSubmit={handleSearch}>
-              <input 
-                id="searchbar"
-                className="form-control relative flex-auto min-w-0 block w-full px-4 py-2 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-gray-300 border-solid rounded-lg transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" 
+            <form className="flex" onSubmit={handleSubmit}>
+              <input
+                className="form-control relative flex-auto min-w-0 block w-full px-4 py-2 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-gray-300 border-solid rounded-lg transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"  
                 type="text"
-                placeholder="Search by ingredient..."
                 aria-label="Search" 
                 aria-describedby="button-addon2"
-                value={searchInput}
-                onChange={handleSearchInputChange}
+                id="query"
+                placeholder="Search by ingredients..."
+                value={query}
+                onChange={e => setQuery(e.target.value)}
               />
-
               <button type="submit" className="inline-block px-6 py-2.5 bg-blue-800 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out">
                 <span className="input-group-text flex flex items-center px-3 py-1.5 cursor-pointer text-base font-normal text-gray-500 dark:text-gray-200 text-center whitespace-nowrap rounded" id="search-icon">
                   <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="search" className="w-4" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
@@ -78,8 +44,7 @@ const Searchbar = ({ searchResults }) => {
         </div>
       </div>
     </div>
-  );
+  )
 };
 
-export default Searchbar;
-
+export default SearchPage;
