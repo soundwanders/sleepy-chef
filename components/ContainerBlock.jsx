@@ -12,7 +12,7 @@ export default function ContainerBlock({ children, ...customMeta}) {
     title:
       "Sleepy Chef 🍥",
     description: [
-      `On a journey to the center of the yummiverse`],
+      `On a journey to the center of the...kitchen.`],
     image: "/avatar.png",
     type: "website",
     ...customMeta,

@@ -1,3 +1,5 @@
+import { createContext } from "react";
+
 const recipes = [
   { 
     "id": 0,
@@ -15,7 +17,7 @@ const recipes = [
       "1 cup egg",
       "1 quart oil",
       "flour or corn tortillas",
-      "2 to 3 cups lettuce or other shredded greens"
+      "2 to 3 cups lettuce, shredded"
     ],
     "nutrition": {
       "calories": "410",
@@ -39,7 +41,7 @@ const recipes = [
       "1 stalk celery, chopped",
       "1 ½ cups beef broth",
       "1 teaspoon Worcestershire sauce",
-      "¼ cup all-purpose flour",
+      "¼ cup flour",
       "½ teaspoon salt",
       "½ teaspoon black pepper",
       "1 teaspoon ground paprika",
@@ -56,16 +58,38 @@ const recipes = [
 ];
 
 export default function handler(req, res) {
-  // destructure the query object from the router object
+  // destructure query object from the router
   const { query } = req;
 
-  // destructure the type query parameter
-  const { type } = query;
+  // destructure the type and ingredient query parameters
+  const { type, ingredient } = query;
 
-  // use the 'type' query parameter to filter the recipes data
-  // const filteredRecipes = recipes[type].filter(recipe => recipe.type === type);
-  const filteredRecipes = recipes.filter(recipe => recipe.type === type);
+  // create empty array to store the filtered recipes
+  let filteredRecipes = [];
 
+  switch (true) {
+    case type && !ingredient:
+      // filter the recipes based on type
+      filteredRecipes = recipes.filter(recipe => recipe.type === type);
+      break;
+    case ingredient && !type:
+      // filter the recipes based on ingredient
+      filteredRecipes = recipes.filter(recipe => recipe.ingredients.some(ingredient => ingredient.toLowerCase().includes(ingredient.toLowerCase())));
+      break;
+    case type && ingredient:
+      // filter the recipes based on both type and ingredient
+      filteredRecipes = recipes.filter(recipe => recipe.type === type && recipe.ingredients.includes(ingredient));
+      break;
+    default:
+      // return an error if neither type or ingredient is provided
+      res.status(400).json({ error: 'Type or ingredient must be provided' });
+      console.error('Type or ingredient must be provided');
+      break;
+  }
 
-  res.status(200).json(filteredRecipes);
+  // send filtered recipes to client-side
+  res.json(filteredRecipes);
 };
+
+// create a context for the recipes data
+export const RecipesContext = createContext(recipes);
