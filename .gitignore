@@ -23,8 +23,9 @@ yarn.lock
 .DS_Store
 *.pem
 
-pages/results2.js
-components/Searchbar2.jsx
+## dynamic routing
+/pages/recipes
+/pages/recipes/[id]
 
 # data
 foods.json

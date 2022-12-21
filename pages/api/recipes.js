@@ -64,31 +64,34 @@ export default function handler(req, res) {
   // destructure the type and ingredient query parameters
   const { type, ingredient } = query;
 
-  // create empty array to store the filtered recipes
-  let filteredRecipes = [];
+ // create empty array to store the filtered recipes
+ let filteredRecipes = [];
 
-  switch (true) {
-    case type && !ingredient:
-      // filter the recipes based on type
-      filteredRecipes = recipes.filter(recipe => recipe.type === type);
-      break;
-    case ingredient && !type:
-      // filter the recipes based on ingredient
-      filteredRecipes = recipes.filter(recipe => recipe.ingredients.some(ingredient => ingredient.toLowerCase().includes(ingredient.toLowerCase())));
-      break;
+// filter the recipes
+switch (true) {
+  case type && !ingredient:
+    filteredRecipes = recipes.filter(recipe => recipe.type.toLowerCase() === type.toLowerCase());
+    break;
+  case ingredient && !type:
+    filteredRecipes = recipes.filter(recipe => recipe.ingredients.some(ing => ing.toLowerCase().includes(ingredient.toLowerCase())));
+    break;
     case type && ingredient:
-      // filter the recipes based on both type and ingredient
-      filteredRecipes = recipes.filter(recipe => recipe.type === type && recipe.ingredients.includes(ingredient));
+      filteredRecipes = recipes.filter(recipe => recipe.type.toLowerCase() === type.toLowerCase() && recipe.ingredients.some(ing => ing.toLowerCase().includes(ingredient.toLowerCase())));
       break;
-    default:
-      // return an error if neither type or ingredient is provided
-      res.status(400).json({ error: 'Type or ingredient must be provided' });
-      console.error('Type or ingredient must be provided');
-      break;
+  default:
+    filteredRecipes = [];
+    break;
+}
+
+  // if neither type or ingredient is provided, return an error response
+  if (!type && !ingredient) {
+    res.status(400).json({ error: 'Type or ingredient must be provided' });
+    return;
   }
 
   // send filtered recipes to client-side
   res.json(filteredRecipes);
+  console.log(filteredRecipes);
 };
 
 // create a context for the recipes data

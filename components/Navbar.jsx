@@ -24,7 +24,7 @@ export default function Navbar() {
               <img
                 src={userData.chefUrl}
                 alt="portfolio"
-                className="w-12 h-12 p-3 hover:scale-110 transition duration-2000 ease-out"
+                className="w-14 h-14 p-3 hover:scale-110 transition duration-2000 ease-out"
               />
             </a>
           </Link>
@@ -34,7 +34,7 @@ export default function Navbar() {
           <button
             aria-label="Toggle Dark Mode"
             type="button"
-            className="w-12 h-12 p-3 rounded focus:outline-none"
+            className="w-14 h-14 p-3 rounded focus:outline-none"
             onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
           >
             {mounted && (
@@ -43,7 +43,7 @@ export default function Navbar() {
                 viewBox="0 0 24 24"
                 fill="currentColor"
                 stroke="currentColor"
-                className="w-5 h-5 text-yellow-500 dark:text-yellow-500"
+                className="w-7 h-7 text-yellow-500 dark:text-yellow-500"
               >
                 {theme === "dark" ? (
                   <path
@@ -79,7 +79,7 @@ export default function Navbar() {
         </Link>
         <Link href="https://github.com/soundwanders/sleepy-chef">
           <a target="_blank" className="text-base font-normal text-gray-600 dark:text-gray-300">
-            Source Code
+            Source
           </a>
         </Link>
       </div>
