@@ -20,11 +20,11 @@ export default function Navbar() {
 
         <div className="flex flex-col w-48 md:w-full">
           <Link href="/">
-            <a>
+            <a className="w-max">
               <img
                 src={userData.chefUrl}
                 alt="portfolio"
-                className="w-14 h-14 p-3 hover:scale-110 transition duration-2000 ease-out"
+                className="w-14 h-14 p-3 md:p-2 hover:scale-110 transition duration-2000 ease-out"
               />
             </a>
           </Link>
@@ -43,7 +43,7 @@ export default function Navbar() {
                 viewBox="0 0 24 24"
                 fill="currentColor"
                 stroke="currentColor"
-                className="w-7 h-7 text-yellow-500 dark:text-yellow-500"
+                className="w-7 md:w-8 h-7 md:h-8 text-yellow-500 dark:text-yellow-500"
               >
                 {theme === "dark" ? (
                   <path

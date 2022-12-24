@@ -16,10 +16,10 @@ const Searchbar = () => {
 
   const handleSubmit = e => {
     e.preventDefault();
-
+  
     // create an array of all recipe types
     const recipeTypes = recipes.reduce((acc, recipe) => acc.concat(recipe.type), []);
-
+  
     // create an array of all ingredients in recipes data
     const ingredients = recipes.reduce((acc, recipe) => acc.concat(recipe.ingredients), []);
   
@@ -28,10 +28,12 @@ const Searchbar = () => {
       setError('✍️');
       return;
     }
-
-    // check if the search input matches a recipe type or any ingredients (case-insensitive)
+  
+    // check if the search input matches a recipe type (case-insensitive)
     const type = recipeTypes.some(recipeType => recipeType.toLowerCase().includes(query.toLowerCase())) ? query : null;
-    const ingredient = ingredients.some(ingredient => ingredient.toLowerCase().includes(query.toLowerCase())) ? query : null;
+    
+    // check if the search input matches any ingredients (case-insensitive)
+    const ingredient = ingredients.some(ingredient => ingredient.toLowerCase().includes(query.toLowerCase())) && !type ? query : null;
     
     // check if the search doesn't match valid type or ingredient
     if (!type && !ingredient) {
@@ -47,7 +49,7 @@ const Searchbar = () => {
       pathname: '/results',
       query: { type, ingredient },
     });
-  };
+  };  
 
   const handleInputFocus = () => {
     setError('');
@@ -80,7 +82,7 @@ const Searchbar = () => {
                 </span>
               </button>
 
-              {error && <p className="error px-4 self-center">{error}</p>} 
+              {error && <span className="error scale-140 px-6 self-center">{error}</span>} 
             </form>
           </div>
         </div>

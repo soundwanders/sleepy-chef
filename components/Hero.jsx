@@ -13,7 +13,7 @@ export default function Hero() {
       <div className="max-w-6xl mx-auto text-center lg:pb-0 lg:-mt-28">
         <RoughNotationGroup show={true}>
           <Highlighter color={highlightColors[0]}>
-            <h1 className="text-4xl md:text-8xl font-bold text-gray-800 dark:text-gray-200 -mt-40 md:-mt-0 px-4 md:px-8">
+            <h1 className="text-4xl md:text-8xl font-bold text-gray-800 dark:text-gray-200 -mt-40 md:-mt-10 px-4 md:px-8">
               Sleepy Chef
             </h1>
           </Highlighter>
