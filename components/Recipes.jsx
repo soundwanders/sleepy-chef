@@ -29,7 +29,7 @@ export default function Recipes() {
           queryParams.push(`ingredient=${ingredient}`);
         }
         const queryString = queryParams.join('&');
-        const response = await fetch(`http://localhost:3000/api/recipes?${queryString}`);
+        const response = await fetch(`https://sleepychef.vercel.app/api/recipes?${queryString}`);
         const data = await response.json();
 
         if (data.length === undefined) {

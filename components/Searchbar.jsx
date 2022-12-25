@@ -25,7 +25,7 @@ const Searchbar = () => {
   
     // display an error message to user if input is not provided
     if (!query) {
-      setError('✍️');
+      setError('❗');
       return;
     }
   
