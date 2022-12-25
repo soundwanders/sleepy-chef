@@ -82,7 +82,7 @@ const Searchbar = () => {
                 </span>
               </button>
 
-              {error && <span className="error scale-140 px-6 self-center">{error}</span>} 
+              {error && <span className="error scale-140 px-1 md:px-6 self-center">{error}</span>} 
             </form>
           </div>
         </div>
