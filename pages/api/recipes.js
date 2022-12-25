@@ -66,26 +66,34 @@ export default function handler(req, res) {
 
  // create empty array to store the filtered recipes
  let filteredRecipes = [];
-
-// filter the recipes
-switch (true) {
-  case type && !ingredient:
-    filteredRecipes = recipes.filter(recipe => recipe.type.toLowerCase() === type.toLowerCase());
-    break;
-  case ingredient && !type:
-    filteredRecipes = recipes.filter(recipe => recipe.ingredients.some(ing => ing.toLowerCase().includes(ingredient.toLowerCase())));
-    break;
-    case type && ingredient:
-      filteredRecipes = recipes.filter(recipe => recipe.type.toLowerCase() === type.toLowerCase() && recipe.ingredients.some(ing => ing.toLowerCase().includes(ingredient.toLowerCase())));
-      break;
-  default:
-    filteredRecipes = [];
-    break;
-}
-
+  
+  
   // if neither type or ingredient is provided, return an error response
   if (!type && !ingredient) {
     res.status(400).json({ error: 'Type or ingredient must be provided' });
+    return;
+  }
+
+  // filter the recipes
+  switch (true) {
+    case type && !ingredient:
+      filteredRecipes = recipes.filter(recipe => recipe.type.toLowerCase() === type.toLowerCase());
+      break;
+    case ingredient && !type:
+      filteredRecipes = recipes.filter(recipe => recipe.ingredients.some(ing => ing.toLowerCase().includes(ingredient.toLowerCase())));
+      break;
+      case type && ingredient:
+        filteredRecipes = recipes.filter(recipe => recipe.type.toLowerCase() === type.toLowerCase() && recipe.ingredients.some(ing => ing.toLowerCase().includes(ingredient.toLowerCase())));
+        break;
+    default:
+      filteredRecipes = [];
+      break;
+  }
+  
+  // if the filtered recipes array is empty, throw an error and set the error state using the setError hook
+  if (filteredRecipes.length === 0) {
+    res.status(400).json({ error: 'Sorry! No recipes found.' });
+    setError('Sorry! No recipes found.');
     return;
   }
 

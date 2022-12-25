@@ -68,18 +68,13 @@ export default function Navbar() {
       
       <div className="space-x-10 block md:hidden mt-4">
         <Link href="/">
-          <a className="text-base font-normal text-gray-600 dark:text-gray-300">
+          <a className="text-base text-gray-600 dark:text-gray-300 font-medium text-sm uppercase tracking-wider">
             Home
           </a>
         </Link>
         <Link href="/">
-          <a className="text-base font-normal text-gray-600 dark:text-gray-300">
+          <a className="text-base text-gray-600 dark:text-gray-300 font-medium text-sm uppercase tracking-wider">
             About
-          </a>
-        </Link>
-        <Link href="https://github.com/soundwanders/sleepy-chef">
-          <a target="_blank" className="text-base font-normal text-gray-600 dark:text-gray-300">
-            Source
           </a>
         </Link>
       </div>

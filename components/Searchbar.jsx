@@ -25,7 +25,7 @@ const Searchbar = () => {
   
     // display an error message to user if input is not provided
     if (!query) {
-      setError('✍️');
+      setError('❗');
       return;
     }
   
@@ -62,7 +62,7 @@ const Searchbar = () => {
           <div className="input-group relative flex flex-nowrap justify-center items-stretch w-full mb-4 rounded">
             <form className="flex" onSubmit={handleSubmit}>
               <input
-                className="form-control relative flex-auto min-w-0 block w-full px-4 py-2 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-gray-300 border-solid rounded-lg transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"  
+                className="form-control block relative flex-auto min-w-0 w-full px-4 py-2 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-gray-300 border-solid rounded-lg transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"  
                 type="text"
                 aria-label="Search" 
                 aria-describedby="button-addon2"
@@ -82,7 +82,7 @@ const Searchbar = () => {
                 </span>
               </button>
 
-              {error && <span className="error scale-140 px-1 md:px-6 self-center">{error}</span>} 
+              {error && <span className="error scale-140 px-2 md:px-6 self-center">{error}</span>} 
             </form>
           </div>
         </div>
