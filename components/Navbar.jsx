@@ -30,7 +30,7 @@ export default function Navbar() {
           </Link>
         </div>
 
-        <div className="space-x-4 flex flex-row items-center">
+        <div className="space-x-4 w-10 flex flex-row items-center">
           <button
             aria-label="Toggle Dark Mode"
             type="button"
@@ -66,7 +66,7 @@ export default function Navbar() {
         </div>
       </div>
       
-      <div className="space-x-10 block md:hidden mt-4">
+      <div className="space-x-10 block md:hidden mt-4 px-4">
         <Link href="/">
           <a className="text-base text-gray-600 dark:text-gray-300 font-medium text-sm uppercase tracking-wider">
             Home
