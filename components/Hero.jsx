@@ -10,7 +10,7 @@ export default function Hero() {
     <div className="hero h-screen flex flex-column justify-center items-center px-8 overflow-hidden">
 
       {/* Rainbow Highlighted Headlines Container */}
-      <div className="absolute top-0 max-w-4xl mx-auto text-center items-center pb-4 pt-56">
+      <div className="absolute top-0 max-w-4xl mx-auto text-center items-center pb-4 mt-56">
         <RoughNotationGroup show={true}>
           <Highlighter color={highlightColors[0]}>
             <h1 className="text-5xl md:text-8xl font-bold text-gray-800 dark:text-gray-200">
@@ -23,8 +23,6 @@ export default function Hero() {
         </h1>
       <Searchbar />
       </div>
-
-      
     </div>
   )
 };

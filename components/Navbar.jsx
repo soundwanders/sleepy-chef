@@ -30,7 +30,7 @@ export default function Navbar() {
           </Link>
         </div>
 
-        <div className="space-x-4 w-10 flex flex-row items-center">
+        <div className="space-x-4 flex flex-row items-center">
           <button
             aria-label="Toggle Dark Mode"
             type="button"
@@ -66,15 +66,20 @@ export default function Navbar() {
         </div>
       </div>
       
-      <div className="space-x-10 block md:hidden mt-4 px-4">
+      <div className="space-x-10 block md:hidden mt-4">
         <Link href="/">
-          <a className="text-base text-gray-600 dark:text-gray-300 font-medium text-sm uppercase tracking-wider">
+          <a className="text-base font-normal text-gray-600 dark:text-gray-300">
             Home
           </a>
         </Link>
         <Link href="/">
-          <a className="text-base text-gray-600 dark:text-gray-300 font-medium text-sm uppercase tracking-wider">
+          <a className="text-base font-normal text-gray-600 dark:text-gray-300">
             About
+          </a>
+        </Link>
+        <Link href="https://github.com/soundwanders/sleepy-chef">
+          <a target="_blank" className="text-base font-normal text-gray-600 dark:text-gray-300">
+            Source
           </a>
         </Link>
       </div>
