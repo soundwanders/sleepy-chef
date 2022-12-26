@@ -1,5 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
+import { RoughNotation, RoughNotationGroup } from "react-rough-notation";
+import { Highlighter } from "./Highlighter";
 
 // The results page uses the useRouter hook to get the router object, which you can use to access the query parameters.
 // The useEffect hook fetches the filtered data from the API route and passes the type or ingredient
@@ -29,7 +31,10 @@ export default function Recipes() {
           queryParams.push(`ingredient=${ingredient}`);
         }
         const queryString = queryParams.join('&');
+
         const response = await fetch(`https://sleepychef.vercel.app/api/recipes?${queryString}`);
+        // const response = await fetch(`http://localhost:3000/api/recipes?${queryString}`);
+
         const data = await response.json();
 
         if (data.length === undefined) {
@@ -47,12 +52,22 @@ export default function Recipes() {
     fetchRecipes();
   }, []);
 
+
+  const highlightColor = "#ff9105";
+  // #ff6961
+
   return (
     <section className="bg-white dark:bg-gray-800">
-      <div className="max-w-6xl mx-auto h-40 md:h-44 bg-white dark:bg-gray-800">
-        <h1 className="text-5xl md:text-8xl font-bold py-6 text-center md:text-left">
-          Let's Eat!
-        </h1>
+      <div className="max-w-6xl mx-auto h-40 bg-white dark:bg-gray-800">
+        <div className="w-fit float-left">
+          <RoughNotationGroup show={true}>
+            <Highlighter color={highlightColor}>
+              <h1 className="text-5xl md:text-8xl font-bold text-gray-800 dark:text-gray-200 text-center md:text-left py-6 -mx-1 px-4">
+                Dai, mangiamo!
+              </h1>
+            </Highlighter>
+          </RoughNotationGroup>
+        </div>
       </div>
 
       <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-8 py-0 pb-20 px-8 md:px-0">
@@ -79,7 +94,7 @@ export default function Recipes() {
                 Ingredients:
               </h3>
               
-              <ul className="grid grid-cols-2 gap-2 md:gap-4">
+              <ul className="grid grid-cols-2 gap-2 md:gap-3">
                 {recipe.ingredients.map(ingredient => (
                   <li key={ingredient} className="text-gray-700 text-sm col-span-1">{ingredient}</li>
                 ))}

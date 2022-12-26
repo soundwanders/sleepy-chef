@@ -23,7 +23,7 @@ export default function Navbar() {
             <a className="w-max">
               <img
                 src={userData.chefUrl}
-                alt="portfolio"
+                alt="sleepy-chef"
                 className="w-14 h-14 p-3.5 md:p-2 hover:scale-110 transition duration-2000 ease-out"
               />
             </a>
@@ -66,20 +66,15 @@ export default function Navbar() {
         </div>
       </div>
       
-      <div className="space-x-10 block md:hidden mt-4">
-        <Link href="/">
-          <a className="text-base font-normal text-gray-600 dark:text-gray-300">
+      <div className="space-x-10 block md:hidden mt-4 px-4">
+        <Link target="_blank" href="/">
+          <a className="text-base text-gray-600 dark:text-gray-300 font-medium text-sm uppercase tracking-wider">
             Home
           </a>
         </Link>
-        <Link href="/">
-          <a className="text-base font-normal text-gray-600 dark:text-gray-300">
+        <Link target="_blank" href="https://github.com/soundwanders/sleepy-chef#readme">
+          <a className="text-base text-gray-600 dark:text-gray-300 font-medium text-sm uppercase tracking-wider">
             About
-          </a>
-        </Link>
-        <Link href="https://github.com/soundwanders/sleepy-chef">
-          <a target="_blank" className="text-base font-normal text-gray-600 dark:text-gray-300">
-            Source
           </a>
         </Link>
       </div>

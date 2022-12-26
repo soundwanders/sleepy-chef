@@ -23,19 +23,17 @@ const Searchbar = () => {
     // create an array of all ingredients in recipes data
     const ingredients = recipes.reduce((acc, recipe) => acc.concat(recipe.ingredients), []);
   
-    // display an error message to user if input is not provided
-    if (!query) {
-      setError('❗');
-      return;
-    }
-  
     // check if the search input matches a recipe type (case-insensitive)
     const type = recipeTypes.some(recipeType => recipeType.toLowerCase().includes(query.toLowerCase())) ? query : null;
     
     // check if the search input matches any ingredients (case-insensitive)
     const ingredient = ingredients.some(ingredient => ingredient.toLowerCase().includes(query.toLowerCase())) && !type ? query : null;
     
-    // check if the search doesn't match valid type or ingredient
+    if (!query) {
+      setError('✏️');
+      return;
+    }
+
     if (!type && !ingredient) {
       setError('🤔');
       return;
@@ -81,7 +79,7 @@ const Searchbar = () => {
           </button>
           {error && (
             <span
-              className="error absolute z-10 self-center right-[3rem] md:right-12 px-8 md:px-2 mr-4 md:mr-0"
+              className="error absolute z-10 self-center right-[3rem] md:right-12 px-8 md:px-4 mr-4 md:mr-0"
             >
               {error}
             </span>

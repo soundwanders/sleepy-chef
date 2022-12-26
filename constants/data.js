@@ -1,5 +1,5 @@
 const userData = {
-  title: "sleepy-chef",
+  title: "Sleepy Chef",
   description: `"The universe is a big place, perhaps the biggest."`,
   avatarUrl: "/avatar.png",
   chefUrl: "/chef.png",

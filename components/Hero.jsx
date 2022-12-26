@@ -5,7 +5,8 @@ import Searchbar from "./Searchbar";
 import userData from "@constants/data";
 
 export default function Hero() {
-  const highlightColors = [ "#4667b4", "#ff9105", "#01e5a1e8", "#ff6961"];
+  const highlightColors = [ "#4667b4", "#ff9810", "#01e5a1e8", "#ff6961"];
+  
   return (
     <div className="hero h-screen flex flex-column justify-center items-center px-8 overflow-hidden">
 
@@ -14,7 +15,7 @@ export default function Hero() {
         <RoughNotationGroup show={true}>
           <Highlighter color={highlightColors[0]}>
             <h1 className="text-5xl md:text-8xl font-bold text-gray-800 dark:text-gray-200">
-              Sleepy Chef
+              {userData.title}
             </h1>
           </Highlighter>
         </RoughNotationGroup>

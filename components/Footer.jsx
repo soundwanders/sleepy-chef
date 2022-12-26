@@ -22,8 +22,8 @@ export default function Footer() {
           </div>
 
           <a
-            href={userData.githubLink.github}
             target="_blank"
+            href={userData.githubLink.github}
             className="text-base font-normal text-gray-600 dark:text-gray-300 px-2 lg:px-0"
           >
             <svg 
