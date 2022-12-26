@@ -49,7 +49,7 @@ export default function Recipes() {
 
   return (
     <section className="bg-white dark:bg-gray-800">
-      <div className="max-w-6xl mx-auto h-44 bg-white dark:bg-gray-800">
+      <div className="max-w-6xl mx-auto h-40 md:h-44 bg-white dark:bg-gray-800">
         <h1 className="text-5xl md:text-8xl font-bold py-6 text-center md:text-left">
           Let's Eat!
         </h1>

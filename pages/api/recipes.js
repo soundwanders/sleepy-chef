@@ -77,6 +77,13 @@ export default function handler(req, res) {
 
   // filter the recipes using the fuzzy searchers
   let filteredRecipes = [];
+  
+  // if neither type or ingredient is provided, return an error response
+  if (!type && !ingredient) {
+    res.status(400).json({ error: 'Type or ingredient must be provided' });
+    return;
+  }
+  
   switch (true) {
     case type && !ingredient:
       filteredRecipes = typeSearcher.search(type);
@@ -90,12 +97,6 @@ export default function handler(req, res) {
     default:
       filteredRecipes = [];
       break;
-  }
-
-  // if neither type or ingredient is provided, return an error response
-  if (!type && !ingredient) {
-    res.status(400).json({ error: 'Type or ingredient must be provided' });
-    return;
   }
 
   // send filtered recipes to client-side
