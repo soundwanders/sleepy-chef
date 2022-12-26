@@ -8,6 +8,7 @@
   "dependencies": {
     "axios": "^0.21.1",
     "cross-env": "^7.0.3",
+    "fuzzy-search": "^3.2.1",
     "next": "10.x",
     "next-themes": "0.0.15",
     "react": "17.x",
