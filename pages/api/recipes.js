@@ -1,4 +1,5 @@
 import { createContext } from "react";
+import fuzzySearch from 'fuzzy-search';
 
 const recipes = [
   { 
@@ -64,37 +65,38 @@ export default function handler(req, res) {
   // destructure the type and ingredient query parameters
   const { type, ingredient } = query;
 
- // create empty array to store the filtered recipes
- let filteredRecipes = [];
-  
+  // create a fuzzy searcher for the type field
+  const typeSearcher = new fuzzySearch(recipes, ['type'], {
+    caseSensitive: false
+  });
+
+  // create a fuzzy searcher for the ingredients field
+  const ingredientsSearcher = new fuzzySearch(recipes, ['ingredients'], {
+    caseSensitive: false
+  });
+
+  // filter the recipes using the fuzzy searchers
+  let filteredRecipes = [];
   
   // if neither type or ingredient is provided, return an error response
   if (!type && !ingredient) {
     res.status(400).json({ error: 'Type or ingredient must be provided' });
     return;
   }
-
-  // filter the recipes
+  
   switch (true) {
     case type && !ingredient:
-      filteredRecipes = recipes.filter(recipe => recipe.type.toLowerCase() === type.toLowerCase());
+      filteredRecipes = typeSearcher.search(type);
       break;
     case ingredient && !type:
-      filteredRecipes = recipes.filter(recipe => recipe.ingredients.some(ing => ing.toLowerCase().includes(ingredient.toLowerCase())));
+      filteredRecipes = ingredientsSearcher.search(ingredient);
       break;
-      case type && ingredient:
-        filteredRecipes = recipes.filter(recipe => recipe.type.toLowerCase() === type.toLowerCase() && recipe.ingredients.some(ing => ing.toLowerCase().includes(ingredient.toLowerCase())));
-        break;
+    case type && ingredient:
+      filteredRecipes = typeSearcher.search(type).filter(recipe => ingredientsSearcher.search(ingredient).includes(recipe));
+      break;
     default:
       filteredRecipes = [];
       break;
-  }
-  
-  // if the filtered recipes array is empty, throw an error and set the error state using the setError hook
-  if (filteredRecipes.length === 0) {
-    res.status(400).json({ error: 'Sorry! No recipes found.' });
-    setError('Sorry! No recipes found.');
-    return;
   }
 
   // send filtered recipes to client-side
