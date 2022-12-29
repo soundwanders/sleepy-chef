@@ -35,6 +35,16 @@ export default function Recipes() {
     } catch (error) {
       // if there's an error fetching from the first URL, try the second one
       try {
+        // redefine queryParams and queryString before the second fetch call
+        const queryParams = [];
+        if (type) {
+          queryParams.push(`type=${type}`);
+        }
+        if (ingredient) {
+          queryParams.push(`ingredient=${ingredient}`);
+        }
+        const queryString = queryParams.join('&');
+
         const response = await fetch(`https://sleepychef.vercel.app/api/recipes?${queryString}`);
         data = await response.json();
       } catch (error) {
