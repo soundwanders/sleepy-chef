@@ -3,6 +3,7 @@ import Link from "next/link";
 import { useTheme } from "next-themes";
 import { useRouter } from "next/router";
 import userData from "@constants/data";
+import NavSearchbar from "./NavSearchbar";
 
 export default function Navbar() {
   const router = useRouter();
@@ -29,6 +30,8 @@ export default function Navbar() {
             </a>
           </Link>
         </div>
+        
+        { router.pathname !== '/' && <NavSearchbar /> }
 
         <div className="space-x-4 flex flex-row items-center">
           <button
