@@ -18,7 +18,6 @@ export default function Navbar() {
   return (
     <div className="max-w-6xl mx-auto px-4 py-6 md:py-10">
       <div className="flex md:flex-row justify-between items-center">
-
         <div className="flex flex-col w-48 md:w-full">
           <Link href="/">
             <a className="w-max">
@@ -30,7 +29,7 @@ export default function Navbar() {
             </a>
           </Link>
         </div>
-        
+      
         { router.pathname !== '/' && <NavSearchbar /> }
 
         <div className="space-x-4 flex flex-row items-center">
@@ -67,19 +66,6 @@ export default function Navbar() {
             )}
           </button>
         </div>
-      </div>
-      
-      <div className="space-x-10 block md:hidden mt-4 px-4">
-        <Link target="_blank" href="/">
-          <a className="text-base text-gray-600 dark:text-gray-300 font-medium text-sm uppercase tracking-wider">
-            Home
-          </a>
-        </Link>
-        <Link target="_blank" href="https://github.com/soundwanders/sleepy-chef#readme">
-          <a className="text-base text-gray-600 dark:text-gray-300 font-medium text-sm uppercase tracking-wider">
-            About
-          </a>
-        </Link>
       </div>
     </div>
   )

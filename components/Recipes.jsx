@@ -6,7 +6,7 @@ import { Highlighter } from "./Highlighter";
 // Here we fetch a list of recipes that are filtered based on the type and ingredient query parameters,
 // while using the useCallback hook to create a memoized version of the fetchRecipes function.
 // The useEffect hook only re-runs the fetchRecipes function when the function itself changes,
-// which prevents fetchRecipes from being called every time the component updates.
+// which prevents fetchRecipes from being called every time this component updates.
 
 export default function Recipes() {
   const router = useRouter();
@@ -20,6 +20,7 @@ export default function Recipes() {
     const { type, ingredient } = query;
 
     let data;
+
     try {
       const queryParams = [];
       if (type) {
@@ -67,16 +68,15 @@ export default function Recipes() {
     fetchRecipes();
   }, [fetchRecipes]);
 
-  const highlightColor = "#ff9105";
-  // #ff6961
+  const highlightColor = "#f75850";
 
   return (
-    <section className="bg-white dark:bg-gray-800">
-      <div className="max-w-6xl mx-auto h-40 bg-white dark:bg-gray-800">
-        <div className="w-fit float-left px-8 md:px-0">
+    <section className="bg-white dark:bg-gray-800 pb-10 md:py-8">
+      <div className="max-w-6xl mx-auto h-36 md:h-40 px-8 py-4 bg-white dark:bg-gray-800">
+        <div className="w-fit float-left">
           <RoughNotationGroup show={true}>
             <Highlighter color={highlightColor}>
-              <h1 className="text-4xl md:text-8xl font-bold text-gray-800 dark:text-gray-200 text-center md:text-left py-6 -mx-1 px-4">
+              <h1 className="text-5xl md:text-8xl font-bold text-gray-800 dark:text-gray-200 text-center md:text-left py-2 px-4 -mx-1">
                 Order Up!
               </h1>
             </Highlighter>
@@ -84,10 +84,10 @@ export default function Recipes() {
         </div>
       </div>
 
-      <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-8 py-0 md:py-10 px-8 md:px-0">
+      <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-8 py-0 md:py-10 px-8">
         {recipes.map(recipe => (
           <div key={recipe.id} className="rounded-lg shadow-md hover:shadow-lg bg-white">
-            <div className="bg-gray-300 h-20 rounded-t-lg">
+            <div className="bg-blue-100 h-20 rounded-t-lg">
               <h2 className="text-2xl font-bold text-gray-800 p-4">
                 {recipe.name}
               </h2>
