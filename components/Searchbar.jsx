@@ -2,10 +2,13 @@ import { useState, useContext } from 'react';
 import { useRouter } from 'next/router';
 import { RecipesContext } from '../pages/api/recipes';
 
-// Using the context feature allows you to share the recipes data with other components in your application
-// without having to pass it down through props. Use of context helps avoid prop drilling, which is when
-// data needs to be passed down through multiple levels of components in a nested component structure
-// the use of context here improves scalability if the application grows
+// The Searchbar component filters the recipes API data to see if a user's search input matches either a recipe type or ingredient.
+// If there is a match, the useRouter hook sets the type or ingredient query parameters in the router object.
+// If the search input does not match either a recipe type or an ingredient, our setError hook displays an error message.
+
+// *Side note: Using the context feature allows you to share the recipes data with other components in your application
+// without having to pass it down through props. Use of context helps avoid prop drilling.
+// The use of context in this application is a safety mechanism to improve scalability if the application expands.
 
 const Searchbar = () => {
   const router = useRouter();

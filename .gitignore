@@ -22,6 +22,8 @@ yarn.lock
 # misc
 .DS_Store
 *.pem
+recipe-page.md
+searchbar.md
 
 ## dynamic routing
 /pages/recipes
