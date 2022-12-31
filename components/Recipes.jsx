@@ -1,12 +1,13 @@
-import { useState, useEffect, useCallback } from 'react';
-import { useRouter, prevRouter } from 'next/router';
+import { useState, useEffect } from 'react';
+import { useRouter } from 'next/router';
 import { RoughNotation, RoughNotationGroup } from "react-rough-notation";
 import { Highlighter } from "./Highlighter";
 
-// Here we fetch a list of recipes that are filtered based on the type and ingredient query parameters,
-// while using the useCallback hook to create a memoized version of the fetchRecipes function.
-// The useEffect hook only re-runs the fetchRecipes function when the function itself changes,
-// which prevents fetchRecipes from being called every time this component updates.
+// Recipes fetches and displays a list of recipes based on the query parameters in the URL
+// The useRouter hook gets the current URL query parameters, and useState hook manages the state of the recipes data.
+// The compareRouter function is used as a dependency array in the useEffect hook to prevent unnecessary re-renders. 
+// Finally, the useEffect hook updates the state of the recipes data with the data it fetches from the server. 
+// If the data is invalid or missing, throw an error and redirect the user back to the home page.
 
 export default function Recipes() {
   const router = useRouter();
@@ -21,24 +22,24 @@ export default function Recipes() {
   useEffect(() => {
     async function fetchRecipes() {
       const { query } = router;
-      const { name, type, ingredient } = query;
+      const { type, ingredient, name } = query;
       let data;
-      try {
-        const queryParams = [];
 
+      try {
+        let queryParams = [];
+      
         if (type) {
           queryParams.push(`type=${type}`);
-        }
-        if (name) {
-          queryParams.push(`name=${name}`);
         }
         if (ingredient) {
           queryParams.push(`ingredient=${ingredient}`);
         }
-
-        const queryString = queryParams.join('&');
-  
+        if (name) {
+          queryParams.push(`name=${name}`);
+        }
+        const queryString = queryParams.length > 0 ? queryParams.join('&') : '';
         const response = await fetch(`http://localhost:3000/api/recipes?${queryString}`);
+
         data = await response.json();
   
       } catch (error) {
@@ -50,16 +51,13 @@ export default function Recipes() {
           if (type) {
             queryParams.push(`type=${type}`);
           }
-          if (name) {
-            queryParams.push(`name=${name}`);
-          }
           if (ingredient) {
             queryParams.push(`ingredient=${ingredient}`);
           }
 
           const queryString = queryParams.join('&');
-  
           const response = await fetch(`https://sleepychef.vercel.app/api/recipes?${queryString}`);
+
           data = await response.json();
         } catch (error) {
           // if both URLS throw an error, return to Home

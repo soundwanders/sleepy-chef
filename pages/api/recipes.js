@@ -63,7 +63,7 @@ export default function handler(req, res) {
   const { query } = req;
 
   // destructure the type and ingredient query parameters
-  const { type, name, ingredient } = query;
+  const { type, ingredient, name } = query;
 
   // create a fuzzy searcher for each query parameter
   const typeSearcher = new fuzzySearch(recipes, ['type'], {
@@ -87,16 +87,31 @@ export default function handler(req, res) {
     return;
   }
 
-  if (type && !ingredient && !name) {
-    filteredRecipes = typeSearcher.search(type);
-  } else if (ingredient && !type && !name) {
-    filteredRecipes = ingredientSearcher.search(ingredient);
-  } else if (type && ingredient && !name) {
-    filteredRecipes = typeSearcher.search(type).filter(recipe => ingredientSearcher.search(ingredient).includes(recipe));
-  } else if (type && !ingredient && name) {
-    filteredRecipes = typeSearcher.search(type).filter(recipe => nameSearcher.search(name).includes(recipe));
-  } else if (name && !type && !ingredient) {
-    filteredRecipes = nameSearcher.search(name);
+  switch (true) {
+    case type && !ingredient && !name:
+      filteredRecipes = typeSearcher.search(type);
+      break;
+    case ingredient && !type && !name:
+      filteredRecipes = ingredientSearcher.search(ingredient);
+      break;
+    case name && !type && !ingredient:
+      filteredRecipes = nameSearcher.search(name);
+      break;
+    case type && ingredient:
+      filteredRecipes = typeSearcher.search(type).filter(recipe => ingredientSearcher.search(ingredient).includes(recipe));
+      break;
+    case type && name:
+      filteredRecipes = typeSearcher.search(type).filter(recipe => nameSearcher.search(name).includes(recipe));
+      break;
+    case ingredient && name:
+      filteredRecipes = ingredientSearcher.search(ingredient).filter(recipe => nameSearcher.search(name).includes(recipe));
+      break;
+    case type && ingredient && name:
+      filteredRecipes = typeSearcher.search(type).filter(recipe => ingredientSearcher.search(ingredient).includes(recipe)).filter(recipe => nameSearcher.search(name).includes(recipe));
+      break;
+    default:
+      filteredRecipes = [];
+      break;
   }
 
   // send filtered recipes to client-side

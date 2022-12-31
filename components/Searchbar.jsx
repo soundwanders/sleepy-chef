@@ -2,13 +2,15 @@ import { useState, useContext } from 'react';
 import { useRouter } from 'next/router';
 import { RecipesContext } from '../pages/api/recipes';
 
-// The Searchbar component filters the recipes API data to see if a user's search input matches either a recipe type or ingredient.
-// If there is a match, the useRouter hook sets the type or ingredient query parameters in the router object.
-// If the search input does not match either a recipe type or an ingredient, our setError hook displays an error message.
+// The Searchbar component allows a user to search the sleepy chef API for recipes by type, ingredient, or name.
+// Uses the `useRouter` hook to navigate to the results page with the appropriate query parameters in the URL.
+// The `handleSubmit` function checks whether the search input matches a recipe type, ingredient, or name,
+// then if the search input is valid, the `setError` function is called to clear any error message
+// Finally, the `router.push` function is used to navigate to the results page with the appropriate query parameters in the URL.
 
-// *Side note: Using the context feature allows you to share the recipes data with other components in your application
-// without having to pass it down through props. Use of context helps avoid prop drilling.
-// The use of context in this application is a safety mechanism to improve scalability if the application expands.
+// *Side note: Using the context feature, we can share the recipes data with other components
+// without having to pass it down through props. The use of context helps avoid prop drilling.
+// The use of context in this application is a safety mechanism to improve scalability
 
 const Searchbar = () => {
   const router = useRouter();
@@ -17,73 +19,47 @@ const Searchbar = () => {
 
   const recipes = useContext(RecipesContext);
 
-  const handleSubmit = e => {
+  const handleSubmit = (e) => {
     e.preventDefault();
-  
-    // create an array of all recipe names
-    const recipeNames = recipes.map(recipe => recipe.name);
   
     // create an array of all recipe types
     const recipeTypes = recipes.reduce((acc, recipe) => acc.concat(recipe.type), []);
-  
+
     // create an array of all ingredients in recipes data
-    const recipeIngredients = recipes.reduce((acc, recipe) => acc.concat(recipe.ingredients), []);
-  
-    // split the submitted search input into an array of words,
-    // which allows white space or multiple words in search
-    const queryStrings = query.toLowerCase().split(' ');
-  
-    // check if the search matches a recipe type
-    let type;
-    if (recipeTypes.some(recipeType => {
-      const recipeTypeWords = recipeType.toLowerCase().split(' ');
-      return queryStrings.every(queryString => recipeTypeWords.includes(queryString));
-    })) {
-      type = query;
-    }
+    const recipeIngredients= recipes.reduce((acc, recipe) => acc.concat(recipe.ingredients), []);
 
-    // check if the search matches any ingredients
-    let ingredient;
-    if (!type) {
-      ingredient = recipeIngredients.some(recipeIngredients => {
-        // split the ingredient into an array of words
-        const recipeIngredientWords = recipeIngredients.toLowerCase().split(' ');
-        // check if all query words are included in the ingredient
-        return queryStrings.every(queryString => recipeIngredientWords.includes(queryString));
-      });
-    }
+    // create an array of all recipe names
+    const recipeNames = recipes.map(recipe => recipe.name);
 
-    // check if the search matches a recipe name
-    let name;
-    if (!type && !ingredient) {
-      name = recipeNames.some(recipeName => {
-        // split the recipe name into an array of words
-        const recipeNameWords = recipeName.toLowerCase().split(' ');
-        // check if all query words are included in the recipe name
-        return queryStrings.every(queryString => recipeNameWords.includes(queryString));
-      });
-    }
-  
+    // check if the search input matches a recipe type (case-insensitive)
+    const type = recipeTypes.some(recipeType => recipeType.toLowerCase().includes(query.toLowerCase())) ? query : null;
+
+    // check if the search input matches any ingredients (case-insensitive)
+    const ingredient = recipeIngredients.some(recipeIngredient => recipeIngredient.toLowerCase().includes(query.toLowerCase())) && !type ? query : null;
+
+    // check if the search input matches a recipe name (case-insensitive)
+    const name = recipeNames.some(recipeName => recipeName.toLowerCase().includes(query.toLowerCase())) && !type && !ingredient ? query : null;
+
+    
     if (!query) {
       setError('✏️');
       return;
     }
-  
-    if (!name && !type && !ingredient) {
-      setError('🤔');
 
+    if (!type && !ingredient && !name) {
+      setError('🤔');
       return;
     }
-  
+
     setError('');
-  
-    // pass the appropriate query parameter to results page
+    
     router.push({
       pathname: '/results',
-      query: { type, name, ingredient },
+      query: { type, ingredient, name },
     });
   };
 
+  // clear error to allow search form resubmit
   const handleInputFocus = () => {
     setError('');
   };
