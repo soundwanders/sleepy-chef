@@ -11,14 +11,14 @@ const recipes = [
     "ingredients": [
       "1 pound fish, cut into strips",
       "1 ¼ cups flour",
-      "2 tablespoons cornstarch",
-      "1 teaspoon baking powder",
-      "1 teaspoon salt",
+      "2 tbsp cornstarch",
+      "1 tsp baking powder",
+      "1 tsp salt",
       "1 cup beer",
       "1 cup egg",
       "1 quart oil",
       "flour or corn tortillas",
-      "2 to 3 cups lettuce, shredded"
+      "2 to 3 cups shredded lettuce"
     ],
     "nutrition": {
       "calories": "410",
@@ -41,11 +41,11 @@ const recipes = [
       "1 medium onion, chopped",
       "1 stalk celery, chopped",
       "1 ½ cups beef broth",
-      "1 teaspoon Worcestershire sauce",
+      "1 tsp Worcestershire sauce",
       "¼ cup flour",
-      "½ teaspoon salt",
-      "½ teaspoon black pepper",
-      "1 teaspoon ground paprika",
+      "½ tsp salt",
+      "½ tsp black pepper",
+      "1 tsp ground paprika",
       "1 clove garlic, minced"
     ],
     "nutrition": {
@@ -63,40 +63,40 @@ export default function handler(req, res) {
   const { query } = req;
 
   // destructure the type and ingredient query parameters
-  const { type, ingredient } = query;
+  const { type, name, ingredient } = query;
 
-  // create a fuzzy searcher for the type field
+  // create a fuzzy searcher for each query parameter
   const typeSearcher = new fuzzySearch(recipes, ['type'], {
     caseSensitive: false
   });
 
-  // create a fuzzy searcher for the ingredients field
-  const ingredientsSearcher = new fuzzySearch(recipes, ['ingredients'], {
+  const nameSearcher = new fuzzySearch(recipes, ['name'], {
+    caseSensitive: false
+  });
+
+  const ingredientSearcher = new fuzzySearch(recipes, ['ingredients'], {
     caseSensitive: false
   });
 
   // filter the recipes using the fuzzy searchers
   let filteredRecipes = [];
   
-  // if neither type or ingredient is provided, return an error response
-  if (!type && !ingredient) {
-    res.status(400).json({ error: 'Type or ingredient must be provided' });
+  // if name, type or ingredient is not provided, return an error response
+  if (!type && !name && !ingredient) {
+    res.status(400).json({ error: 'Name, type, or ingredient must be provided.' });
     return;
   }
-  
-  switch (true) {
-    case type && !ingredient:
-      filteredRecipes = typeSearcher.search(type);
-      break;
-    case ingredient && !type:
-      filteredRecipes = ingredientsSearcher.search(ingredient);
-      break;
-    case type && ingredient:
-      filteredRecipes = typeSearcher.search(type).filter(recipe => ingredientsSearcher.search(ingredient).includes(recipe));
-      break;
-    default:
-      filteredRecipes = [];
-      break;
+
+  if (type && !ingredient && !name) {
+    filteredRecipes = typeSearcher.search(type);
+  } else if (ingredient && !type && !name) {
+    filteredRecipes = ingredientSearcher.search(ingredient);
+  } else if (type && ingredient && !name) {
+    filteredRecipes = typeSearcher.search(type).filter(recipe => ingredientSearcher.search(ingredient).includes(recipe));
+  } else if (type && !ingredient && name) {
+    filteredRecipes = typeSearcher.search(type).filter(recipe => nameSearcher.search(name).includes(recipe));
+  } else if (name && !type && !ingredient) {
+    filteredRecipes = nameSearcher.search(name);
   }
 
   // send filtered recipes to client-side
