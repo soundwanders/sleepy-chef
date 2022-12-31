@@ -1,5 +1,5 @@
 import { useState, useEffect, useCallback } from 'react';
-import { useRouter } from 'next/router';
+import { useRouter, prevRouter } from 'next/router';
 import { RoughNotation, RoughNotationGroup } from "react-rough-notation";
 import { Highlighter } from "./Highlighter";
 
@@ -12,61 +12,73 @@ export default function Recipes() {
   const router = useRouter();
   const [recipes, setRecipes] = useState([]);
 
-  const fetchRecipes = useCallback(async () => {
-    // destructure the query object from the router object
-    const { query } = router;
-
-    // destructure type and ingredient query parameters
-    const { type, ingredient } = query;
-
-    let data;
-
-    try {
-      const queryParams = [];
-      if (type) {
-        queryParams.push(`type=${type}`);
-      }
-      if (ingredient) {
-        queryParams.push(`ingredient=${ingredient}`);
-      }
-      const queryString = queryParams.join('&');
-
-      const response = await fetch(`http://localhost:3000/api/recipes?${queryString}`);
-      data = await response.json();
-    } catch (error) {
-      // if there's an error fetching from the first URL, try the second one
+  function compareRouter(prevRouter, nextRouter) {
+    return prevRouter.query.name === nextRouter.query.name &&
+      prevRouter.query.type === nextRouter.query.type &&
+      prevRouter.query.ingredient === nextRouter.query.ingredient;
+  };
+  
+  useEffect(() => {
+    async function fetchRecipes() {
+      const { query } = router;
+      const { name, type, ingredient } = query;
+      let data;
       try {
-        // redefine queryParams and queryString before the second fetch call
         const queryParams = [];
+
         if (type) {
           queryParams.push(`type=${type}`);
+        }
+        if (name) {
+          queryParams.push(`name=${name}`);
         }
         if (ingredient) {
           queryParams.push(`ingredient=${ingredient}`);
         }
-        const queryString = queryParams.join('&');
 
-        const response = await fetch(`https://sleepychef.vercel.app/api/recipes?${queryString}`);
+        const queryString = queryParams.join('&');
+  
+        const response = await fetch(`http://localhost:3000/api/recipes?${queryString}`);
         data = await response.json();
+  
       } catch (error) {
-        // if both URLS throw an error, return to Home
-        console.error(error);
-        router.push('/');
+        // if there's an error fetching from the first URL, try the second one
+        try {
+          // redefine queryParams and queryString before the second fetch call
+          const queryParams = [];
+  
+          if (type) {
+            queryParams.push(`type=${type}`);
+          }
+          if (name) {
+            queryParams.push(`name=${name}`);
+          }
+          if (ingredient) {
+            queryParams.push(`ingredient=${ingredient}`);
+          }
+
+          const queryString = queryParams.join('&');
+  
+          const response = await fetch(`https://sleepychef.vercel.app/api/recipes?${queryString}`);
+          data = await response.json();
+        } catch (error) {
+          // if both URLS throw an error, return to Home
+          console.error(error);
+          router.push('/');
+        }
       }
-    }
 
     if (data.length === undefined) {
-      // if data.length is undefined, that indicates bad server response or missing recipe data
+      // data.length being undefined indicates a bad server response or missing recipe data
       router.push('/');
+      console.log("Bad request");
     } else {
       setRecipes(data);
     }
-  // only update the fetchRecipes function if the router object changes
-  }, [router]);
-
-  useEffect(() => {
+  }
     fetchRecipes();
-  }, [fetchRecipes]);
+  }, [router], compareRouter);
+
 
   const highlightColor = "#f75850";
 

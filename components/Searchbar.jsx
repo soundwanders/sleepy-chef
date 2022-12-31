@@ -20,37 +20,69 @@ const Searchbar = () => {
   const handleSubmit = e => {
     e.preventDefault();
   
+    // create an array of all recipe names
+    const recipeName = recipes.map(recipe => recipe.name);
+  
     // create an array of all recipe types
     const recipeTypes = recipes.reduce((acc, recipe) => acc.concat(recipe.type), []);
   
     // create an array of all ingredients in recipes data
-    const ingredients = recipes.reduce((acc, recipe) => acc.concat(recipe.ingredients), []);
+    const recipeIngredients = recipes.reduce((acc, recipe) => acc.concat(recipe.ingredients), []);
   
-    // check if the search input matches a recipe type (case-insensitive)
-    const type = recipeTypes.some(recipeType => recipeType.toLowerCase().includes(query.toLowerCase())) ? query : null;
-    
-    // check if the search input matches any ingredients (case-insensitive)
-    const ingredient = ingredients.some(ingredient => ingredient.toLowerCase().includes(query.toLowerCase())) && !type ? query : null;
-    
+    // split the submitted search input into an array of words,
+    // which allows white space or multiple words in search
+    const queryStrings = query.toLowerCase().split(' ');
+  
+    // check if the search matches a recipe type
+    let type;
+    if (recipeTypes.some(recipeType => {
+      const recipeTypeWords = recipeType.toLowerCase().split(' ');
+      return queryStrings.every(queryString => recipeTypeWords.includes(queryString));
+    })) {
+      type = query;
+    }
+
+    // check if the search matches any ingredients
+    let ingredient;
+    if (!type) {
+      ingredient = recipeIngredients.some(recipeIngredients => {
+        // split the ingredient into an array of words
+        const recipeIngredientWords = recipeIngredients.toLowerCase().split(' ');
+        // check if all query words are included in the ingredient
+        return queryStrings.every(queryString => recipeIngredientWords.includes(queryString));
+      });
+    }
+
+    // check if the search matches a recipe name
+    let name;
+    if (!type && !ingredient) {
+      name = recipeName.some(recipeName => {
+        // split the recipe name into an array of words
+        const recipeNameWords = recipeName.toLowerCase().split(' ');
+        // check if all query words are included in the recipe name
+        return queryStrings.every(queryString => recipeNameWords.includes(queryString));
+      });
+    }
+  
     if (!query) {
       setError('✏️');
       return;
     }
-
-    if (!type && !ingredient) {
+  
+    if (!name && !type && !ingredient) {
       setError('🤔');
+
       return;
     }
   
-    // clear error message to allow user to resubmit search
     setError('');
   
     // pass the appropriate query parameter to results page
     router.push({
       pathname: '/results',
-      query: { type, ingredient },
+      query: { type, name, ingredient },
     });
-  };  
+  };
 
   const handleInputFocus = () => {
     setError('');

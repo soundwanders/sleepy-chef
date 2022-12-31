@@ -24,6 +24,8 @@ yarn.lock
 *.pem
 recipe-page.md
 searchbar.md
+api-handler.md
+handlesubmit.txt
 
 ## dynamic routing
 /pages/recipes
