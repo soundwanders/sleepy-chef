@@ -21,7 +21,7 @@ const Searchbar = () => {
     e.preventDefault();
   
     // create an array of all recipe names
-    const recipeName = recipes.map(recipe => recipe.name);
+    const recipeNames = recipes.map(recipe => recipe.name);
   
     // create an array of all recipe types
     const recipeTypes = recipes.reduce((acc, recipe) => acc.concat(recipe.type), []);
@@ -56,7 +56,7 @@ const Searchbar = () => {
     // check if the search matches a recipe name
     let name;
     if (!type && !ingredient) {
-      name = recipeName.some(recipeName => {
+      name = recipeNames.some(recipeName => {
         // split the recipe name into an array of words
         const recipeNameWords = recipeName.toLowerCase().split(' ');
         // check if all query words are included in the recipe name
