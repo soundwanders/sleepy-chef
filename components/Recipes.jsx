@@ -38,7 +38,7 @@ export default function Recipes() {
           queryParams.push(`name=${name}`);
         }
         const queryString = queryParams.length > 0 ? queryParams.join('&') : '';
-        const response = await fetch(`http://localhost:3000/api/recipes?${queryString}`);
+        const response = await fetch(`https://sleepychef.vercel.app/api/recipes?${queryString}`);
 
         data = await response.json();
   
@@ -54,9 +54,12 @@ export default function Recipes() {
           if (ingredient) {
             queryParams.push(`ingredient=${ingredient}`);
           }
+          if (name) {
+            queryParams.push(`name=${name}`);
+          }
 
           const queryString = queryParams.join('&');
-          const response = await fetch(`https://sleepychef.vercel.app/api/recipes?${queryString}`);
+          const response = await fetch(`http://localhost:3000/api/recipes?${queryString}`);
 
           data = await response.json();
         } catch (error) {
