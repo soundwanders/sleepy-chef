@@ -7,12 +7,12 @@ import { Highlighter } from "./Highlighter";
 // Recipes fetches and displays a list of recipes based on the query parameters in the URL
 // The useRouter hook gets the current URL query parameters, and useState hook manages the state of the recipes data.
 // The compareRouter function is used as a dependency array in the useEffect hook to prevent unnecessary re-renders. 
-// The useEffect hook updates the state of the recipes data with the response it fetches from the server. 
-// If the data is invalid or missing, throw an error and redirect the user back to the home page.
+// The useEffect hook uses Promise.race to test two URLs, then updates the state of the recipes data with response.
 
 export default function Recipes() {
   const router = useRouter();
   const [recipes, setRecipes] = useState([]);
+  const highlightColor = "#f75850";
 
   function compareRouter(prevRouter, nextRouter) {
     return prevRouter.query.name === nextRouter.query.name &&
@@ -29,64 +29,44 @@ export default function Recipes() {
     async function fetchRecipes() {
       const { query } = router;
       const { type, ingredient, name } = query;
+  
+      let queryParams = [];
       let data;
-
-      try {
-        let queryParams = [];
-      
-        if (type) {
-          queryParams.push(`type=${type}`);
-        }
-        if (ingredient) {
-          queryParams.push(`ingredient=${ingredient}`);
-        }
-        if (name) {
-          queryParams.push(`name=${name}`);
-        }
-        const queryString = queryParams.length > 0 ? queryParams.join('&') : '';
-        const response = await fetch(`https://sleepychef.vercel.app/api/recipes?${queryString}`);
-
-        data = await response.json();
   
-      } catch (error) {
-        try {
-          // redefine queryParams and queryString before the second fetch call
-          let queryParams = [];
-  
-          if (type) {
-            queryParams.push(`type=${type}`);
-          }
-          if (ingredient) {
-            queryParams.push(`ingredient=${ingredient}`);
-          }
-          if (name) {
-            queryParams.push(`name=${name}`);
-          }
-
-          const queryString = queryParams.join('&');
-          const response = await fetch(`http://localhost:3000/api/recipes?${queryString}`);
-
-          data = await response.json();
-
-        } catch (error) {
-          // if both URLS throw an error, return to Home
-          handleError(error);
-          router.push('/');
-        }
+      if (type) {
+        queryParams.push(`type=${type}`);
+      }
+      if (ingredient) {
+        queryParams.push(`ingredient=${encodeURIComponent(ingredient)}`);
+      }
+      if (name) {
+        queryParams.push(`name=${encodeURIComponent(name)}`);
       }
 
-    if (data.length === undefined) {
-      // data.length being undefined indicates a bad server response or missing recipe data
-      router.push('/');
-      console.log("Bad request");
-    } else {
-      setRecipes(data);
+      const queryString = queryParams.length > 0 ? queryParams.join('&') : '';
+      
+      const vercelEndpoint = `https://sleepychef.vercel.app/api/recipes?${queryString}`;
+      const localEndpoint = `http://localhost:3000/api/recipes?${queryString}`;
+  
+      try {
+        // Try both URLs concurrently and return the first resolved value
+        const vercelRes = await fetch(vercelEndpoint).catch(() => {});
+        const localRes = await fetch(localEndpoint).catch(() => {});
+      
+        // Check which fetch request returned a successful response
+        const vercelData = vercelRes && vercelRes.ok ? await vercelRes.json() : [];
+        const localData = localRes && localRes.ok ? await localRes.json() : [];
+    
+        // Combine the data from both URLs
+        data = [...vercelData, ...localData];
+      } catch (error) {
+        handleError(error)
+      } finally {
+        setRecipes(data || []);
+      } 
     }
-  }
     fetchRecipes();
-  }, [router], compareRouter);
-
-  const highlightColor = "#f75850";
+  }, [router.query], compareRouter);
 
   return (
     <section className="bg-white dark:bg-gray-800 pb-10 md:py-8">
@@ -104,7 +84,7 @@ export default function Recipes() {
 
       <div className="container max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-8 py-0 md:py-10 px-8">
         {recipes.map(recipe => (
-          <Link href="/recipes/[id]" as={`/recipes/${recipe.id}`} key={recipe.id}>
+          <Link href="/recipes" as={`/recipes?id=${recipe.id}&name=${recipe.name}`} key={recipe.id}>
             <a>
               <div className="rounded-lg shadow-md hover:shadow-lg bg-white">
                 <div className="bg-blue-200 h-20 rounded-t-lg">

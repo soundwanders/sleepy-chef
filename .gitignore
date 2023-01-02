@@ -22,14 +22,13 @@ yarn.lock
 # misc
 .DS_Store
 *.pem
+
+# educational
 recipe-page.md
 searchbar.md
 api-handler.md
 handlesubmit.txt
-
-## dynamic routing
-/pages/recipes
-/pages/recipes/[id]
+dynamic-urls.md
 
 # data
 foods.json
