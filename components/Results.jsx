@@ -9,7 +9,7 @@ import { Highlighter } from "./Highlighter";
 // The compareRouter function is used as a dependency array in the useEffect hook to prevent unnecessary re-renders. 
 // The useEffect hook uses Promise.race to test two URLs, then updates the state of the recipes data with response.
 
-export default function Recipes() {
+export default function Results() {
   const router = useRouter();
   const [recipes, setRecipes] = useState([]);
   const highlightColor = "#f75850";
@@ -44,26 +44,19 @@ export default function Recipes() {
       }
 
       const queryString = queryParams.length > 0 ? queryParams.join('&') : '';
-      
-      const vercelEndpoint = `https://sleepychef.vercel.app/api/recipes?${queryString}`;
-      const localEndpoint = `http://localhost:3000/api/recipes?${queryString}`;
   
-      try {
-        // Try both URLs concurrently and return the first resolved value
-        const vercelRes = await fetch(vercelEndpoint).catch(() => {});
-        const localRes = await fetch(localEndpoint).catch(() => {});
-      
-        // Check which fetch request returned a successful response
-        const vercelData = vercelRes && vercelRes.ok ? await vercelRes.json() : [];
-        const localData = localRes && localRes.ok ? await localRes.json() : [];
+      const endpoint = `/api/recipes?${queryString}`;
     
-        // Combine the data from both URLs
-        data = [...vercelData, ...localData];
+      try {
+        const response = await fetch(endpoint).catch(() => {});
+      
+        // Check if the fetch request returned a successful response
+        data = response && response.ok ? await response.json() : [];
+      
+        setRecipes(data || []);
       } catch (error) {
         handleError(error)
-      } finally {
-        setRecipes(data || []);
-      } 
+      }
     }
     fetchRecipes();
   }, [router.query], compareRouter);
@@ -84,7 +77,12 @@ export default function Recipes() {
 
       <div className="container max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-8 py-0 md:py-10 px-8">
         {recipes.map(recipe => (
-          <Link href="/recipes" as={`/recipes?id=${recipe.id}&name=${recipe.name}`} key={recipe.id}>
+          <Link 
+            href="/recipes/[id]" 
+            as={`/recipes/${recipe.id}?name=${recipe.name}`}
+            key={recipe.id}
+            query={{ id: recipe.id, name: recipe.name }}
+          >
             <a>
               <div className="rounded-lg shadow-md hover:shadow-lg bg-white">
                 <div className="bg-blue-200 h-20 rounded-t-lg">

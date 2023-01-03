@@ -62,8 +62,8 @@ export default function handler(req, res) {
   // destructure query object from the router
   const { query } = req;
 
-  // destructure the type and ingredient query parameters
-  const { type, ingredient, name } = query;
+  // destructure the type, ingredient and id query parameters
+  const { type, ingredient, name, id } = query;
 
   // create a fuzzy searcher for each query parameter
   const typeSearcher = new fuzzySearch(recipes, ['type'], {
@@ -81,13 +81,16 @@ export default function handler(req, res) {
   // filter the recipes using the fuzzy searchers
   let filteredRecipes = [];
   
-  // if name, type or ingredient is not provided, return an error response
+  // if name, type, ingredient is not provided, return an error response
   if (!type && !name && !ingredient) {
     res.status(400).json({ error: 'Name, type, or ingredient must be provided.' });
     return;
   }
 
   switch (true) {
+    case id:
+      filteredRecipes = recipes.filter(recipe => recipe.id == id);
+      break;
     case type && !ingredient && !name:
       filteredRecipes = typeSearcher.search(type);
       break;
