@@ -1,4 +1,3 @@
-import Head from "next/head";
 import ContainerBlock from "@components/ContainerBlock";
 import Results from "@components/Results";
 import userData from "@constants/data";

@@ -67,7 +67,7 @@ export default function Results() {
         <div className="w-fit float-left">
           <RoughNotationGroup show={true}>
             <Highlighter color={highlightColor}>
-              <h1 className="text-5xl md:text-8xl font-bold text-gray-800 dark:text-gray-200 text-center md:text-left py-2 px-4 -mx-1">
+              <h1 className="text-4xl md:text-8xl font-bold text-gray-800 dark:text-gray-200 text-center md:text-left py-2 px-4 -mx-1">
                 Order Up!
               </h1>
             </Highlighter>
@@ -81,7 +81,7 @@ export default function Results() {
             href="/recipes/[id]" 
             as={`/recipes/${recipe.id}?name=${recipe.name}`}
             key={recipe.id}
-            query={{ id: recipe.id, name: recipe.name }}
+            query={{ id: recipe.id}}
           >
             <a>
               <div className="rounded-lg shadow-md hover:shadow-lg bg-white">

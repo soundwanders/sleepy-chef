@@ -1,5 +1,5 @@
 # 👩‍🍳 Sleepy Chef
-##### Got a mixed bag of leftover ingredients and an empty belly? We got your back.
+##### Got a mixed bag of leftover ingredients and an empty belly? We got you.
 
 ### https://sleepychef.vercel.app/
 
@@ -7,7 +7,7 @@
 - Built with Next.js + Tailwind CSS, deployed with Vercel.
 - Next's useRouter hook helps send and receive the user's query + query parameters, necessary to filter/sort the recipe API data.
 - React Context allows us to share the recipe data between components, preventing repeated calls to the API.
-- [Fuzzy-search](https://www.npmjs.com/package/fuzzy-search) allows us to flexibly match a string with partial input to 'widen the net' while fetching search results.
+- [Fuzzy-search](https://www.npmjs.com/package/fuzzy-search) used to flexibly match a string with partial input to 'widen the net' while fetching search results.
 
 
-#### * This app is currently under development
+#### This project is currently in development

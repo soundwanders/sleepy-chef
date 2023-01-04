@@ -1,27 +1,17 @@
 import ContainerBlock from '@components/ContainerBlock';
-import { Router } from 'next/router';
 import fetch from 'isomorphic-unfetch';
 
 export async function getServerSideProps({ query }) {
-  const { id, name } = query;
+  const { id } = query;
 
-  console.log(id, name);
-  console.log("^^^ ID, NAME");
-  console.log(query);
-  console.log("^^^ QUERY");
-
-  const localEndpoint = `${process.env.LOCAL_URL}/api/recipes/${id}?name=${name}`;
-  const vercelEndpoint = `${process.env.VERCEL_URL}/api/recipes/${id}?name=${name}`;
+  const localEndpoint = `${process.env.LOCAL_URL}/api/recipes?id=${id}`;
+  const vercelEndpoint = `${process.env.VERCEL_URL}/api/recipes?id=${id}`;
   
   try {
     const [localResponse, vercelResponse] = await Promise.all([
       fetch(localEndpoint),
       fetch(vercelEndpoint)
     ]);
-
-
-  console.log(localResponse);
-  console.log("^^^ localResponse");
   
     // Check if either fetch request returned a successful response
     const localRecipeData = localResponse.ok ? await localResponse.json() : null;
@@ -42,7 +32,6 @@ export async function getServerSideProps({ query }) {
     }
   } catch (error) {
     console.error(error);
-    Router.push('/');
     return {
       props: {},
     }
@@ -51,6 +40,7 @@ export async function getServerSideProps({ query }) {
 
 export default function Recipe({ recipeData, errorMessage}) {
   console.log(recipeData);
+
   return (
     <ContainerBlock>
       <div className="container max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-8 py-0 md:py-10 px-8">

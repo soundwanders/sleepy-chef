@@ -80,16 +80,16 @@ export default function handler(req, res) {
 
   // filter the recipes using the fuzzy searchers
   let filteredRecipes = [];
-  
-  // if name, type, ingredient is not provided, return an error response
-  if (!type && !name && !ingredient) {
-    res.status(400).json({ error: 'Name, type, or ingredient must be provided.' });
-    return;
-  }
 
   switch (true) {
-    case id:
-      filteredRecipes = recipes.filter(recipe => recipe.id == id);
+    // if name, type, ingredient, id are not provided, return an error res
+    case !type && !name && !ingredient && !id:
+      res.status(400).json({ error: 'Name, type, or ingredient must be provided.' });
+      break;
+
+    // API response cases
+    case id && !type && !ingredient:
+      filteredRecipes = recipes.find(recipe => recipe.id == id);
       break;
     case type && !ingredient && !name:
       filteredRecipes = typeSearcher.search(type);
@@ -111,6 +111,10 @@ export default function handler(req, res) {
       break;
     case type && ingredient && name:
       filteredRecipes = typeSearcher.search(type).filter(recipe => ingredientSearcher.search(ingredient).includes(recipe)).filter(recipe => nameSearcher.search(name).includes(recipe));
+      break;
+
+    case !type && !name && !ingredient && !id:
+      res.status(400).json({ error: 'Name, type, or ingredient parameters must be provided to fetch a recipe.' });
       break;
     default:
       filteredRecipes = [];
