@@ -4,40 +4,40 @@ import fetch from 'isomorphic-unfetch';
 export async function getServerSideProps({ query }) {
   const { id } = query;
 
-  const localEndpoint = `${process.env.LOCAL_URL}/api/recipes?id=${id}`;
-  const vercelEndpoint = `${process.env.VERCEL_URL}/api/recipes?id=${id}`;
-  
+  console.log(id);
+  console.log("^^ id");
+
+  const apiEndpoint =
+  process.env.NODE_ENV === 'production'
+    ? `${process.env.NEXT_PUBLIC_VERCEL_URL}/api/recipes`
+    : `${process.env.LOCAL_URL}/api/recipes`;
+
   try {
-    const [localResponse, vercelResponse] = await Promise.all([
-      fetch(localEndpoint),
-      fetch(vercelEndpoint)
-    ]);
-  
-    // Check if either fetch request returned a successful response
-    const localRecipeData = localResponse.ok ? await localResponse.json() : null;
-    const vercelRecipeData = vercelResponse.ok ? await vercelResponse.json() : null;
-  
-    if (localRecipeData || vercelRecipeData) {
-      return {
-        props: {
-          recipeData: localRecipeData || vercelRecipeData
-        },
-      }
-    } else {
-      return {
-        props: {
-          errorMessage: "Recipe not found.",
-        },
-      }
+    const response = await fetch(`${apiEndpoint}?id=${id}`);
+    console.log(response);
+
+    console.log("^^ response");
+
+    const recipeData = response.status === 200 ? await response.json() : null;
+    console.log(recipeData);
+
+    console.log("^^ recipeData");
+
+    return {
+      props: {
+        recipeData
+      },
     }
   } catch (error) {
     console.error(error);
     return {
-      props: {},
+      props: {
+        errorMessage: "Recipe not found.",
+      },
     }
   }
-};  
-
+}; 
+ 
 export default function Recipe({ recipeData, errorMessage}) {
   console.log(recipeData);
 

@@ -81,8 +81,7 @@ export default function Results() {
             href="/recipes/[id]" 
             as={`/recipes/${recipe.id}?name=${recipe.name}`}
             key={recipe.id}
-            query={{ id: recipe.id}}
-          >
+          > 
             <a>
               <div className="rounded-lg shadow-md hover:shadow-lg bg-white">
                 <div className="bg-blue-200 h-20 rounded-t-lg">

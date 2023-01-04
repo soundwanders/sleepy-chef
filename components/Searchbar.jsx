@@ -90,7 +90,7 @@ const Searchbar = () => {
           </button>
           {error && (
             <span
-              className="error absolute z-10 self-center right-[3rem] md:right-12 px-8 md:px-4 mr-4 md:mr-0"
+              className="error absolute z-10 self-center right-[3rem] md:right-11 px-8 md:px-4 mr-4 md:mr-0"
             >
               {error}
             </span>

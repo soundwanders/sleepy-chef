@@ -10,9 +10,9 @@ export default function ContainerBlock({ children, ...customMeta}) {
 
   const meta = {
     title:
-      "Sleepy Chef 🍥",
+      "Sleepy Chef",
     description: [
-      `On a journey to the center of the...kitchen.`],
+      `On a journey to the center of the kitchen.`],
     image: "/avatar.png",
     type: "website",
     ...customMeta,
