@@ -1,11 +1,11 @@
 import ContainerBlock from "@components/ContainerBlock";
-import Results from "@components/Results";
+import SearchResults from "@components/SearchResults";
 import userData from "@constants/data";
 
-export default function Home() {
+export default function Results() {
   return (
     <ContainerBlock title={userData.title}>
-      <Results />
+      <SearchResults />
     </ContainerBlock>
   )
 };

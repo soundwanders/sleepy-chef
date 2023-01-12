@@ -1,24 +1,19 @@
 import Link from 'next/link';
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
-import { RoughNotation, RoughNotationGroup } from "react-rough-notation";
+import { RoughNotationGroup } from "react-rough-notation";
 import { Highlighter } from "./Highlighter";
 
-// Recipes fetches and displays a list of recipes based on the query parameters in the URL
+// SearchResults component fetches and displays a list of recipes based on the query parameters in the URL
 // The useRouter hook gets the current URL query parameters, and useState hook manages the state of the recipes data.
 // The compareRouter function is used as a dependency array in the useEffect hook to prevent unnecessary re-renders. 
-// useEffect hook receives query parameter from router, then fetches the appropriate recipe data using those params
+// useEffect hook receives the query parameters from router, then uses those parameters to fetch the appropriate recipe data
 
-export default function Results() {
-  const [visible, setVisible] = useState(false);
-
-  const toggleDirections = () => {
-    setVisible(!visible);
-  }
-
+export default function SearchResults() {
   const router = useRouter();
   const [recipes, setRecipes] = useState([]);
-  const highlightColor = "#f75850";
+
+  const highlightColor = "#60a5fa";
 
   function compareRouter(prevRouter, nextRouter) {
     return prevRouter.query.name === nextRouter.query.name &&
@@ -69,11 +64,11 @@ export default function Results() {
 
   return (
     <section className="bg-white dark:bg-gray-800 pb-10 md:py-8">
-      <div className="container max-w-6xl mx-auto h-36 md:h-40 px-8 py-4 bg-white dark:bg-gray-800">
+      <div className="container max-w-6xl mx-auto h-36 md:h-40 px-8 bg-white dark:bg-gray-800">
         <div className="w-fit float-left">
           <RoughNotationGroup show={true}>
             <Highlighter color={highlightColor}>
-              <h1 className="text-4xl md:text-8xl font-bold text-gray-800 dark:text-gray-200 text-center md:text-left py-2 px-4 -mx-1">
+              <h1 className="text-4xl md:text-8xl font-bold text-gray-800 dark:text-gray-200 text-center md:text-left py-2 px-4">
                 Order Up!
               </h1>
             </Highlighter>
@@ -81,7 +76,7 @@ export default function Results() {
         </div>
       </div>
 
-      <div className="container max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-8 py-0 md:py-10 px-8">
+      <div className="container max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-8 py-0 md:py-4 md:mb-10 px-8">
         {recipes.map(recipe => (
           <Link 
             href="/recipes/[id]" 
@@ -90,24 +85,24 @@ export default function Results() {
           > 
             <a>
               <div className="rounded-lg shadow-md hover:shadow-lg bg-slate-50 dark:bg-gray-900">
-                <div className="bg-cyan-300 dark:bg-cyan-600 h-20 rounded-t-lg">
-                  <h2 className="text-2xl font-bold text-gray-800 dark:text-gray-200 p-4">
+                <div className="bg-orange-400 dark:bg-orange-700 h-20 rounded-t-lg">
+                  <h2 className="text-2xl md:text-4xl font-bold text-gray-800 dark:text-gray-100 p-4 md:pt-5">
                     {recipe.name}
                   </h2>
                 </div>
 
-                <div className="p-4">
-                  <p className="text-gray-600 dark:text-gray-100 font-medium text-sm uppercase tracking-wider">
+                <div className="p-6">
+                  <p className="text-gray-600 dark:text-gray-400 font-medium text-sm uppercase tracking-wider py-1">
                     Type: {recipe.type}
                   </p>
-                  <p className="text-gray-600 dark:text-gray-100 font-medium text-sm uppercase tracking-wider">
+                  <p className="text-gray-600 dark:text-gray-400 font-medium text-sm uppercase tracking-wider py-1">
                     Vegetarian: {recipe.vegetarian ? 'Yes' : 'No'}
                   </p>
-                  <p className="text-gray-600 dark:text-gray-100 font-medium text-sm uppercase tracking-wider">
+                  <p className="text-gray-600 dark:text-gray-400 font-medium text-sm uppercase tracking-wider py-1">
                     Vegan: {recipe.vegan ? 'Yes' : 'No'}
                   </p>
 
-                  <h3 className="text-xl font-bold text-gray-800 dark:text-gray-100 mt-4 mb-1">
+                  <h3 className="text-xl font-bold text-gray-800 dark:text-gray-100 mt-4 mb-3">
                     Ingredients:
                   </h3>
                   
@@ -117,42 +112,29 @@ export default function Results() {
                     ))}
                   </ul>
 
-                  <h3 className="text-xl font-bold text-gray-800 dark:text-gray-200 mt-4 mb-1">
+                  <h3 className="text-xl font-bold text-gray-800 dark:text-gray-200 mt-6 mb-3">
                     Nutrition:
                   </h3>
-                  
-                  <p className="text-gray-600 dark:text-gray-100 font-medium text-sm uppercase tracking-wider">
-                    Calories: {recipe.nutrition.calories}
-                  </p>
-                  <p className="text-gray-600 dark:text-gray-100 font-medium text-sm uppercase tracking-wider">
-                    Fat: {recipe.nutrition.fat}
-                  </p>
-                  <p className="text-gray-600 dark:text-gray-100 font-medium text-sm uppercase tracking-wider">
-                    Carbs: {recipe.nutrition.carbs}
-                  </p>
-                  <p className="text-gray-600 dark:text-gray-100 font-medium text-sm uppercase tracking-wider">
-                    Protein: {recipe.nutrition.protein}
-                  </p>
+                  {/* 
+                    Object.entries(recipe.nutrition) converts the nutrition object into an array of key-value pairs, 
+                    where each element in the array is an array containing the key and value of a property. 
+                    Then, the map() method iterates over the array, and creates a list item for each key-value pair, 
+                  */}
+                  <ul className="grid grid-cols-2 gap-1 md:gap-3">
+                    {Object.entries(recipe.nutrition).map(([name, value]) => (
+                      <li key={name} className="text-gray-600 dark:text-gray-400 font-medium text-sm uppercase tracking-wider col-span-1">
+                        {name}: {value}
+                      </li>
+                    ))}
+                  </ul>
 
-                  <div className="relative">
-                    <button
-                      className="absolute top-0 right-0 mr-2 mt-2 text-xs text-gray-500 dark:text-gray-50 focus:outline-none"
-                      onClick={() => toggleDirections()}
-                    >
-                      <svg viewBox="0 0 20 20" className="w-6 h-6">
-                        <path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z" />
-                      </svg>
-                    </button>
-
-                    <h3 className="text-xl font-bold text-gray-800 dark:text-gray-200 dark:text-gray-100 mt-4 mb-1">
-                      Directions:
-                    </h3>
-
-                    <div className={`h-40 overflow-y-auto ${isDirectionsVisible ? "" : "hidden"}`}>
-                      <p className="text-gray-700 dark:text-gray-100 text-sm">
-                        {recipe.directions}
-                      </p>
-                    </div>
+                  <h3 className="text-xl font-bold text-gray-800 dark:text-gray-200 mt-6 mb-3">
+                    Directions:
+                  </h3>
+                  <div className="overflow-y-auto h-48">
+                    <p className="text-gray-700 dark:text-gray-100 text-sm">
+                      {recipe.directions}
+                    </p>
                   </div>
                 </div>
               </div>

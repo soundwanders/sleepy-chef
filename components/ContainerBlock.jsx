@@ -1,6 +1,5 @@
 import React from "react";
 import Head from "next/head";
-import Link from 'next/link';
 import { useRouter } from "next/router";
 import Navbar from "./Navbar";
 import Footer from "./Footer";
@@ -48,9 +47,9 @@ export default function ContainerBlock({ children, ...customMeta}) {
       </Head>
       
       <main className="dark:bg-gray-800 w-full">
-          <Navbar />
+        <Navbar />
           <div className="max-w-6xl mx-auto">{children}</div>
-          <Footer />
+        <Footer />
       </main>
     </div>
   )

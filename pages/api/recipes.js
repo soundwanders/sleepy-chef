@@ -17,8 +17,8 @@ const recipes = [
       "1 cup beer",
       "1 cup egg",
       "1 quart oil",
-      "flour or corn tortillas",
-      "2 to 3 cups shredded lettuce"
+      "flour/corn tortillas",
+      "3 cups shredded lettuce"
     ],
     "nutrition": {
       "calories": "410",

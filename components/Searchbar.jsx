@@ -6,11 +6,11 @@ import { RecipesContext } from '../pages/api/recipes';
 // Uses the `useRouter` hook to navigate to the results page with the appropriate query parameters in the URL.
 // The `handleSubmit` function checks whether the search input matches a recipe type, ingredient, or name,
 // then if the search input is valid, the `setError` function is called to clear any error message
-// Finally, the `router.push` function is used to navigate to the results page with the appropriate query parameters in the URL.
+// Finally, the `router.push` function is used to navigate to the search results page
+// and reset the page URL based on which query parameters have passed the checks
 
-// *Side note: Using the context feature, we can share the recipes data with other components
-// without having to pass it down through props. The use of context helps avoid prop drilling.
-// The use of context in this application is a safety mechanism to improve scalability
+// Using the context feature, we can share the recipe data with other components throughout the app, without having 
+// to pass it down through props. The use of context helps avoid prop drilling and improves scalability
 
 const Searchbar = () => {
   const router = useRouter();
