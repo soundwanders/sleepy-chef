@@ -7,9 +7,15 @@ import { Highlighter } from "./Highlighter";
 // Recipes fetches and displays a list of recipes based on the query parameters in the URL
 // The useRouter hook gets the current URL query parameters, and useState hook manages the state of the recipes data.
 // The compareRouter function is used as a dependency array in the useEffect hook to prevent unnecessary re-renders. 
-// The useEffect hook uses Promise.race to test two URLs, then updates the state of the recipes data with response.
+// useEffect hook receives query parameter from router, then fetches the appropriate recipe data using those params
 
 export default function Results() {
+  const [visible, setVisible] = useState(false);
+
+  const toggleDirections = () => {
+    setVisible(!visible);
+  }
+
   const router = useRouter();
   const [recipes, setRecipes] = useState([]);
   const highlightColor = "#f75850";
@@ -83,59 +89,70 @@ export default function Results() {
             key={recipe.id}
           > 
             <a>
-              <div className="rounded-lg shadow-md hover:shadow-lg bg-white">
-                <div className="bg-blue-200 h-20 rounded-t-lg">
-                  <h2 className="text-2xl font-bold text-gray-800 p-4">
+              <div className="rounded-lg shadow-md hover:shadow-lg bg-slate-50 dark:bg-gray-900">
+                <div className="bg-cyan-300 dark:bg-cyan-600 h-20 rounded-t-lg">
+                  <h2 className="text-2xl font-bold text-gray-800 dark:text-gray-200 p-4">
                     {recipe.name}
                   </h2>
                 </div>
 
                 <div className="p-4">
-                  <p className="text-gray-600 font-medium text-sm uppercase tracking-wider">
+                  <p className="text-gray-600 dark:text-gray-100 font-medium text-sm uppercase tracking-wider">
                     Type: {recipe.type}
                   </p>
-                  <p className="text-gray-600 font-medium text-sm uppercase tracking-wider">
+                  <p className="text-gray-600 dark:text-gray-100 font-medium text-sm uppercase tracking-wider">
                     Vegetarian: {recipe.vegetarian ? 'Yes' : 'No'}
                   </p>
-                  <p className="text-gray-600 font-medium text-sm uppercase tracking-wider">
+                  <p className="text-gray-600 dark:text-gray-100 font-medium text-sm uppercase tracking-wider">
                     Vegan: {recipe.vegan ? 'Yes' : 'No'}
                   </p>
 
-                  <h3 className="text-xl font-bold text-gray-800 mt-4 mb-1">
+                  <h3 className="text-xl font-bold text-gray-800 dark:text-gray-100 mt-4 mb-1">
                     Ingredients:
                   </h3>
                   
                   <ul className="grid grid-cols-2 gap-2 md:gap-3">
                     {recipe.ingredients.map(ingredient => (
-                      <li key={ingredient} className="text-gray-700 text-sm col-span-1">{ingredient}</li>
+                      <li key={ingredient} className="text-gray-700 dark:text-gray-100 text-sm col-span-1">{ingredient}</li>
                     ))}
                   </ul>
 
-                  <h3 className="text-xl font-bold text-gray-800 mt-4 mb-1">
+                  <h3 className="text-xl font-bold text-gray-800 dark:text-gray-200 mt-4 mb-1">
                     Nutrition:
                   </h3>
                   
-                  <p className="text-gray-600 font-medium text-sm uppercase tracking-wider">
+                  <p className="text-gray-600 dark:text-gray-100 font-medium text-sm uppercase tracking-wider">
                     Calories: {recipe.nutrition.calories}
                   </p>
-                  <p className="text-gray-600 font-medium text-sm uppercase tracking-wider">
+                  <p className="text-gray-600 dark:text-gray-100 font-medium text-sm uppercase tracking-wider">
                     Fat: {recipe.nutrition.fat}
                   </p>
-                  <p className="text-gray-600 font-medium text-sm uppercase tracking-wider">
+                  <p className="text-gray-600 dark:text-gray-100 font-medium text-sm uppercase tracking-wider">
                     Carbs: {recipe.nutrition.carbs}
                   </p>
-                  <p className="text-gray-600 font-medium text-sm uppercase tracking-wider">
+                  <p className="text-gray-600 dark:text-gray-100 font-medium text-sm uppercase tracking-wider">
                     Protein: {recipe.nutrition.protein}
                   </p>
 
-                  <h3 className="text-xl font-bold text-gray-800 mt-4 mb-1">
-                    Directions:
-                  </h3>
+                  <div className="relative">
+                    <button
+                      className="absolute top-0 right-0 mr-2 mt-2 text-xs text-gray-500 dark:text-gray-50 focus:outline-none"
+                      onClick={() => toggleDirections()}
+                    >
+                      <svg viewBox="0 0 20 20" className="w-6 h-6">
+                        <path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z" />
+                      </svg>
+                    </button>
 
-                  <div className="h-40 overflow-y-auto">
-                    <p className="text-gray-700 text-sm">
-                      {recipe.directions}
-                    </p>
+                    <h3 className="text-xl font-bold text-gray-800 dark:text-gray-200 dark:text-gray-100 mt-4 mb-1">
+                      Directions:
+                    </h3>
+
+                    <div className={`h-40 overflow-y-auto ${isDirectionsVisible ? "" : "hidden"}`}>
+                      <p className="text-gray-700 dark:text-gray-100 text-sm">
+                        {recipe.directions}
+                      </p>
+                    </div>
                   </div>
                 </div>
               </div>

@@ -24,11 +24,8 @@ yarn.lock
 *.pem
 
 # educational
-recipe-page.md
-searchbar.md
-api-handler.md
-handlesubmit.txt
-dynamic-urls.md
+/educational
+/educational/**
 
 # data
 foods.json
