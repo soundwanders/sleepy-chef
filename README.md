@@ -1,5 +1,5 @@
 # 👩‍🍳 Sleepy Chef
-##### Got a mixed bag of leftover ingredients and an empty belly? We got you!
+##### Got an empty belly and running short on time? We've got your back, _all recipes take 30 minutes or less to prepare_.
 
 ### https://sleepychef.vercel.app/
 

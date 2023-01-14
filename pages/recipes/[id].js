@@ -34,7 +34,7 @@ export default function Recipe({ recipeData, errorMessage}) {
 
   return (
     <ContainerBlock>
-      <div className="container max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-8 py-2 md:py-10 px-8">
+      <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-8 py-2 md:py-10 px-8">
         {recipeData ? (
           <div className="bg-gray-50 dark:bg-gray-900 min-h-screen items-center">
             <div className=" flex flex-col items-center">
@@ -73,7 +73,7 @@ export default function Recipe({ recipeData, errorMessage}) {
                 </ul>
             </div>
 
-            <div className="bg-gray-200 dark:bg-gray-800">
+            <div className="bg-gray-50 dark:bg-gray-900">
               <h3 className="text-xl font-bold text-gray-800 dark:text-gray-100 p-3">
                 Nutrition:
               </h3>
@@ -91,9 +91,11 @@ export default function Recipe({ recipeData, errorMessage}) {
                 Directions:
               </h3>
               <div className="overflow-y-auto h-48 px-4">
-                <p className="text-gray-700 dark:text-gray-100 text-sm">
-                  {recipeData.directions}
-                </p>
+                <ul className="grid grid-cols-1 gap-2 md:gap-3">
+                  {recipe.directions.map(direction => (
+                    <li key={direction} className="text-gray-700 dark:text-gray-100 text-sm col-span-1">{direction}</li>
+                  ))}
+                </ul>
               </div>
             </div>
           </div>

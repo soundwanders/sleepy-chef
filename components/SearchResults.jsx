@@ -64,7 +64,7 @@ export default function SearchResults() {
 
   return (
     <section className="bg-white dark:bg-gray-800 pb-10 md:py-8">
-      <div className="container max-w-6xl mx-auto h-36 md:h-40 px-8 bg-white dark:bg-gray-800">
+      <div className="max-w-6xl mx-auto h-36 md:h-40 px-8 bg-white dark:bg-gray-800">
         <div className="w-fit float-left">
           <RoughNotationGroup show={true}>
             <Highlighter color={highlightColor}>
@@ -76,7 +76,7 @@ export default function SearchResults() {
         </div>
       </div>
 
-      <div className="container max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-8 py-0 md:py-4 md:mb-10 px-8">
+      <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-8 py-0 md:py-4 md:mb-10 px-8">
         {recipes.map(recipe => (
           <Link 
             href="/recipes/[id]" 
@@ -86,7 +86,7 @@ export default function SearchResults() {
             <a>
               <div className="rounded-lg shadow-md hover:shadow-lg bg-slate-50 dark:bg-gray-900">
                 <div className="bg-orange-400 dark:bg-orange-700 h-20 rounded-t-lg">
-                  <h2 className="text-2xl md:text-4xl font-bold text-gray-800 dark:text-gray-100 p-4 md:pt-5">
+                  <h2 className="text-2xl md:text-4xl uppercase font-bold text-gray-800 dark:text-gray-100 p-4 md:pt-5">
                     {recipe.name}
                   </h2>
                 </div>
@@ -122,7 +122,7 @@ export default function SearchResults() {
                   */}
                   <ul className="grid grid-cols-2 gap-1 md:gap-3">
                     {Object.entries(recipe.nutrition).map(([name, value]) => (
-                      <li key={name} className="text-gray-600 dark:text-gray-400 font-medium text-sm uppercase tracking-wider col-span-1">
+                      <li key={name} className="text-gray-600 dark:text-gray-400 font-medium text-xs uppercase tracking-wider col-span-1">
                         {name}: {value}
                       </li>
                     ))}
@@ -132,9 +132,11 @@ export default function SearchResults() {
                     Directions:
                   </h3>
                   <div className="overflow-y-auto h-48">
-                    <p className="text-gray-700 dark:text-gray-100 text-sm">
-                      {recipe.directions}
-                    </p>
+                    <ul className="grid grid-cols-1 gap-2 md:gap-3">
+                      {recipe.directions.map(direction => (
+                        <li key={direction} className="text-gray-700 dark:text-gray-100 text-sm col-span-1">{direction}</li>
+                      ))}
+                    </ul>
                   </div>
                 </div>
               </div>
