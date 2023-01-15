@@ -1,5 +1,19 @@
-import fuzzySearch from 'fuzzy-search';
 import { recipes } from '@data/recipeDb';
+
+// search functions
+const searchFunctions = {
+  id: (recipes, id) => recipes.filter(recipe => recipe.id === Number(id)),
+  type: (recipes, type) => recipes.filter(recipe => recipe.type === type),
+  ingredient: (recipes, ingredient) => recipes.filter(recipe => recipe.ingredients.includes(ingredient)),
+  name: (recipes, name) => recipes.filter(recipe => recipe.name === name),
+};
+
+const priorityMap = {
+  id: 1,
+  type: 2,
+  name: 3,
+  ingredient: 4,
+};
 
 export default function handler(req, res) {
   // destructure query object from the router
@@ -8,51 +22,33 @@ export default function handler(req, res) {
   // destructure the type, ingredient and id query parameters
   const { type, ingredient, name, id } = query;
 
-  // create a fuzzy searcher for each query parameter
-  const typeSearcher = new fuzzySearch(recipes.slice(), ['type'], {
-    caseSensitive: false
-  });
+  // create an empty array to hold filtered search results
+  let filteredRecipes = [...recipes];
 
-  const nameSearcher = new fuzzySearch(recipes.slice(), ['name'], {
-    caseSensitive: false
-  });
+  // prioritize the search based on the query parameters
+  const queryParams = { id, type, name, ingredient };
+  const queryKeys = Object.keys(queryParams);
+  const sortedQueryKeys = queryKeys.sort((a, b) => priorityMap[b] - priorityMap[a]);
 
-  const ingredientSearcher = new fuzzySearch(recipes.slice(), ['ingredients'], {
-    caseSensitive: false
+  //filter the recipes array based on the specific query parameters
+  sortedQueryKeys.forEach((key) => {
+    if(key === "type" && type) {
+      filteredRecipes = searchFunctions[key](filteredRecipes, type);
+    }else if(key === "name" && name) {
+      filteredRecipes = searchFunctions[key](filteredRecipes, name);
+    }else if(key === "ingredient" && ingredient) {
+      filteredRecipes = searchFunctions[key](filteredRecipes, ingredient);
+    }else if(key === "id" && id) {
+      filteredRecipes = searchFunctions[key](filteredRecipes, id);
+    }
   });
-
-  // create an empty array to hold fuzzy search results
-  let filteredRecipes;
-  filteredRecipes = Array.isArray(filteredRecipes) ? filteredRecipes : [];
   
-  const queryHandlers = {
-    id: () => recipes.find(recipe => recipe.id === Number(id)),
-    type: () => typeSearcher.search(type),
-    ingredient: () => ingredientSearcher.search(ingredient),
-    name: () => nameSearcher.search(name),
-    typeIngredient: () => typeSearcher.search(type).filter(recipe => ingredientSearcher.search(ingredient).includes(recipe)),
-    typeName: () => typeSearcher.search(type).filter(recipe => nameSearcher.search(name).includes(recipe)),
-    ingredientName: () => ingredientSearcher.search(ingredient).filter(recipe => nameSearcher.search(name).includes(recipe)),
-    typeIngredientName: () => typeSearcher.search(type).filter(recipe => 
-      ingredientSearcher.search(ingredient).includes(recipe)).filter(recipe => nameSearcher.search(name).includes(recipe)),
-  };
-  
-  const queryParams = { type, ingredient, name, id };
-  const queryParamKeys = Object.keys(queryParams).filter(key => queryParams[key]);
-  
-  if (queryParamKeys.length === 0) {
-    res.status(400).json({ error: 'Name, type, or ingredient parameters must be provided to fetch a recipe.' });
+  // check if any recipes were found
+  if (!filteredRecipes.length) {
+    res.status(400).json({ error: 'No matching recipes found.' });
     return;
   }
-  
-  if (queryParamKeys.length === 1) {
-    const key = queryParamKeys[0];
-    filteredRecipes = queryHandlers[key]();
-  } else {
-    const key = queryParamKeys.join('');
-    filteredRecipes = queryHandlers[key]();
-  }
-  
+    
   console.log(filteredRecipes);
   res.status(200).json(filteredRecipes);
 };
