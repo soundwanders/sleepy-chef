@@ -1,6 +1,6 @@
 import { createContext } from "react";
 
-const recipes = [
+export const recipes = [
   { 
     "id": 0,
     "name": "One Pot Creamy Pasta",
@@ -205,7 +205,7 @@ const recipes = [
       "1 packet of taco seasoning",
       "1 ½ teaspoons chili powder",
       "½ teaspoon salt",
-      "¹⁄₈teaspoon garlic powder",
+      "¼ teaspoon garlic powder",
       "1 cup shredded cheddar cheese",
     ],
     "nutrition": {

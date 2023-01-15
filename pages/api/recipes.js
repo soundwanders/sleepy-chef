@@ -1,5 +1,5 @@
 import fuzzySearch from 'fuzzy-search';
-import { recipes } from 'data/recipeDb';
+import { recipes } from '@data/recipeDb';
 
 export default function handler(req, res) {
   // destructure query object from the router
