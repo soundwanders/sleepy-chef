@@ -8,7 +8,7 @@ export const recipes = [
     "vegetarian": true,
     "vegan": false,
     "ingredients": [
-      "4 garlic cloves, peeled and sliced",
+      "4 garlic cloves, peeled & sliced",
       "7 oz (1 jar) sun dried tomatoes, drained",
       "5 ¼ cups (1.25L) vegetable broth",
       "1 lb penne pasta",
@@ -41,7 +41,7 @@ export const recipes = [
    },
   { 
     "id": 1,
-    "name": "Chili Mac and Cheese",
+    "name": "Chili Mac & Cheese",
     "type": "pasta",
     "vegetarian": false,
     "vegan": false,

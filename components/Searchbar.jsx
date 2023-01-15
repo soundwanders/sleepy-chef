@@ -65,8 +65,8 @@ const Searchbar = () => {
   };
 
   return (
-    <div className="w-full pt-20 pb-60 md:pb-40">
-      <div className="input-group relative flex flex-nowrap justify-center items-stretch w-full mb-4 rounded">
+    <div className="w-full pt-20 pb-65 md:pb-40">
+      <div className="input-group relative flex flex-nowrap justify-center min-w-0 mb-4 rounded">
         <form className="flex" onSubmit={handleSubmit}>
           <input
             className="form-control relative flex-auto min-w-0 w-full px-4 py-2 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-gray-300 border-solid rounded-lg transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"  
@@ -90,7 +90,7 @@ const Searchbar = () => {
           </button>
           {error && (
             <span
-              className="error absolute z-10 self-center right-[3rem] md:right-11 px-8 md:px-4 mr-4 md:mr-0"
+              className="error absolute z-10 self-center right-[4rem] md:right-12 px-8 md:px-0"
             >
               {error}
             </span>

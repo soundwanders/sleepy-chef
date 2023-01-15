@@ -64,7 +64,7 @@ export default function SearchResults() {
 
   return (
     <section className="bg-white dark:bg-gray-800 pb-10 md:py-8">
-      <div className="max-w-6xl mx-auto h-36 md:h-40 px-8 bg-white dark:bg-gray-800">
+      <div className="max-w-6xl mx-auto h-36 md:h-40 px-8 py-4 bg-white dark:bg-gray-800">
         <div className="w-fit float-left">
           <RoughNotationGroup show={true}>
             <Highlighter color={highlightColor}>
@@ -76,7 +76,7 @@ export default function SearchResults() {
         </div>
       </div>
 
-      <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-8 py-0 md:py-4 md:mb-10 px-8">
+      <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-8 py-0 -mt-6 md:-mt-0 md:py-4 mb-10 px-8">
         {recipes.map(recipe => (
           <Link 
             href="/recipes/[id]" 
@@ -84,9 +84,9 @@ export default function SearchResults() {
             key={recipe.id}
           > 
             <a>
-              <div className="rounded-lg shadow-md hover:shadow-lg bg-slate-50 dark:bg-gray-900">
-                <div className="bg-orange-400 dark:bg-orange-700 h-20 rounded-t-lg">
-                  <h2 className="text-xl md:text-2xl uppercase font-bold text-gray-800 dark:text-gray-100 p-4 md:pt-5">
+              <div className="rounded-lg shadow-md hover:shadow-lg bg-slate-50 dark:bg-zinc-900">
+                <div className="bg-orange-400 dark:bg-orange-600 min-h-0 py-4 rounded-t-lg">
+                  <h2 className="text-xl md:text-2xl text-center tracking-tight uppercase font-bold text-gray-800 dark:text-slate-100 p-4">
                     {recipe.name}
                   </h2>
                 </div>
@@ -120,9 +120,9 @@ export default function SearchResults() {
                     where each element in the array is an array containing the key and value of a property. 
                     Then, the map() method iterates over the array, and creates a list item for each key-value pair, 
                   */}
-                  <ul className="grid grid-cols-2 gap-1 md:gap-3">
+                  <ul className="grid grid-cols-2 w-full gap-2 md:gap-3">
                     {Object.entries(recipe.nutrition).map(([name, value]) => (
-                      <li key={name} className="text-gray-600 dark:text-gray-400 font-medium text-xs uppercase tracking-wider col-span-1">
+                      <li key={name} className="text-gray-600 dark:text-gray-300 font-medium text-xs uppercase tracking-wider col-span-1">
                         {name}: {value}
                       </li>
                     ))}

@@ -40,10 +40,10 @@ export default function Recipe({ recipeData, errorMessage}) {
             <div className=" flex flex-col items-center">
               <img
                 className="w-full rounded-lg mb-10"
-                src={recipeData.image || null}
+                src={recipeData.image}
                 alt={recipeData.name}
               />
-              <h2 className="text-3xl font-bold text-gray-800 dark:text-gray-200 mb-4">
+              <h2 className="text-2xl text-center font-bold text-gray-800 dark:text-gray-200 mb-4">
                 {recipeData.name}
               </h2>
 
@@ -92,7 +92,7 @@ export default function Recipe({ recipeData, errorMessage}) {
               </h3>
               <div className="overflow-y-auto h-48 px-4">
                 <ul className="grid grid-cols-1 gap-2 md:gap-3">
-                  {recipe.directions.map(direction => (
+                  {recipeData.directions.map(direction => (
                     <li key={direction} className="text-gray-700 dark:text-gray-100 text-sm col-span-1">{direction}</li>
                   ))}
                 </ul>

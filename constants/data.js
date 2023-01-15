@@ -1,6 +1,6 @@
 const userData = {
   title: "Sleepy Chef",
-  description: `On a journey to the center of the kitchen.`,
+  description: `On a journey to the center of the kitchen`,
   avatarUrl: "/avatar.png",
   chefUrl: "/chef.png",
   githubUsername: "soundwanders",

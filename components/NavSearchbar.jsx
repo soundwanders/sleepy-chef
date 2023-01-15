@@ -32,7 +32,6 @@ const NavSearchbar = () => {
 
     // check if the search input matches a recipe name (case-insensitive)
     const name = recipeNames.some(recipeName => recipeName.toLowerCase().includes(query.toLowerCase())) && !type && !ingredient ? query : null;
-
     
     if (!query) {
       setError('✏️');
