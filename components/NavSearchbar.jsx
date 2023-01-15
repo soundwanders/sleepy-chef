@@ -1,6 +1,6 @@
 import { useState, useContext } from 'react';
 import { useRouter } from 'next/router';
-import { RecipesContext } from '../pages/api/recipes';
+import { RecipesContext } from '../data/recipeDb';
 
 // This is the same searchbar that is used on the Home page, but restyled to fit inside the navbar.
 // It will be displayed on the Recipes page so users are not forced to return to Home to re-submit searches.

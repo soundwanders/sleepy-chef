@@ -1,6 +1,6 @@
 import { useState, useContext } from 'react';
 import { useRouter } from 'next/router';
-import { RecipesContext } from '../pages/api/recipes';
+import { RecipesContext } from '../data/recipeDb';
 
 // The Searchbar component allows a user to search the sleepy chef API for recipes by type, ingredient, or name.
 // Uses the `useRouter` hook to navigate to the results page with the appropriate query parameters in the URL.
@@ -74,7 +74,7 @@ const Searchbar = () => {
             aria-label="Search" 
             aria-describedby="button-addon2"
             id="query"
-            placeholder="Search by ingredient..."
+            placeholder="Search..."
             value={query}
             onChange={e => setQuery(e.target.value)}
             onFocus={handleInputFocus}

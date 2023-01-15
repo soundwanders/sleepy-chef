@@ -86,7 +86,7 @@ export default function SearchResults() {
             <a>
               <div className="rounded-lg shadow-md hover:shadow-lg bg-slate-50 dark:bg-gray-900">
                 <div className="bg-orange-400 dark:bg-orange-700 h-20 rounded-t-lg">
-                  <h2 className="text-2xl md:text-4xl uppercase font-bold text-gray-800 dark:text-gray-100 p-4 md:pt-5">
+                  <h2 className="text-xl md:text-2xl uppercase font-bold text-gray-800 dark:text-gray-100 p-4 md:pt-5">
                     {recipe.name}
                   </h2>
                 </div>
