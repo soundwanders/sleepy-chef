@@ -3,9 +3,9 @@ import { recipes } from '@data/recipeDb';
 // search functions
 const searchFunctions = {
   id: (recipes, id) => recipes.filter(recipe => recipe.id === Number(id)),
-  type: (recipes, type) => recipes.filter(recipe => recipe.type === type),
-  ingredient: (recipes, ingredient) => recipes.filter(recipe => recipe.ingredients.includes(ingredient)),
-  name: (recipes, name) => recipes.filter(recipe => recipe.name === name),
+  type: (recipes, type) => recipes.filter(recipe => recipe.type.toLowerCase() === type.toLowerCase()),
+  ingredient: (recipes, ingredient) => recipes.filter(recipe => recipe.ingredients.map(ing => ing.toLowerCase()).includes(ingredient.toLowerCase())),
+  name: (recipes, name) => recipes.filter(recipe => recipe.name.toLowerCase() === name.toLowerCase()),
 };
 
 const priorityMap = {
@@ -32,14 +32,18 @@ export default function handler(req, res) {
 
   //filter the recipes array based on the specific query parameters
   sortedQueryKeys.forEach((key) => {
-    if(key === "type" && type) {
+    if (key === "type" && type) {
       filteredRecipes = searchFunctions[key](filteredRecipes, type);
-    }else if(key === "name" && name) {
+      return;
+    } else if (key === "name" && name) {
       filteredRecipes = searchFunctions[key](filteredRecipes, name);
-    }else if(key === "ingredient" && ingredient) {
+      return;
+    } else if (key === "ingredient" && ingredient) {
       filteredRecipes = searchFunctions[key](filteredRecipes, ingredient);
-    }else if(key === "id" && id) {
+      return;
+    } else if (key === "id" && id) {
       filteredRecipes = searchFunctions[key](filteredRecipes, id);
+      return;
     }
   });
   
