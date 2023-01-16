@@ -31,6 +31,7 @@ export async function getServerSideProps({ query }) {
  
 export default function Recipe({ recipeData, errorMessage}) {
   console.log(recipeData);
+  console.log("RECIPE DATA ^^^");
 
   return (
     <ContainerBlock>
@@ -65,11 +66,11 @@ export default function Recipe({ recipeData, errorMessage}) {
                 Ingredients:
               </h3>
                 <ul className="grid grid-cols-2 gap-2 md:gap-3 p-3">
-                  {recipeData.ingredients.map(ingredient => (
-                    <li key={ingredient} className="text-gray-700 dark:text-gray-100 text-sm col-span-1">
-                      {ingredient}
-                    </li>
-                  ))}
+                {recipeData.ingredients && recipeData.ingredients.map(ingredient => (
+                  <li key={ingredient} className="text-gray-700 dark:text-gray-100 text-sm col-span-1">
+                    {ingredient}
+                  </li>
+                ))}
                 </ul>
             </div>
 
@@ -78,11 +79,11 @@ export default function Recipe({ recipeData, errorMessage}) {
                 Nutrition:
               </h3>
                 <ul className="grid grid-cols-2 gap-1 md:gap-3 p-3">
-                  {Object.entries(recipeData.nutrition).map(([name, value]) => (
-                    <li key={name} className="text-gray-600 dark:text-gray-300 font-medium text-sm uppercase tracking-wider col-span-1">
-                      {name}: {value}
-                    </li>
-                  ))}
+                {recipeData.nutrition && Object.entries(recipeData.nutrition).map(([name, value]) => (
+                  <li key={name} className="text-gray-600 dark:text-gray-300 font-medium text-sm uppercase tracking-wider col-span-1">
+                    {name}: {value}
+                  </li>
+                ))}
                 </ul>
             </div>
 
@@ -92,7 +93,7 @@ export default function Recipe({ recipeData, errorMessage}) {
               </h3>
               <div className="overflow-y-auto h-48 px-4">
                 <ul className="grid grid-cols-1 gap-2 md:gap-3">
-                  {recipeData.directions.map(direction => (
+                  {recipeData.directions && recipeData.directions.map(direction => (
                     <li key={direction} className="text-gray-700 dark:text-gray-100 text-sm col-span-1">{direction}</li>
                   ))}
                 </ul>
@@ -100,9 +101,11 @@ export default function Recipe({ recipeData, errorMessage}) {
             </div>
           </div>
         ) : (
-          <h3 className="text-xl font-bold text-gray-800 dark:text-gray-200 mb-4">
-            {errorMessage}
-          </h3>
+          <div>
+            <h3 className="text-xl font-bold text-gray-800 dark:text-gray-200 mb-4">
+              {errorMessage}
+            </h3>
+          </div>
         )}
       </div>
     </ContainerBlock> 

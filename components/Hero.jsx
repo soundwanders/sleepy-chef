@@ -19,7 +19,7 @@ export default function Hero() {
             </h1>
           </Highlighter>
         </RoughNotationGroup>
-        <h1 className="font-regular text-lg dark:text-gray-100 pt-10 px-4 lg:-mb-4">
+        <h1 className="font-regular text-md md:text-lg dark:text-gray-100 pt-10 px-4 lg:-mb-4">
           {userData.description}
         </h1>
       <Searchbar />

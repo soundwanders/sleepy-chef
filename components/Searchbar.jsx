@@ -23,13 +23,13 @@ const Searchbar = () => {
     e.preventDefault();
   
     // create an array of all recipe types
-    const recipeTypes = recipes.reduce((acc, recipe) => acc.concat(recipe.type), []);
+    const recipeTypes = recipes.reduce((acc, recipe) => acc.concat(recipe.type.toLowerCase()), []);
 
-    // create an array of all ingredients in recipes data
-    const recipeIngredients= recipes.reduce((acc, recipe) => acc.concat(recipe.ingredients), []);
-
+    // create an array of all recipe ingredients
+    const recipeIngredients = recipes.reduce((acc, recipe) => acc.concat(recipe.ingredients.map(ingredient => ingredient.toLowerCase())), []);
+    
     // create an array of all recipe names
-    const recipeNames = recipes.map(recipe => recipe.name);
+    const recipeNames = recipes.map(recipe => recipe.name.toLowerCase());
 
     // check if the search input matches a recipe type (case-insensitive)
     const type = recipeTypes.some(recipeType => recipeType.toLowerCase().includes(query.toLowerCase())) ? query : null;

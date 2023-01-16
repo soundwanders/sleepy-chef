@@ -20,7 +20,7 @@
     "tailwindcss": "^3.1.2"
   },
   "name": "sleepy-chef",
-  "description": "This example shows how to use [Tailwind CSS](https://tailwindcss.com/) [(v3.0)](https://tailwindcss.com/blog/tailwindcss-v3) with Next.js. It follows the steps outlined in the official [Tailwind docs](https://tailwindcss.com/docs/guides/nextjs).",
+  "description": "Got an empty belly and running short on time? We've got your back, all recipes take 30 minutes or less to prepare",
   "version": "1.0.0",
   "main": "next.config.js",
   "repository": {
@@ -33,7 +33,7 @@
     "reactjs"
   ],
   "author": "soundwanders",
-  "license": "ISC",
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/soundwanders/sleepy-chef/issues"
   },

@@ -41,7 +41,7 @@ export const recipes = [
    },
   { 
     "id": 1,
-    "name": "Chili Mac & Cheese",
+    "name": "Chili Mac and Cheese",
     "type": "pasta",
     "vegetarian": false,
     "vegan": false,

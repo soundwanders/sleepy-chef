@@ -2,10 +2,10 @@ import { recipes } from '@data/recipeDb';
 
 // search functions
 const searchFunctions = {
-  id: (recipes, id) => recipes.filter(recipe => recipe.id === Number(id)),
-  type: (recipes, type) => recipes.filter(recipe => recipe.type.toLowerCase() === type.toLowerCase()),
-  ingredient: (recipes, ingredient) => recipes.filter(recipe => recipe.ingredients.map(ing => ing.toLowerCase()).includes(ingredient.toLowerCase())),
-  name: (recipes, name) => recipes.filter(recipe => recipe.name.toLowerCase() === name.toLowerCase()),
+  id: (id) => recipes.filter(recipe => recipe.id === Number(id)),
+  type: (type) => recipes.filter(recipe => recipe.type.toLowerCase() === type.toLowerCase()),
+  ingredient: (ingredient) => recipes.filter(recipe => recipe.ingredients.filter(ing => ing.toLowerCase().includes(ingredient.toLowerCase()))),
+  name: (name) => recipes.filter(recipe => recipe.name.toLowerCase().includes(name.toLowerCase())),
 };
 
 const priorityMap = {
@@ -23,7 +23,7 @@ export default function handler(req, res) {
   const { type, ingredient, name, id } = query;
 
   // create an empty array to hold filtered search results
-  let filteredRecipes = [...recipes];
+  let filteredRecipes = [];
 
   // prioritize the search based on the query parameters
   const queryParams = { id, type, name, ingredient };
@@ -32,27 +32,23 @@ export default function handler(req, res) {
 
   //filter the recipes array based on the specific query parameters
   sortedQueryKeys.forEach((key) => {
-    if (key === "type" && type) {
-      filteredRecipes = searchFunctions[key](filteredRecipes, type);
-      return;
+    if (key === "id" && id) {
+      filteredRecipes = searchFunctions[key](id);
+    } else if (key === "type" && type) {
+      filteredRecipes = searchFunctions[key](type);
     } else if (key === "name" && name) {
-      filteredRecipes = searchFunctions[key](filteredRecipes, name);
-      return;
+      filteredRecipes = searchFunctions[key](name);
     } else if (key === "ingredient" && ingredient) {
-      filteredRecipes = searchFunctions[key](filteredRecipes, ingredient);
-      return;
-    } else if (key === "id" && id) {
-      filteredRecipes = searchFunctions[key](filteredRecipes, id);
-      return;
+      filteredRecipes = searchFunctions[key](ingredient);
     }
   });
+
+  console.log(filteredRecipes);
   
   // check if any recipes were found
   if (!filteredRecipes.length) {
     res.status(400).json({ error: 'No matching recipes found.' });
     return;
   }
-    
-  console.log(filteredRecipes);
   res.status(200).json(filteredRecipes);
 };
