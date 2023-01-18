@@ -82,7 +82,7 @@ export default function SearchResults() {
             href="/recipes/[id]" 
             as={`/recipes/${recipe.id}?name=${recipe.name}`}
             key={recipe.id}
-          > 
+          >
             <a>
               <div className="rounded-lg shadow-md hover:shadow-lg bg-slate-50 dark:bg-zinc-900">
                 <div className="bg-orange-400 dark:bg-orange-600 min-h-0 py-4 rounded-t-lg">

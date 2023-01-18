@@ -1,38 +1,48 @@
 import ContainerBlock from '@components/ContainerBlock';
+import { recipes } from '@data/recipeDb';
 
-export async function getServerSideProps({ query }) {
-  const { id } = query;
-
-  const apiEndpoint =
+export const API_ENDPOINT =
   process.env.NODE_ENV === 'production'
-    ? `${process.env.NEXT_PUBLIC_VERCEL_URL}/api/recipes`
-    : `${process.env.LOCAL_URL}/api/recipes`;
+    ? `${process.env.NEXT_PUBLIC_VERCEL_URL}/api/recipes/`
+    : `${process.env.LOCAL_URL}/api/recipes/`;
 
+
+export async function getStaticPaths() {
   try {
-    const response = await fetch(`${apiEndpoint}?id=${id}`);
-    console.log(response);
-
-    const recipeData = response.status === 200 ? await response.json() : null;
-
-    return {
-      props: {
-        recipeData
+    const paths = recipes.map((recipe) => ({
+      params: { 
+        id: recipe.id.toString() 
       },
-    }
+    }));
+    return { paths, fallback: false }
   } catch (error) {
     console.error(error);
-    return {
-      props: {
-        errorMessage: "Recipe not found.",
-      },
-    }
+    return { fallback: true };
   }
-}; 
- 
-export default function Recipe({ recipeData, errorMessage}) {
-  console.log(recipeData);
-  console.log("RECIPE DATA ^^^");
+};
 
+export async function getStaticProps({ params }) {
+  try {
+    const response = await fetch(`${API_ENDPOINT}?id=${params.id}`);
+    if (!response.ok) {
+        throw new Error(`Failed to fetch recipe, status: ${response.status}`);
+    }
+    const recipeData = await response.json();
+    return { props: { recipeData } };
+  } catch (error) {
+    console.error(error);
+    return { props: { errorMessage: error.message } };
+  }
+};
+
+export default function Recipe({ recipeData, errorMessage }) {
+  console.log(recipeData);
+  console.log("RECIPE DATA ^");
+
+  if (!recipeData) {
+    return <div>Loading...</div>
+  }
+  
   return (
     <ContainerBlock>
       <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-8 py-2 md:py-10 px-8">
@@ -41,22 +51,22 @@ export default function Recipe({ recipeData, errorMessage}) {
             <div className=" flex flex-col items-center">
               <img
                 className="w-full rounded-lg mb-10"
-                src={recipeData.image}
-                alt={recipeData.name}
-              />
+                src={recipeData[0].image}
+                alt={recipeData[0].name} />
+
               <h2 className="text-2xl text-center font-bold text-gray-800 dark:text-gray-200 mb-4">
-                {recipeData.name}
+                {recipeData[0].name}
               </h2>
 
               <div className="grid grid-cols-1 gap-8 mb-10">
                 <p className="text-gray-600 dark:text-gray-300 font-medium text-sm uppercase tracking-wider">
-                  Type: {recipeData.type}
+                  Type: {recipeData[0].type}
                 </p>
                 <p className="text-gray-600 dark:text-gray-300 font-medium text-sm uppercase tracking-wider">
-                  Vegetarian: {recipeData.vegetarian ? 'Yes' : 'No'}
+                  Vegetarian: {recipeData[0].vegetarian ? 'Yes' : 'No'}
                 </p>
                 <p className="text-gray-600 dark:text-gray-300 font-medium text-sm uppercase tracking-wider">
-                  Vegan: {recipeData.vegan ? 'Yes' : 'No'}
+                  Vegan: {recipeData[0].vegan ? 'Yes' : 'No'}
                 </p>
               </div>
             </div>
@@ -66,7 +76,7 @@ export default function Recipe({ recipeData, errorMessage}) {
                 Ingredients:
               </h3>
                 <ul className="grid grid-cols-2 gap-2 md:gap-3 p-3">
-                {recipeData.ingredients && recipeData.ingredients.map(ingredient => (
+                {recipeData[0].ingredients && recipeData[0].ingredients.map(ingredient => (
                   <li key={ingredient} className="text-gray-700 dark:text-gray-100 text-sm col-span-1">
                     {ingredient}
                   </li>
@@ -79,7 +89,7 @@ export default function Recipe({ recipeData, errorMessage}) {
                 Nutrition:
               </h3>
                 <ul className="grid grid-cols-2 gap-1 md:gap-3 p-3">
-                {recipeData.nutrition && Object.entries(recipeData.nutrition).map(([name, value]) => (
+                {recipeData[0].nutrition && Object.entries(recipeData[0].nutrition).map(([name, value]) => (
                   <li key={name} className="text-gray-600 dark:text-gray-300 font-medium text-sm uppercase tracking-wider col-span-1">
                     {name}: {value}
                   </li>
@@ -93,7 +103,7 @@ export default function Recipe({ recipeData, errorMessage}) {
               </h3>
               <div className="overflow-y-auto h-48 px-4">
                 <ul className="grid grid-cols-1 gap-2 md:gap-3">
-                  {recipeData.directions && recipeData.directions.map(direction => (
+                  {recipeData[0].directions && recipeData[0].directions.map(direction => (
                     <li key={direction} className="text-gray-700 dark:text-gray-100 text-sm col-span-1">{direction}</li>
                   ))}
                 </ul>

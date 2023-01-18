@@ -4,7 +4,7 @@ import { recipes } from '@data/recipeDb';
 const searchFunctions = {
   id: (id) => recipes.filter(recipe => recipe.id === Number(id)),
   type: (type) => recipes.filter(recipe => recipe.type.toLowerCase() === type.toLowerCase()),
-  ingredient: (ingredient) => recipes.filter(recipe => recipe.ingredients.filter(ing => ing.toLowerCase().includes(ingredient.toLowerCase()))),
+  ingredient: (ingredient) => recipes.filter(recipe => recipe.ingredients.some(ing => ing.toLowerCase().includes(ingredient.toLowerCase()))),
   name: (name) => recipes.filter(recipe => recipe.name.toLowerCase().includes(name.toLowerCase())),
 };
 
