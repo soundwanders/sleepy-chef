@@ -2,13 +2,15 @@ import React, { useEffect, useState } from "react";
 import Link from "next/link";
 import { useTheme } from "next-themes";
 import { useRouter } from "next/router";
-import userData from "@constants/data";
+import { Sidebar } from "./Sidebar";
 import NavSearchbar from "./NavSearchbar";
+import userData from "@constants/data";
 
 export default function Navbar() {
   const router = useRouter();
   console.log(router.asPath);
   const {theme, setTheme} = useTheme();
+  const [isOpen, setIsOpen] = useState(false);
   const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
@@ -17,8 +19,8 @@ export default function Navbar() {
 
   return (
     <div className="max-w-6xl mx-auto px-4 py-6 md:py-10">
-      <div className="flex md:flex-row justify-between items-center">
-        <div className="flex flex-col w-48 md:w-full">
+      <div className="flex justify-between items-center">
+        <div className="flex flex-col">
           <Link href="/">
             <a className="w-max">
               <img
@@ -31,12 +33,12 @@ export default function Navbar() {
         </div>
       
         { router.pathname !== '/' && <NavSearchbar /> }
-
-        <div className="space-x-4 flex flex-row items-center">
+        
+        <div className={`space-x-4 flex flex-row items-center`}>
           <button
             aria-label="Toggle Dark Mode"
             type="button"
-            className="w-14 h-14 p-3 rounded focus:outline-none"
+            className="toggle-theme w-14 h-14 p-3 rounded focus:outline-none"
             onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
           >
             {mounted && (
@@ -45,7 +47,7 @@ export default function Navbar() {
                 viewBox="0 0 24 24"
                 fill="currentColor"
                 stroke="currentColor"
-                className="w-6 md:w-8 h-6 md:h-8 text-yellow-500 dark:text-yellow-500"
+                className="w-6 md:w-8 h-auto text-yellow-500 dark:text-yellow-500"
               >
                 {theme === "dark" ? (
                   <path
@@ -65,6 +67,9 @@ export default function Navbar() {
               </svg>
             )}
           </button>
+
+          <Sidebar isOpen={isOpen} setIsOpen={setIsOpen} />
+        
         </div>
       </div>
     </div>

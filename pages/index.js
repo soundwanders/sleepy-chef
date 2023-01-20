@@ -1,5 +1,5 @@
 import ContainerBlock from "@components/ContainerBlock";
-import Hero from "@components/Hero";
+import { Hero } from "@components/Hero";
 import userData from "@constants/data";
 
 export default function Home() {

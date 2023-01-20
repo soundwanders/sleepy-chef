@@ -9,7 +9,7 @@ import { Highlighter } from "./Highlighter";
 // The compareRouter function is used as a dependency array in the useEffect hook to prevent unnecessary re-renders. 
 // useEffect hook receives the query parameters from router, then uses those parameters to fetch the appropriate recipe data
 
-export default function SearchResults() {
+export const SearchResults = () => {
   const router = useRouter();
   const [recipes, setRecipes] = useState([]);
 

@@ -47,7 +47,7 @@ export default function Recipe({ recipeData, errorMessage }) {
     <ContainerBlock>
       <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-8 py-2 md:py-10 px-8">
         {recipeData ? (
-          <div className="bg-gray-50 dark:bg-gray-900 min-h-screen items-center">
+          <div className="jello bg-gray-50 dark:bg-gray-900 min-h-screen items-center">
             <div className=" flex flex-col items-center">
               <img
                 className="w-full rounded-lg mb-10"

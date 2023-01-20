@@ -5,7 +5,7 @@ import { RecipesContext } from '../data/recipeDb';
 // This is the same searchbar that is used on the Home page, but restyled to fit inside the navbar.
 // It will be displayed on the Recipes page so users are not forced to return to Home to re-submit searches.
 
-const NavSearchbar = () => {
+export default function NavSearchbar() {
   const router = useRouter();
   const [query, setQuery] = useState('');
   const [error, setError] = useState('');
@@ -92,5 +92,3 @@ const NavSearchbar = () => {
     </div>
   )
 };
-
-export default NavSearchbar;
