@@ -1,11 +1,12 @@
+import { useState, useEffect } from 'react';
 import ContainerBlock from '@components/ContainerBlock';
+import { Loading } from '@components/Loading';
 import { recipes } from '@data/recipeDb';
 
 export const API_ENDPOINT =
   process.env.NODE_ENV === 'production'
     ? `${process.env.NEXT_PUBLIC_VERCEL_URL}/api/recipes/`
     : `${process.env.LOCAL_URL}/api/recipes/`;
-
 
 export async function getStaticPaths() {
   try {
@@ -37,12 +38,22 @@ export async function getStaticProps({ params }) {
 
 export default function Recipe({ recipeData, errorMessage }) {
   console.log(recipeData);
-  console.log("RECIPE DATA ^");
+  console.log("^ Generated Recipe Data ^");
 
-  if (!recipeData) {
-    return <div>Loading...</div>
-  }
+  const [dataLoaded, setDataLoaded] = useState(false);
+
+  useEffect(() => {
+    if (recipeData) {
+      setDataLoaded(true);
+    }
+  }, [recipeData]);
+
+  if (!dataLoaded) {
+    return <Loading />
+  };
   
+  const { image, name, type, vegetarian, vegan, ingredients, nutrition, directions } = recipeData[0];
+
   return (
     <ContainerBlock>
       <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-8 py-2 md:py-10 px-8">
@@ -51,22 +62,22 @@ export default function Recipe({ recipeData, errorMessage }) {
             <div className=" flex flex-col items-center">
               <img
                 className="w-full rounded-lg mb-10"
-                src={recipeData[0].image}
-                alt={recipeData[0].name} />
+                src={image}
+                alt={name} />
 
               <h2 className="text-2xl text-center font-bold text-gray-800 dark:text-gray-200 mb-4">
-                {recipeData[0].name}
+                {name}
               </h2>
 
               <div className="grid grid-cols-1 gap-8 mb-10">
                 <p className="text-gray-600 dark:text-gray-300 font-medium text-sm uppercase tracking-wider">
-                  Type: {recipeData[0].type}
+                  Type: {type}
                 </p>
                 <p className="text-gray-600 dark:text-gray-300 font-medium text-sm uppercase tracking-wider">
-                  Vegetarian: {recipeData[0].vegetarian ? 'Yes' : 'No'}
+                  Vegetarian: {vegetarian ? 'Yes' : 'No'}
                 </p>
                 <p className="text-gray-600 dark:text-gray-300 font-medium text-sm uppercase tracking-wider">
-                  Vegan: {recipeData[0].vegan ? 'Yes' : 'No'}
+                  Vegan: {vegan ? 'Yes' : 'No'}
                 </p>
               </div>
             </div>
@@ -76,7 +87,7 @@ export default function Recipe({ recipeData, errorMessage }) {
                 Ingredients:
               </h3>
                 <ul className="grid grid-cols-2 gap-2 md:gap-3 p-3">
-                {recipeData[0].ingredients && recipeData[0].ingredients.map(ingredient => (
+                {ingredients && ingredients.map(ingredient => (
                   <li key={ingredient} className="text-gray-700 dark:text-gray-100 text-sm col-span-1">
                     {ingredient}
                   </li>
@@ -89,7 +100,7 @@ export default function Recipe({ recipeData, errorMessage }) {
                 Nutrition:
               </h3>
                 <ul className="grid grid-cols-2 gap-1 md:gap-3 p-3">
-                {recipeData[0].nutrition && Object.entries(recipeData[0].nutrition).map(([name, value]) => (
+                {nutrition && Object.entries(nutrition).map(([name, value]) => (
                   <li key={name} className="text-gray-600 dark:text-gray-300 font-medium text-sm uppercase tracking-wider col-span-1">
                     {name}: {value}
                   </li>
@@ -103,7 +114,7 @@ export default function Recipe({ recipeData, errorMessage }) {
               </h3>
               <div className="overflow-y-auto h-48 px-4">
                 <ul className="grid grid-cols-1 gap-2 md:gap-3">
-                  {recipeData[0].directions && recipeData[0].directions.map(direction => (
+                  {directions && directions.map(direction => (
                     <li key={direction} className="text-gray-700 dark:text-gray-100 text-sm col-span-1">{direction}</li>
                   ))}
                 </ul>
