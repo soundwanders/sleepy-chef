@@ -27,7 +27,7 @@ export const Sidebar = () => {
       <nav
         id="sidebar"
         className={`
-          sidebar h-screen fixed bg-slate-100 dark:bg-gray-900 top-0 right-0 p-4 pb-60 md:pb-40 text-center overflow-y-auto 
+          sidebar h-screen w-1/5 lg:w-1/6 fixed bg-slate-100 dark:bg-gray-900 top-0 right-0 p-4 lg:px-8 pb-60 md:pb-40 text-center overflow-y-auto 
           ${isOpen ? 'w-1/4' : 'w-full'}
           ${isOpen ? '-translate-x-0' : '-translate-x-full'}
           ${isOpen ? '' : 'hidden'}
