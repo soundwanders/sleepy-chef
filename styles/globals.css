@@ -14,6 +14,7 @@ a {
   color: inherit;
   text-decoration: none;
   outline: none;
+  -webkit-tap-highlight-color: transparent;
 }
 
 * {
@@ -22,16 +23,12 @@ a {
 
 button:focus {
   outline: 0;
+  -webkit-tap-highlight-color: transparent;
 }
 
 .hero {
   max-width: 100%;
   flex-direction: column !important;
-}
-
-.hamburger {
-  cursor: pointer;
-  z-index: 10;
 }
 
 @media (max-width: 768px) {
@@ -43,7 +40,7 @@ button:focus {
     left: 0;
     background-color: #e2e8f0;
     z-index: 12;
-  }
+  }  
   .close-icon {
     z-index: 14;
   }

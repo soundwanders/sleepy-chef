@@ -1,0 +1,65 @@
+/* 
+  The Loading component wrapped with a div that centers it on the page, 
+  and the egg shape is created using CSS and two nested divs, 
+  one for the top half of the egg and one for the bottom half. 
+  The crack is created using another div that is positioned on top of the egg, 
+  and has a rotation and skew transformation applied to it during the animation.
+*/
+
+.loading {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.egg {
+  position: relative;
+  width: 200px;
+  height: 300px;
+}
+
+.egg-top,
+.egg-bottom {
+  position: absolute;
+  width: 100%;
+  height: 50%;
+  border-radius: 50% 50% 0 50%;
+  background: #fff;
+  animation: crack 2s ease-in-out forwards;
+}
+
+.egg-top {
+  top: 0;
+}
+
+.egg-bottom {
+  bottom: 0;
+}
+
+.crack {
+  position: absolute;
+  width: 80%;
+  height: 20%;
+  top: 40%;
+  left: 10%;
+  border-radius: 50%;
+  background: #fff;
+  transform: rotate(45deg);
+  animation: crack 2s ease-in-out forwards;
+}
+
+@keyframes crack {
+  0% {
+    transform: rotate(45deg) skew(0deg);
+  }
+  25% {
+    transform: rotate(45deg) skew(-10deg);
+  }
+  75% {
+    transform: rotate(45deg) skew(10deg);
+  }
+  100% {
+    transform: rotate(45deg) skew(0deg);
+  }
+}
