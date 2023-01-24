@@ -1,43 +1,73 @@
-## Classified: The Glyphhanger Experiment 😱
+## __Secret Files: The Glyphhanger Experiment__ 😱
 _____________________
 
-Glyphhanger is a tool that helps optimize webfont loading by subsetting the font files to only include the characters that are used on the website. 
+Glyphhanger is a tool that helps optimize webfont loading by subsetting the font files to only include the characters that are used on the website.
 
-Subsetting web fonts means reducing the number of characters in the font file by only including the ones that are needed for the website, instead of using the entire font file. 
+Subsetting web fonts means reducing the number of characters in the font file by only including the ones that are needed for the website, instead of using the entire font file. This leads to faster page loading times and smaller file sizes, as the browser will only have to download the subset of characters it needs.
 
-This leads to faster page loading times and smaller file sizes, as the browser will only have to download the subset of characters it needs. 
-
-Glyphhanger can automate this process by analyzing the text on a website and creating a subset of the font that includes only the characters used on the website.
+Glyphhanger can automate this process by analyzing the text on a website and creating a subset of the font that includes only the characters used on the website. Visit https://github.com/zachleat/glyphhanger to learn more.
 <br/><br/>
-
 _____________________
 
+## __Crafting a Glyphhanger Config__
+Glyphhanger uses a configuration file, usually named `glyphhanger.config.js`, to specify the options for the font generation. 
 
-## CSS Template
-Glyphhanger uses a configuration file, usually named `glyphhanger.config.js`, to specify the options for the font generation. One of the options available in this configuration file is the ability to specify a CSS template that will be used to generate the CSS file for the web font.
+We wanted to use one of the options available in this configuration file, which is the ability to specify a CSS template that will be used to generate a CSS file for the web fonts.
 
-The CSS template provided in the question is an example of how the template can be customized to match the desired format of the generated CSS file. The template uses placeholders, denoted by double curly braces `({{ }})`, that will be replaced by the actual values at the time of generation.
+You can either assign the CSS template directly using the template property, or use a CSS template file that is specified in the config file using the `cssTemplate` option. In our case we will be creating a fonts-css.template file, but here is an example of each approach:
+
+### Template Property method
+
+```
+module.exports = {
+  template: `
+    .font {
+      font-family: "{{font-name}}";
+    }
+
+    @font-face {
+      font-family: "{{font-name}}";
+      src: url("{{path}}") format('{{ext}}');
+      unicode-range: {{unicode-range}};
+    }
+  `
+};
+```
+
+### cssTemplate method
+
+```
+const path = require('path');
+
+module.exports = {
+  cssTemplate: path.resolve(__dirname, 'path/to/template.css'),
+  ...
+}
+```
+
+Make sure that your glyphhanger.config.js file is located in the root of your project and not in any sub-folders.
+When running glyphhanger in the command line, it will look for this config file and use the template specified in the file.
+_____________________
+<br/>
+
+## __(CSS) Template of Time__
+
+The CSS template you create is used to apply the designated format of the generated CSS file. The template uses placeholders, denoted by double curly braces `({{ }})`, that will be replaced by the actual values at the time of generation.
 
 Glyphhanger CSS templates include two main sections:
-    The first section is a CSS class that is used to apply the font to the elements in the HTML file.
-    The second section is a @font-face rule that is used to import the web font into the CSS file.
+1. The first section is a CSS class that is used to apply the font to the elements in the HTML file.
+2. The second section is a @font-face rule that is used to import the web font into the CSS file.
 
 The placeholders in the CSS template are as follows:
+- {{css-class}}: Will be replaced with the CSS class name specified in the configuration file.
+- {{font-name}}: Will be replaced with the font name specified in the configuration file.
+- {{path}}: Will be replaced with the path to the generated web font file specified in the configuration file.
+- {{ext}}: Will be replaced with the file extension specified in the configuration file.
+- {{unicode-range}}: Will be replaced with the unicode-range specified in the configuration file.
 
-    {{css-class}}: This placeholder will be replaced with the CSS class name specified in the configuration file.
-    {{font-name}}: This placeholder will be replaced with the font name specified in the configuration file.
-    {{path}}: This placeholder will be replaced with the path to the generated web font file specified in the configuration file.
-    {{ext}}: This placeholder will be replaced with the file extension specified in the configuration file.
-    {{unicode-range}}: This placeholder will be replaced with the unicode-range specified in the configuration file.
+The template you create must be located inside of either the folder containing your fonts, or in your project's root directory, as you will be accessing it when you run Glyphhanger.
 
-To use this CSS template, it needs to be specified in the configuration file using the cssTemplate option. It can be placed in the root of your project.
-
-For example, in the `glyphhanger.config.js` file, you would include the following line:
-```
-cssTemplate: path.resolve(__dirname, 'path/to/template.css'),
-```
-
-Now, when you run the glyphhanger command in the command line and it will use this template to generate the CSS file.
+Here is an example of a CSS template you can use to control the format of the CSS file that is generated by Glyphhanger.
 
 ```
 .{{css-class}} {
@@ -50,56 +80,91 @@ Now, when you run the glyphhanger command in the command line and it will use th
   unicode-range: {{unicode-range}};
 }
 ```
-_____________________
-<br/>
 
-## Generating the Output
-You must be inside the directory that contains your project's font files. The template you create must also be located inside of your fonts file, as you will be accessing it when you run Glyphhanger.
-
-We use the `--template` option to specify the path to the template file, and then, inside the template file, use the proper placeholders to indicate where the font information should be inserted. 
-
-After our template is created, you can use the Glyphhanger option `--css={{font-name}}.module.css` to customize the file type we generate.
-
-For example, because we have a template file located at `./fonts-css.template`, we would generate the subset and CSS files from Glyphhanger by running the glyphhanger command with the following options:
-
-Finally, the output command designates the directory to save the generated files to. You must create your directory before you run the glyphhanger command, in our case it is the folder 'generated-fonts' nested inside of our 'fonts' folder.
-
-```
-glyphhanger --whitelist=ABCD --subset=*.ttf --template=./fonts-css.template --css --output=./path/to/your/fonts
-
-```
-
-Note that you could also alter the `--subset` output using any of the following options:
-- --subset: Subset the characters in the input file(s) to only the characters used.
-- --subset=auto: Subset the characters in the input file(s) to the characters used in the CSS file(s) and the HTML file(s) in the input folder.
-- --subset=<chars>: Subset the characters in the input file(s) to the characters in the specified string.
-- --subset-file=<file>: Subset the characters in the input file(s) to the characters in the specified file.
-
+Now, when you run the glyphhanger command in the command line using the `--template` option, it will use your template to generate a CSS file for each font.
 
 _____________________
 <br/>
 
-## The Proof is in the Pudding
-_Total file size reduction: 2250.59 KB_
+## __~~Triple~~ Quadruple Option Offense__
+
+### __--whitelist__
+
+The `--whitelist` option for Glyphhanger allows you to specify a specific set of characters (unicode code points) that you want to include in the generated webfont. 
+
+To assign an appropriate value to this option, you can provide a string of characters or a range of characters that you want to include in the webfont.
+
+For example, you can use the --whitelist option to pass specific characters such as <code>--whitelist=ABCDabz</code> to include only those characters. You can also choose to only include uppercase and lowercase English letters in your webfont by passing the value <code>--whitelist=a-zA-Z</code>
+
+In our case, we will be using Glyphhanger to gather the characters that are present on the Home page and whitelisting them.
+
+### __--format__
+
+The `--format` option in Glyphhanger is used to specify the format of the generated font files. The available options are woff, woff2, and truetype.
+
+By default, Glyphhanger will generate woff and woff2 files when the `--format` option is not specified.
+
+It is worth noting that specifying the format will also change the file extension of the generated files, for example, if you choose the woff format, the generated file will be named something like _yourFontName.woff_
+
+### __--subset__
+
+The `--subset` command allows you to specify a specific set of characters or Unicode ranges that should be included in the generated webfont.
+
+This can be useful for reducing the file size of the webfont, as well as for only including the characters that are actually needed for the project. You can specify a list of characters, or Unicode ranges using the format U+XXXX. For example, <code>glyphhanger --subset U+20,U+41-44</code> would only include the characters with Unicode code points 20, 41, 42, 43 and 44.
+
+The`--subset` command can include any of the following options:
+
+* --subset: Subset the characters in the input file(s) to only the characters used.
+* --subset=auto: Subset the characters in the input file(s) to the characters used in the CSS file(s) and the HTML file(s) in the input folder.
+* --subset=<chars>: Subset the characters in the input file(s) to the characters in the specified string.
+* --subset-file=<file>: Subset the characters in the input file(s) to the characters in the specified file.
+
+### __--output__
+The `--output` command designates the directory to save the generated files to. You must create your directory before you run the glyphhanger command.
+
+In our case, we want to save our generated files to our 'generated-fonts' folder that will hold the output and keep it separate from the original font files, so we write `--output=./generated-fonts`.
+_____________________
+<br/>
+
+## __Generating the Output__
+
+Finally, we are ready to run glyphhanger with all our additional bells and whistles. We will run the glyphhanger command inside the 'fonts' directory of our project, which contains the glyphhanger.config.js, fonts-css.template, and your font files.
+
+In our case, it ends up looking like this voodoo right here:
+
+```
+glyphhanger --whitelist=ABCDEFHOPRSVacpruwy --format=woff,woff2,woff-zopfli --subset=*.ttf --template=./fonts-css.template --css --output=./generated-fonts
+
+```
+_____________________
+<br/>
+
+## __The Proof is in the Pudding__
+_Total file size reduction: 2969.63 KB_
 
 | Font Name | Old File Size | New File Size |
-| --------- | ------------- | ------------- |
-| Poppins-Bold.ttf | 150.29 KB | 1.43 KB |
-| Poppins-Bold.ttf | 150.29 KB | 1.18 KB |
-| Poppins-ExtraBold.ttf | 149.13 KB | 1.44 KB |
-| Poppins-ExtraBold.ttf | 149.13 KB | 1.19 KB |
-| Poppins-Medium.ttf | 152.81 KB | 1.45 KB |
-| Poppins-Medium.ttf | 152.81 KB | 1.2 KB |
-| Poppins-Regular.ttf | 154.48 KB | 1.47 KB |
-| Poppins-Regular.ttf | 154.48 KB | 1.2 KB |
-| Poppins-SemiBold.ttf | 151.55 KB | 1.46 KB |
-| Poppins-SemiBold.ttf | 151.55 KB | 1.21 KB |
-| RobotoMono-Bold.ttf | 84.97 KB | 2.29 KB |
-| RobotoMono-Bold.ttf | 84.97 KB | 1.85 KB |
-| RobotoMono-Bold.ttf | 84.97 KB | 1.33 KB |
-| RobotoMono-Medium.ttf | 84.79 KB | 2.3 KB |
-| RobotoMono-Medium.ttf | 84.79 KB | 1.86 KB |
-| RobotoMono-Medium.ttf | 84.79 KB | 1.37 KB |
-| RobotoMono-Regular.ttf | 84.87 KB | 2.34 KB |
-| RobotoMono-Regular.ttf | 84.87 KB | 1.88 KB |
-| RobotoMono-Regular.ttf | 84.87 KB | 1.37 KB |
+| --- | --- | --- |
+| Poppins-Bold.ttf | 150.29 KB | 2.66 KB |
+| Poppins-Bold.ttf | 150.29 KB | 2.12 KB |
+| Poppins-Bold.ttf | 150.29 KB | 1.53 KB |
+| Poppins-ExtraBold.ttf | 149.13 KB | 2.66 KB |
+| Poppins-ExtraBold.ttf | 149.13 KB | 2.12 KB |
+| Poppins-ExtraBold.ttf | 149.13 KB | 1.53 KB |
+| Poppins-Medium.ttf | 152.81 KB | 2.72 KB |
+| Poppins-Medium.ttf | 152.81 KB | 2.16 KB |
+| Poppins-Medium.ttf | 152.81 KB | 1.56 KB |
+| Poppins-Regular.ttf | 154.48 KB | 2.73 KB |
+| Poppins-Regular.ttf | 154.48 KB | 2.16 KB |
+| Poppins-Regular.ttf | 154.48 KB | 1.54 KB |
+| Poppins-SemiBold.ttf | 151.55 KB | 2.73 KB |
+| Poppins-SemiBold.ttf | 151.55 KB | 2.18 KB |
+| Poppins-SemiBold.ttf | 151.55 KB | 1.59 KB |
+| RobotoMono-Bold.ttf | 84.97 KB | 5.24 KB |
+| RobotoMono-Bold.ttf | 84.97 KB | 3.93 KB |
+| RobotoMono-Bold.ttf | 84.97 KB | 3.09 KB |
+| RobotoMono-Medium.ttf | 84.79 KB | 5.25 KB |
+| RobotoMono-Medium.ttf | 84.79 KB | 3.98 KB |
+| RobotoMono-Medium.ttf | 84.79 KB | 3.16 KB |
+| RobotoMono-Regular.ttf | 84.87 KB | 5.31 KB |
+| RobotoMono-Regular.ttf | 84.87 KB | 3.98 KB |
+| RobotoMono-Regular.ttf | 84.87 KB | 3.11 KB |

@@ -46,10 +46,6 @@ export const RecipeResults = () => {
     return <div>{error.message}</div>
   }
 
-  if (isLoading) {
-    return <Loading />
-  }
-
   return (
     <section className="bg-white dark:bg-gray-800 pb-10 md:py-8">
       {isLoading ? (
