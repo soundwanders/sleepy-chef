@@ -6,10 +6,10 @@ export const Sidebar = () => {
 
   return (
   <>
-    <div className="flex flex-auto">
+    <div className="flex ">
       <button 
         className={`
-          hamburger text-gray-900 dark:text-white p-4 rounded focus:outline-none
+          hamburger text-gray-900 dark:text-slate-100 p-4 rounded focus:outline-none
           ${isOpen ? 'close-icon' : ''} 
         `}
         onClick={() => setIsOpen(!isOpen)}
@@ -27,7 +27,7 @@ export const Sidebar = () => {
       <nav
         id="sidebar"
         className={`
-          sidebar h-screen w-1/5 lg:w-1/6 fixed bg-slate-100 dark:bg-gray-900 top-0 right-0 p-4 lg:px-8 pb-60 md:pb-40 text-center overflow-y-auto 
+          sidebar max-w-md h-screen fixed bg-slate-100 dark:bg-gray-900 top-0 right-0 p-4 pb-60 md:pb-40 text-center overflow-y-auto 
           ${isOpen ? 'w-1/4' : 'w-full'}
           ${isOpen ? '-translate-x-0' : '-translate-x-full'}
           ${isOpen ? '' : 'hidden'}
