@@ -1,41 +1,39 @@
-import React from 'react';
+import { useState, useEffect } from 'react';
 
-// crack and hatches chick
 export const Loading = () => {
+  const [isCracked, setIsCracked] = useState(false);
+
+  useEffect(() => {
+    const egg = document.querySelector('.egg');
+    egg.addEventListener('animationend', (event) => {
+      if (event.animationName === 'eggCrack') {
+        setIsCracked(true);
+      }
+    });
+  }, []);
+
   return (
-    <div className="flex items-center justify-center h-screen">
-      <div className="relative">
-        <div className="egg">
-          <div className="crack"></div>
-        </div>
-        <div className="chick">
-          <div className="face">
-            <div className="eye"></div>
-            <div className="eye"></div>
-            <div className="beak"></div>
+    <div className="flex items-center justify-center w-screen">
+      <div className="relative h-64 w-64 rounded-full bg-white">
+        <div className="relative">
+          <div className="egg">
+            <div className="crack"></div>
           </div>
-          <div className="body">
-            <div className="wing"></div>
-            <div className="wing"></div>
-            <div className="tail"></div>
-
-            <p>loading</p>
-          </div>
+          {isCracked ? (
+            <div className="chick">
+              <div className="face">
+                <div className="eye"></div>
+                <div className="eye"></div>
+                <div className="beak"></div>
+              </div>
+              <div className="body">
+                <div className="wing"></div>
+                <div className="wing"></div>
+                <div className="tail"></div>
+              </div>
+            </div>
+          ) : null}
         </div>
-      </div>
-
-    </div>
-  );
-};
-
-// first crack
-export const LoadingTwo = () => {
-  return (
-    <div className="loading">
-      <div className="egg">
-        <div className="egg-top"></div>
-        <div className="egg-bottom"></div>
-        <div className="crack"></div>
       </div>
     </div>
   );

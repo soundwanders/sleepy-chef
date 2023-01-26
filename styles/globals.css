@@ -36,6 +36,17 @@ button:focus {
   transform: translateX(1.75rem);
 }
 
+.sidebar {
+  transition: transform 0.4s ease-in-out;
+}
+
+.sidebar.open{
+  transform:translateX(0);
+}
+.sidebar.close{
+  transform:translateX(100%);
+}
+
 @media (max-width: 768px) {
   .sidebar.open {
     width: 100%;
@@ -52,27 +63,45 @@ button:focus {
 }
 
 .jello {
-  animation: jello-jiggle 1s linear both;
+  animation: jello-jiggle 1.7s ease-in;
 }
 
 @keyframes jello-jiggle {
   0% {
     transform: scale3d(1, 1, 1);
   }
-  30% {
-    transform: scale3d(1.1, 0.9, 1);
+  2% {
+    transform: scale3d(1.02, 0.98, 1);
   }
-  40% {
-    transform: scale3d(0.9, 1.1, 1);
-  }
-  50% {
+  4% {
     transform: scale3d(1.05, 0.95, 1);
   }
-  65% {
-    transform: scale3d(0.95, 1.05, 1);
+  6% {
+    transform: scale3d(1.07, 0.93, 1);
   }
-  80% {
-    transform: scale3d(1.02, 0.99, 1);
+  8% {
+    transform: scale3d(1.08, 0.92, 1);
+  }
+  10% {
+    transform: scale3d(1.1, 0.9, 1);
+  }
+  12% {
+    transform: scale3d(1.1, 0.9, 1);
+  }
+  14% {
+    transform: scale3d(1.08, 0.92, 1);
+  }
+  16% {
+    transform: scale3d(1.06, 0.94, 1);
+  }
+  18% {
+    transform: scale3d(1.04, 0.96, 1);
+  }
+  20% {
+    transform: scale3d(1.02, 0.98, 1);
+  }
+  30% {
+    transform: scale3d(1, 1, 1);
   }
   100% {
     transform: scale3d(1, 1, 1);
