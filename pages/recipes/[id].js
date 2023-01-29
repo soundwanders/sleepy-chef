@@ -27,13 +27,13 @@ export async function getStaticProps({ params }) {
       throw new Error(`Failed to fetch recipe, status: ${response.status}`);
     }
     const recipeData = await response.json();
-    console.log(recipeData);
     return { props: { recipeData } };
   } catch (error) {
     console.error(error);
     return { props: { errorMessage: error.message } };
   }
 };
+
 
 export default function Recipe({ recipeData, errorMessage }) {
   console.log(recipeData);

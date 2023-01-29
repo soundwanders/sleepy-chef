@@ -73,8 +73,8 @@ export const SearchResults = () => {
                 key={recipe.id}
               >
                 <div className="rounded-lg shadow-md hover:shadow-lg bg-neutral-50 dark:bg-zinc-900">
-                  <div className="bg-orange-400 dark:bg-pink-300 min-h-0 py-4 rounded-t-lg">
-                    <h2 className="text-lg md:text-2xl text-center uppercase font-extrabold text-gray-800 py-4 px-2">
+                  <div className="bg-orange-400 dark:bg-sky-900 min-h-0 py-4 rounded-t-lg">
+                    <h2 className="text-xl md:text-2xl text-center uppercase font-extrabold text-gray-800 dark:text-gray-100 py-4 px-2">
                       {recipe.name}
                     </h2>
                   </div>
