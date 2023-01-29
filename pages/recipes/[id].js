@@ -1,6 +1,4 @@
-import { useState, useEffect } from 'react';
 import ContainerBlock from '@components/ContainerBlock';
-import { Loading } from '@components/Loading';
 import { recipes } from '@data/recipeDb';
 
 export const API_ENDPOINT =
@@ -26,9 +24,10 @@ export async function getStaticProps({ params }) {
   try {
     const response = await fetch(`${API_ENDPOINT}?id=${params.id}`);
     if (!response.ok) {
-        throw new Error(`Failed to fetch recipe, status: ${response.status}`);
+      throw new Error(`Failed to fetch recipe, status: ${response.status}`);
     }
     const recipeData = await response.json();
+    console.log(recipeData);
     return { props: { recipeData } };
   } catch (error) {
     console.error(error);
@@ -38,20 +37,8 @@ export async function getStaticProps({ params }) {
 
 export default function Recipe({ recipeData, errorMessage }) {
   console.log(recipeData);
-  console.log("^ Generated Recipe Data ^");
+  console.log("^ Your Selected Recipe's Data.");
 
-  const [dataLoaded, setDataLoaded] = useState(false);
-
-  useEffect(() => {
-    if (recipeData) {
-      setDataLoaded(true);
-    }
-  }, [recipeData]);
-
-  if (!dataLoaded) {
-    return <Loading />
-  };
-  
   const { image, name, type, vegetarian, vegan, ingredients, nutrition, directions } = recipeData[0];
 
   return (

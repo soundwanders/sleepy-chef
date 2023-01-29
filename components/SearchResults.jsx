@@ -54,10 +54,10 @@ export const SearchResults = () => {
         <Delay wait={0}>
         <>
           <div className="max-w-6xl mx-auto h-36 md:h-40 px-8 py-4 bg-white dark:bg-gray-800">
-            <div className="w-fit float-left">
+            <div className="w-fit">
               <RoughNotationGroup show={true}>
                 <Highlighter color={highlightColor}>
-                  <h1 className="text-4xl md:text-8xl font-bold text-gray-800 dark:text-gray-200 text-center py-2 px-4">
+                  <h1 className={`results-title text-5xl md:text-8xl font-bold text-gray-800 dark:text-gray-100 py-2 px-4`}>
                     Order Up!
                   </h1>
                 </Highlighter>
@@ -72,64 +72,62 @@ export const SearchResults = () => {
                 as={`/recipes/${recipe.id}?name=${recipe.name}`}
                 key={recipe.id}
               >
-                <a>
-                  <div className="rounded-lg shadow-md hover:shadow-lg bg-slate-50 dark:bg-zinc-900">
-                    <div className="bg-orange-400 dark:bg-orange-600 min-h-0 py-4 rounded-t-lg">
-                      <h2 className="text-xl md:text-2xl text-center tracking-tight uppercase font-bold text-gray-800 dark:text-slate-100 p-4">
-                        {recipe.name}
-                      </h2>
-                    </div>
+                <div className="rounded-lg shadow-md hover:shadow-lg bg-neutral-50 dark:bg-zinc-900">
+                  <div className="bg-orange-400 dark:bg-pink-300 min-h-0 py-4 rounded-t-lg">
+                    <h2 className="text-lg md:text-2xl text-center uppercase font-extrabold text-gray-800 py-4 px-2">
+                      {recipe.name}
+                    </h2>
+                  </div>
 
-                    <div className="p-6">
-                      <p className="text-gray-600 dark:text-gray-400 font-medium text-sm uppercase tracking-wider py-1">
-                        Type: {recipe.type}
-                      </p>
-                      <p className="text-gray-600 dark:text-gray-400 font-medium text-sm uppercase tracking-wider py-1">
-                        Vegetarian: {recipe.vegetarian ? 'Yes' : 'No'}
-                      </p>
-                      <p className="text-gray-600 dark:text-gray-400 font-medium text-sm uppercase tracking-wider py-1">
-                        Vegan: {recipe.vegan ? 'Yes' : 'No'}
-                      </p>
+                  <div className="p-6">
+                    <p className="text-center text-gray-600 dark:text-gray-300 font-medium text-sm uppercase tracking-wider py-1">
+                      Type: {recipe.type}
+                    </p>
+                    <p className="text-center text-gray-600 dark:text-gray-300 font-medium text-sm uppercase tracking-wider py-1">
+                      Vegetarian: {recipe.vegetarian ? 'Yes' : 'No'}
+                    </p>
+                    <p className="text-center text-gray-600 dark:text-gray-300 font-medium text-sm uppercase tracking-wider py-1 pb-4 border-b border-slate-500">
+                      Vegan: {recipe.vegan ? 'Yes' : 'No'}
+                    </p>
 
-                      <h3 className="text-xl font-bold text-gray-800 dark:text-gray-100 mt-4 mb-3">
-                        Ingredients:
-                      </h3>
-                      
-                      <ul className="grid grid-cols-2 gap-2 md:gap-3">
-                        {recipe.ingredients.map(ingredient => (
-                          <li key={ingredient} className="text-gray-700 dark:text-gray-100 text-sm col-span-1">{ingredient}</li>
+                    <h3 className="text-xl font-bold text-gray-800 dark:text-gray-100 mt-4 mb-3">
+                      Ingredients:
+                    </h3>
+                    
+                    <ul className="grid grid-cols-2 gap-2 md:gap-3">
+                      {recipe.ingredients.map(ingredient => (
+                        <li key={ingredient} className="text-gray-700 dark:text-gray-100 text-sm col-span-1">{ingredient}</li>
+                      ))}
+                    </ul>
+
+                    <h3 className="text-xl font-bold text-gray-800 dark:text-gray-200 mt-6 mb-3 pt-4 border-t border-slate-500">
+                      Nutrition:
+                    </h3>
+                    {/* 
+                      Object.entries(recipe.nutrition) converts the nutrition object into an array of key-value pairs, 
+                      where each element in the array is an array containing the key and value of a property. 
+                      Then, the map() method iterates over the array, and creates a list item for each key-value pair, 
+                    */}
+                    <ul className="grid grid-cols-2 w-full gap-2 md:gap-3">
+                      {Object.entries(recipe.nutrition).map(([name, value]) => (
+                        <li key={name} className="text-gray-600 dark:text-gray-300 font-medium text-xs uppercase tracking-wider col-span-1">
+                          {name}: {value}
+                        </li>
+                      ))}
+                    </ul>
+
+                    <h3 className="text-xl font-bold text-gray-800 dark:text-gray-200 mt-6 mb-3 pt-4 border-t border-slate-500">
+                      Directions:
+                    </h3>
+                    <div className="overflow-y-auto h-48">
+                      <ul className="grid grid-cols-1 gap-2 md:gap-3">
+                        {recipe.directions.map(direction => (
+                          <li key={direction} className="text-gray-700 dark:text-gray-100 text-sm col-span-1">{direction}</li>
                         ))}
                       </ul>
-
-                      <h3 className="text-xl font-bold text-gray-800 dark:text-gray-200 mt-6 mb-3">
-                        Nutrition:
-                      </h3>
-                      {/* 
-                        Object.entries(recipe.nutrition) converts the nutrition object into an array of key-value pairs, 
-                        where each element in the array is an array containing the key and value of a property. 
-                        Then, the map() method iterates over the array, and creates a list item for each key-value pair, 
-                      */}
-                      <ul className="grid grid-cols-2 w-full gap-2 md:gap-3">
-                        {Object.entries(recipe.nutrition).map(([name, value]) => (
-                          <li key={name} className="text-gray-600 dark:text-gray-300 font-medium text-xs uppercase tracking-wider col-span-1">
-                            {name}: {value}
-                          </li>
-                        ))}
-                      </ul>
-
-                      <h3 className="text-xl font-bold text-gray-800 dark:text-gray-200 mt-6 mb-3">
-                        Directions:
-                      </h3>
-                      <div className="overflow-y-auto h-48">
-                        <ul className="grid grid-cols-1 gap-2 md:gap-3">
-                          {recipe.directions.map(direction => (
-                            <li key={direction} className="text-gray-700 dark:text-gray-100 text-sm col-span-1">{direction}</li>
-                          ))}
-                        </ul>
-                      </div>
                     </div>
                   </div>
-                </a>
+                </div>
               </Link>
             ))}
           </div>

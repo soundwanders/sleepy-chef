@@ -10,7 +10,7 @@ export const Highlighter = ({ color, children }) => {
       type="highlight"
       multiline={true}
       padding={[0, 8]}
-      iterations={1}
+      iterations={2}
       animationDuration={animationDuration}
       color={color}
     >
