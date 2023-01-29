@@ -28,7 +28,6 @@ export const Sidebar = () => {
         id="sidebar"
         className={`
           sidebar bg-slate-100 dark:bg-gray-900 w-screen md:w-1/6 h-screen fixed top-0 right-0 p-4 pb-60 md:pb-40 text-center overflow-y-auto 
-          ${isOpen ? 'translate-x-0' : 'translate-x-full'}
           ${isOpen ? 'open':'close'}
         `}
         role="navigation"

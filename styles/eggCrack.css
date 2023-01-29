@@ -1,0 +1,189 @@
+/* Crack egg and chick hatching animation */
+
+/** Create Egg **/
+.egg {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+  background: #fff;  
+  animation: crack 0.5s ease-in-out 0s 1 forwards, shake 1.2s ease-in-out 1s infinite;
+  /* animation: crack 0.5s ease-in-out forwards; */
+}
+
+/* Crack styles */
+.crack {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  background: #fff;
+  z-index: 2;
+  animation: crack 1.5s forwards;
+}
+
+.crack::before,
+.crack::after {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  background: #fff;
+}
+
+.crack::before {
+  top: 0;
+  left: 0;
+  transform: rotate(45deg);
+}
+
+.crack::after {
+  top: 0;
+  left: 0;
+  transform: rotate(-45deg);
+}
+
+/** Create Chick **/
+.chick {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.face {
+  position: absolute;
+  top: 20%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 40%;
+  height: 40%;
+  border-radius: 50%;
+  background: yellow;
+}
+
+.eye {
+  position: absolute;
+  width: 10%;
+  height: 10%;
+  border-radius: 50%;
+  background: black;
+}
+
+.eye.left {
+  left: 20%;
+  top: 20%;
+}
+
+.eye.right {
+  left: 70%;
+  top: 20%;
+}
+
+.beak {
+  position: absolute;
+  left: 50%;
+  bottom: 0;
+  transform: translate(-50%, 50%);
+  width: 20%;
+  height: 20%;
+  border-radius: 0 0 50% 50%;
+  background: orange;
+}
+
+.body {
+  position: absolute;
+  top: 60%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 60%;
+  height: 60%;
+  background: yellow;
+}
+
+.wing {
+  position: absolute;
+  width: 30%;
+  height: 30%;
+  background: yellow;
+}
+
+.wing.left {
+  left: 0;
+  top: 50%;
+  transform: rotate(-45deg);
+}
+
+.wing.right {
+  right: 0;
+  top: 50%;
+  transform: rotate(45deg);
+}
+
+.tail {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translate(-50%, 50%);
+  width: 20%;
+  height: 20%;
+  background: yellow;
+}
+
+
+@keyframes crack {
+  0% {
+    transform: rotate(0deg);
+  }
+  25% {
+    transform: rotate(45deg);
+  }
+  50% {
+    transform: rotate(90deg);
+  }
+  75% {
+    transform: rotate(135deg);
+  }
+  100% {
+    transform: rotate(180deg);
+  }
+}
+
+@keyframes shake {
+  0% {
+    transform: rotate(0deg);
+  }
+  25% {
+    transform: rotate(4deg);
+  }
+  50% {
+    transform: rotate(-4deg);
+  }
+  75% {
+    transform: rotate(2deg);
+  }
+  100% {
+    transform: rotate(0deg);
+  }
+}
+
+@keyframes appear {
+  0% {
+    opacity: 0;
+    transform: translateY(-50%);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/** COMBINE SHAKE / CRACK ANIMATIONS
+ .egg {
+  animation: crack 0.5s ease-in-out 0s 1 forwards, shake 2s ease-in-out 1s infinite;
+}
+**/

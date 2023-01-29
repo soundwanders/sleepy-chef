@@ -21,14 +21,12 @@ export default function Navbar() {
     <div className="max-w-6xl mx-auto px-4 py-6 md:py-10">
       <div className="flex justify-between items-center">
         <div className="flex flex-col">
-          <Link href="/">
-            <a className="w-max">
-              <img
-                src={userData.chefUrl}
-                alt="sleepy-chef"
-                className="w-14 h-14 p-3.5 md:p-2 hover:scale-110 transition duration-2000 ease-out"
-              />
-            </a>
+          <Link href="/" className="w-max">
+            <img
+              src={userData.chefUrl}
+              alt="sleepy-chef"
+              className="w-14 h-14 p-3.5 md:p-2 hover:scale-110 transition duration-2000 ease-out"
+            />
           </Link>
         </div>
       
