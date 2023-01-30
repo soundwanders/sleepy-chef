@@ -9,11 +9,11 @@
     "@next/font": "13.1.6",
     "cross-env": "^7.0.3",
     "dotenv": "^16.0.3",
+    "framer-motion": "^8.5.4",
     "next": "13.1.6",
     "next-themes": "0.0.15",
     "node-fetch": "^3.3.0",
     "react": "18.x",
-    "react-delay": "^0.1.0",
     "react-dom": "18.x",
     "react-rough-notation": "^1.0.1",
     "swr": "^2.0.1"

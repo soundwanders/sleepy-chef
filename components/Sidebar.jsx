@@ -13,9 +13,9 @@ export const Sidebar = () => {
           ${isOpen ? 'close-icon' : ''} 
         `}
         onClick={() => setIsOpen(!isOpen)}
-        aria-label="Toggle sidebar menu"
-        aria-expanded={isOpen}
-        aria-controls="sidebar"
+        aria-label="Open sidebar"
+        aria-controls="toggle-sidebar"
+        aria-describedby="hamburger"
         role="button"
         tabIndex="0"
       >

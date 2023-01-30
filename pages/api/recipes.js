@@ -1,12 +1,21 @@
 import { recipes } from '@data/recipeDb';
 
-// search functions
-const searchFunctions = {
-  id: (id) => recipes.filter(recipe => recipe.id === Number(id)),
-  type: (type) => recipes.filter(recipe => recipe.type.toLowerCase() === type.toLowerCase()),
-  ingredient: (ingredient) => recipes.filter(recipe => recipe.ingredients.some(ing => ing.toLowerCase().includes(ingredient.toLowerCase()))),
-  name: (name) => recipes.filter(recipe => recipe.name.toLowerCase().includes(name.toLowerCase())),
-};
+// search function
+const searchFunction = (paramType, paramValue) => 
+  recipes.filter(recipe => {
+    switch (paramType) {
+      case 'id':
+        return recipe.id === Number(paramValue);
+      case 'type':
+        return recipe.type.toLowerCase() === paramValue.toLowerCase();
+      case 'ingredient':
+        return recipe.ingredients.some(ing => ing.toLowerCase().includes(paramValue.toLowerCase()));
+      case 'name':
+        return recipe.name.toLowerCase().includes(paramValue.toLowerCase());
+      default:
+        return false;
+    }
+  });
 
 const priorityMap = {
   id: 1,
@@ -19,33 +28,30 @@ export default function handler(req, res) {
   // destructure query object from the router
   const { query } = req;
 
-  // destructure the type, ingredient and id query parameters
+  // destructure the type, ingredient, name and id query parameters
   const { type, ingredient, name, id } = query;
 
-  // create an empty array to hold filtered search results
-  let filteredRecipes = [];
+  // create an array of query parameters with their corresponding priority values
+  const queryParams = [
+    { param: id, type: 'id', priority: priorityMap.id }, 
+    { param: type, type: 'type', priority: priorityMap.type }, 
+    { param: name, type: 'name', priority: priorityMap.name }, 
+    { param: ingredient, type: 'ingredient', priority: priorityMap.ingredient }
+  ];
 
-  // prioritize the search based on the query parameters
-  const queryParams = { id, type, name, ingredient };
-  const queryKeys = Object.keys(queryParams);
-  const sortedQueryKeys = queryKeys.sort((a, b) => priorityMap[b] - priorityMap[a]);
+  // sort the query parameters by priority
+  const sortedQueryParams = queryParams.sort((a, b) => b.priority - a.priority);
 
-  //filter the recipes array based on the specific query parameters
-  sortedQueryKeys.forEach((key) => {
-    if (key === "id" && id) {
-      filteredRecipes = searchFunctions[key](id);
-    } else if (key === "type" && type) {
-      filteredRecipes = searchFunctions[key](type);
-    } else if (key === "name" && name) {
-      filteredRecipes = searchFunctions[key](name);
-    } else if (key === "ingredient" && ingredient) {
-      filteredRecipes = searchFunctions[key](ingredient);
+  // reduce the array of query parameters to an array of filtered recipes
+  const filteredRecipes = sortedQueryParams.reduce((recipes, param) => {
+    if (!param.param) {
+      return recipes;
     }
-  });
+    return recipes.concat(searchFunction(param.type, param.param));
+  }, []);
 
   console.log(filteredRecipes);
-  
-  // check if any recipes were found
+
   if (!filteredRecipes.length) {
     res.status(400).json({ error: 'No matching recipes found.' });
     return;

@@ -2,9 +2,9 @@ import ContainerBlock from '@components/ContainerBlock';
 import { recipes } from '@data/recipeDb';
 
 export const API_ENDPOINT =
-  process.env.NODE_ENV === 'production'
-    ? `${process.env.NEXT_PUBLIC_VERCEL_URL}/api/recipes/`
-    : `${process.env.LOCAL_URL}/api/recipes/`;
+  process.env.NODE_ENV === 'production' 
+  ? `${process.env.NEXT_PUBLIC_VERCEL_URL}/api/recipes/`
+  : `${process.env.LOCAL_URL}/api/recipes/`;
 
 export async function getStaticPaths() {
   try {
@@ -24,7 +24,7 @@ export async function getStaticProps({ params }) {
   try {
     const response = await fetch(`${API_ENDPOINT}?id=${params.id}`);
     if (!response.ok) {
-      throw new Error(`Failed to fetch recipe, status: ${response.status}`);
+      throw new Error(`Failed to fetch recipe. Status: ${response.status}`);
     }
     const recipeData = await response.json();
     return { props: { recipeData } };
@@ -34,12 +34,11 @@ export async function getStaticProps({ params }) {
   }
 };
 
-
 export default function Recipe({ recipeData, errorMessage }) {
-  console.log(recipeData);
-  console.log("^ Your Selected Recipe's Data.");
+  console.log(recipeData[0]);
+  console.log("^ Recipe Data.");
 
-  const { image, name, type, vegetarian, vegan, ingredients, nutrition, directions } = recipeData[0];
+  const { image, name, type, vegetarian, vegan, ingredients, nutrition, directions } = recipeData;
 
   return (
     <ContainerBlock>

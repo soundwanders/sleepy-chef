@@ -23,6 +23,7 @@ yarn.lock
 .DS_Store
 *.pem
 .vscode
+recipe-data-structure.md
 
 # educational
 /educational

@@ -34,7 +34,8 @@ export default function Navbar() {
         
         <div className={`space-x-4 flex flex-row items-center`}>
           <button
-            aria-label="Toggle Dark Mode"
+            aria-label="Toggle Theme"
+            aria-controls="dark-mode"
             type="button"
             className="toggle-theme w-14 h-14 p-3 rounded focus:outline-none"
             onClick={() => setTheme(theme === "dark" ? "light" : "dark")}

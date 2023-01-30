@@ -90,7 +90,7 @@ export const recipes = [
       "4 ½ cups of vegetable broth",
       "1 large carrot, julienned",
       "1 red bell pepper, julienned",
-      "4 green onions, sliced thinly",
+      "4 green onions, thinly sliced",
       "4 garlic cloves, minced",
       "2 tbsp. peanut butter",
       "2 tbsp. fresh minced ginger",
@@ -105,8 +105,8 @@ export const recipes = [
       "½ tsp. fresh chili paste",
       "½ tsp. turmeric",
       "½ lime, juiced",
-      "crushed peanuts (for garnish)",
-      "chopped cilantro (for garnish)",
+      "crushed peanuts (garnish)",
+      "chopped cilantro (garnish)",
     ],
     "nutrition": {
       "calories": "750",
@@ -118,7 +118,7 @@ export const recipes = [
     },
     "directions": [
       "In a large soup pot, add all the ingredients except for the lime juice, peanuts and cilantro. Don't worry if the noodles are not fully submerged! Cover the pot and bring to a boil.",
-      "Stir to combine thoroughly and reduce to a simmer. Coonitnue cooking over medium low heat for about 10 to 13 minutes, stirring occasionally.",
+      "Stir to combine thoroughly and reduce to a simmer. Continue cooking over medium low heat for about 10 to 12 minutes, stirring occasionally.",
       "Next, uncover the pot cook for another 2 to 3 minutes, until about 1/2 inch of sauce is remaining. Remove from heat, then stir in the lime juice.",
       "Before serving, garnish with desired amount of crushed peanuts and chopped cilantro. Dig in!"
     ],
@@ -126,7 +126,7 @@ export const recipes = [
   { 
     "id": 3,
     "name": "Buffalo Chicken Enchiladas",
-    "type": "mexican",
+    "type": "chicken",
     "vegetarian": false,
     "vegan": false,
     "ingredients": [
@@ -151,7 +151,7 @@ export const recipes = [
     },
     "directions": [
       "Preheat the oven to 400 degrees F. Grease baking dish with butter if it is not nonstick.",
-      "Mix the chicken, cream cheese, 1 cup of the Cheddar, 1/3 cup of the hot sauce, white parts of the scallions and cumin in a large bowl until well combined.",
+      "Mix the chicken, cream cheese, 1 cup of the Cheddar, 1/3 cup of the hot sauce, white parts of the scallions, and the cumin in a large bowl until well combined.",
       "Stir together the butter, remaining 2/3 cup hot sauce and 3 tablespoons water in a medium bowl.",
       "Microwave the tortillas in batches until warm, softened and foldable, about 30 seconds. Keep warm between damp paper towels.",
       "Spoon a portion of the chicken mixture into each tortilla and roll up. Place them side by side in the pan, with the seam facing down.",
@@ -163,7 +163,7 @@ export const recipes = [
   { 
     "id": 4,
     "name": "Bean and Cheese Burritos",
-    "type": "mexican",
+    "type": "vegetarian",
     "vegetarian": true,
     "vegan": false,
     "ingredients": [
