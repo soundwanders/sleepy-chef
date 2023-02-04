@@ -42,7 +42,7 @@ export const SearchResults = () => {
   });
 
   if (data === undefined) {
-    return <div>Loading...</div>
+    return <div>Loading your recipe!</div>
   }
 
   if (error) {
@@ -71,15 +71,19 @@ export const SearchResults = () => {
               as={`/recipes/${recipe.id}`}
               key={recipe.id}
             >
+
               <div className="rounded-lg shadow-md hover:shadow-lg bg-neutral-50 dark:bg-zinc-900">
-                <div className="bg-orange-400 dark:bg-sky-900 min-h-0 py-4 rounded-t-lg">
-                  <h2 className="text-xl md:text-2xl text-center uppercase font-extrabold text-gray-800 dark:text-gray-100 py-4 px-2">
-                    {recipe.name}
-                  </h2>
+                <div className="bg-orange-400 dark:bg-sky-700 min-h-0 py-4 rounded-t-lg">
+                  <div className="flex items-center justify-center h-full w-full">
+                    <img src={recipe.denotion} alt="" className="inline-block h-6 w-6" />
+                    <h2 className="text-xl md:text-2xl text-center uppercase font-extrabold text-gray-800 dark:text-gray-100 py-4 px-2">
+                      {recipe.name}
+                    </h2>
+                  </div>
                 </div>
 
-                <div className="p-6">
-                  <p className="text-center text-gray-600 dark:text-gray-300 font-medium text-sm uppercase tracking-wider py-1">
+                <div className="p-8">
+                  <p className="text-center text-gray-600 dark:text-gray-300 font-medium text-sm uppercase tracking-wider py-1 -mt-4">
                     Type: {recipe.type}
                   </p>
                   <p className="text-center text-gray-600 dark:text-gray-300 font-medium text-sm uppercase tracking-wider py-1">

@@ -4,6 +4,7 @@ export const recipes = [
   { 
     "id": 0,
     "name": "One Pot Creamy Pasta",
+    "image": "/chef.png",
     "type": "pasta",
     "vegetarian": true,
     "vegan": false,
@@ -42,6 +43,7 @@ export const recipes = [
   { 
     "id": 1,
     "name": "Chili Mac and Cheese",
+    "image": "/chef.png",
     "type": "pasta",
     "vegetarian": false,
     "vegan": false,
@@ -82,6 +84,8 @@ export const recipes = [
   { 
     "id": 2,
     "name": "Thai Pasta",
+
+    "image": "/chef.png",
     "type": "pasta",
     "vegetarian": true,
     "vegan": false,
@@ -126,6 +130,7 @@ export const recipes = [
   { 
     "id": 3,
     "name": "Buffalo Chicken Enchiladas",
+    "image": "/chef.png",
     "type": "chicken",
     "vegetarian": false,
     "vegan": false,
@@ -163,6 +168,7 @@ export const recipes = [
   { 
     "id": 4,
     "name": "Bean and Cheese Burritos",
+    "image": "/chef.png",
     "type": "vegetarian",
     "vegetarian": true,
     "vegan": false,
@@ -192,6 +198,7 @@ export const recipes = [
   { 
     "id": 5,
     "name": "Spicy Shepherd's Pie",
+    "image": "/chef.png",
     "type": "beef",
     "vegetarian": false,
     "vegan": false,
@@ -225,6 +232,41 @@ export const recipes = [
     ]
   }
 ]
+
+recipes.forEach(recipe => {
+  switch(recipe.type) {
+    case 'beef':
+      recipe.denotion = "/beef.png";
+      break;
+    case 'chicken':
+      recipe.denotion = "/chicken.png";
+      break;
+    case 'pasta':
+      recipe.denotion = "/pasta.png";
+      break;
+    case 'pork':
+      recipe.denotion = "/pork.png";
+      break;
+    case 'seafood':
+      recipe.denotion = "/seafood.png";
+      break;
+    case 'salad':
+      recipe.denotion = "/salad.png";
+      break;
+    case 'soup':
+      recipe.denotion = "/soup.png";
+      break;
+    case 'vegan':
+      recipe.denotion = "/vegan.png";
+      break;
+    case 'vegetarian':
+      recipe.denotion = "/vegetarian.png";
+      break;
+    default:
+      recipe.denotion = "/chef.png";
+      break;
+  }
+});
 
 // create a context for the recipes data
 export const RecipesContext = createContext(recipes);

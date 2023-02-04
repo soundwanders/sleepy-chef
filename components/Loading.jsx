@@ -14,7 +14,7 @@ export const Loading = () => {
 
   return (
     <div className="flex items-center justify-center w-screen">
-      <div className="relative h-64 w-64 rounded-full bg-white">
+      <div className="relative h-38 w-32 rounded-full bg-white">
         <div className="relative">
           <div className="egg">
             <div className="crack"></div>

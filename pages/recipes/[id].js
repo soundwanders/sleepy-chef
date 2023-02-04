@@ -1,7 +1,9 @@
 import ContainerBlock from '@components/ContainerBlock';
 import { recipes } from '@data/recipeDb';
+import { Loading } from '@components/Loading';
+import { useState, useEffect } from 'react';
 
-export const API_ENDPOINT =
+const API_ENDPOINT =
   process.env.NODE_ENV === 'production' 
   ? `${process.env.NEXT_PUBLIC_VERCEL_URL}/api/recipes/`
   : `${process.env.LOCAL_URL}/api/recipes/`;
@@ -22,10 +24,6 @@ export async function getStaticPaths() {
 
 export async function getStaticProps({ params }) {
   try {
-    console.log({params});
-    console.log(params);
-    console.log(params.id);
-
     const response = await fetch(`${API_ENDPOINT}?id=${params.id}`);
     if (!response.ok) {
       throw new Error(`Failed to fetch recipe. Status: ${response.status}`);
@@ -41,10 +39,22 @@ export async function getStaticProps({ params }) {
 export default function Recipe({ recipe, errorMessage }) {
   console.log(recipe);
   console.log("^ Selected Recipe");
+  
+  const [dataLoaded, setDataLoaded] = useState(false);
 
-  const recipeData = recipe[0];
+  useEffect(() => {
+    if (recipe) {
+      setDataLoaded(true);
+    }
+  }, [recipe]);
 
-  const { image, name, type, vegetarian, vegan, ingredients, nutrition, directions } = recipeData;
+  if (!dataLoaded) {
+    return <Loading />;
+  }
+
+  const recipeData = Array.isArray(recipe) ? recipe[0] : recipe;
+
+  const { name, image, type, vegetarian, vegan, ingredients, nutrition, directions } = recipeData;
 
   return (
     <ContainerBlock>
@@ -53,7 +63,7 @@ export default function Recipe({ recipe, errorMessage }) {
           <div className="jello bg-gray-50 dark:bg-gray-900 min-h-screen items-center">
             <div className=" flex flex-col items-center">
               <img
-                className="w-full rounded-lg mb-10"
+                className="w-full rounded-lg mb-8 px-12 pt-8"
                 src={image}
                 alt={name} />
 

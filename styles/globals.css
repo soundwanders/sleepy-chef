@@ -61,13 +61,16 @@ button:focus {
     right: 0;
     background-color: #e2e8f0;
   } 
+  .hamburger {
+    transform: translateX(0.5rem);
+  }
   .toggle-theme {
     margin-right: -1.3rem;
   }
 }
 
 .jello {
-  animation: jello-jiggle 1.7s ease-in;
+  animation: jello-jiggle 2.2s ease-in;
 }
 
 @keyframes jello-jiggle {

@@ -25,7 +25,7 @@ export default function Navbar() {
             <img
               src={userData.chefUrl}
               alt="sleepy-chef"
-              className="w-14 h-14 p-3.5 md:p-2 hover:scale-110 transition duration-2000 ease-out"
+              className="w-14 h-14 p-3.5 md:p-2 mr-2 md:mr-0 hover:scale-110 transition duration-2000 ease-out"
             />
           </Link>
         </div>
