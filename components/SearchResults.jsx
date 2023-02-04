@@ -68,7 +68,7 @@ export const SearchResults = () => {
           {data.map(recipe => (
             <Link 
               href="/recipes/[id]" 
-              as={`/recipes/${recipe.id}?name=${recipe.name}`}
+              as={`/recipes/${recipe.id}`}
               key={recipe.id}
             >
               <div className="rounded-lg shadow-md hover:shadow-lg bg-neutral-50 dark:bg-zinc-900">

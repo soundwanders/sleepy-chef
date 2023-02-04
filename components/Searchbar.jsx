@@ -63,7 +63,7 @@ export const Searchbar = () => {
           <motion.div
             initial={{ y: -100, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
-            transition={{ duration: 0.7 }}
+            transition={{ duration: 0.8 }}
             exit={{ opacity: 0 }}
           >
             <Egg />
@@ -75,7 +75,7 @@ export const Searchbar = () => {
               onSubmit={handleSubmit}
               initial={{ y: -100, opacity: 0 }}
               animate={{ y: 0, opacity: 1 }}
-              transition={{ duration: 0.7 }}
+              transition={{ duration: 0.8 }}
             >
               <input
                 className="form-control relative flex-auto min-w-0 w-full px-4 py-2 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-gray-300 border-solid rounded-lg transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"  

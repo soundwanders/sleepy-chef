@@ -22,21 +22,27 @@ export async function getStaticPaths() {
 
 export async function getStaticProps({ params }) {
   try {
+    console.log({params});
+    console.log(params);
+    console.log(params.id);
+
     const response = await fetch(`${API_ENDPOINT}?id=${params.id}`);
     if (!response.ok) {
       throw new Error(`Failed to fetch recipe. Status: ${response.status}`);
     }
-    const recipeData = await response.json();
-    return { props: { recipeData } };
+    const recipe = await response.json();
+    return { props: { recipe } };
   } catch (error) {
     console.error(error);
     return { props: { errorMessage: error.message } };
   }
 };
 
-export default function Recipe({ recipeData, errorMessage }) {
-  console.log(recipeData[0]);
-  console.log("^ Recipe Data.");
+export default function Recipe({ recipe, errorMessage }) {
+  console.log(recipe);
+  console.log("^ Selected Recipe");
+
+  const recipeData = recipe[0];
 
   const { image, name, type, vegetarian, vegan, ingredients, nutrition, directions } = recipeData;
 

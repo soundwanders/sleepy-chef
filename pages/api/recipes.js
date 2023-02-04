@@ -50,11 +50,10 @@ export default function handler(req, res) {
     return recipes.concat(searchFunction(param.type, param.param));
   }, []);
 
-  console.log(filteredRecipes);
-
   if (!filteredRecipes.length) {
     res.status(400).json({ error: 'No matching recipes found.' });
     return;
   }
+
   res.status(200).json(filteredRecipes);
 };
