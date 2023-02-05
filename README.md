@@ -6,7 +6,7 @@
 - Sleepy Chef lets users search for recipes based on type, name, or ingredients.
 - Built with Next.js + Tailwind CSS, deployed with Vercel.
 - useSWR provides a convenient way to handle caching, revalidation, and focus tracking in addition to some spicy syntax for data fetching.
-- Next's useRouter hook sends and receives the user's query & query parameters, which are necessary to filter and sort our recipe API data.
+- Next's useRouter hook sends and receives the user's query & query parameters, which we use to filter and sort the recipe API data.
 - API responds to user-submitted queries, filtering appropriate response by using key-value pairs to return all matching recipes as Objects.
 - getStaticPaths and getStaticProps generate our static Recipe pages at build time, which eliminates the need for on-demand server-side rendering and greatly reduces the load placed on the servers.
 - Recipe cards double as Next.js Link components, navigating to individual recipe pages using Next.js' dynamic routing method.
@@ -18,41 +18,33 @@
 
 ## Bugs or Other Issues
 
-If you encounter anything like bugs, crashes, or other unexpected behavior, feel free to open an issue. If you have any ideas, improvements or suggestions, you are more than welcome to contribute! Either open an issue or if you want to come up with one on your own, follow a few simple steps:
-
+If you encounter any bugs, crashes, or other unexpected behavior, feel free to open an issue. If you have any ideas, improvements or suggestions, I encourage you to contribute. Either open a new issue, or if you have created a solution or feature and would like it implemented, please follow a few simple steps:
 -    Fork the Project from branch 'main'
--    Create your Update Branch (git checkout -b update/BrokenBuggy
+-    Create your Update Branch (git checkout -b update/BugSquash
 -    Commit your Changes (git commit -m 'Hey change this!')
--    Push to the Branch (git push origin update/BrokenBuggy)
+-    Push to the Branch (git push origin update/BugSquash)
 -    Open a Pull Request
 
 <br/>
 
-## Project Structure
+## Good Bones
 
 ```bash
-
-.
-└─── src
-     │
-     └─── constants
-     │
-     ├─── components
-     │
-     ├─── data
-     │
-     └─── fonts
-     │    └── generated-fonts
-     │
-     └─── pages
-     │    └── api
-     │    └── recipes
-     │    └── types
-     │
-     └─── styles
-     │
-     └─── public
-
+│
+├─── components
+└─── constants
+├─── data
+└─── fonts
+│    └── generated-fonts
+│
+└─── pages
+│    └── api
+│    └── recipes
+│    └── types
+│
+└─── styles
+│
+└─── public
 ```
 
 <br/>

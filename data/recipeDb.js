@@ -169,7 +169,7 @@ export const recipes = [
     "id": 4,
     "name": "Bean and Cheese Burritos",
     "image": "/chef.png",
-    "type": "vegetarian",
+    "type": "mexican",
     "vegetarian": true,
     "vegan": false,
     "ingredients": [
@@ -255,12 +255,6 @@ recipes.forEach(recipe => {
       break;
     case 'soup':
       recipe.denotion = "/soup.png";
-      break;
-    case 'vegan':
-      recipe.denotion = "/vegan.png";
-      break;
-    case 'vegetarian':
-      recipe.denotion = "/vegetarian.png";
       break;
     default:
       recipe.denotion = "/chef.png";

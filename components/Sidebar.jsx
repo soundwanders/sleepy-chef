@@ -1,5 +1,25 @@
 import { useState } from "react";
+import Link from "next/link";
 import { Close, Hamburger } from "./Icons";
+
+const recipeTypes = [
+  { name: "Random Recipe", url: "/types" },
+  { name: "Beef", url: "/types/beef" },
+  { name: "Chicken", url: "/types/chicken" },
+  { name: "Pasta", url: "/types/pasta" },
+  { name: "Pork", url: "/types/pork" },
+  { name: "Salad", url: "/types/salad" },
+  { name: "Seafood", url: "/types/seafood" },
+  { name: "Soup", url: "/types/soup" },
+];
+
+const TypeLink = ({ name, url }) => (
+  <Link href={url} as={url} legacyBehavior>
+    <a className="hover:bg-sky-300 dark:hover:bg-sky-900 block px-4 py-2 pb-4 theme-text-on-surface text-gray-800 dark:text-slate-100 hover:bg-gray-200 ">
+      {name}
+    </a>
+  </Link>
+);
 
 export const Sidebar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -32,43 +52,13 @@ export const Sidebar = () => {
       role="navigation"
     >
       <ul className="list-none pt-20 p-0 font-bold md:text-lg">
-        <li className="py-2">
-          <a href="#" className="hover:bg-sky-300 dark:hover:bg-sky-900 block px-4 py-2 theme-text-on-surface text-gray-800 dark:text-slate-100 hover:bg-gray-200">
-            Random Recipe
-          </a>
-        </li>
-        <li className="py-2">
-          <a href="#" className="hover:bg-sky-300 dark:hover:bg-sky-900 block px-4 py-2 pb-4 theme-text-on-surface text-gray-800 dark:text-slate-100 hover:bg-gray-200 ">
-            Beef
-          </a>
-        </li>
-        <li className="py-2">
-          <a href="#" className="hover:bg-sky-300 dark:hover:bg-sky-900 block px-4 py-2 theme-text-on-surface text-gray-800 dark:text-slate-100 hover:bg-gray-200">
-            Chicken
-          </a>
-        </li>
-        <li className="py-2">
-          <a href="#" className="hover:bg-sky-300 dark:hover:bg-sky-900 block px-4 py-2 theme-text-on-surface text-gray-800 dark:text-slate-100 hover:bg-gray-200">
-            Fish
-          </a>
-        </li>
-        <li className="py-2">
-          <a href="#" className="hover:bg-sky-300 dark:hover:bg-sky-900 block px-4 py-2 theme-text-on-surface text-gray-800 dark:text-slate-100 hover:bg-gray-200">
-            Pasta
-          </a>
-        </li>
-        <li className="py-2">
-          <a href="#" className="hover:bg-sky-300 dark:hover:bg-sky-900 block px-4 py-2 theme-text-on-surface text-gray-800 dark:text-slate-100 hover:bg-gray-200">
-            Vegan
-          </a>
-        </li>
-        <li className="py-2">
-          <a href="#" className="hover:bg-sky-300 dark:hover:bg-sky-900 block px-4 py-2 theme-text-on-surface text-gray-800 dark:text-slate-100 hover:bg-gray-200">
-            Vegetarian
-          </a>
-        </li>
+        {recipeTypes.map(item => (
+          <li className="py-2" key={item.name}>
+            <TypeLink {...item} />
+          </li>
+        ))}
       </ul>
     </nav>
   </>
-  )
+  );
 };
