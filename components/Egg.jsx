@@ -1,18 +1,18 @@
-import { motion } from 'framer-motion';
-import React, { useState } from 'react';
+import { motion } from "framer-motion";
 
-const Egg = () => {
-    const [isCracked, setIsCracked] = useState(false);
-
-    return (
-        <motion.div
-            className={`egg ${isCracked ? 'cracked': ''}`}
-            initial={{ scale: 1 }}
-            animate={{ scale: 1.5 }}
-            transition={{ duration: 0.5 }}
-            onClick={() => setIsCracked(true)}
-        />
-    )
-};
+const Egg = () => (
+  <motion.div
+    className="egg"
+    initial={{ translateY: "-100%" }}
+    animate={{ translateY: 0 }}
+    transition={{ duration: 1, ease: "easeIn" }}
+  >
+    <motion.div
+      className="cracked"
+      animate={{ rotate: 90 }}
+      transition={{ duration: 0.5, ease: "easeOut" }}
+    />
+  </motion.div>
+);
 
 export default Egg;

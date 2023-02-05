@@ -14,7 +14,7 @@ export const Hero = () => {
       <div className="absolute top-0 max-w-4xl mx-auto text-center items-center pb-4 mt-52">
         <RoughNotationGroup show={true}>
           <Highlighter color={highlightColor}>
-            <h1 className="text-5xl md:text-8xl font-extrabold text-gray-800 dark:text-gray-200 md:px-4">
+            <h1 className="sleepy-title text-5xl md:text-8xl text-gray-800 dark:text-gray-200 md:px-4">
               {userData.title}
             </h1>
           </Highlighter>

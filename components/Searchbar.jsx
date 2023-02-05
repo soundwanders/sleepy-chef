@@ -44,11 +44,13 @@ export const Searchbar = () => {
 
     setError('');
     setIsEggCracked(true);
-    
-    router.push({
-      pathname: '/results',
-      query: { type, ingredient, name },
-    });
+
+    setTimeout(() => {
+      router.push({
+        pathname: '/results',
+        query: { type, ingredient, name },
+      });
+    }, 1000);
   };
 
   // clear error to allow search form resubmission
@@ -61,6 +63,7 @@ export const Searchbar = () => {
       <AnimatePresence>
         {isEggCracked ? (
           <motion.div
+            className="motion-container flex items-center justify-center"
             initial={{ y: -100, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
             transition={{ duration: 0.8 }}

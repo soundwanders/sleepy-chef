@@ -1,6 +1,5 @@
 import ContainerBlock from '@components/ContainerBlock';
 import { recipes } from '@data/recipeDb';
-import { Loading } from '@components/Loading';
 import { useState, useEffect } from 'react';
 
 const API_ENDPOINT =
@@ -32,7 +31,9 @@ export async function getStaticProps({ params }) {
     return { props: { recipe } };
   } catch (error) {
     console.error(error);
-    return { props: { errorMessage: error.message } };
+    return { 
+      props: { errorMessage: error.message } 
+    };
   }
 };
 
@@ -49,7 +50,7 @@ export default function Recipe({ recipe, errorMessage }) {
   }, [recipe]);
 
   if (!dataLoaded) {
-    return <Loading />;
+    return <div>Loading...</div>
   }
 
   const recipeData = Array.isArray(recipe) ? recipe[0] : recipe;

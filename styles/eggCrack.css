@@ -1,4 +1,11 @@
 .egg {
+  position: relative;
+  width: 100px;
+  height: 100px;
+  background: rgb(252, 252, 252);
+  border: 5px solid black;
+  border-radius: 50% 50% 0 50%;
+  transform: translateY(-100%);
   animation: fall 1s ease-in;
 }
 
@@ -12,7 +19,7 @@
 }
 
 .egg.cracked {
-  animation: crack 0.5s ease-out;
+  animation: crack 2s ease-out;
 }
 
 @keyframes crack {
@@ -21,6 +28,25 @@
   }
   100% {
     transform: rotate(90deg);
+    top: 50px;
+    left: 50px;
+    background: transparent;
+    border-radius: 0;
+  }
+  100% {
+    top: 50px;
+    left: 50px;
+    width: 0;
+    height: 0;
   }
 }
 
+.yolk {
+  position: absolute;
+  background: rgb(253, 253, 137);
+  width: 50px;
+  height: 50px;
+  border-radius: 25px;
+  top: 25px;
+  left: 25px;
+}

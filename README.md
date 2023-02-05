@@ -1,5 +1,5 @@
 # 👩‍🍳 Sleepy Chef
-##### Got an empty belly and running short on time? We've got your back, _all recipes take 30 minutes or less to prepare_.
+##### Feeling hungry, running short on time? We've got your back, _all recipes take 30 minutes or less to prepare_.
 
 ### https://sleepychef.vercel.app/
 
@@ -12,6 +12,55 @@
 - Recipe cards double as Next.js Link components, navigating to individual recipe pages using Next.js' dynamic routing method.
 - React Context used to avoid prop drilling and improve scalability by creating a context to share unaltered recipe data between components.
 - [Glyphhanger](https://github.com/soundwanders/sleepy-chef/blob/main/glyphhanger-experiment.md) optimizes webfont loading by subsetting font files to only include characters used on sleepy chef site.
-- Custom Levenshtein Distance algorithm function for fuzzy-searching, which helps widen the net for potential search results.
+- (in progress) Custom Levenshtein Distance algorithm function for fuzzy-searching, which helps widen the net for potential search results.
 
-#### * This project is currently in development
+<br/>
+
+## Bugs or Other Issues
+
+If you encounter anything like bugs, crashes, or other unexpected behavior, feel free to open an issue. If you have any ideas, improvements or suggestions, you are more than welcome to contribute! Either open an issue or if you want to come up with one on your own, follow a few simple steps:
+
+-    Fork the Project from branch 'main'
+-    Create your Update Branch (git checkout -b update/BrokenBuggy
+-    Commit your Changes (git commit -m 'Hey change this!')
+-    Push to the Branch (git push origin update/BrokenBuggy)
+-    Open a Pull Request
+
+<br/>
+
+## Project Structure
+
+```bash
+
+.
+└─── src
+     │
+     └─── constants
+     │
+     ├─── components
+     │
+     ├─── data
+     │
+     └─── fonts
+     │    └── generated-fonts
+     │
+     └─── pages
+     │    └── api
+     │    └── recipes
+     │    └── types
+     │
+     └─── styles
+     │
+     └─── public
+
+```
+
+<br/>
+
+## All icons made by Freepik from [www.flaticon.com](www.flaticon.com)
+
+<br/>
+
+#### __*This project is currently in development__
+
+
