@@ -59,7 +59,7 @@ export const Searchbar = () => {
   };
 
   return (
-    <div className="w-full pt-20 -mt-3 md:-mt-0 pb-60 md:pb-40">
+    <div className="w-full pt-20 -mt-6 md:-mt-4 pb-60 md:pb-40">
       <AnimatePresence>
         {isEggCracked ? (
           <motion.div

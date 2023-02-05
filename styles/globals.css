@@ -46,6 +46,11 @@ button:focus {
   Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
 }
 
+.type-span {
+  font-family: 'Poppins-Bold', -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
+  Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+}
+
 .hamburger, .close-icon {
   z-index: 14;
   transform: translateX(1.5rem);
