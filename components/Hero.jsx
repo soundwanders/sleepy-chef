@@ -19,7 +19,7 @@ export const Hero = () => {
             </h1>
           </Highlighter>
         </RoughNotationGroup>
-        <h1 className="font-regular text-base md:text-lg dark:text-gray-100 pt-10 px-4 lg:-mb-4">
+        <h1 className="font-regular text-[0.85rem] md:text-lg dark:text-gray-100 pt-10 px-4 lg:-mb-4">
           {userData.description}
         </h1>
         
