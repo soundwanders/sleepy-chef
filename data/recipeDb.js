@@ -108,9 +108,7 @@ export const recipes = [
       "2 tsp. fresh lemongrass paste or minced",
       "½ tsp. fresh chili paste",
       "½ tsp. turmeric",
-      "½ lime, juiced",
-      "crushed peanuts (garnish)",
-      "chopped cilantro (garnish)",
+      "½ lime, juiced or 1 tbsp lime juice",
     ],
     "nutrition": {
       "calories": "750",
@@ -124,7 +122,7 @@ export const recipes = [
       "In a large soup pot, add all the ingredients except for the lime juice, peanuts and cilantro. Don't worry if the noodles are not fully submerged! Cover the pot and bring to a boil.",
       "Stir to combine thoroughly and reduce to a simmer. Continue cooking over medium low heat for about 10 to 12 minutes, stirring occasionally.",
       "Next, uncover the pot cook for another 2 to 3 minutes, until about 1/2 inch of sauce is remaining. Remove from heat, then stir in the lime juice.",
-      "Before serving, garnish with desired amount of crushed peanuts and chopped cilantro. Dig in!"
+      "If sauce is still too watery for your taste, remove pot from heat wait about 2 minutes. Otherwise, dig in!"
     ],
   },
   { 
@@ -240,6 +238,12 @@ recipes.forEach(recipe => {
       break;
     case 'chicken':
       recipe.denotion = "/chicken.png";
+      break;
+    case 'chinese':
+      recipe.denotion = "/chinese.png";
+      break;
+    case 'mexican':
+      recipe.denotion = "/mexican.png";
       break;
     case 'pasta':
       recipe.denotion = "/pasta.png";

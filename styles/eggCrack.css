@@ -26,26 +26,28 @@
   0% {
     transform: rotate(0deg);
   }
-  100% {
+  50% {
     transform: rotate(90deg);
     top: 50px;
     left: 50px;
     background: transparent;
     border-radius: 0;
+    width: 50px;
+    height: 0;
   }
   100% {
-    top: 50px;
-    left: 50px;
+    top: 75px;
+    left: 25px;
     width: 0;
-    height: 0;
+    height: 50px;
   }
 }
 
 .yolk {
   position: absolute;
   background: rgb(253, 253, 137);
-  width: 50px;
-  height: 50px;
+  width: 15px;
+  height: 150px;
   border-radius: 25px;
   top: 25px;
   left: 25px;

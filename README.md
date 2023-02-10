@@ -27,32 +27,8 @@ If you encounter any bugs, crashes, or other unexpected behavior, feel free to o
 
 <br/>
 
-## Good Bones
-
-```bash
-│
-├─── components
-└─── constants
-├─── data
-└─── fonts
-│    └── generated-fonts
-│
-└─── pages
-│    └── api
-│    └── recipes
-│    └── types
-│
-└─── styles
-│
-└─── public
-```
-
-<br/>
-
 ## All icons made by Freepik from [www.flaticon.com](www.flaticon.com)
 
 <br/>
 
 #### __*This project is currently in development__
-
-
