@@ -1,5 +1,6 @@
 # 👩‍🍳 Sleepy Chef
-##### Feeling hungry, running short on time? We've got your back, _all recipes take 30 minutes or less to prepare_.
+
+##### Time-Saving Treats: 30 Minute Recipes for Busy Cooks
 
 ### https://sleepychef.vercel.app/
 

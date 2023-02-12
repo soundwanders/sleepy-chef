@@ -1,6 +1,7 @@
-const userData = {
+const appData = {
   title: "Sleepy Chef",
-  description: `On a journey to the center of the kitchen ✨`,
+  description: "Time-Saving Treats for Busy Chefs ✨",
+  resultsTitle: "Cozy Kitchen",
   chefUrl: "/chef.png",
   githubUsername: "soundwanders",
   githubLink: {
@@ -8,4 +9,4 @@ const userData = {
   },
 };
 
-export default userData;
+export default appData;

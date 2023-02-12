@@ -139,7 +139,7 @@ export const recipes = [
       "2 cups shredded Cheddar",
       "1 cup Buffalo sauce, plus more for serving",
       "1 bunch scallions, thinly sliced",
-      "¼ teaspoon ground cumin",
+      "¼ tsp ground cumin",
       "16 corn tortillas",
       "2 tbsp crumbled blue cheese",
       "2 tbsp blue cheese dressing (can substitute with ranch)",
@@ -155,7 +155,7 @@ export const recipes = [
     "directions": [
       "Preheat the oven to 400 degrees F. Grease baking dish with butter if it is not nonstick.",
       "Mix the chicken, cream cheese, 1 cup of the Cheddar, 1/3 cup of the hot sauce, white parts of the scallions, and the cumin in a large bowl until well combined.",
-      "Stir together the butter, remaining 2/3 cup hot sauce and 3 tablespoons water in a medium bowl.",
+      "Stir together the butter, remaining 2/3 cup hot sauce and 3 tbsps water in a medium bowl.",
       "Microwave the tortillas in batches until warm, softened and foldable, about 30 seconds. Keep warm between damp paper towels.",
       "Spoon a portion of the chicken mixture into each tortilla and roll up. Place them side by side in the pan, with the seam facing down.",
       "Pour the hot sauce mixture over the tortillas, then sprinkle with the remaining 1 cup cheddar and the blue cheese.",
@@ -202,24 +202,24 @@ export const recipes = [
     "vegan": false,
     "ingredients": [
       "3 cups mashed potato flakes",
-      "1 pound ground beef",
+      "1 lb ground beef",
       "1 medium onion, chopped",
       "1 can (11 oz) Mexicorn, drained",
-      "1 can (2 ¼ oz) sliced ripe olives, drained",
+      "1 can (2 ¼ oz) sliced olives, drained",
       "1 can (14 ½ oz) diced tomatoes, undrained",
       "1 packet of taco seasoning",
-      "1 ½ teaspoons chili powder",
-      "½ teaspoon salt",
-      "¼ teaspoon garlic powder",
+      "1 ½ tsp chili powder",
+      "½ tsp salt",
+      "¼ tsp garlic powder",
       "1 cup shredded cheddar cheese",
     ],
     "nutrition": {
       "calories": "516",
-      "fat": "25g",
-      "cholesterol": "90mg",
-      "carbs": "49g",
-      "protein": "24g",
-      "sodium": "1335mg"
+      "fat": "10g",
+      "cholesterol": "40mg",
+      "carbs": "45g",
+      "protein": "18",
+      "sodium": "683mg"
     },
     "directions": [
       "Prepare mashed potatoes according to package directions.",
@@ -228,7 +228,46 @@ export const recipes = [
       "Transfer to a greased 2 ½ qt. baking dish. Top with 3/4 cup cheddar cheese. Spread mashed potatoes over the top and sprinkle with remaining cheese.",
       "Bake, uncovered, at 350° for 12 to 15 minutes or until cheese is melted. Dinner's ready!"
     ]
-  }
+  },
+  { 
+    "id": 6,
+    "name": "Pork Fried Rice", 
+    "image": "/pork.png",
+    "type": "pork",
+    "vegetarian": false,
+    "vegan": false,
+    "ingredients": [
+      "4 cups basmati rice",
+      "8 cups water",
+      "¼ cup soy sauce",
+      "1 tbsp chili garlic sauce",
+      "1 ½ tsp hoisin sauce",
+      "2 tbsp peanut oil",
+      "1 lb pork shoulder, cut into 1/4 inch cubes",
+      "1 large egg, lightly beaten",
+      "1 ½ cups chopped red bell pepper",
+      "1 cup frozen shelled edamame",
+      "⅔ cups thinly sliced green onions"
+    ],
+    "nutrition": {
+      "calories": "516",
+      "fat": "13g",
+      "cholesterol": "90mg",
+      "carbs": "49g",
+      "protein": "23g",
+      "sodium": "534mg"
+    },
+    "directions": [
+      "Bring water and rice to a boil in a large pot. Reduce heat to medium-low, cover, and simmer until rice is tender and water has been absorbed, 20 to 25 minutes.",
+      "Meanwhile, combine soy sauce, chili garlic sauce, and hoisin in a bowl.",
+      "Heat a wok or large skillet over high heat. Pour 1 tablespoon peanut oil into wok; swirling pan to coat. Add pork in a single layer; cook without stirring for 2 minutes.",
+      "Stir-fry until pork is no longer pink in the center and juices run clear, about 4 minutes. Transfer pork to soy sauce mixture; toss to coat.",
+      "Pour egg into the pan; cook, without stirring, until set, about 45 seconds. Cut egg into bite-sized pieces.",
+      "Add remaining 1 tablespoon oil to pan; swirl to coat. Add bell pepper, edamame, and 1/2 cup green onions; stir-fry 1 minute.",
+      "Add cooked rice; stir-fry 2 minutes, then add pork and soy sauce mixture. Cook, stirring constantly, until heated through, about 1 minute.",
+      "Top rice with egg and remaining green onions, then dig in!"
+    ]
+  },
 ]
 
 recipes.forEach(recipe => {
@@ -238,9 +277,6 @@ recipes.forEach(recipe => {
       break;
     case 'chicken':
       recipe.denotion = "/chicken.png";
-      break;
-    case 'chinese':
-      recipe.denotion = "/chinese.png";
       break;
     case 'mexican':
       recipe.denotion = "/mexican.png";

@@ -39,3 +39,14 @@
     src: url(../fonts/RobotoMono-Bold.ttf);
     font-weight: 600;
 }
+
+@font-face {
+    font-family: Dosis-Bold;
+    src: url(../fonts/Dosis-Bold.ttf);
+    font-weight: 600;
+}
+
+@font-face {
+    font-family: Dosis-ExtraBold;
+    src: url(../fonts/Dosis-ExtraBold.ttf);
+}

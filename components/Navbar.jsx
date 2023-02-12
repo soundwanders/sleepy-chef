@@ -4,7 +4,7 @@ import { useTheme } from "next-themes";
 import { useRouter } from "next/router";
 import { Sidebar } from "./Sidebar";
 import NavSearchbar from "./NavSearchbar";
-import userData from "@constants/data";
+import appData from "@constants/data";
 
 export default function Navbar() {
   const router = useRouter();
@@ -23,7 +23,7 @@ export default function Navbar() {
         <div className="flex flex-col">
           <Link href="/" className="w-max">
             <img
-              src={userData.chefUrl}
+              src={appData.chefUrl}
               alt="sleepy-chef"
               className="w-14 h-14 p-3.5 md:p-2 mr-2 md:mr-0 hover:scale-110 transition duration-2000 ease-out"
             />

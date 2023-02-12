@@ -3,6 +3,7 @@ import useSWR from 'swr';
 import { useRouter } from 'next/router';
 import { RoughNotationGroup } from "react-rough-notation";
 import { Highlighter } from "./Highlighter";
+import appData from "@constants/data";
 
 export const SearchResults = () => {
   const router = useRouter();
@@ -49,34 +50,47 @@ export const SearchResults = () => {
   }
 
   const highlightColor = "#60a5fa";
+  const defaultColor = 'bg-green-300';
 
+  const recipeColors = {
+    beef: "bg-orange-200",
+    chicken: "bg-violet-250",
+    mexican: "bg-red-200",
+    pasta: "bg-amber-250",
+    pork: "bg-rose-100",
+    salad: "bg-green-200",
+    seafood: "bg-blue-200",
+    soup: "bg-zinc-300"
+  };
+  
   return (
     <section className="bg-white dark:bg-gray-800 pb-10 md:py-8">
-      <div className="max-w-6xl mx-auto h-36 md:h-40 px-8 py-4 bg-white dark:bg-gray-800">
+      <div className="max-w-6xl mx-auto h-36 md:h-40 px-8 md:px-4 py-4 bg-white dark:bg-gray-800">
         <div className="w-fit">
           <RoughNotationGroup show={true}>
-            <Highlighter color={highlightColor}>
-              <h1 className={`results-title text-5xl md:text-7xl font-bold text-gray-800 dark:text-gray-100 py-2 px-4`}>
-                Order Up!
+            <Highlighter color={highlightColor} className="md:text-center">
+              <h1 className={`results-title text-center mx-auto text-4xl md:text-7xl font-bold text-gray-800dark:text-gray-100 py-2 px-4`}>
+              {appData.resultsTitle}
               </h1>
             </Highlighter>
           </RoughNotationGroup>
           </div>
         </div>
 
-        <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-10 py-0 -mt-6 md:-mt-0 md:py-4 mb-10 px-8">
-          {data.map(recipe => (
-            <Link 
-              href="/recipes/[id]" 
-              as={`/recipes/${recipe.id}`}
-              key={recipe.id}
-            >
-              <div className="bg-neutral-100 dark:bg-gradient-to-b from-neutral-800 to-neutral-900 shadow-md rounded-lg overflow-hidden transform hover:scale-101">  
-                <div className="bg-[#ff926a] min-h-0 w-full py-4 rounded-t-lg">
+        <div className="grid grid-cols-1 md:grid-cols-3 grid-flow-dense justify-self-center gap-12 py-0 -mt-6 md:-mt-0 md:py-2 mb-10 px-8 md:px-4">
+            {data.map(recipe => (
+              <Link 
+                className="h-min"
+                href="/recipes/[id]" 
+                as={`/recipes/${encodeURIComponent(recipe.id)}`}
+                key={recipe.id}
+              >
+              <div className="min-h-0 bg-neutral-100 dark:bg-gradient-to-b from-neutral-800 to-neutral-900 shadow-md rounded-lg overflow-hidden transform hover:scale-101">  
+                <div className={`w-full py-4 rounded-t-lg ${recipeColors[recipe.type] || defaultColor}`}>
                   <div className="flex items-center justify-center h-full w-full">
                     <div className="title-container flex items-center justify-center shrink-0">
-                      <img src={recipe.denotion} alt="" className="h-6 w-7" />
-                      <h2 className="recipe-name max-w-2/3 text-xl md:text-[1.4rem] text-center uppercase text-gray-900 py-4 px-2">
+                      <img src={recipe.denotion} alt="" className="h-auto w-9" />
+                      <h2 className="recipe-name max-w-2/3 text-[1.75rem] text-center text-gray-900 py-4 mx-1">
                         {recipe.name}
                       </h2>
                     </div> 
@@ -134,6 +148,7 @@ export const SearchResults = () => {
             </Link>
           ))}
         </div>
+      {/* </div> */}
     </section> 
   )
 };

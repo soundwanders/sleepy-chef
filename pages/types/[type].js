@@ -30,18 +30,29 @@ export async function getStaticProps({ params }) {
     };
   }
 };
-
 export default function RecipesByType({ allRecipes, errorMessage, params  }) {
   const highlightColor = "#60a5fa";
+  const defaultColor = 'bg-green-300';
+
+  const recipeColors = {
+    beef: "bg-orange-200",
+    chicken: "bg-violet-250",
+    mexican: "bg-red-200",
+    pasta: "bg-amber-250",
+    pork: "bg-rose-100",
+    salad: "bg-green-200",
+    seafood: "bg-blue-200",
+    soup: "bg-zinc-300"
+  };
 
   return (
     <section className="bg-white dark:bg-gray-800 pb-10 md:py-8">
       <ContainerBlock>
         <div className="max-w-6xl mx-auto h-36 md:h-40 px-8 py-4 bg-white dark:bg-gray-800">
-          <div className="w-fit mt-4">
+          <div className="w-fit mt-2">
             <RoughNotationGroup show={true}>
               <Highlighter color={highlightColor}>
-                <h1 className={`results-title text-2xl md:text-6xl font-bold text-gray-800 dark:text-gray-100 py-3 px-4`}>
+                <h1 className={`results-title text-2xl md:text-6xl font-bold text-gray-800 dark:text-gray-100 py-2 px-4`}>
                   Tonight's a <span className="type-span inline-block"> { params.type } </span> kind of night.
                 </h1>
               </Highlighter>
@@ -49,7 +60,7 @@ export default function RecipesByType({ allRecipes, errorMessage, params  }) {
           </div>
         </div>
 
-        <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-8 py-0 -mt-6 md:-mt-0 md:py-4 mb-10 px-8">
+        <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-8 py-0 -mt-6 md:-mt-0 md:py-4 mb-10 px-8 mt-6">
           { allRecipes ? (
             allRecipes.map(recipe => (
               <Link 
@@ -57,13 +68,15 @@ export default function RecipesByType({ allRecipes, errorMessage, params  }) {
                 as={`/recipes/${recipe.id}`}
                 key={recipe.id}
               >
-                <div className="bg-neutral-100 dark:bg-gradient-to-b from-neutral-800 to-neutral-900 shadow-md rounded-lg overflow-hidden transform hover:scale-101">  
-                  <div className="bg-[#ff926a]  min-h-0 py-4 rounded-t-lg">
+                <div className="min-h-0 bg-neutral-100 dark:bg-gradient-to-b from-neutral-800 to-neutral-900 shadow-md rounded-lg overflow-hidden transform hover:scale-101">  
+                  <div className={`w-full py-4 rounded-t-lg ${recipeColors[params.type] || defaultColor}`}>
                     <div className="flex items-center justify-center h-full w-full">
-                      <img src={recipe.denotion} alt="" className="inline-block h-6 w-6" />
-                      <h2 className="recipe-name text-xl md:text-[1.3rem] text-center uppercase text-gray-900 py-4 px-3">
-                        {recipe.name}
-                      </h2>
+                      <div className="title-container flex items-center justify-center shrink-0">
+                        <img src={recipe.denotion} alt="" className="h-auto w-9" />
+                        <h2 className="recipe-name max-w-2/3 text-[1.75rem] text-center text-gray-900 py-4 mx-1">
+                          {recipe.name}
+                        </h2>
+                      </div> 
                     </div>
                   </div>
 

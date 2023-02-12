@@ -2,7 +2,7 @@ import React from "react";
 import { RoughNotationGroup } from "react-rough-notation";
 import { Highlighter } from "./Highlighter";
 import { Searchbar } from "./Searchbar";
-import userData from "@constants/data";
+import appData from "@constants/data";
 
 export const Hero = () => {
   const highlightColor = "#60a5fa";
@@ -15,12 +15,12 @@ export const Hero = () => {
         <RoughNotationGroup show={true}>
           <Highlighter color={highlightColor}>
             <h1 className="sleepy-title text-5xl md:text-8xl text-gray-800 dark:text-gray-200 py-1 md:px-4">
-              {userData.title}
+              {appData.title}
             </h1>
           </Highlighter>
         </RoughNotationGroup>
         <h1 className="font-regular text-[0.85rem] md:text-lg dark:text-gray-100 pt-10 px-4 lg:-mb-4">
-          {userData.description}
+          {appData.description}
         </h1>
         
         <Searchbar />

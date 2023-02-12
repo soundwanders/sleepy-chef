@@ -1,34 +1,28 @@
-import React, { useState, useEffect } from 'react';
-import { motion } from 'framer-motion';
+import { motion, useMotionValue, useTransform } from "framer-motion";
+import { useState } from "react";
 
 const Egg = () => {
-  const [isCracked, setIsCracked] = useState(false);
-
-  useEffect(() => {
-    setIsCracked(true);
-  }, []);
+  const y = useMotionValue(0);
+  const [showYolk, setShowYolk] = useState(false);
+  const eggOpacity = useTransform(y, [0, 100], [1, 0]);
 
   return (
     <motion.div
-      className="egg"
-      initial={{ translateY: "-100%" }}
-      animate={{ translateY: 0 }}
-      transition={{ duration: 1, ease: "easeIn" }}
+      style={{ y }}
+      animate={{ y: 100 }}
+      transition={{ duration: 2 }}
+      onAnimationComplete={() => setShowYolk(true)}
     >
-      <motion.div
-        className="egg-shell"
-        animate={{
-          y: isCracked ? 10 : 0,
-          rotate: isCracked ? 10 : 0,
-        }}
-        transition={{ duration: 0.5 }}
+      <motion.img
+        src="/egg.png"
+        alt="egg"
+        style={{ opacity: eggOpacity }}
+        className="w-12 h-12"
       />
-      {isCracked && (
-        <motion.div
-          className="egg-yolk"
-          animate={{ y: 20, opacity: 0 }}
-          transition={{ duration: 0.5 }}
-        />
+      {showYolk && (
+        <div style={{ y: 100 }}>
+          <img src="/yolk.png" alt="yolk" className="w-12 h-12" />
+        </div>
       )}
     </motion.div>
   );

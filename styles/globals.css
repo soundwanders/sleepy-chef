@@ -2,7 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-@import 'eggCrack.css';
 @import 'fonts.css';
 
 @layer base {
@@ -36,13 +35,13 @@ button:focus {
   flex-direction: column !important;
 }
 
-.sleepy-title {
+.sleepy-title, .results-title {
   font-family: 'Poppins-Bold', -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
   Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
 }
 
 .recipe-name {
-  font-family: 'Poppins-Medium', -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
+  font-family: 'Dosis-Bold', -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
   Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
 }
 
