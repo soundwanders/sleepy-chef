@@ -1,6 +1,7 @@
 import ContainerBlock from '@components/ContainerBlock';
 import { recipes } from '@data/recipeDb';
 import { useState, useEffect } from 'react';
+import appData from "@constants/data";
 
 const API_ENDPOINT =
   process.env.NODE_ENV === 'production' 
@@ -39,8 +40,6 @@ export async function getStaticProps({ params }) {
 
 export default function Recipe({ recipe, errorMessage }) {
   console.log(recipe);
-  console.log("^ Selected Recipe");
-  
   const [dataLoaded, setDataLoaded] = useState(false);
 
   useEffect(() => {
@@ -58,7 +57,7 @@ export default function Recipe({ recipe, errorMessage }) {
   const { name, image, type, vegetarian, vegan, ingredients, nutrition, directions } = recipeData;
 
   return (
-    <ContainerBlock>
+    <ContainerBlock title={appData.title}>
       <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-8 py-2 md:py-10 px-8">
         {recipeData ? (
           <div className="jello bg-gray-50 dark:bg-gray-900 min-h-screen items-center">

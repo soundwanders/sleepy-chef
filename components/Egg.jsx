@@ -10,7 +10,7 @@ const Egg = () => {
     <motion.div
       style={{ y }}
       animate={{ y: 100 }}
-      transition={{ duration: 2 }}
+      transition={{ duration: 1 }}
       onAnimationComplete={() => setShowYolk(true)}
     >
       <motion.img
@@ -21,7 +21,7 @@ const Egg = () => {
       />
       {showYolk && (
         <div style={{ y: 100 }}>
-          <img src="/yolk.png" alt="yolk" className="w-12 h-12" />
+          <img src="/yolk.png" alt="yolk" className="w-12 h-12 mb-4" />
         </div>
       )}
     </motion.div>

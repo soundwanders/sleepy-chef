@@ -1,8 +1,9 @@
 import Link from 'next/link';
 import ContainerBlock from '@components/ContainerBlock';
-import { recipes } from '@data/recipeDb';
+import appData from "@constants/data";
 import { RoughNotationGroup } from 'react-rough-notation';
 import { Highlighter } from '@components/Highlighter';
+import { recipes } from '@data/recipeDb';
 
 export async function getStaticPaths() {
   try {
@@ -47,7 +48,7 @@ export default function RecipesByType({ allRecipes, errorMessage, params  }) {
 
   return (
     <section className="bg-white dark:bg-gray-800 pb-10 md:py-8">
-      <ContainerBlock>
+      <ContainerBlock title={appData.title}>
         <div className="max-w-6xl mx-auto h-36 md:h-40 px-8 py-4 bg-white dark:bg-gray-800">
           <div className="w-fit mt-2">
             <RoughNotationGroup show={true}>
