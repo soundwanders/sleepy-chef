@@ -9,7 +9,7 @@ import Egg from './Egg';
 // The `handleSubmit` function checks whether the search input matches a recipe type, ingredient, or name,
 // then if the search input is valid, the `setError` function is called to clear any error message
 // Finally, the `router.push` function is used to navigate to the search results page
-// and reset the page URL based on which query parameters have passed the checks
+// and reset the page URL based on which query parameters passed the checks
 
 export const Searchbar = () => {
   const router = useRouter();
@@ -50,7 +50,7 @@ export const Searchbar = () => {
         pathname: '/results',
         query: { type, ingredient, name },
       });
-    }, 1500);
+    }, 1400);
   };
 
   // clear error to allow search form resubmission
