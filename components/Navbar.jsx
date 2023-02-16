@@ -1,10 +1,10 @@
-import React, { useEffect, useState } from "react";
-import Link from "next/link";
-import { useTheme } from "next-themes";
-import { useRouter } from "next/router";
-import { Sidebar } from "./Sidebar";
-import NavSearchbar from "./NavSearchbar";
-import appData from "@constants/data";
+import React, { useEffect, useState } from 'react';
+import Link from 'next/link';
+import { useTheme } from 'next-themes';
+import { useRouter } from 'next/router';
+import { Sidebar } from './Sidebar';
+import NavSearchbar from './NavSearchbar';
+import appData from '@constants/data';
 
 export default function Navbar() {
   const router = useRouter();

@@ -1,9 +1,10 @@
 import Link from 'next/link';
 import useSWR from 'swr';
 import { useRouter } from 'next/router';
-import { RoughNotationGroup } from "react-rough-notation";
-import { Highlighter } from "./Highlighter";
-import appData from "@constants/data";
+import { RoughNotationGroup } from 'react-rough-notation';
+import { Highlighter } from './Highlighter';
+import appData from '@constants/data';
+import { Egg } from '@components/Animations';
 
 export const SearchResults = () => {
   const router = useRouter();
@@ -41,8 +42,8 @@ export const SearchResults = () => {
     }
   });
 
-  if (data === undefined) {
-    return <div>Loading...</div>
+  if (data === undefined || !data) {
+    return <Egg />;
   }
 
   if (error) {

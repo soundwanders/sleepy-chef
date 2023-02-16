@@ -13,7 +13,6 @@
 - Recipe cards double as Next.js Link components, navigating to individual recipe pages using Next.js' dynamic routing method.
 - React Context used to avoid prop drilling and improve scalability by creating a context to share unaltered recipe data between components.
 - [Glyphhanger](https://github.com/soundwanders/sleepy-chef/blob/main/glyphhanger-experiment.md) optimizes webfont loading by subsetting font files to only include characters used on sleepy chef site.
-- (in progress) Custom Levenshtein Distance algorithm function for fuzzy-searching, which helps widen the net for potential search results.
 
 <br/>
 

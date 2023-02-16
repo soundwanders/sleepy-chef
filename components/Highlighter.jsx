@@ -1,5 +1,5 @@
-import React from "react";
-import { RoughNotation } from "react-rough-notation";
+import React from 'react';
+import { RoughNotation } from 'react-rough-notation';
 
 export const Highlighter = ({ color, children }) => {
   // Change animation duration depending on length of text(speed = distance / time)

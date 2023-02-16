@@ -17,7 +17,6 @@ export const recipes = [
       "2 carrots, peeled",
       "1/2 tsp ground black pepper",
       "4 oz cream cheese",
-
       "1/4 tsp salt",
       "1/2 tbsp vegetable oil",
       "Grated Parmesan cheese"
@@ -85,6 +84,75 @@ export const recipes = [
   },
   { 
     "id": 2,
+    "name": "Buffalo Chicken Enchiladas",
+    "image": "/chicken.png",
+    "type": "chicken",
+    "vegetarian": false,
+    "vegan": false,
+    "ingredients": [
+      "3 tbsp butter, melted",
+      "4 cups shredded rotisserie chicken",
+      "8 oz cream cheese, room temperature",
+      "2 cups shredded Cheddar",
+      "1 cup Buffalo sauce, plus more for serving",
+      "1 bunch scallions, thinly sliced",
+      "1/4 tsp ground cumin",
+      "16 corn tortillas",
+      "2 tbsp crumbled blue cheese",
+      "2 tbsp blue cheese dressing (can substitute with ranch)",
+    ],
+    "nutrition": {
+      "calories": "726",
+      "fat": "52g",
+      "cholesterol": "170mg",
+      "carbs": "34g",
+      "protein": "34g",
+      "sodium": "1530mg"
+    },
+    "directions": [
+      "Preheat the oven to 400 degrees F. Grease baking dish with butter if it is not nonstick.",
+      "Mix the chicken, cream cheese, 1 cup of Cheddar, ⅓ cup of hot sauce, white part of the scallions, and the cumin in a large bowl until well combined.",
+      "Stir together the butter, remaining 2/3 cup hot sauce and 3 tbsp water in a medium bowl.",
+      "Microwave the tortillas in batches, 20-30 seconds each, until warm and foldable. Keep warm between damp paper towels or on a baking sheet inside a very low-heat oven.",
+      "Spoon a portion of the chicken mixture into each tortilla and roll up. Place them side by side in the pan, with the seam facing down.",
+      "Pour the hot sauce mixture over the tortillas, then sprinkle with the remaining 1 cup cheddar and the blue cheese.",
+      "Bake 15-17 minutes, until the cheese is fully melted.",
+      "Drizzle the blue cheese dressing over the enchiladas and sprinkle with the scallion greens. Enjoy!"
+    ],
+  },
+  { 
+    "id": 3,
+    "name": "Bean and Cheese Burritos",
+    "image": "/texmex.png",
+    "type": "vegetarian",
+    "vegetarian": true,
+    "vegan": false,
+    "ingredients": [
+      "1 can (16 oz) vegetarian refried beans",
+      "1 cup salsa",
+      "1 cup cooked long grain rice",
+      "2 cups shredded cheddar cheese",
+      "10 flour tortillas",
+      "Shredded lettuce (optional)"
+    ],
+    "nutrition": {
+      "calories": "216",
+      "fat": "9g",
+      "cholesterol": "23mg",
+      "carbs": "24g",
+      "protein": "9g",
+      "sodium": "540mg" 
+    },
+    "directions": [
+      "Preheat oven to 375°. In a large bowl, combine beans, salsa, rice and 1 cup cheese.",
+      "Place about ⅓ cup of mixture on each tortilla. Fold the sides and ends over to cover filling, then roll up.",
+      "Place burritos in a greased or nonstick baking dish, leaving some room between each burrito.",
+      "Sprinkle burritos with remaining 1 cup of cheese. Cover and bake for 20-22 minutes.",
+      "Allow to cool for 2-3 minutes before cutting and removing from pan, then it's go time!"
+    ],
+  },
+  { 
+    "id": 4,
     "name": "Thai Pasta",
     "image": "/pasta.png",
     "type": "pasta",
@@ -127,75 +195,6 @@ export const recipes = [
     ],
   },
   { 
-    "id": 3,
-    "name": "Buffalo Chicken Enchiladas",
-    "image": "/chicken.png",
-    "type": "chicken",
-    "vegetarian": false,
-    "vegan": false,
-    "ingredients": [
-      "3 tbsp butter, melted",
-      "4 cups shredded rotisserie chicken",
-      "8 oz cream cheese, room temperature",
-      "2 cups shredded Cheddar",
-      "1 cup Buffalo sauce, plus more for serving",
-      "1 bunch scallions, thinly sliced",
-      "1/4 tsp ground cumin",
-      "16 corn tortillas",
-      "2 tbsp crumbled blue cheese",
-      "2 tbsp blue cheese dressing (can substitute with ranch)",
-    ],
-    "nutrition": {
-      "calories": "726",
-      "fat": "52g",
-      "cholesterol": "170mg",
-      "carbs": "34g",
-      "protein": "34g",
-      "sodium": "1530mg"
-    },
-    "directions": [
-      "Preheat the oven to 400 degrees F. Grease baking dish with butter if it is not nonstick.",
-      "Mix the chicken, cream cheese, 1 cup of Cheddar, ⅓ cup of hot sauce, white part of the scallions, and the cumin in a large bowl until well combined.",
-      "Stir together the butter, remaining 2/3 cup hot sauce and 3 tbsp water in a medium bowl.",
-      "Microwave the tortillas in batches, 20-30 seconds each, until warm and foldable. Keep warm between damp paper towels or on a baking sheet inside a very low-heat oven.",
-      "Spoon a portion of the chicken mixture into each tortilla and roll up. Place them side by side in the pan, with the seam facing down.",
-      "Pour the hot sauce mixture over the tortillas, then sprinkle with the remaining 1 cup cheddar and the blue cheese.",
-      "Bake 15-17 minutes, until the cheese is fully melted.",
-      "Drizzle the blue cheese dressing over the enchiladas and sprinkle with the scallion greens. Enjoy!"
-    ],
-  },
-  { 
-    "id": 4,
-    "name": "Bean and Cheese Burritos",
-    "image": "/texmex.png",
-    "type": "vegetarian",
-    "vegetarian": true,
-    "vegan": false,
-    "ingredients": [
-      "1 can (16 oz) vegetarian refried beans",
-      "1 cup salsa",
-      "1 cup cooked long grain rice",
-      "2 cups shredded cheddar cheese",
-      "10 flour tortillas",
-      "Shredded lettuce (optional)"
-    ],
-    "nutrition": {
-      "calories": "216",
-      "fat": "9g",
-      "cholesterol": "23mg",
-      "carbs": "24g",
-      "protein": "9g",
-      "sodium": "540mg" 
-    },
-    "directions": [
-      "Preheat oven to 375°. In a large bowl, combine beans, salsa, rice and 1 cup cheese.",
-      "Place about ⅓ cup of mixture on each tortilla. Fold the sides and ends over to cover filling, then roll up.",
-      "Place burritos in a greased or nonstick baking dish, leaving some room between each burrito.",
-      "Sprinkle burritos with remaining 1 cup of cheese. Cover and bake for 20-22 minutes.",
-      "Allow to cool for 2-3 minutes before cutting and removing from pan, then it's go time!"
-    ],
-  },
-  { 
     "id": 5,
     "name": "Spicy Shepherd's Pie",
     "image": "/beef.png",
@@ -205,10 +204,10 @@ export const recipes = [
     "ingredients": [
       "3 cups mashed potato flakes",
       "1 lb ground beef",
+      "1 can (14 1/2 oz) diced tomatoes, undrained",
+      "1 can (2 1/4 oz) sliced olives, drained",
       "1 medium onion, chopped",
       "1 can (11 oz) Mexicorn, drained",
-      "1 can (2 1/4 oz) sliced olives, drained",
-      "1 can (14 1/2 oz) diced tomatoes, undrained",
       "1 packet of taco seasoning",
       "1 1/2 tsp chili powder",
       "1/2 tsp salt",

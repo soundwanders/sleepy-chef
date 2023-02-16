@@ -1,5 +1,8 @@
 # See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
 
+# vscode
+.vscode
+
 # dependencies
 /node_modules
 /.pnp
@@ -22,15 +25,6 @@ yarn.lock
 # misc
 .DS_Store
 *.pem
-.vscode
-recipe-data-structure.md
-
-# educational
-/educational
-/educational/**
-
-# data
-foods.json
 
 # debug
 npm-debug.log*

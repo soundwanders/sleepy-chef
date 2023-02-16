@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import ContainerBlock from '@components/ContainerBlock';
-import appData from "@constants/data";
+import appData from '@constants/data';
 import { RoughNotationGroup } from 'react-rough-notation';
 import { Highlighter } from '@components/Highlighter';
 import { recipes } from '@data/recipeDb';
@@ -31,6 +31,7 @@ export async function getStaticProps({ params }) {
     };
   }
 };
+
 export default function RecipesByType({ allRecipes, errorMessage, params  }) {
   const highlightColor = "#60a5fa";
   const defaultColor = 'bg-green-300';

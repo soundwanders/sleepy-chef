@@ -1,7 +1,7 @@
-import { motion, useMotionValue, useTransform } from "framer-motion";
-import { useState } from "react";
+import { useState } from 'react';
+import { motion, useMotionValue, useTransform } from 'framer-motion';
 
-const Egg = () => {
+export const EggYolk = () => {
   const y = useMotionValue(0);
   const [showYolk, setShowYolk] = useState(false);
   const eggOpacity = useTransform(
@@ -45,4 +45,31 @@ const Egg = () => {
   );
 };
 
-export default Egg;
+export const Egg = () => {
+  const y = useMotionValue(0);
+  const eggOpacity = useTransform(
+    y,
+    [0, 100, 120, 130, 140],
+    [1, 1, 0, 1, 0]
+  );
+
+  return (
+    <motion.div
+      style={{ y }}
+      animate={{ y: 200 }}
+      transition={{
+        duration: 1,
+        ease: "easeOut",
+        times: [0, 0.2, 0.5, 0.8, 1],
+        keyframes: [0, -40, 0, -30, 0],
+      }}
+    >
+      <motion.img
+        src="/egg.png"
+        alt="egg"
+        style={{ opacity: eggOpacity }}
+        className="w-12 h-12"
+      />
+    </motion.div>
+  );
+};

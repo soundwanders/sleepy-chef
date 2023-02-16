@@ -1,8 +1,8 @@
-import React from "react";
-import { RoughNotationGroup } from "react-rough-notation";
-import { Highlighter } from "./Highlighter";
-import { Searchbar } from "./Searchbar";
-import appData from "@constants/data";
+import React from 'react';
+import { RoughNotationGroup } from 'react-rough-notation';
+import { Highlighter } from './Highlighter';
+import { Searchbar } from './Searchbar';
+import appData from '@constants/data';
 
 export const Hero = () => {
   const highlightColor = "#60a5fa";

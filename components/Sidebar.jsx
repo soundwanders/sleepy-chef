@@ -1,7 +1,7 @@
-import { useState, useEffect } from "react";
-import Link from "next/link";
-import { Close, Hamburger } from "./Icons";
-import SidebarLinks from "@constants/links";
+import { useState } from 'react';
+import Link from 'next/link';
+import { Close, Hamburger } from './Icons';
+import SidebarLinks from '@constants/links';
 
 const TypeLink = ({ name, url, closeSidebar }) => (
   <Link href={url} as={url} legacyBehavior>

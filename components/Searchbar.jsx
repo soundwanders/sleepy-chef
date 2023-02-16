@@ -2,7 +2,7 @@ import { useState, useContext } from 'react';
 import { useRouter } from 'next/router';
 import { AnimatePresence, motion } from 'framer-motion';
 import { RecipesContext } from '../data/recipeDb';
-import Egg from './Egg';
+import { EggYolk } from './Animations';
 
 // The Searchbar component allows a user to search the sleepy chef API for recipes by type, ingredient, or name.
 // Uses the `useRouter` hook to navigate to the results page with the appropriate query parameters in the URL.
@@ -69,7 +69,7 @@ export const Searchbar = () => {
             transition={{ duration: 0.7 }}
             exit={{ opacity: 0 }}
           >
-            <Egg />
+            <EggYolk />
           </motion.div>
         ) : (
           <div className="input-group relative flex flex-nowrap justify-center min-w-0 mb-4 rounded px-4 md:px-0">
