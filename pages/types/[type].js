@@ -4,6 +4,7 @@ import appData from '@constants/data';
 import { RoughNotationGroup } from 'react-rough-notation';
 import { Highlighter } from '@components/Highlighter';
 import { recipes } from '@data/recipeDb';
+import { Egg } from '@components/Animations';
 
 export async function getStaticPaths() {
   try {
@@ -134,11 +135,11 @@ export default function RecipesByType({ allRecipes, errorMessage, params  }) {
               </Link>
             ))
           ) : (
-            <div>
-              <h3 className="text-xl font-bold text-gray-800 dark:text-gray-200 mb-4">
-                { errorMessage }
-              </h3>
-            </div>
+            <section className="bg-white dark:bg-gray-800 pb-10 md:py-8">
+              <div className="max-w-6xl mx-auto h-36 md:h-40 px-8 md:px-4 py-4 bg-white dark:bg-gray-800">
+                <Egg />
+              </div>
+            </section>
           )}
         </div>
       </ContainerBlock>

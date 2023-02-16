@@ -43,12 +43,24 @@ export const SearchResults = () => {
   });
 
   if (data === undefined || !data) {
-    return <Egg />;
-  }
+    return (
+      <section className="bg-white dark:bg-gray-800 pb-10 md:py-8">
+        <div className="max-w-6xl mx-auto h-36 md:h-40 px-8 md:px-4 py-4 bg-white dark:bg-gray-800">
+          <Egg />
+        </div>
+      </section>
+    )
+  };
 
   if (error) {
-    return <div>{error.message}</div>
-  }
+    return (
+      <section className="bg-white dark:bg-gray-800 pb-10 md:py-8">
+        <div className="max-w-6xl mx-auto h-36 md:h-40 px-8 md:px-4 py-4 bg-white dark:bg-gray-800">
+          <div>{error.message}</div>
+        </div>
+      </section>
+    )
+  };
 
   const highlightColor = "#60a5fa";
   const defaultColor = 'bg-green-300';

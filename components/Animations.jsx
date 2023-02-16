@@ -30,14 +30,14 @@ export const EggYolk = () => {
     >
       <motion.img
         src="/egg.png"
-        alt="egg"
+        alt=""
         style={{ opacity: eggOpacity, display: showYolk ? "none" : "block" }}
         className="w-12 h-12"
       />
       {showYolk && (
         <motion.img
           src="/yolk.png"
-          alt="yolk"
+          alt=""
           className="w-12 h-12 mb-4"
         />
       )}
@@ -66,7 +66,7 @@ export const Egg = () => {
     >
       <motion.img
         src="/egg.png"
-        alt="egg"
+        alt=""
         style={{ opacity: eggOpacity }}
         className="w-12 h-12"
       />

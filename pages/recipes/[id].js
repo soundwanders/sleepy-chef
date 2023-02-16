@@ -50,7 +50,13 @@ export default function Recipe({ recipe, errorMessage }) {
   }, [recipe]);
 
   if (!dataLoaded) {
-    return <Egg />
+    return (
+      <section className="bg-white dark:bg-gray-800 pb-10 md:py-8">
+        <div className="max-w-6xl mx-auto h-36 md:h-40 px-8 md:px-4 py-4 bg-white dark:bg-gray-800">
+          <Egg />
+        </div>
+      </section>
+    )
   }
 
   const recipeData = Array.isArray(recipe) ? recipe[0] : recipe;
@@ -64,7 +70,7 @@ export default function Recipe({ recipe, errorMessage }) {
           <div className="jello bg-neutral-100 dark:bg-gray-900 min-h-screen items-center">
             <div className="flex flex-col items-center">
               <img
-                className="w-full rounded-lg mb-8 w-28 py-8"
+                className="w-full rounded-lg mb-8 w-16 py-8"
                 src={image}
                 alt={name} />
 

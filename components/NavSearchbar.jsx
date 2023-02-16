@@ -56,20 +56,19 @@ export default function NavSearchbar() {
             className="form-control relative flex-auto min-w-0 w-full px-2 md:px-3 py-1 text-sm font-normal text-gray-700 bg-white bg-clip-padding border border-gray-300 border-solid rounded-lg transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"  
             type="text"
             aria-label="Search" 
-            aria-describedby="form-control"
             id="query"
             placeholder="Search..."
             value={query}
             onChange={e => setQuery(e.target.value)}
             onFocus={handleInputFocus}
           />
-          
           <button 
             type="submit" 
             className="search-submit relative px-2.5 py-1 ml-4 border-2 border-blue-400 text-blue-400 md:font-medium text-xs leading-tight uppercase rounded-full hover:bg-black hover:bg-opacity-5 focus:outline-none focus:ring-0 transition duration-150 ease-in-out"
             aria-label="Submit search"
             aria-controls="submit-search"
-            aria-describedby="search-submit"  
+            role="button"
+            tabIndex="0"
           >
             <span className="input-group-text flex flex items-center md:px-3.5 py-1 cursor-pointer text-sm font-normal text-gray-600 dark:text-gray-200 text-center whitespace-nowrap rounded" id="search-icon">
               <svg className="w-3" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="search" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
