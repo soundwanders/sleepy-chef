@@ -2,8 +2,9 @@ import { useState, useContext } from 'react';
 import { useRouter } from 'next/router';
 import { RecipesContext } from '../data/recipeDb';
 
-// This is the same searchbar that is used on the Home page, but restyled to fit inside the navbar.
-// It will be displayed on the Recipes page so users are not forced to return to Home to re-submit searches.
+// This is the same searchbar that is used on the Home page, but restyled to become a navbar element.
+// The main purpose of the NavSearchbar is to create a better experience searching for recipes.
+// With a nav searchbar, users are not forced to return to Home if they wish to perform multiple searches.
 
 export default function NavSearchbar() {
   const router = useRouter();
@@ -67,6 +68,7 @@ export default function NavSearchbar() {
             className="search-submit relative px-2.5 py-1 ml-4 border-2 border-blue-400 text-blue-400 md:font-medium text-xs leading-tight uppercase rounded-full hover:bg-black hover:bg-opacity-5 focus:outline-none focus:ring-0 transition duration-150 ease-in-out"
             aria-label="Submit search"
             aria-controls="submit-search"
+            aria-describedby="nav-search-submit"
             role="button"
             tabIndex="0"
           >
@@ -77,6 +79,7 @@ export default function NavSearchbar() {
               <span className="sr-only">Search</span>
             </span>
           </button>
+          <span id="nav-search-submit" className="sr-only">Submit search</span>
           {error && (
             <span
               className="error absolute z-10 self-center right-5 md:right-20 px-8 md:px-4 mr-4 md:mr-0"

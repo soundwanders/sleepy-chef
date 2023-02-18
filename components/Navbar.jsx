@@ -36,6 +36,7 @@ export default function Navbar() {
           <button
             aria-label="Toggle Theme"
             aria-controls="dark-mode"
+            aria-describedby="toggle-sleepy-theme"
             type="button"
             className="toggle-theme w-14 h-14 p-3 rounded focus:outline-none"
             onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
@@ -66,9 +67,9 @@ export default function Navbar() {
               </svg>
             )}
           </button>
+          <span id="toggle-sleepy-theme" className="sr-only">Toggle Light/Dark Mode</span>
 
           <Sidebar isOpen={isOpen} setIsOpen={setIsOpen} />
-        
         </div>
       </div>
     </div>

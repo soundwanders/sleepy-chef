@@ -95,6 +95,7 @@ export const Searchbar = () => {
                 className="search-main relative px-4 py-1 ml-4 border-2 border-blue-400 text-blue-400 md:font-medium text-xs leading-tight uppercase rounded-full hover:bg-black hover:bg-opacity-5 focus:outline-none focus:ring-0 transition duration-150 ease-in-out"
                 aria-label="Submit search"
                 aria-controls="submit-search"
+                aria-describedby="main-search-submit"
                 role="button"
                 tabIndex="0"
               >
@@ -105,6 +106,7 @@ export const Searchbar = () => {
                   <span className="sr-only">Search</span>
                 </span>
               </button>
+              <span id="main-search-submit" className="sr-only">Submit search</span>
               {error && (
                 <span
                   className="error absolute z-10 self-center right-[4rem] md:right-12 px-8 md:px-0"

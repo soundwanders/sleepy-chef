@@ -55,7 +55,7 @@ export default function RecipesByType({ allRecipes, errorMessage, params  }) {
           <div className="w-fit mt-2">
             <RoughNotationGroup show={true}>
               <Highlighter color={highlightColor}>
-                <h1 className={`results-title text-2xl md:text-6xl font-bold text-gray-800 dark:text-gray-100 py-2 px-4`}>
+                <h1 className={`results-title text-xl md:text-6xl font-bold text-gray-800 dark:text-gray-100 py-2 px-4`}>
                   Tonight's a <span className="type-span inline-block"> { params.type } </span> kind of night.
                 </h1>
               </Highlighter>
