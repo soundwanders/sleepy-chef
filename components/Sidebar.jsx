@@ -6,7 +6,7 @@ import SidebarLinks from '@constants/links';
 const TypeLink = ({ name, url, image, closeSidebar }) => (
   <Link href={url} as={url} legacyBehavior>
     <a
-      className="hover:bg-sky-300 dark:hover:bg-sky-900 block px-4 py-2 pb-4 theme-text-on-surface text-gray-800 dark:text-slate-100 hover:bg-gray-200"
+      className="block px-4 py-2 pb-4 hover:bg-[#60a5fa] dark:hover:bg-blue-800 theme-text-on-surface text-gray-800 dark:text-slate-100"
       onClick={closeSidebar}
     >
       <img src={`/${image}`} alt="" className="inline-block w-6 h-6 mr-2" />

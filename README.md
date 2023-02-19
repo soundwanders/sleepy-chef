@@ -16,9 +16,9 @@
 
 <br/>
 
-## Bugs or Other Issues
+## Issues
 
-If you encounter any bugs, crashes, or other unexpected behavior, feel free to open an issue. If you have any ideas, improvements or suggestions, I encourage you to contribute. Either open a new issue, or if you have created a solution or feature and would like it implemented, please follow a few simple steps:
+If you encounter any bugs, crashes, or other unexpected behavior, feel free to open an issue describing the error and what you were doing when it occurred. If you have any improvements or suggestions, I would encourage you to contribute. Either open a new issue, or if you have created a solution or feature and would like it implemented, please follow a few simple steps:
 -    Fork the Project from branch 'main'
 -    Create your Update Branch (git checkout -b update/BugSquash
 -    Commit your Changes (git commit -m 'Hey change this!')

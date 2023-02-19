@@ -73,7 +73,8 @@ export const SearchResults = () => {
     pork: "bg-rose-100",
     salad: "bg-green-200",
     seafood: "bg-blue-200",
-    soup: "bg-zinc-300"
+    soup: "bg-zinc-300",
+    vegetarian: "bg-lime-200"
   };
   
   return (
@@ -90,7 +91,7 @@ export const SearchResults = () => {
           </div>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 grid-flow-dense justify-self-center gap-12 py-0 -mt-6 md:-mt-0 md:py-2 mb-10 px-8 md:px-4">
+        <div className="grid grid-cols-1 md:grid-cols-3 grid-flow-dense justify-self-center gap-12 mb-10 -mt-6 md:-mt-0 py-0 md:py-2 px-8 md:px-0 md:pl-4">
             {data.map(recipe => (
               <Link 
                 className="h-min"

@@ -110,6 +110,8 @@ export const Searchbar = () => {
               {error && (
                 <span
                   className="error absolute z-10 self-center right-[4rem] md:right-12 px-8 md:px-0"
+                  role="img"
+                  aria-label="Search submission error"
                 >
                   {error}
                 </span>

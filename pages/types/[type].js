@@ -45,25 +45,26 @@ export default function RecipesByType({ allRecipes, errorMessage, params  }) {
     pork: "bg-rose-100",
     salad: "bg-green-200",
     seafood: "bg-blue-200",
-    soup: "bg-zinc-300"
+    soup: "bg-zinc-300",
+    vegetarian: "bg-lime-200"
   };
 
   return (
-    <section className="bg-white dark:bg-gray-800 pb-10 md:py-8">
+    <section className="bg-white dark:bg-gray-800">
       <ContainerBlock title={appData.title}>
         <div className="max-w-6xl mx-auto h-36 md:h-40 px-8 py-4 bg-white dark:bg-gray-800">
           <div className="w-fit mt-2">
             <RoughNotationGroup show={true}>
               <Highlighter color={highlightColor}>
-                <h1 className={`results-title text-xl md:text-6xl font-bold text-gray-800 dark:text-gray-100 py-2 px-4`}>
-                  Tonight's a <span className="type-span inline-block"> { params.type } </span> kind of night.
+                <h1 className={`results-title text-[1.6rem] md:text-6xl font-bold text-gray-800 dark:text-gray-100 py-2 px-4`}>
+                  Tonight's a <span className="type-span inline-block text-yellow-400"> { params.type } </span> kind of night.
                 </h1>
               </Highlighter>
             </RoughNotationGroup>
           </div>
         </div>
 
-        <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-8 py-0 -mt-6 md:-mt-0 md:py-4 mb-10 px-8 mt-6">
+        <div className="grid grid-cols-1 md:grid-cols-3 grid-flow-dense justify-self-center gap-12 mb-10 py-0 md:py-2 px-8 md:px-0 md:pl-4">
           { allRecipes ? (
             allRecipes.map(recipe => (
               <Link 
