@@ -4,7 +4,7 @@ import appData from '@constants/data';
 import { RoughNotationGroup } from 'react-rough-notation';
 import { Highlighter } from '@components/Highlighter';
 import { recipes } from '@data/recipeDb';
-import { Egg } from '@components/Animations';
+import { HappyEgg } from '@components/Animations';
 
 export async function getStaticPaths() {
   try {
@@ -27,13 +27,10 @@ export async function getStaticProps({ params }) {
     return { props: { allRecipes, params } };
   } catch (error) {
     console.error(error);
-    return { 
-      props: { errorMessage: error.message } 
-    };
   }
 };
 
-export default function RecipesByType({ allRecipes, errorMessage, params  }) {
+export default function RecipesByType({ allRecipes, params  }) {
   const highlightColor = "#60a5fa";
   const defaultColor = 'bg-green-300';
 
@@ -46,7 +43,7 @@ export default function RecipesByType({ allRecipes, errorMessage, params  }) {
     salad: "bg-green-200",
     seafood: "bg-blue-200",
     soup: "bg-zinc-300",
-    vegetarian: "bg-lime-200"
+    vegetarian: "bg-emerald-100"
   };
 
   return (
@@ -56,15 +53,15 @@ export default function RecipesByType({ allRecipes, errorMessage, params  }) {
           <div className="w-fit mt-2">
             <RoughNotationGroup show={true}>
               <Highlighter color={highlightColor}>
-                <h1 className={`results-title text-[1.6rem] md:text-6xl font-bold text-gray-800 dark:text-gray-100 py-2 px-4`}>
-                  Tonight's a <span className="type-span inline-block text-yellow-400"> { params.type } </span> kind of night.
+                <h1 className={`results-title text-[1.7rem] md:text-[4rem] font-bold text-gray-800 dark:text-gray-100 p-2`}>
+                  It's a <span className="type-span inline-block text-yellow-300"> { params.type } </span> kind of night <span className="ml-3">🎉</span>
                 </h1>
               </Highlighter>
             </RoughNotationGroup>
           </div>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 grid-flow-dense justify-self-center gap-12 mb-10 py-0 md:py-2 px-8 md:px-0 md:pl-4">
+        <div className="grid grid-cols-1 md:grid-cols-3 grid-flow-dense justify-self-center gap-12 mt-3 mb-12 md:mb-16 py-0 md:py-2 px-8 md:px-0 md:pl-8">
           { allRecipes ? (
             allRecipes.map(recipe => (
               <Link 
@@ -138,7 +135,7 @@ export default function RecipesByType({ allRecipes, errorMessage, params  }) {
           ) : (
             <section className="bg-white dark:bg-gray-800 pb-10 md:py-8">
               <div className="max-w-6xl mx-auto h-36 md:h-40 px-8 md:px-4 py-4 bg-white dark:bg-gray-800">
-                <Egg />
+                <HappyEgg />
               </div>
             </section>
           )}

@@ -45,7 +45,7 @@ export const EggYolk = () => {
   );
 };
 
-export const Egg = () => {
+export const HappyEgg = () => {
   const y = useMotionValue(0);
   const eggOpacity = useTransform(
     y,
@@ -65,7 +65,7 @@ export const Egg = () => {
       }}
     >
       <motion.img
-        src="/egg.png"
+        src="/happy-egg.png"
         alt=""
         style={{ opacity: eggOpacity }}
         className="w-12 h-12"

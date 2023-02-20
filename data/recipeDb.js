@@ -174,10 +174,10 @@ export const recipes = [
       "1 tbsp vegan worcestershire sauce",
       "1 tbsp apple cider vinegar",
       "2 tsp rice vinegar",
-      "2 tsp fresh lemongrass paste or minced",
+      "2 tsp fresh lemongrass, minced",
       "1/2 tsp fresh chili paste",
       "1/2 tsp turmeric",
-      "1/2 lime, juiced or 1 tbsp lime juice",
+      "1/2 lime, juiced (or 1 tbsp lime juice)",
     ],
     "nutrition": {
       "calories": "750",
@@ -191,7 +191,7 @@ export const recipes = [
       "In a large soup pot, add all the ingredients except for the lime juice, peanuts and cilantro. Don't worry if the noodles are not fully submerged! Cover the pot and bring to a boil.",
       "Stir to combine thoroughly and reduce to a simmer. Continue cooking over medium-low heat for about 10-12 minutes, stirring occasionally.",
       "Next, uncover the pot cook for another 2-3 minutes, until about 1/2 inch of sauce is remaining. Remove from heat, then stir in the lime juice.",
-      "If sauce is still too watery for your taste, remove pot from heat wait about 2 minutes. Otherwise, dig in!"
+      "Allow to cool for 2 minutes, then dig in!"
     ],
   },
   { 
@@ -266,7 +266,7 @@ export const recipes = [
       "Pour egg into the pan; cook, without stirring, until set, about 45 seconds. Cut egg into bite-sized pieces.",
       "Add remaining 1 tbsp oil to pan; swirl to coat. Add bell pepper, edamame, and 1/2 cup green onions; stir-fry 1 minute.",
       "Add cooked rice; stir-fry 2 minutes, then add pork and soy sauce mixture. Cook, stirring constantly, until heated through, about 1 minute.",
-      "Top rice with egg and remaining green onions, then dig in!"
+      "Top rice with egg and remaining green onions, then fly into flavor town."
     ]
   },
   { 

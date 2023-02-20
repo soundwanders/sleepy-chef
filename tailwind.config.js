@@ -5,17 +5,13 @@ module.exports = {
   darkMode: "class",
   theme: {
     extend: {
-      transitionDuration: {
-        0: "0ms",
-        1000: "1000ms",
-        2000: "2000ms",
-        3000: "3000ms"
-      },
-      scale: {
-        101: "1.01",
-        102: "1.02",
-        103: "1.03",
-        104:"1.04"
+      colors: {
+        violet: {
+          250: '#d6cdfd'
+        },
+        amber: {
+          250: '#fdf0b8'
+        },
       },
       maxWidth: {
         "1/4": "25%",
@@ -24,13 +20,17 @@ module.exports = {
         "2/3": "66%",
         "3/4": "75%"
       },
-      colors: {
-        violet: {
-          250: '#d6cdfd'
-        },
-        amber: {
-          250: '#fdf0b8'
-        },
+      scale: {
+        101: "1.01",
+        102: "1.02",
+        103: "1.03",
+        104:"1.04"
+      }, 
+      transitionDuration: {
+        0: "0ms",
+        1000: "1000ms",
+        2000: "2000ms",
+        3000: "3000ms"
       },
     },
   },

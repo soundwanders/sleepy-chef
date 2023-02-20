@@ -27,7 +27,7 @@ export default function NavSearchbar() {
     const name = recipeNames.some(recipeName => recipeName.toLowerCase().includes(query.toLowerCase())) && !type && !ingredient ? query : null;
 
     if (!type && !ingredient && !name) {
-      setError('🤔');
+      console.log("Invalid input, please try again")
       return;
     }
 

@@ -4,7 +4,7 @@ import { useRouter } from 'next/router';
 import { RoughNotationGroup } from 'react-rough-notation';
 import { Highlighter } from './Highlighter';
 import appData from '@constants/data';
-import { Egg } from '@components/Animations';
+import { HappyEgg } from '@components/Animations';
 
 export const SearchResults = () => {
   const router = useRouter();
@@ -46,7 +46,7 @@ export const SearchResults = () => {
     return (
       <section className="bg-white dark:bg-gray-800 pb-10 md:py-8">
         <div className="max-w-6xl mx-auto h-36 md:h-40 px-8 md:px-4 py-4 bg-white dark:bg-gray-800">
-          <Egg />
+          <HappyEgg />
         </div>
       </section>
     )
@@ -74,7 +74,7 @@ export const SearchResults = () => {
     salad: "bg-green-200",
     seafood: "bg-blue-200",
     soup: "bg-zinc-300",
-    vegetarian: "bg-lime-200"
+    vegetarian: "bg-emerald-100"
   };
   
   return (
@@ -83,7 +83,7 @@ export const SearchResults = () => {
         <div className="w-fit">
           <RoughNotationGroup show={true}>
             <Highlighter color={highlightColor} className="md:text-center">
-              <h1 className={`results-title text-center mx-auto text-4xl md:text-7xl font-bold text-gray-800dark:text-gray-100 py-2 px-4`}>
+              <h1 className={`results-title text-center mx-auto text-[2.675rem] leading-tight md:text-7xl font-bold text-gray-800dark:text-gray-100 py-2 px-4 whitespace-nowrap`}>
               {appData.resultsTitle}
               </h1>
             </Highlighter>
@@ -91,7 +91,7 @@ export const SearchResults = () => {
           </div>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 grid-flow-dense justify-self-center gap-12 mb-10 -mt-6 md:-mt-0 py-0 md:py-2 px-8 md:px-0 md:pl-4">
+        <div className="grid grid-cols-1 md:grid-cols-3 grid-flow-dense justify-self-center gap-12 mb-10 -mt-4 md:-mt-0 py-0 md:py-2 px-8 md:px-0 md:pl-4">
             {data.map(recipe => (
               <Link 
                 className="h-min"

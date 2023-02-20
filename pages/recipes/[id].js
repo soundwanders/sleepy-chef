@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import ContainerBlock from '@components/ContainerBlock';
 import { recipes } from '@data/recipeDb';
-import { Egg } from '@components/Animations';
+import { HappyEgg } from '@components/Animations';
 import appData from "@constants/data";
 
 const API_ENDPOINT =
@@ -53,7 +53,7 @@ export default function Recipe({ recipe, errorMessage }) {
     return (
       <section className="bg-white dark:bg-gray-800 pb-10 md:py-8">
         <div className="max-w-6xl mx-auto h-36 md:h-40 px-8 md:px-4 py-4 bg-white dark:bg-gray-800">
-          <Egg />
+          <HappyEgg />
         </div>
       </section>
     )
@@ -70,7 +70,7 @@ export default function Recipe({ recipe, errorMessage }) {
           <div className="jello bg-neutral-100 dark:bg-gray-900 min-h-screen items-center">
             <div className="flex flex-col items-center">
               <img
-                className="w-full rounded-lg mb-8 w-16 py-8"
+                className="w-full rounded-lg w-16 my-8 md:py-8"
                 src={image}
                 alt={name} />
 
