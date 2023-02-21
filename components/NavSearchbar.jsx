@@ -53,9 +53,10 @@ export default function NavSearchbar() {
       <div className="input-group relative flex flex-nowrap justify-end items-stretch w-full rounded">
         <form className="flex" onSubmit={handleSubmit}>
         <input
-          className="form-control relative flex-auto min-w-0 w-full px-2 md:px-3 py-1 text-sm font-normal text-gray-700 
+          className={`form-control relative flex-auto min-w-0 w-full px-2 md:px-3 py-1 text-sm font-normal text-gray-700 
             bg-white bg-clip-padding border border-gray-300 border-solid rounded-lg transition ease-in-out m-0 
             focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
+            ${error ? 'error-border' : ''}`}
           type="text"
           aria-label="Search"
           id="query"
