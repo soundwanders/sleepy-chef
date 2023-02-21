@@ -20,25 +20,29 @@ export default function NavSearchbar() {
     const recipeTypes = recipes.reduce((acc, recipe) => acc.concat(recipe.type.toLowerCase()), []);
     const recipeIngredients = recipes.reduce((acc, recipe) => acc.concat(recipe.ingredients.map(ingredient => ingredient.toLowerCase())), []);
     const recipeNames = recipes.map(recipe => recipe.name.toLowerCase());
-
     // check if the search input matches a recipe type, ingredient, or name (case-insensitive)
     const type = recipeTypes.some(recipeType => recipeType.toLowerCase().includes(query.toLowerCase())) ? query : null;
     const ingredient = recipeIngredients.some(recipeIngredient => recipeIngredient.toLowerCase().includes(query.toLowerCase())) && !type ? query : null;
     const name = recipeNames.some(recipeName => recipeName.toLowerCase().includes(query.toLowerCase())) && !type && !ingredient ? query : null;
-
-    if (!type && !ingredient && !name) {
-      console.log("Invalid input, please try again")
+    
+    if (!query) {
+      setError('✏️');
       return;
     }
-
+  
+    if (!type && !ingredient && !name) {
+      setError('🤔');
+      return;
+    }
+  
     setError('');
-    
+  
     router.push({
       pathname: '/results',
       query: { type, ingredient, name },
     });
   };
-
+  
 
   const handleInputFocus = () => {
     setError('');
@@ -49,19 +53,21 @@ export default function NavSearchbar() {
       <div className="input-group relative flex flex-nowrap justify-end items-stretch w-full rounded">
         <form className="flex" onSubmit={handleSubmit}>
         <input
-          className={`form-control relative flex-auto min-w-0 w-full px-2 md:px-3 py-1 text-sm font-normal text-gray-700 bg-white bg-clip-padding border border-gray-300 border-solid rounded-lg transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none ${error ? 'error-border' : ''}`}
+          className="form-control relative flex-auto min-w-0 w-full px-2 md:px-3 py-1 text-sm font-normal text-gray-700 
+            bg-white bg-clip-padding border border-gray-300 border-solid rounded-lg transition ease-in-out m-0 
+            focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
           type="text"
           aria-label="Search"
           id="query"
           placeholder="Search..."
           value={query}
           onChange={e => setQuery(e.target.value)}
-          onFocus={() => {handleInputFocus}}
-          onBlur={() => {handleInputFocus}}
+          onFocus={handleInputFocus}
         />
           <button 
             type="submit" 
-            className="search-submit relative px-2.5 py-1 ml-4 border-2 border-blue-400 text-blue-400 md:font-medium text-xs leading-tight uppercase rounded-full hover:bg-black hover:bg-opacity-5 focus:outline-none focus:ring-0 transition duration-150 ease-in-out"
+            className="search-submit relative px-2.5 py-1 ml-4 border-2 border-blue-400 text-blue-400 md:font-medium text-xs leading-tight uppercase 
+              rounded-full hover:bg-black hover:bg-opacity-5 focus:outline-none focus:ring-0 transition duration-150 ease-in-out"
             aria-label="Submit search"
             aria-controls="submit-search"
             aria-describedby="nav-search-submit"
@@ -76,9 +82,10 @@ export default function NavSearchbar() {
             </span>
           </button>
           <span id="nav-search-submit" className="sr-only">Submit search</span>
+
           {error && (
             <span
-              className="error absolute z-10 self-center right-5 md:right-20 px-8 md:px-4 mr-4 md:mr-0"
+              className="error absolute z-10 self-center right-5 md:right-20 px-0 md:px-4 mr-10 md:mr-0"
               role="img"
               aria-label="Search submission error"
             >

@@ -4,7 +4,7 @@ import { useTheme } from 'next-themes';
 import { useRouter } from 'next/router';
 import { Sidebar } from './Sidebar';
 import NavSearchbar from './NavSearchbar';
-import appData from '@constants/data';
+import appData from '@constants/appData';
 
 export default function Navbar() {
   const router = useRouter();

@@ -2,15 +2,13 @@ import React from 'react';
 import { RoughNotationGroup } from 'react-rough-notation';
 import { Highlighter } from './Highlighter';
 import { Searchbar } from './Searchbar';
-import appData from '@constants/data';
+import appData from '@constants/appData';
 
 export const Hero = () => {
   const highlightColor = "#60a5fa";
   
   return (
     <div className="hero h-screen flex flex-column justify-center items-center px-8 overflow-hidden">
-
-      {/* Rainbow Highlighted Headlines Container */}
       <div className="absolute top-0 max-w-4xl mx-auto text-center items-center pb-4 mt-52">
         <RoughNotationGroup show={true}>
           <Highlighter color={highlightColor}>

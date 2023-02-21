@@ -81,7 +81,9 @@ export const Searchbar = () => {
               transition={{ duration: 0.7 }}
             >
               <input
-                className="form-control relative flex-auto min-w-0 w-full px-4 py-2 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-gray-300 border-solid rounded-lg transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"  
+                className={`form-control relative flex-auto min-w-0 w-full px-4 py-2 text-base font-normal text-gray-700 bg-white bg-clip-padding 
+                  border border-gray-300 border-solid rounded-lg transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none
+                  ${error ? 'error-border' : ''}`} 
                 type="text"
                 aria-label="Search" 
                 id="query"
@@ -92,7 +94,8 @@ export const Searchbar = () => {
               />
               <button 
                 type="submit" 
-                className="search-main relative px-4 py-1 ml-4 border-2 border-blue-400 text-blue-400 md:font-medium text-xs leading-tight uppercase rounded-full hover:bg-black hover:bg-opacity-5 focus:outline-none focus:ring-0 transition duration-150 ease-in-out"
+                className="search-main relative px-4 py-1 ml-4 border-2 border-blue-400 text-blue-400 md:font-medium text-xs leading-tight uppercase 
+                  rounded-full hover:bg-black hover:bg-opacity-5 focus:outline-none focus:ring-0 transition duration-150 ease-in-out"
                 aria-label="Submit search"
                 aria-controls="submit-search"
                 aria-describedby="main-search-submit"

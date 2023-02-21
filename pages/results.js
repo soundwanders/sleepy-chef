@@ -1,6 +1,6 @@
 import ContainerBlock from '@components/ContainerBlock';
 import { SearchResults } from '@components/SearchResults';
-import appData from '@constants/data';
+import appData from '@constants/appData';
 
 export default function Results() {
   return (

@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import ContainerBlock from '@components/ContainerBlock';
 import { recipes } from '@data/recipeDb';
 import { HappyEgg } from '@components/Animations';
-import appData from "@constants/data";
+import appData from "@constants/appData";
 
 const API_ENDPOINT =
   process.env.NODE_ENV === 'production' 
