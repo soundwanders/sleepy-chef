@@ -8,6 +8,7 @@ export const recipes = [
     "type": "pasta",
     "vegetarian": true,
     "vegan": false,
+    "time": "25 minutes",
     "ingredients": [
       "4 garlic cloves, peeled & sliced",
       "7 oz (1 jar) sun dried tomatoes, drained",
@@ -48,6 +49,7 @@ export const recipes = [
     "type": "chicken",
     "vegetarian": false,
     "vegan": false,
+    "time": "30 minutes",
     "ingredients": [
       "3 tbsp butter, melted",
       "4 cups shredded rotisserie chicken",
@@ -86,6 +88,7 @@ export const recipes = [
     "type": "pasta",
     "vegetarian": false,
     "vegan": false,
+    "time": "",
     "ingredients": [
       "1 tbsp olive oil",
       "2 cloves garlic, minced",
@@ -127,6 +130,7 @@ export const recipes = [
     "type": "vegetarian",
     "vegetarian": true,
     "vegan": false,
+    "time": "25 minutes",
     "ingredients": [
       "1 can (16 oz) vegetarian refried beans",
       "1 cup salsa",
@@ -158,6 +162,7 @@ export const recipes = [
     "type": "pasta",
     "vegetarian": true,
     "vegan": false,
+    "time": "30 minutes",
     "ingredients": [
       "12 oz dry fettuccine",
       "4 1/2 cups of vegetable broth",
@@ -201,6 +206,7 @@ export const recipes = [
     "type": "beef",
     "vegetarian": false,
     "vegan": false,
+    "time": "30 minutes",
     "ingredients": [
       "3 cups mashed potato flakes",
       "1 lb ground beef",
@@ -237,6 +243,7 @@ export const recipes = [
     "type": "pork",
     "vegetarian": false,
     "vegan": false,
+    "time": "30 minutes",
     "ingredients": [
       "4 cups basmati rice",
       "8 cups water",
@@ -276,6 +283,7 @@ export const recipes = [
     "type": "soup",
     "vegetarian": false,
     "vegan": false,
+    "time": "30 minutes",
     "ingredients": [
       "1/4 cup chopped onion",
       "1/4 cup butter, cubed",
@@ -296,12 +304,11 @@ export const recipes = [
       "sodium": "1150mg"
     },
     "directions": [
-      "This recipe serves two. To serve more, double the ingredients.",
+      "This recipe serves two. To serve more deliciosuness, double the ingredients.",
       "In a small saucepan, saute onion in butter until tender. Stir in the flour, salt and pepper until blended; gradually add milk and broth.",
       "Bring to a boil; cook and stir until thickened, about 2 minutes.",
-      "Chef's Tip: Curdling in a cream soup usually occurs when the milk or cream is added at too high of a heat. As you gradually pour milk and broth into the onion and flour mixture, keep heat at medium and stir continuously with a whisk. Once all is mixed in, then proceed to heat to a boil.",
-      "Add broccoli. Cook and stir until heated through and steaming. Remove from the heat; stir in cheese until melted.",
-      "This recipe serves two. To serve more, double or even triple the ingredients. Enjoy!"
+      "Chef's Tip: Curdling in a cream soup usually occurs when the milk or cream is added at too high of a heat. As you gradually pour milk and broth into the onion and flour mixture, keep heat at medium and stir continuously with a whisk. Once it is all mixed in, then proceed to heat to a boil.",
+      "Add broccoli. Cook and stir until heated through and steaming. Remove from the heat; stir in cheese until melted, then serve.",
     ]
   },
   { 
@@ -311,8 +318,9 @@ export const recipes = [
     "type": "soup",
     "vegetarian": false,
     "vegan": false,
+    "time": "30 minutes",
     "ingredients": [
-      "1 lb pound Italian sausage links, casings removed, crumbled",
+      "1 lb lb Italian sausage links, casings removed, crumbled",
       "1 small onion, chopped",
       "2 tsp canola oil",
       "1 garlic clove, minced",
@@ -351,6 +359,7 @@ export const recipes = [
     "type": "salad",
     "vegetarian": false,
     "vegan": false,
+    "time": "",
     "ingredients": [
       "1 lb chicken breast",
       "1 tbsp",
@@ -383,6 +392,228 @@ export const recipes = [
       "To make the creamy cilantro dressing: Place the sour cream (or greek yogurt), cilantro, remaining 1/2 of the lime juice, and salt in a blender or food processor. Pulse for a few seconds until the cilantro is fully chopped.",
       "Place chopped lettuce on the serving plate, then top with avocado, chopped tomatoes, black beans, corn, cilantro, and sliced chicken.",
       "Top with your creamy cilantro dressing just before serving. Bravo!"
+    ]
+  },
+  { 
+    "id": 10,
+    "name": "Creamy Chicken Skillet", 
+    "image": "/chicken.png",
+    "type": "chicken",
+    "vegetarian": false,
+    "vegan": false,
+    "time": "20 minutes",
+    "ingredients": [
+      "1 lb chicken cutlets",
+      "¼ tsp salt, divided",
+      "¼ tsp ground pepper",
+      "2 tbsp olive oil, divided",
+      "1 zucchini, thinly sliced",
+      "½ cup chopped onion",
+      "⅓ cup dry white wine",
+      "1 can (15 oz) diced tomatoes",
+      "2 oz cream cheese, cut into cubes",
+      "1 tsp Italian seasoning",
+      "½ tsp garlic powder",
+      "¼ cup chopped fresh basil",
+    ],
+    "nutrition": {
+      "calories": "301",
+      "fat": "14g",
+      "cholesterol": "97mg",
+      "carbs": "11g",
+      "protein": "27g",
+      "sodium": "250mg"
+    },
+    "directions": [
+      "Sprinkle chicken with 1/8 tsp each salt and pepper. Heat 1 tbsp oil in a large skillet over medium heat.",
+      "Add the chicken and cook, turning once, until browned on each side and fully cooked to atleast 165F. Transfer to a plate.",
+      "Slowly pour in the remaining 1 tbsp oil as well as the zucchini and onion to the pan. Cook, stirring, until starting to soften, about 2 minutes.",
+      "Increase heat to medium-high and add wine. Cook, scraping up any browned bits, until the liquid has mostly evaporated, about 2 minutes.",
+      "Next, add the tomatoes, cream cheese, Italian seasoning, garlic powder and the remaining 1/8 tsp each salt and pepper. Bring to a simmer and cook, stirring to melt the cream cheese, for 5 minutes.",
+      "Return the chicken to the pan and turn to coat with the sauce. Serve topped with basil and enjoy."
+    ]
+  },
+  { 
+    "id": 11,
+    "name": "Coconut Chickpea Curry", 
+    "image": "/vegetarian.png",
+    "type": "vegetarian",
+    "vegetarian": true,
+    "vegan": true,
+    "time": "20 minutes",
+    "ingredients": [
+      "2 tsp avocado oil or canola oil",
+      "1 cup chopped onion",
+      "1 cup diced bell pepper",
+      "1 medium zucchini, halved and sliced",
+      "1 can (15 oz) chickpeas, drained and rinsed",
+      "1½ cups coconut curry simmer sauce",
+      "½ cup vegetable broth",
+      "4 cups baby spinach",
+      "2 cups precooked brown rice"
+    ],
+    "nutrition": {
+      "calories": "470",
+      "fat": "18g",
+      "cholesterol": "4mg",
+      "carbs": "66g",
+      "protein": "11g",
+      "sodium": "575mg"
+    },
+    "directions": [
+      "Heat oil in a large skillet over medium-high heat. Add onion, pepper and zucchini; cook, stirring often, until veggies begin to brown, 5 to 6 minutes.",
+      "Preparing the brown rice should only take 10 to 15 minutes altogether, so plan accordingly and make sure it is not cold when your veggies are done.",
+      "Add your chickpeas, simmer sauce and broth and then bring to a simmer, stirring to combine ingredients thoroughly.",
+      "Reduce heat to medium-low and simmer until the veggies are tender, which should only take about 4 to 5 minutes.",
+      "Stir in spinach just before serving to prevent heavy wilting. Serve  over rice, and let the feast begin."
+    ]
+  },
+  { 
+    "id": 12,
+    "name": "Tomato Salmon Skillet", 
+    "image": "/seafood.png",
+    "type": "seafood",
+    "vegetarian": false,
+    "vegan": false,
+    "time": "20 minutes",
+    "ingredients": [
+      "1¼ lb salmon, skinned and cut into 4 portions",
+      "¼ tsp salt",
+      "¼ tsp ground pepper",
+      "2 tbsp olive oil, split into two portions",
+      "1 zucchini, halved and thinly sliced",
+      "½ cup chopped onion",
+      "⅓ cup dry white wine",
+      "1 (15 oz) can no-salt-added diced tomatoes",
+      "2 oz cream cheese, cut into cubes",
+      "1 tsp Italian seasoning",
+      "½ tsp garlic powder",
+      "¼ cup chopped fresh basil",
+    ],
+    "nutrition": {
+      "calories": "516",
+      "fat": "38g",
+      "cholesterol": "111mg",
+      "carbs": "51g",
+      "protein": "50g",
+      "sodium": "730mg"
+    },
+    "directions": [
+      "Pat salmon dry and sprinkle with 1/8 tsp each salt and pepper. Heat 1 tbsp oil in a large skillet over medium-high heat.",
+      "Add the salmon and cook until the underside is browned and releases easily from the pan, 3 to 4 minutes.",
+      "Once underside is nicely browned, gently flip salmon and continue to cook until opaque in the center, another 2 to 3 minutes.",
+      "Transfer to a plate and cover with foil or something similar to keep warm",
+      "Meanwhile, add the remaining 1 tbsp oil, zucchini and onion to the pan. Cook, stirring, until starting to soften, about 3 minutes.",
+      "Increase heat to medium-high and add wine. Cook, stirring, until the liquid has mostly evaporated, about 2 minutes.",
+      "Add tomatoes, cream cheese, Italian seasoning, garlic powder and the remaining 1/8 tsp each salt and pepper. Bring to a simmer and cook, stirring, until the cream cheese is melted, 4 to 5 minutes.",
+      "Return salmon to the pan and turn pan to coat salmon with the sauce. Top the whole thing off with a generous pinch of basil, then serve!"
+    ]
+  },
+  { 
+    "id": 13,
+    "name": "Super Shrimp Scampi", 
+    "image": "/seafood.png",
+    "type": "seafood",
+    "vegetarian": false,
+    "vegan": false,
+    "time": "20 minutes",
+    "ingredients": [
+      "1½ lb fresh or frozen shrimp in shells",
+      "6 oz whole-wheat or plain linguine",
+      "1 tbsp olive oil",
+      "3 cloves garlic, minced",
+      "2 tbsp dry white wine or chicken broth",
+      "1 tbsp butter",
+      "⅛ tsp salt",
+      "1 tbsp chopped fresh chives or parsley"
+    ],
+    "nutrition": {
+      "calories": "341",
+      "fat": "9g",
+      "cholesterol": "22mg",
+      "carbs": "35g",
+      "protein": "29g",
+      "sodium": "1040mg"
+    },
+    "directions": [
+      "Thaw shrimp, if frozen. Peel and devein shrimp, leaving tails intact, if desired. Rinse shrimp; pat dry with paper towels.",
+      "Cook linguine according to package directions. Drain and keep warm.",
+      "Meanwhile, heat oil in a 12-inch skillet over medium-high heat. Add garlic; cook and stir for 15 seconds. Add shrimp and cook for 2 to 4 minutes, or until shrimp turn opaque, stirring often",
+      "Transfer shrimp to a serving platter using a slotted spoon or similar object to gently handle the shrimp",
+      "Add wine, butter, and salt to the skillet. Cook and stir over medium heat to loosen any browned bits and to melt butter. Pour butter mixture over shrimp.",
+      "Transfer to plate on top of the Linguine, sprinkle with chives before feasting."
+    ]
+  },
+  { 
+    "id": 14,
+    "name": "Skillet Ravioli Lasagna", 
+    "image": "/pasta.png",
+    "type": "pasta",
+    "vegetarian": false,
+    "vegan": false,
+    "time": "20 minutes",
+    "ingredients": [
+      "1 (24 oz) package frozen cheese ravioli",
+      "1 lb lean ground beef",
+      "1½ tsp dried oregano",
+      "½ tsp garlic powder",
+      "½ tsp salt",
+      "¼ tsp ground pepper",
+      "1 (28 oz) can crushed tomatoes",
+      "¼ cup chopped fresh basil",
+      "8 oz small fresh mozzarella balls, divided"
+    ],
+    "nutrition": {
+      "calories": "485",
+      "fat": "5g",
+      "cholesterol": "125mg",
+      "carbs": "33g",
+      "protein": "38g",
+      "sodium": "1040mg"
+    },
+    "directions": [
+      "Preheat broiler. Bring a large pot of water to a boil. Cook ravioli according to package directions; drain and set aside.",
+      "Meanwhile, cook ground beef in a large cast-iron or oven-safe skillet over medium-high heat until cooked through, about 5 minutes, crumbling the beef shortly after it begins to brown",
+      "Season with oregano, garlic powder, salt and pepper, then add tomatoes and basil; bring pot to a simmer.",
+      "Gently add the cooked ravioli and half of the mozzarella balls, making sure to submerge both the ravioli and mozzarella.",
+      "Scatter the remaining mozzarella balls over the top of the pasta. Carefully transfer the pan to the oven.",
+      "Broil until the cheese is melted, 2 to 3 minutes, allow to cool momentarily before serving in your favorite bowl."
+    ]
+  },
+  { 
+    "id": 15,
+    "name": "Korean Beef and Rice", 
+    "image": "/beef.png",
+    "type": "beef",
+    "vegetarian": false,
+    "vegan": false,
+    "time": "20 minutes",
+    "ingredients": [
+      "1 lb lean ground beef",
+      "3 garlic cloves, minced",
+      "¼ cup packed brown sugar",
+      "⅓ cup reduced-sodium soy sauce",
+      "3 tsp sesame oil",
+      "½ tsp ground ginger",
+      "½ tsp crushed red pepper flakes",
+      "½ tsp pepper",
+      "2 2/3 cups hot cooked brown rice",
+      "3 green onions, thinly sliced",
+    ],
+    "nutrition": {
+      "calories": "415",
+      "fat": "13g",
+      "cholesterol": "70mg",
+      "carbs": "45g",
+      "protein": "27g",
+      "sodium": "650mg"
+    },
+    "directions": [
+      "In a large skillet, cook garlic and beef over medium heat for about 8 minutes, until no longer pink, breaking beef into crumbles as you cook",
+      "Meanwhile, in a small bowl, mix brown sugar, soy sauce, oil and seasonings and whisk to combine thoroughly.",
+      "Stir sauce into beef, heating until sauce begins to lightly simmer.",
+      "Remove skillet from heat and allow beef to absorb sauce for an additional 1 minute.",
+      "Serve with rice. Sprinkle with green onions and get ready for some flavor.",
     ]
   },
 ]
