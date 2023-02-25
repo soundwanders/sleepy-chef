@@ -1,8 +1,8 @@
 import { useState, useEffect } from 'react';
-import ContainerBlock from '@components/ContainerBlock';
 import { recipes } from '@data/recipeDb';
 import { HappyEgg } from '@components/Animations';
-import appData from "@constants/appData";
+import ContainerBlock from '@components/ContainerBlock';
+import appData from '@constants/appData';
 
 const API_ENDPOINT =
   process.env.NODE_ENV === 'production' 
@@ -42,12 +42,26 @@ export async function getStaticProps({ params }) {
 export default function Recipe({ recipe, errorMessage }) {
   console.log(recipe);
   const [dataLoaded, setDataLoaded] = useState(false);
+  const [error, setError] = useState(null);
 
   useEffect(() => {
     if (recipe) {
       setDataLoaded(true);
     }
-  }, [recipe]);
+    if (errorMessage) {
+      setError(errorMessage);
+    }
+  }, [recipe, errorMessage]);
+  
+  if (error) {
+    return (
+      <section className="bg-white dark:bg-gray-800 pb-10 md:py-8">
+        <div className="max-w-6xl mx-auto h-36 md:h-40 px-8 md:px-4 py-4 bg-white dark:bg-gray-800">
+          <p className="text-red-400 font-bold text-center">{error}</p>
+        </div>
+      </section>
+    )
+  };
 
   if (!dataLoaded) {
     return (
@@ -57,77 +71,63 @@ export default function Recipe({ recipe, errorMessage }) {
         </div>
       </section>
     )
-  }
+  };
 
   const recipeData = Array.isArray(recipe) ? recipe[0] : recipe;
-
   const { name, image, type, vegetarian, vegan, ingredients, nutrition, directions } = recipeData;
 
   return (
-    <ContainerBlock title={appData.title}>
-      <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-1 gap-12 py-2 md:py-10 mb-10 px-8">
+    <ContainerBlock title={name} description={appData.description}>
+      <div className="max-w-7xl mx-auto py-10 px-8">
+        <div className="flex justify-between items-center mb-12">
+          <h1 className="text-4xl font-bold text-gray-800 dark:text-gray-200">{name}</h1>
+        </div>
+
         {recipeData ? (
-          <div className="jello bg-neutral-100 dark:bg-gray-900 min-h-screen items-center">
-            <div className="flex flex-col items-center">
-              <img
-                className="w-full rounded-lg w-16 my-8 md:py-8"
-                src={image}
-                alt={name} />
-
-              <h2 className="text-4xl text-center font-bold text-gray-800 dark:text-gray-200 mb-4">
-                {name}
-              </h2>
-
-              <div className="grid grid-cols-1 gap-8 mb-10">
-                <p className="text-gray-600 dark:text-gray-300 font-medium text-lg uppercase tracking-wider">
-                  Type: {type}
-                </p>
-                <p className="text-gray-600 dark:text-gray-300 font-medium text-lg uppercase tracking-wider">
-                  Vegetarian: {vegetarian ? 'Yes' : 'No'}
-                </p>
-                <p className="text-gray-600 dark:text-gray-300 font-medium text-lg uppercase tracking-wider">
-                  Vegan: {vegan ? 'Yes' : 'No'}
-                </p>
+          <div className="flex flex-col md:flex-row">
+            <div className="md:w-1/2 md:pr-8">
+              <img src={image} alt="" className="rounded-lg h-auto w-full md:h-96 object-cover" />
+            </div>
+            <div className="md:w-1/2">
+              <div className="flex items-center mb-4">
+                <span className="text-gray-600 dark:text-gray-300 font-medium text-lg uppercase tracking-wider mr-2">Type:</span>
+                <span className="text-gray-800 dark:text-gray-200 font-bold text-lg">{type}</span>
               </div>
-            </div>
-
-            <div className="bg-gray-200 dark:bg-gray-800 px-8">
-              <h3 className="text-xl font-bold text-gray-800 dark:text-gray-100 py-6">
-                Ingredients:
-              </h3>
-                <ul className="grid grid-cols-3 gap-3 md:gap-3">
-                {ingredients && ingredients.map(ingredient => (
-                  <li key={ingredient} className="text-gray-700 dark:text-gray-100 text-lg col-span-1">
-                    {ingredient}
-                  </li>
-                ))}
-                </ul>
-            </div>
-
-            <div className="bg-neutral-100 dark:bg-gray-900 px-8">
-              <h3 className="text-xl font-bold text-gray-800 dark:text-gray-100 py-6">
-                Nutrition:
-              </h3>
-                <ul className="grid grid-cols-2 gap-1 md:gap-3 py-2">
-                {nutrition && Object.entries(nutrition).map(([name, value]) => (
-                  <li key={name} className="text-gray-900 dark:text-gray-300 font-medium text-lg uppercase tracking-wider col-span-1">
-                    {name}: {value}
-                  </li>
-                ))}
-                </ul>
-            </div>
-
-            <div className="bg-gray-200 dark:bg-gray-800 px-8">
-              <h3 className="text-xl font-bold text-gray-800 dark:text-gray-100 py-6">
-                Directions:
-              </h3>
-              <div className="overflow-y-auto h-48 pb-12">
-                <ul className="grid grid-cols-1 gap-2 md:gap-3">
-                  {directions && directions.map(direction => (
-                    <li key={direction} className="text-gray-700 dark:text-gray-100 text-lg col-span-1">{direction}</li>
+              <div className="flex items-center mb-4">
+                <span className="text-gray-600 dark:text-gray-300 font-medium text-lg uppercase tracking-wider mr-2">Vegetarian:</span>
+                <span className="text-gray-800 dark:text-gray-200 font-bold text-lg">{vegetarian ? 'Yes' : 'No'}</span>
+              </div>
+              <div className="flex items-center mb-4">
+                <span className="text-gray-600 dark:text-gray-300 font-medium text-lg uppercase tracking-wider mr-2">Vegan:</span>
+                <span className="text-gray-800 dark:text-gray-200 font-bold text-lg">{vegan ? 'Yes' : 'No'}</span>
+              </div>
+              <div className="mb-4">
+                <h2 className="text-2xl font-bold text-gray-800 dark:text-gray-200">Ingredients:</h2>
+                <ul className="list-disc list-inside mt-2">
+                  {ingredients && ingredients.map(ingredient => (
+                    <li key={ingredient} className="text-gray-700 dark:text-gray-100 text-lg">{ingredient}</li>
                   ))}
                 </ul>
               </div>
+              <div className="mb-4">
+                <h2 className="text-2xl font-bold text-gray-800 dark:text-gray-200">Nutrition:</h2>
+                <ul className="mt-2">
+                  {nutrition && Object.entries(nutrition).map(([name, value]) => (
+                    <li key={name} className="text-gray-700 dark:text-gray-100 text-lg flex items-center">
+                      <span className="text-gray-600 dark:text-gray-300 font-medium uppercase tracking-wider mr-2">{name}:</span>
+                      <span className="text-gray-800 dark:text-gray-200 font-bold">{value}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </div>
+            <div className="w-full">
+              <h2 className="text-2xl font-bold text-gray-800 dark:text-gray-200 mb-4">Directions:</h2>
+              <ol className="list-decimal list-inside">
+                {directions && directions.map(direction => (
+                  <li key={direction} className="text-gray-700 dark:text-gray-100 text-lg mb-4">{direction}</li>
+                ))}
+              </ol>
             </div>
           </div>
         ) : (

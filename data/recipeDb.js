@@ -157,7 +157,7 @@ export const recipes = [
   },
   { 
     "id": 4,
-    "name": "Thai Pasta",
+    "name": "Poor Boy's Thai Pasta",
     "image": "/pasta.png",
     "type": "pasta",
     "vegetarian": true,

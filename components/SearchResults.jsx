@@ -101,15 +101,17 @@ export const SearchResults = () => {
             as={`/recipes/${encodeURIComponent(recipe.id)}`}
             key={recipe.id}
           >
-            <div className="min-h-0 bg-neutral-100 dark:bg-gradient-to-b from-neutral-800 to-neutral-900 shadow-md rounded-lg overflow-hidden transform hover:scale-101">  
+            <div className="min-h-0 bg-zinc-100 dark:bg-gradient-to-b from-zinc-800 to-zinc-900 shadow-md rounded-lg overflow-hidden transform hover:scale-101">  
               <div className={`w-full py-4 rounded-t-lg ${recipeColors[recipe.type] || defaultColor}`}>
                 <div className="flex items-center justify-center h-full w-full">
-                  <div className="title-container flex items-center justify-center shrink-0">
-                    <img src={recipe.denotion} alt="" className="h-auto w-9" />
-                    <h2 className="recipe-name max-w-2/3 text-[1.75rem] text-center text-gray-900 py-4 mx-1">
+                  <div className="title-container flex items-start justify-start flex-grow-1">
+                    <span className="pl-2">
+                      <img src={recipe.denotion} alt="" className="h-auto w-9 m-1" />
+                    </span>
+                    <h2 className="recipe-name mx-auto text-[1.7rem] md:text-[2rem] leading-8 md:leading-10 text-center text-gray-900 py-4 ml-6 mr-12">
                       {recipe.name}
                     </h2>
-                  </div> 
+                  </div>
                 </div>
               </div>
 
