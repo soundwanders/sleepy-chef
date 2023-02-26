@@ -8,7 +8,7 @@ const TypeLink = ({ name, url, image, closeSidebar, isActive, onClick }) => (
     <a
       className={`
         block px-4 py-2 pb-4 hover:bg-[#eaeef4] dark:hover:bg-slate-800 theme-text-on-surface
-        ${isActive ? 'bg-blue-400 text-white' : 'text-gray-800 dark:text-slate-100'}
+        ${isActive ? 'bg-blue-500 text-white' : 'text-gray-800 dark:text-slate-100'}
       `}
       onClick={() => {
         onClick();
@@ -54,7 +54,6 @@ export const Sidebar = () => {
         `}
         role="navigation"
       >
-
         <div className="pt-8 mb-8 opacity-90">
           <img src="/sidebar-chef.png" alt="" className="w-16 md:w-20 h-auto mx-auto" />
         </div>

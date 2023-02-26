@@ -30,7 +30,7 @@ export const SearchResults = () => {
 
   const { data, error } = useSWR(endpoint, async (url) => {
     const response = await fetch(url);
-
+  
     if(response.ok) {
       return await response.json();
     } else if (response.status === 404) {
@@ -40,7 +40,7 @@ export const SearchResults = () => {
     } else {
       throw new Error("We're uhh...out of town? Please try again later");
     }
-  });
+  }, { revalidateOnMount: true });
 
   if (data === undefined || !data) {
     return (
@@ -102,22 +102,24 @@ export const SearchResults = () => {
             key={recipe.id}
           >
             <div className="min-h-0 bg-zinc-100 dark:bg-gradient-to-b from-zinc-800 to-zinc-900 shadow-md rounded-lg overflow-hidden transform hover:scale-101">  
-              <div className={`w-full py-4 rounded-t-lg ${recipeColors[recipe.type] || defaultColor}`}>
+              <div className={`w-full py-4 rounded-t-lg ${recipeColors[recipe.types[0]] || defaultColor}`}>
                 <div className="flex items-center justify-center h-full w-full">
-                  <div className="title-container flex items-start justify-start flex-grow-1">
-                    <span className="pl-2">
-                      <img src={recipe.denotion} alt="" className="h-auto w-9 m-1" />
-                    </span>
-                    <h2 className="recipe-name mx-auto text-[1.7rem] md:text-[2rem] leading-8 md:leading-10 text-center text-gray-900 py-4 ml-6 mr-12">
+                  <div className="title-container flex flex-col">
+                    <h2 className="recipe-name mx-auto text-[1.7rem] md:text-3xl leading-8 md:leading-10 text-center text-gray-900 py-4 px-4">
                       {recipe.name}
                     </h2>
+                    <div className="images-container flex justify-center">
+                      {recipe.denotions.map((denotion, index) => (
+                        <img key={index} src={denotion} alt="" className="h-auto w-8 m-1" />
+                      ))}
+                    </div>
                   </div>
                 </div>
               </div>
-
+              
               <div className="p-8">
                 <p className="text-center text-gray-600 dark:text-gray-400 font-medium text-sm uppercase tracking-wider py-1 -mt-4">
-                  Type: {recipe.type}
+                  Type: {recipe.types.join(", ")}
                 </p>
                 <p className="text-center text-gray-600 dark:text-gray-400 font-medium text-sm uppercase tracking-wider py-1">
                   Vegetarian: {recipe.vegetarian ? 'Yes' : 'No'}
@@ -135,7 +137,7 @@ export const SearchResults = () => {
                     <li key={ingredient} className="text-gray-700 dark:text-gray-100 text-sm col-span-1">{ingredient}</li>
                   ))}
                 </ul>
-
+                
                 <h3 className="text-xl font-bold text-gray-800 dark:text-gray-200 mt-6 mb-4 pt-4 border-t border-slate-500">
                   Nutrition:
                 </h3>

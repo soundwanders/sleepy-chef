@@ -1,13 +1,18 @@
 import { recipes } from '@data/recipeDb';
 
 // search function
-const searchFunction = (paramType, paramValue) => 
-  recipes.filter(recipe => {
+const searchFunction = (paramType, paramValue) => {
+  if (!recipes) {
+    return [];
+  }
+  
+  return recipes.filter(recipe => {
     switch (paramType) {
       case 'id':
         return recipe.id === Number(paramValue);
       case 'type':
-        return recipe.type.toLowerCase() === paramValue.toLowerCase();
+        const searchTerms = paramValue.toLowerCase().split(',').map(term => term.trim());
+        return recipe.types.some(type => searchTerms.includes(type.toLowerCase()));
       case 'ingredient':
         return recipe.ingredients.some(ing => ing.toLowerCase().includes(paramValue.toLowerCase()));
       case 'name':
@@ -15,7 +20,8 @@ const searchFunction = (paramType, paramValue) =>
       default:
         return false;
     }
-  });
+  })
+};
 
 const priorityMap = {
   id: 1,
