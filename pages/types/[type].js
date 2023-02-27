@@ -84,14 +84,16 @@ export default function RecipesByType({ allRecipes, mainTypes, params }) {
                 <div className="min-h-0 bg-neutral-100 dark:bg-gradient-to-b from-neutral-800 to-neutral-900 shadow-md rounded-lg overflow-hidden transform hover:scale-101">  
                   <div className={`w-full py-4 rounded-t-lg ${recipeColors[recipe.types[0]] || defaultColor}`}>
                     <div className="flex items-center justify-center h-full w-full">
-                      <div className="title-container flex items-center justify-center shrink-0">
-                        {recipe.denotions.map(denotion => (
-                          <img key={denotion} src={denotion} alt="" className="h-auto w-9 m-1" />
-                        ))}
-                        <h2 className="recipe-name max-w-2/3 text-[1.75rem] text-center text-gray-900 py-4 mx-1">
+                      <div className="title-container flex flex-col">
+                        <h2 className="recipe-name mx-auto text-[1.7rem] md:text-3xl leading-8 md:leading-10 text-center text-gray-900 py-4 px-4">
                           {recipe.name}
                         </h2>
-                      </div> 
+                        <div className="images-container flex justify-center">
+                          {recipe.denotations.map((denotation, index) => (
+                            <img key={index} src={denotation} alt="" className="h-auto w-8 m-1" />
+                          ))}
+                        </div>
+                      </div>
                     </div>
                   </div>
 

@@ -619,38 +619,38 @@ export const recipes = [
 ];
 
 recipes.forEach(recipe => {
-  recipe.denotions = [];
+  recipe.denotations = [];
   recipe.types.forEach(type => {
     switch(type) {
       case 'beef':
-        recipe.denotions.push("/beef.png");
+        recipe.denotations.push("/beef.png");
         break;
       case 'chicken':
-        recipe.denotions.push("/chicken.png");
+        recipe.denotations.push("/chicken.png");
         break;
       case 'pasta':
-        recipe.denotions.push("/pasta.png");
+        recipe.denotations.push("/pasta.png");
         break;
       case 'pork':
-        recipe.denotions.push("/pork.png");
+        recipe.denotations.push("/pork.png");
         break;
       case 'seafood':
-        recipe.denotions.push("/seafood.png");
+        recipe.denotations.push("/seafood.png");
         break;
       case 'salad':
-        recipe.denotions.push("/salad.png");
+        recipe.denotations.push("/salad.png");
         break;
       case 'soup':
-        recipe.denotions.push("/soup.png");
+        recipe.denotations.push("/soup.png");
         break;
       case 'texMex':
-        recipe.denotions.push("/texmex.png");
+        recipe.denotations.push("/texmex.png");
         break;  
       case 'vegetarian':
-        recipe.denotions.push("/vegetarian.png");
+        recipe.denotations.push("/vegetarian.png");
         break;
       default:
-        recipe.denotions.push("/chef.png");
+        recipe.denotations.push("/chef.png");
         break;
     }
   })

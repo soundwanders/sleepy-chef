@@ -109,8 +109,8 @@ export const SearchResults = () => {
                       {recipe.name}
                     </h2>
                     <div className="images-container flex justify-center">
-                      {recipe.denotions.map((denotion, index) => (
-                        <img key={index} src={denotion} alt="" className="h-auto w-8 m-1" />
+                      {recipe.denotations.map((denotation, index) => (
+                        <img key={index} src={denotation} alt="" className="h-auto w-8 m-1" />
                       ))}
                     </div>
                   </div>
