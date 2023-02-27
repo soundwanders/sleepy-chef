@@ -17,14 +17,15 @@ export default function NavSearchbar() {
     e.preventDefault();
   
     // create an array of all recipe types, ingredients, names
-    const recipeTypes = recipes.reduce((acc, recipe) => acc.concat(recipe.type.toLowerCase()), []);
+    const recipeTypes = recipes.reduce((acc, recipe) => acc.concat(recipe.types.map(type => type.toLowerCase())), []);
     const recipeIngredients = recipes.reduce((acc, recipe) => acc.concat(recipe.ingredients.map(ingredient => ingredient.toLowerCase())), []);
     const recipeNames = recipes.map(recipe => recipe.name.toLowerCase());
+
     // check if the search input matches a recipe type, ingredient, or name (case-insensitive)
-    const type = recipeTypes.some(recipeType => recipeType.toLowerCase().includes(query.toLowerCase())) ? query : null;
-    const ingredient = recipeIngredients.some(recipeIngredient => recipeIngredient.toLowerCase().includes(query.toLowerCase())) && !type ? query : null;
-    const name = recipeNames.some(recipeName => recipeName.toLowerCase().includes(query.toLowerCase())) && !type && !ingredient ? query : null;
-    
+    const type = recipeTypes.some(recipeType => recipeType.includes(query.toLowerCase())) ? query : null;
+    const ingredient = recipeIngredients.some(recipeIngredient => recipeIngredient.includes(query.toLowerCase())) && !type ? query : null;
+    const name = recipeNames.some(recipeName => recipeName.includes(query.toLowerCase())) && !type && !ingredient ? query : null;
+
     if (!query) {
       setError('✏️');
       return;

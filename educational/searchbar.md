@@ -4,6 +4,6 @@ The handleSubmit function is called when the user submits the form, and it first
 
 If the search input is empty, the setError function is called with an error message, and the function returns to prevent further execution. If the input doesn't match any types, ingredients, or names, the setError function is called with a different error message, and the function returns again. If the input is valid, the setError function is called with an empty string to clear any error messages, and the router.push function is used to navigate to the search results page and reset the page URL based on the query parameters that passed the checks.
 
-The component also has an handleInputFocus function that is called when the user focuses on the input field, which clears the error message to allow the user to resubmit the form.
+The component also has an handleInputFocus function that is called when the user focuses on the input field, which clears the error message to allow the user to resubmit the search form.
 
 The Searchbar is leveraging the power of React hooks and Next.js to handle routing and search functionality, with the added benefit of using context feature to share the recipe data with other components throughout the app, without having to pass it down through props, which can help avoid prop drilling and improve scalability.

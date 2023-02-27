@@ -8,12 +8,13 @@ import { HappyEgg } from '@components/Animations';
 
 export async function getStaticPaths() {
   try {
-    const types = [...new Set(recipes.map(recipe => recipe.type))];
+    // Get an array of all unique recipe types
+    const types = [...new Set(recipes.flatMap(recipe => recipe.types))];
     const paths = types.map(type => ({
       params: {
-        type,
+        type: type,
       },
-    }));
+    }));    
     return { paths, fallback: false };
   } catch (error) {
     console.error(error);
@@ -23,14 +24,20 @@ export async function getStaticPaths() {
 
 export async function getStaticProps({ params }) {
   try {
-    const allRecipes = recipes.filter(recipe => recipe.type === params.type);
-    return { props: { allRecipes, params } };
+    // Get all recipes that have the type(s) specified in the URL parameter
+    const allRecipes = recipes.filter(recipe => recipe.types.includes(params.type));
+    
+    // Extract the first type from each recipe's types array that matches the type specified 
+    // in the URL parameter and has the highest index in the 'types' array
+    const mainTypes = allRecipes.map(recipe => recipe.types.find(type => type === params.type));
+
+    return { props: { allRecipes, mainTypes, params } };
   } catch (error) {
     console.error(error);
   }
 };
 
-export default function RecipesByType({ allRecipes, params  }) {
+export default function RecipesByType({ allRecipes, mainTypes, params }) {
   const highlightColor = "#60a5fa";
   const defaultColor = 'bg-green-300';
 
@@ -55,7 +62,10 @@ export default function RecipesByType({ allRecipes, params  }) {
               <RoughNotationGroup show={true}>
                 <Highlighter color={highlightColor}>
                   <h1 className={`results-title text-[1.7rem] md:text-[4rem] font-bold text-gray-800 dark:text-gray-100 p-2`}>
-                    It's a <span className="type-span inline-block text-yellow-300"> { params.type } </span> kind of night <span className="ml-3">🎉</span>
+                    It's a <span className="type-span inline-block text-yellow-300">{ mainTypes[0] }</span> kind of night 
+                    <span className="ml-3">
+                      🎉
+                    </span>
                   </h1>
                 </Highlighter>
               </RoughNotationGroup>
@@ -72,20 +82,24 @@ export default function RecipesByType({ allRecipes, params  }) {
                 key={recipe.id}
               >
                 <div className="min-h-0 bg-neutral-100 dark:bg-gradient-to-b from-neutral-800 to-neutral-900 shadow-md rounded-lg overflow-hidden transform hover:scale-101">  
-                  <div className={`w-full py-4 rounded-t-lg ${recipeColors[params.type] || defaultColor}`}>
+                  <div className={`w-full py-4 rounded-t-lg ${recipeColors[recipe.types[0]] || defaultColor}`}>
                     <div className="flex items-center justify-center h-full w-full">
-                      <div className="title-container flex items-center justify-center shrink-0">
-                        <img src={recipe.denotion} alt="" className="h-auto w-9" />
-                        <h2 className="recipe-name max-w-2/3 text-[1.75rem] text-center text-gray-900 py-4 mx-1">
+                      <div className="title-container flex flex-col">
+                        <h2 className="recipe-name mx-auto text-[1.7rem] md:text-3xl leading-8 md:leading-10 text-center text-gray-900 py-4 px-4">
                           {recipe.name}
                         </h2>
-                      </div> 
+                        <div className="images-container flex justify-center">
+                          {recipe.denotations.map((denotation, index) => (
+                            <img key={index} src={denotation} alt="" className="h-auto w-8 m-1" />
+                          ))}
+                        </div>
+                      </div>
                     </div>
                   </div>
 
                   <div className="p-8">
                     <p className="text-center text-gray-700 dark:text-gray-300 font-medium text-sm uppercase tracking-wider py-1 -mt-4">
-                      Type: {recipe.type}
+                      Type: {recipe.types.join(', ')}
                     </p>
                     <p className="text-center text-gray-700 dark:text-gray-300 font-medium text-sm uppercase tracking-wider py-1">
                       Vegetarian: {recipe.vegetarian ? 'Yes' : 'No'}
@@ -94,7 +108,7 @@ export default function RecipesByType({ allRecipes, params  }) {
                       Vegan: {recipe.vegan ? 'Yes' : 'No'}
                     </p>
 
-                    <h3 className="text-xl font-bold text-gray-800 dark:text-gray-100 mt-4 mb-3">
+                    <h3 className="text-xl font-bold text-gray-800 dark:text-gray-100 mt-4 mb-4">
                       Ingredients:
                     </h3>
                     

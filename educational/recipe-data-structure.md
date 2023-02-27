@@ -1,11 +1,15 @@
 ### Recipe Types
 
+#### An Array of recipe types.
+
 - Beef
 - Chicken
 - Pasta
 - Pork
 - Salad
 - Seafood
+- Soup
+- TexMex
 - Vegetarian
 
 -------
@@ -70,43 +74,46 @@
 ]
 ```
 
-### Denotion
-#### An image that denotes the type of recipe.
-#### Loop through the recipes array and isolate each `type` property. Switch cases assign a `denotion` property to denote the recipe's type.
+### Denotations
+#### An array of images that denotes the types of each recipe.
+#### Loop through the recipes array and isolate each `type` property. Switch cases assign a `denotation` property to denote the recipe's type.
 
 ```
 recipes.forEach(recipe => {
-  switch(recipe.type) {
-    case 'beef':
-      recipe.denotion = `beef.png`;
-      break;
-    case 'chicken':
-      recipe.denotion = `chicken.png`;
-      break;
-    case 'pasta':
-      recipe.denotion = `pasta.png`;
-      break;
-    case 'pork':
-      recipe.denotion = `pork.png`;
-      break;
-    case 'seafood':
-      recipe.denotion = `seafood.png`;
-      break;
-    case 'salad':
-      recipe.denotion = `salad.png`;
-      break;
-    case 'soup':
-      recipe.denotion = `soup.png`;
-      break;
-    case 'vegan':
-      recipe.denotion = `vegan.png`;
-      break;
-    case 'vegetarian':
-      recipe.denotion = `vegetarian.png`;
-      break;
-    default:
-      recipe.denotion = `chef.png`;
-      break;
-  }
+  recipe.denotations = [];
+  recipe.types.forEach(type => {
+    switch(type) {
+      case 'beef':
+        recipe.denotations.push("/beef.png");
+        break;
+      case 'chicken':
+        recipe.denotations.push("/chicken.png");
+        break;
+      case 'pasta':
+        recipe.denotations.push("/pasta.png");
+        break;
+      case 'pork':
+        recipe.denotations.push("/pork.png");
+        break;
+      case 'seafood':
+        recipe.denotations.push("/seafood.png");
+        break;
+      case 'salad':
+        recipe.denotations.push("/salad.png");
+        break;
+      case 'soup':
+        recipe.denotations.push("/soup.png");
+        break;
+      case 'texMex':
+        recipe.denotations.push("/texmex.png");
+        break;  
+      case 'vegetarian':
+        recipe.denotations.push("/vegetarian.png");
+        break;
+      default:
+        recipe.denotations.push("/chef.png");
+        break;
+    }
+  })
 });
 ```

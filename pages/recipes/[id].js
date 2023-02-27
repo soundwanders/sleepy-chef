@@ -74,7 +74,7 @@ export default function Recipe({ recipe, errorMessage }) {
   };
 
   const recipeData = Array.isArray(recipe) ? recipe[0] : recipe;
-  const { name, image, type, vegetarian, vegan, ingredients, nutrition, directions } = recipeData;
+  const { name, images, types, vegetarian, vegan, ingredients, nutrition, directions } = recipeData;
 
   return (
     <ContainerBlock title={name} description={appData.description}>
@@ -86,21 +86,35 @@ export default function Recipe({ recipe, errorMessage }) {
         {recipeData ? (
           <div className="flex flex-col md:flex-row">
             <div className="md:w-1/2 md:pr-8">
-              <img src={image} alt="" className="rounded-lg h-auto w-full md:h-96 object-cover" />
+              <img src={images[0]} alt="" className="rounded-lg h-auto w-full md:h-80 object-cover" />
             </div>
+
             <div className="md:w-1/2">
               <div className="flex items-center mb-4">
-                <span className="text-gray-600 dark:text-gray-300 font-medium text-lg uppercase tracking-wider mr-2">Type:</span>
-                <span className="text-gray-800 dark:text-gray-200 font-bold text-lg">{type}</span>
+                <span className="text-gray-600 dark:text-gray-300 font-medium text-lg uppercase tracking-wider mr-2">
+                  Type:
+                </span>
+                {types.map((type, index) => (
+                  <span key={index} className="text-gray-800 dark:text-gray-200 font-bold text-lg">
+                    <img src={images[type]} alt="" className="h-auto w-7 m-1" />
+                  </span>
+                ))}
               </div>
+
               <div className="flex items-center mb-4">
-                <span className="text-gray-600 dark:text-gray-300 font-medium text-lg uppercase tracking-wider mr-2">Vegetarian:</span>
-                <span className="text-gray-800 dark:text-gray-200 font-bold text-lg">{vegetarian ? 'Yes' : 'No'}</span>
+                <span className="text-gray-600 dark:text-gray-300 font-medium text-lg uppercase tracking-wider mr-2">
+                  Vegetarian:
+                </span>
+                <span className="text-gray-800 dark:text-gray-200 font-bold text-lg">
+                  {vegetarian ? 'Yes' : 'No'}
+                </span>
               </div>
+
               <div className="flex items-center mb-4">
                 <span className="text-gray-600 dark:text-gray-300 font-medium text-lg uppercase tracking-wider mr-2">Vegan:</span>
                 <span className="text-gray-800 dark:text-gray-200 font-bold text-lg">{vegan ? 'Yes' : 'No'}</span>
               </div>
+
               <div className="mb-4">
                 <h2 className="text-2xl font-bold text-gray-800 dark:text-gray-200">Ingredients:</h2>
                 <ul className="list-disc list-inside mt-2">
@@ -109,6 +123,7 @@ export default function Recipe({ recipe, errorMessage }) {
                   ))}
                 </ul>
               </div>
+
               <div className="mb-4">
                 <h2 className="text-2xl font-bold text-gray-800 dark:text-gray-200">Nutrition:</h2>
                 <ul className="mt-2">
@@ -121,6 +136,7 @@ export default function Recipe({ recipe, errorMessage }) {
                 </ul>
               </div>
             </div>
+
             <div className="w-full">
               <h2 className="text-2xl font-bold text-gray-800 dark:text-gray-200 mb-4">Directions:</h2>
               <ol className="list-decimal list-inside">

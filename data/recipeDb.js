@@ -4,8 +4,8 @@ export const recipes = [
   { 
     "id": 0,
     "name": "One Pot Creamy Pasta",
-    "image": "/pasta.png",
-    "type": "pasta",
+    "images": ["/pasta.png"],
+    "types": ["pasta"],
     "vegetarian": true,
     "vegan": false,
     "time": "25 minutes",
@@ -39,14 +39,14 @@ export const recipes = [
       "Drain tomatoes and slice them into thin strips. Cut cream cheese into cubes.",
       "Add vegetables, cream cheese, black pepper and salt to pasta. Stir until cream cheese is melted, then reduce heat to medium and cover.",
       "Cook an additional 2-3 minutes, until vegetables are tender.",
-      "Top with grated parmesan and let the games begin!"
+      "Top with grated parmesan and you're done!"
     ]
    },
   { 
     "id": 1,
     "name": "Buffalo Chicken Enchiladas",
-    "image": "/chicken.png",
-    "type": "chicken",
+    "images": ["/chicken.png", "/texmex.png"],
+    "types": ["chicken", "texMex"],
     "vegetarian": false,
     "vegan": false,
     "time": "30 minutes",
@@ -84,8 +84,8 @@ export const recipes = [
   { 
     "id": 2,
     "name": "Chili Mac and Cheese",
-    "image": "/pasta.png",
-    "type": "pasta",
+    "images": ["/pasta.png", "/beef.png"],
+    "types": ["pasta", "beef"],
     "vegetarian": false,
     "vegan": false,
     "time": "",
@@ -126,8 +126,8 @@ export const recipes = [
   { 
     "id": 3,
     "name": "Bean and Cheese Burritos",
-    "image": "/texmex.png",
-    "type": "vegetarian",
+    "images": ["/vegetarian.png", "/texmex.png"],
+    "types": ["vegetarian, texMex"],
     "vegetarian": true,
     "vegan": false,
     "time": "25 minutes",
@@ -157,9 +157,9 @@ export const recipes = [
   },
   { 
     "id": 4,
-    "name": "Poor Boy's Thai Pasta",
-    "image": "/pasta.png",
-    "type": "pasta",
+    "name": "Sunset Thai Pasta",
+    "images": ["/pasta.png"],
+    "types": ["pasta"],
     "vegetarian": true,
     "vegan": false,
     "time": "30 minutes",
@@ -202,8 +202,8 @@ export const recipes = [
   { 
     "id": 5,
     "name": "Spicy Shepherd's Pie",
-    "image": "/beef.png",
-    "type": "beef",
+    "images": ["/beef.png"],
+    "types": ["beef"],
     "vegetarian": false,
     "vegan": false,
     "time": "30 minutes",
@@ -239,8 +239,8 @@ export const recipes = [
   { 
     "id": 6,
     "name": "Pork Fried Rice", 
-    "image": "/pork.png",
-    "type": "pork",
+    "images": ["/pork.png"],
+    "types": ["pork"],
     "vegetarian": false,
     "vegan": false,
     "time": "30 minutes",
@@ -269,7 +269,7 @@ export const recipes = [
       "Bring water and rice to a boil in a large pot. Reduce heat to medium-low, cover, and simmer until rice is tender and water has been absorbed, 20-25 minutes.",
       "Meanwhile, combine soy sauce, chili garlic sauce, and hoisin in a bowl.",
       "Heat a wok or large skillet over high heat. Pour 1 tbsp peanut oil into wok; swirling pan to coat. Add pork in a single layer; cook without stirring for 2 minutes.",
-      "Stir-fry until pork is no longer pink in the center and juices run clear, about 4 minutes. Transfer pork to soy sauce mixture; toss to coat.",
+      "Stir-fry until pork is no longer pink in the center and juices run clear, 4-5 minutes. Transfer pork to soy sauce mixture; toss to coat.",
       "Pour egg into the pan; cook, without stirring, until set, about 45 seconds. Cut egg into bite-sized pieces.",
       "Add remaining 1 tbsp oil to pan; swirl to coat. Add bell pepper, edamame, and 1/2 cup green onions; stir-fry 1 minute.",
       "Add cooked rice; stir-fry 2 minutes, then add pork and soy sauce mixture. Cook, stirring constantly, until heated through, about 1 minute.",
@@ -279,8 +279,8 @@ export const recipes = [
   { 
     "id": 7,
     "name": "Broccoli Cheddar Soup", 
-    "image": "/soup.png",
-    "type": "soup",
+    "images": ["/soup.png"],
+    "types": ["soup"],
     "vegetarian": false,
     "vegan": false,
     "time": "30 minutes",
@@ -314,20 +314,20 @@ export const recipes = [
   { 
     "id": 8,
     "name": "Pasta Fagioli Soup", 
-    "image": "/soup.png",
-    "type": "soup",
+    "images": ["/soup.png", "/pasta.png"],
+    "types": ["soup", "pasta"],
     "vegetarian": false,
     "vegan": false,
     "time": "30 minutes",
     "ingredients": [
-      "1 lb lb Italian sausage links, casings removed, crumbled",
+      "1 lb ground Italian sausage",
       "1 small onion, chopped",
       "2 tsp canola oil",
       "1 garlic clove, minced",
       "3 1/2 cups water",
       "2 cups uncooked elbow macaroni",
       "2 cans (14 1/2 oz) reduced-sodium chicken broth",
-      "2 cans (15 1/2 oz) your choice of beans, rinsed and drained",
+      "2 cans (15 1/2 oz) cannelini beans, drained and rinsed",
       "1 can (14 1/2 oz) diced tomatoes, undrained",
       "1 tsp salt",
       "1/4 tsp pepper",
@@ -355,8 +355,8 @@ export const recipes = [
   { 
     "id": 9,
     "name": "Southwestern Chicken Salad", 
-    "image": "/salad.png",
-    "type": "salad",
+    "images": ["/salad.png", "/chicken.png"],
+    "types": ["salad", "chicken"],
     "vegetarian": false,
     "vegan": false,
     "time": "",
@@ -397,8 +397,8 @@ export const recipes = [
   { 
     "id": 10,
     "name": "Creamy Chicken Skillet", 
-    "image": "/chicken.png",
-    "type": "chicken",
+    "images": ["/chicken.png"],
+    "types": ["chicken"],
     "vegetarian": false,
     "vegan": false,
     "time": "20 minutes",
@@ -436,8 +436,8 @@ export const recipes = [
   { 
     "id": 11,
     "name": "Coconut Chickpea Curry", 
-    "image": "/vegetarian.png",
-    "type": "vegetarian",
+    "images": ["/vegetarian.png", "/vegan.png"],
+    "types": ["vegetarian"],
     "vegetarian": true,
     "vegan": true,
     "time": "20 minutes",
@@ -462,7 +462,7 @@ export const recipes = [
     },
     "directions": [
       "Heat oil in a large skillet over medium-high heat. Add onion, pepper and zucchini; cook, stirring often, until veggies begin to brown, 5 to 6 minutes.",
-      "Preparing the brown rice should only take 10 to 15 minutes altogether, so plan accordingly and make sure it is not cold when your veggies are done.",
+      "Preparing the brown rice should take 10 to 15 minutes, so plan accordingly and make sure it is not cold when your veggies are done.",
       "Add your chickpeas, simmer sauce and broth and then bring to a simmer, stirring to combine ingredients thoroughly.",
       "Reduce heat to medium-low and simmer until the veggies are tender, which should only take about 4 to 5 minutes.",
       "Stir in spinach just before serving to prevent heavy wilting. Serve  over rice, and let the feast begin."
@@ -471,8 +471,8 @@ export const recipes = [
   { 
     "id": 12,
     "name": "Tomato Salmon Skillet", 
-    "image": "/seafood.png",
-    "type": "seafood",
+    "images": ["/seafood.png"],
+    "types": ["seafood"],
     "vegetarian": false,
     "vegan": false,
     "time": "20 minutes",
@@ -484,7 +484,7 @@ export const recipes = [
       "1 zucchini, halved and thinly sliced",
       "½ cup chopped onion",
       "⅓ cup dry white wine",
-      "1 (15 oz) can no-salt-added diced tomatoes",
+      "1 (15 oz) can diced tomatoes",
       "2 oz cream cheese, cut into cubes",
       "1 tsp Italian seasoning",
       "½ tsp garlic powder",
@@ -512,8 +512,8 @@ export const recipes = [
   { 
     "id": 13,
     "name": "Super Shrimp Scampi", 
-    "image": "/seafood.png",
-    "type": "seafood",
+    "images": ["/seafood.png"],
+    "types": ["seafood"],
     "vegetarian": false,
     "vegan": false,
     "time": "20 minutes",
@@ -547,13 +547,13 @@ export const recipes = [
   { 
     "id": 14,
     "name": "Skillet Ravioli Lasagna", 
-    "image": "/pasta.png",
-    "type": "pasta",
+    "images": ["/pasta.png", "/beef.png"],
+    "types": ["pasta"],
     "vegetarian": false,
     "vegan": false,
     "time": "20 minutes",
     "ingredients": [
-      "1 (24 oz) package frozen cheese ravioli",
+      "1 (24 oz) package frozen ravioli",
       "1 lb lean ground beef",
       "1½ tsp dried oregano",
       "½ tsp garlic powder",
@@ -583,8 +583,8 @@ export const recipes = [
   { 
     "id": 15,
     "name": "Korean Beef and Rice", 
-    "image": "/beef.png",
-    "type": "beef",
+    "images": ["/beef.png"],
+    "types": ["beef"],
     "vegetarian": false,
     "vegan": false,
     "time": "20 minutes",
@@ -616,38 +616,44 @@ export const recipes = [
       "Serve with rice. Sprinkle with green onions and get ready for some flavor.",
     ]
   },
-]
+];
 
 recipes.forEach(recipe => {
-  switch(recipe.type) {
-    case 'beef':
-      recipe.denotion = "/beef.png";
-      break;
-    case 'chicken':
-      recipe.denotion = "/chicken.png";
-      break;
-    case 'pasta':
-      recipe.denotion = "/pasta.png";
-      break;
-    case 'pork':
-      recipe.denotion = "/pork.png";
-      break;
-    case 'seafood':
-      recipe.denotion = "/seafood.png";
-      break;
-    case 'salad':
-      recipe.denotion = "/salad.png";
-      break;
-    case 'soup':
-      recipe.denotion = "/soup.png";
-      break;    
-    case 'vegetarian':
-      recipe.denotion = "/vegetarian.png";
-      break;
-    default:
-      recipe.denotion = "/chef.png";
-      break;
-  }
+  recipe.denotations = [];
+  recipe.types.forEach(type => {
+    switch(type) {
+      case 'beef':
+        recipe.denotations.push("/beef.png");
+        break;
+      case 'chicken':
+        recipe.denotations.push("/chicken.png");
+        break;
+      case 'pasta':
+        recipe.denotations.push("/pasta.png");
+        break;
+      case 'pork':
+        recipe.denotations.push("/pork.png");
+        break;
+      case 'seafood':
+        recipe.denotations.push("/seafood.png");
+        break;
+      case 'salad':
+        recipe.denotations.push("/salad.png");
+        break;
+      case 'soup':
+        recipe.denotations.push("/soup.png");
+        break;
+      case 'texMex':
+        recipe.denotations.push("/texmex.png");
+        break;  
+      case 'vegetarian':
+        recipe.denotations.push("/vegetarian.png");
+        break;
+      default:
+        recipe.denotations.push("/chef.png");
+        break;
+    }
+  })
 });
 
 // create a context for the recipes data
