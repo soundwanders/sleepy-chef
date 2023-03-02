@@ -25,6 +25,7 @@ yarn.lock
 # misc
 .DS_Store
 *.pem
+/educational/feature-multipleTypes.md
 
 # debug
 npm-debug.log*

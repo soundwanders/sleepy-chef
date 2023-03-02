@@ -50,7 +50,7 @@ export const Searchbar = () => {
         pathname: '/results',
         query: { type, ingredient, name },
       });
-    }, 800);
+    }, 850);
   };
 
   // clear error to allow search form resubmission
@@ -59,7 +59,7 @@ export const Searchbar = () => {
   };
 
   return (
-    <div className="w-full pt-20 -mt-6 md:-mt-4 pb-60 md:pb-40">
+    <div className="w-full pt-20 -mt-6 md:-mt-4 pb-56 md:pb-40">
       <AnimatePresence>
         {isEggCracked ? (
           <motion.div

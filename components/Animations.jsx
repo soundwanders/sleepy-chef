@@ -25,7 +25,7 @@ export const EggYolk = () => {
         style={{ y }}
         animate={{ y: 0 }}
         transition={{
-          duration: 0.7,
+          duration: 0.8,
           ease: [0.6, -0.05, 0.01, 0.99],
           keyframes: [0, -200, 0, -90, 0],
         }}
