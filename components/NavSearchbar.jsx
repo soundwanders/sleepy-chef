@@ -54,9 +54,9 @@ export default function NavSearchbar() {
       <div className="input-group relative flex flex-nowrap justify-end items-stretch w-full rounded">
         <form className="flex" onSubmit={handleSubmit}>
         <input
-          className={`form-control relative flex-auto min-w-0 w-full px-2 md:px-3 py-1 text-sm font-normal text-gray-700 
-            bg-white bg-clip-padding border border-gray-300 border-solid rounded-lg transition ease-in-out m-0 
-            focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
+          className={`form-control relative flex-auto min-w-0 w-full text-sm font-normal text-gray-700 
+            bg-white bg-clip-padding border border-gray-300 border-solid rounded-lg transition ease-in-out  
+            focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none px-2 md:px-3 py-1 m-0
             ${error ? 'error-border' : ''}`}
           type="text"
           aria-label="Search"
@@ -68,8 +68,9 @@ export default function NavSearchbar() {
         />
           <button 
             type="submit" 
-            className="search-submit relative px-2.5 py-1 ml-4 border-2 border-blue-400 text-blue-400 md:font-medium text-xs leading-tight uppercase 
-              rounded-full hover:bg-black hover:bg-opacity-5 focus:outline-none focus:ring-0 transition duration-150 ease-in-out"
+            className="search-submit relative border-2 border-blue-400 text-blue-400 md:font-medium 
+            text-xs leading-tight uppercase rounded-full hover:bg-black hover:bg-opacity-5 
+            focus:outline-none focus:ring-0 transition duration-150 ease-in-out px-2.5 py-1 ml-4"
             aria-label="Submit search"
             aria-controls="submit-search"
             aria-describedby="nav-search-submit"

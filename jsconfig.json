@@ -10,6 +10,7 @@
       "@hooks/*": ["hooks/*"],
       "@styles/*": ["styles/*"],
       "@utils/*": ["utils/*"],
-    }
+    },
+    "jsx": "react",
   }
 }
