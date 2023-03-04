@@ -391,7 +391,7 @@ export const recipes = [
       "Add 1 tsp oil of choice to skillet. Place the chicken on a skillet and cook for 4-5 minutes on each side. Allow chicken to rest in pan for 3 minutes before cutting, then set aside.",
       "To make the creamy cilantro dressing: Place the sour cream (or greek yogurt), cilantro, remaining 1/2 of the lime juice, and salt in a blender or food processor. Pulse for a few seconds until the cilantro is fully chopped.",
       "Place chopped lettuce on the serving plate, then top with avocado, chopped tomatoes, black beans, corn, cilantro, and sliced chicken.",
-      "Top with your creamy cilantro dressing just before serving. Bravo!"
+      "Top with creamy cilantro dressing, and that's it!"
     ]
   },
   { 

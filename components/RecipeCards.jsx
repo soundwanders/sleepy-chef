@@ -1,6 +1,5 @@
 import Link from 'next/link';
 import { HappyEgg } from '@components/Animations';
-import appData from '@constants/appData';
 
 export default function RecipeCards({ data, error }) {
   const defaultColor = "bg-green-300";
@@ -16,16 +15,6 @@ export default function RecipeCards({ data, error }) {
     vegetarian: "bg-emerald-100"
   };
 
-  if (data === undefined || !data) {
-    return (
-      <section className="bg-white dark:bg-gray-800 pb-10 md:py-8">
-        <div className="max-w-6xl mx-auto h-36 md:h-40 bg-white dark:bg-gray-800 px-8 md:px-4 py-4">
-          <HappyEgg />
-        </div>
-      </section>
-    )
-  };
-
   if (error) {
     return (
       <section className="bg-white dark:bg-gray-800 pb-10 md:py-8">
@@ -38,16 +27,17 @@ export default function RecipeCards({ data, error }) {
   
   return (
     <div className="grid grid-cols-1 md:grid-cols-3 grid-flow-dense justify-self-center gap-12 
-      mb-10 -mt-4 md:-mt-0  px-8 md:px-0 py-0 md:py-2 md:pl-4"
+      mb-10 -mt-4 md:-mt-0 px-8 md:px-0 py-0 md:py-2 md:pl-4"
     >
-      {data.map(recipe => (
+      { data ? (
+        data.map(recipe => (
         <Link 
           className="h-min"
           href="/recipes/[id]" 
           as={`/recipes/${encodeURIComponent(recipe.id)}`}
           key={recipe.id}
         >
-          <div className="border-white min-h-0 bg-zinc-100 dark:bg-gradient-to-b from-zinc-800 to-zinc-900 shadow-md
+          <div className="min-h-0 bg-zinc-100 dark:bg-gradient-to-b from-zinc-800 to-zinc-900 shadow-md
             rounded-lg overflow-hidden transform hover:scale-101"
 
           >  <div className={`w-full rounded-t-lg py-4 ${recipeColors[recipe.types[0]] || defaultColor}`}>
@@ -67,7 +57,7 @@ export default function RecipeCards({ data, error }) {
             </div>
             
             <div className="px-9 py-8">
-              <div className="grid grid-cols-2 gap-4 pb-4 border-b border-slate-500 -mt-5 
+              <div className="grid grid-cols-2 gap-4 pb-4 border-b border-slate-500 -mt-4 
                 text-center text-gray-700 dark:text-gray-300 font-medium text-sm uppercase tracking-wider"
               >
                 <p className="py-1">
@@ -122,7 +112,14 @@ export default function RecipeCards({ data, error }) {
             </div>
           </div>
         </Link>
-      ))}
+      ))
+      ) : (
+        <section className="bg-white dark:bg-gray-800 pb-10 md:py-8">
+          <div className="max-w-6xl mx-auto h-36 md:h-40 px-8 md:px-4 py-4 bg-white dark:bg-gray-800">
+            <HappyEgg />
+          </div>
+        </section>
+      )}
     </div>
   )
 };
