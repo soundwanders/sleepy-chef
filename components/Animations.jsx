@@ -63,6 +63,7 @@ export const HappyEgg = () => {
 
   return (
     <motion.div
+      className="w-14 h-14 mx-auto"
       style={{ y }}
       animate={{ y: 200 }}
       transition={{
@@ -78,7 +79,7 @@ export const HappyEgg = () => {
         src="/happy-egg.png"
         alt=""
         style={{ opacity: eggOpacity }}
-        className="w-12 h-12"
+        className="w-14 h-14"
       />
     </motion.div>
   );

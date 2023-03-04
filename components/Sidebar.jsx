@@ -49,7 +49,8 @@ export const Sidebar = () => {
       <nav
         id="sidebar"
         className={`
-          sidebar bg-slate-200 dark:bg-gradient-to-b from-gray-800 to-gray-900 w-100 h-100 md:w-1/6 md:h-screen fixed top-0 right-0 p-4 pb-60 md:pb-40 text-center
+          sidebar bg-slate-200 dark:bg-gradient-to-b from-gray-800 to-gray-900 h-100 w-100 md:w-1/6 md:h-screen 
+          fixed top-0 right-0 p-4 pb-60 md:pb-40 text-center
           ${isOpen ? "open" : "close"}
         `}
         role="navigation"
