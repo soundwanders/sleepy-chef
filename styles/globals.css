@@ -102,6 +102,7 @@ button:focus {
   }
 }
 
+/* 
 .jello {
   animation: jello-jiggle 2.2s ease-in;
 }
@@ -146,4 +147,4 @@ button:focus {
   100% {
     transform: scale3d(1, 1, 1);
   }
-}
+} */

@@ -34,6 +34,13 @@ export default function handler(req, res) {
   // destructure query object from the router
   const { query } = req;
 
+  // check if any query parameters have been passed
+  // prevents infinite loading screen loop on partial match queries
+  if (!query.id && !query.type && !query.name && !query.ingredient) {
+    res.status(400).json({ error: 'Please provide a valid recipe name, type, or ingredient.' });
+    return;
+  }
+
   // destructure the type, ingredient, name and id query parameters
   const { type, ingredient, name, id } = query;
 

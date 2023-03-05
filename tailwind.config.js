@@ -6,11 +6,18 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        violet: {
-          250: '#ded7fd'
-        },
         amber: {
           250: '#fdf0b8'
+        },
+        orange: {
+          250: '#fdc78f'
+        },
+        violet: {
+          250: '#d5cbfd' 
+        },
+        zinc: {
+          850: "#232325",
+          950: "#131315",
         },
       },
       maxWidth: {

@@ -8,7 +8,7 @@ export default function Footer() {
         <div className="h-0.5 w-full bg-white dark:bg-gray-700"></div>
           <div className="flex flex-col space-y-4 md:space-y-0 md:flex-row justify-between md:items-center mt-12">
             <div className="text-red-400 hover:bg-red-100 rounded-md px-2 py-1 hover:text-red-600">
-              <div className="inline-block text-sm hover:scale-110 hover:-rotate-2 transition duration-300">
+              <div className="inline-block hover:scale-110 hover:-rotate-2 transition duration-300">
                 <a
                   target="_blank"
                   href="https://github.com/soundwanders/sleepy-chef"
@@ -17,7 +17,7 @@ export default function Footer() {
                 </a>
               </div>
             </div>
-            <div className="text-sm text-blue-500 hover:bg-blue-100 rounded-md px-2 py-1 hover:text-blue-700">
+            <div className="text-blue-500 hover:bg-blue-100 rounded-md px-2 py-1 hover:text-blue-700">
               <div className="inline-block hover:scale-110 hover:-rotate-2 transition duration-300">
                 <a
                   target="_blank"

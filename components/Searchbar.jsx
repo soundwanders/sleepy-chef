@@ -7,9 +7,8 @@ import { EggYolk } from './Animations';
 // The Searchbar component allows a user to search the sleepy chef API for recipes by type, ingredient, or name.
 // Uses the `useRouter` hook to navigate to the results page with the appropriate query parameters in the URL.
 // The `handleSubmit` function checks whether the search input matches a recipe type, ingredient, or name,
-// then if the search input is valid, the `setError` function is called to clear any error message
-// Finally, the `router.push` function is used to navigate to the search results page
-// and reset the page URL based on which query parameters passed the checks
+// then if the search input is valid, `setError` is called with an empty string to clear the error message
+// Finally, `router.push` navigates to the results page and resets the URL based on which query params passed the checks
 
 export const Searchbar = () => {
   const router = useRouter();
@@ -34,6 +33,11 @@ export const Searchbar = () => {
 
     if (!query) {
       setError('✏️');
+      return;
+    }
+    
+    if (query.length < 2) {
+      setError('🤔');
       return;
     }
 

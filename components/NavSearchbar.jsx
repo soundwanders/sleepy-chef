@@ -30,6 +30,11 @@ export default function NavSearchbar() {
       setError('✏️');
       return;
     }
+        
+    if (query.length < 2) {
+      setError('🤔');
+      return;
+    }
   
     if (!type && !ingredient && !name) {
       setError('🤔');

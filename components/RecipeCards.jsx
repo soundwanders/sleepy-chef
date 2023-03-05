@@ -3,23 +3,37 @@ import { HappyEgg } from '@components/Animations';
 
 export default function RecipeCards({ data, error }) {
   const defaultColor = "bg-green-300";
+  const defaultCardColor = "bg-neutral-100";
+
   const recipeColors = {
     beef: "bg-orange-200",
     chicken: "bg-violet-250",
-    mexican: "bg-red-200",
     pasta: "bg-amber-250",
-    pork: "bg-rose-100",
-    salad: "bg-green-200",
-    seafood: "bg-blue-200",
-    soup: "bg-zinc-300",
-    vegetarian: "bg-emerald-100"
+    pork: "bg-rose-300",
+    salad: "bg-green-300",
+    seafood: "bg-blue-300",
+    soup: "bg-slate-200",
+    texMex: "bg-red-300",
+    vegetarian: "bg-emerald-200"
   };
+
+  const cardColors = {
+    beef: "bg-[#fff8f0]",
+    chicken: "bg-[#f7f5ff]",
+    pasta: "bg-[#fefce9]",
+    pork: "bg-[#fff3f4]",
+    salad: "bg-[#f3fdf6]",
+    seafood:"bg-[#f2f7ff]",
+    soup: "bg-[#fbfbfb]",
+    texMex: "bg-[#fef4f4]",
+    vegetarian: "bg-[#effdf7]"
+ };
 
   if (error) {
     return (
       <section className="bg-white dark:bg-gray-800 pb-10 md:py-8">
-        <div className="max-w-6xl mx-auto h-36 md:h-40 px-8 md:px-4 py-4 bg-white dark:bg-gray-800 font-lg">
-          <div>{error.message}</div>
+        <div className="max-w-6xl mx-auto h-36 md:h-40 px-8 md:px-4 py-4 bg-white dark:bg-gray-800 font-bold text-lg">
+          <div className="text-center">{error.message}</div>
         </div>
       </section>
     )
@@ -37,10 +51,10 @@ export default function RecipeCards({ data, error }) {
           as={`/recipes/${encodeURIComponent(recipe.id)}`}
           key={recipe.id}
         >
-          <div className="min-h-0 bg-zinc-100 dark:bg-gradient-to-b from-zinc-800 to-zinc-900 shadow-md
-            rounded-lg overflow-hidden transform hover:scale-101"
-
-          >  <div className={`w-full rounded-t-lg py-4 ${recipeColors[recipe.types[0]] || defaultColor}`}>
+          <div className={`min-h-0 dark:bg-gradient-to-b from-zinc-850 to-zinc-950 shadow-lg
+            rounded-lg overflow-hidden transform hover:scale-101 ${cardColors[recipe.types[0]] || defaultCardColor}`}
+          >  
+          <div className={`w-full rounded-t-lg py-4 ${recipeColors[recipe.types[0]] || defaultColor}`}>
               <div className="flex items-center justify-center h-full w-full">
                 <div className="title-container flex flex-col">
                   <h2 className="recipe-name mx-auto text-[1.7rem] md:text-3xl leading-8 md:leading-10 text-center text-gray-900 py-4 px-4"
@@ -58,7 +72,7 @@ export default function RecipeCards({ data, error }) {
             
             <div className="px-9 py-8">
               <div className="grid grid-cols-2 gap-4 pb-4 border-b border-slate-500 -mt-4 
-                text-center text-gray-700 dark:text-gray-300 font-medium text-sm uppercase tracking-wider"
+                text-center text-gray-800 dark:text-gray-300 font-medium text-sm uppercase tracking-wider"
               >
                 <p className="py-1">
                   Type: {recipe.types.join(", ")}
@@ -93,7 +107,7 @@ export default function RecipeCards({ data, error }) {
               */}
               <ul className="grid grid-cols-2 w-full gap-2 md:gap-3">
                 {Object.entries(recipe.nutrition).map(([name, value]) => (
-                  <li key={name} className="text-gray-800 dark:text-gray-300 font-medium text-xs uppercase tracking-wider col-span-1">
+                  <li key={name} className="text-gray-800 dark:text-gray-200 font-medium text-xs uppercase tracking-wider col-span-1">
                     {name}: {value}
                   </li>
                 ))}
@@ -102,7 +116,7 @@ export default function RecipeCards({ data, error }) {
               <h3 className="text-xl font-bold text-gray-800 dark:text-gray-200 mt-6 mb-3 pt-4 border-t border-slate-500">
                 Directions:
               </h3>
-              <div className="overflow-x-hidden overflow-y-auto h-48">
+              <div className="overflow-x-hidden overflow-y-auto h-48 pb-6">
                 <ul className="grid grid-cols-1 gap-2 md:gap-3">
                   {recipe.directions.map(direction => (
                     <li key={direction} className="text-gray-700 dark:text-gray-100 text-sm col-span-1">{direction}</li>
@@ -115,7 +129,7 @@ export default function RecipeCards({ data, error }) {
       ))
       ) : (
         <section className="bg-white dark:bg-gray-800 pb-10 md:py-8">
-          <div className="max-w-6xl mx-auto h-36 md:h-40 px-8 md:px-4 py-4 bg-white dark:bg-gray-800">
+          <div className="max-w-6xl w-screen h-36 px-8 md:px-4 py-4 bg-transparent flex justify-center items-center">
             <HappyEgg />
           </div>
         </section>

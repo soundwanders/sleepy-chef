@@ -17,14 +17,14 @@ export default function RecipesByType({ data, error, mainTypes, defaultColor, re
 
   return (
     <>
-      <div className="max-w-6xl mx-auto h-36 md:h-40 bg-white dark:bg-gray-800 px-8 py-4 mb-4 md:mb-0">
+      <div className="max-w-6xl mx-auto h-36 md:h-40 bg-white dark:bg-gray-800 px-4 py-4 mb-4 md:mb-0">
         <div className="w-full text-center">
           <div className="w-fit mt-2">
             <RoughNotationGroup show={true}>
               <Highlighter color={highlightColor}>
-                <h1 className={`results-title text-[1.7rem] md:text-[4rem] font-bold text-gray-800 dark:text-gray-100 p-2`}>
+                <h1 className={`results-title text-[1.7rem] md:text-[4rem] font-bold text-gray-900 dark:text-gray-100 p-2`}>
                   It's a <span className="type-span inline-block text-yellow-300">{ mainTypes[0] }</span> kind of night 
-                  <span className="ml-3">
+                  <span className="ml-4">
                     🎉
                   </span>
                 </h1>

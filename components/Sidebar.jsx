@@ -7,8 +7,8 @@ const TypeLink = ({ name, url, image, closeSidebar, isActive, onClick }) => (
   <Link href={url} as={url} legacyBehavior>
     <a
       className={`
-        block px-4 py-2 pb-4 hover:bg-[#eaeef4] dark:hover:bg-slate-800 theme-text-on-surface
-        ${isActive ? 'bg-blue-500 text-white' : 'text-gray-800 dark:text-slate-100'}
+        block px-4 py-2 pb-4 hover:bg-slate-100 hover:text-gray-800 dark:hover:bg-slate-700 theme-text-on-surface
+        ${isActive ? 'bg-blue-500 text-slate-50' : 'text-gray-800 dark:text-slate-50'}
       `}
       onClick={() => {
         onClick();
@@ -50,7 +50,7 @@ export const Sidebar = () => {
         id="sidebar"
         className={`
           sidebar bg-slate-200 dark:bg-gradient-to-b from-gray-800 to-gray-900 h-100 w-100 md:w-1/6 md:h-screen 
-          fixed top-0 right-0 p-4 pb-60 md:pb-40 text-center
+          fixed top-0 right-0 p-4 px-0 pb-60 md:pb-40 text-center
           ${isOpen ? "open" : "close"}
         `}
         role="navigation"

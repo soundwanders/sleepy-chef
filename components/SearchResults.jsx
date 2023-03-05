@@ -34,11 +34,11 @@ export const SearchResults = ({ recipeColors, defaultColor }) => {
     if(response.ok) {
       return await response.json();
     } else if (response.status === 404) {
-      throw new Error("Sorry, we're having trouble finding that page. It may not exist.");
+      throw new Error("Sorry, we're having trouble finding that page. Please return to Home.");
     } else if (response.status === 500) {
-      throw new Error("Server error, robot mutiny! Please try again later");
+      throw new Error("Server error, robot mutiny! Please try again later.");
     } else {
-      throw new Error("We're currently out of town. Please try again later.");
+      throw new Error("Oops! We can't seem to find that recipe. Please try again.");
     }
   }, { revalidateOnMount: true });
   
@@ -49,7 +49,7 @@ export const SearchResults = ({ recipeColors, defaultColor }) => {
           <div className="w-fit">
             <RoughNotationGroup show={true}>
               <Highlighter color={highlightColor} className="md:text-center">
-                <h1 className={`results-title text-center mx-auto text-[2.675rem] md:text-8xl font-bold text-gray-800 dark:text-gray-100 py-1 px-4 whitespace-nowrap`}>
+                <h1 className={`results-title text-center mx-auto text-[2.675rem] md:text-8xl font-bold text-gray-900 dark:text-gray-100 py-1 px-4 whitespace-nowrap`}>
                 {appData.resultsTitle}
                 </h1>
               </Highlighter>

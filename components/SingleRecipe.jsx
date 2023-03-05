@@ -20,14 +20,14 @@ export default function SingleRecipe({ name, images, types, time, vegetarian, ve
       </div>
         
       <div className="min-h-screen flex flex-col">
-        <div className="flex-grow-0 flex-shrink-0 p-2 pl-0 min-h-0">
+        <div className="flex-grow-0 flex-shrink-0 p-2 pl-0 min-h-0 z-10">
           <button onClick={() => router.back()} className="text-gray-700 dark:text-gray-200 hover:text-gray-800 font-bold transition-colors">
             &lt; Back to Recipes
           </button>
         </div>
       
         <div className="flex-grow flex-shrink-0 md:flex-grow-0 md:flex-shrink-0 flex flex-col md:flex-row md:-mt-32">
-          <div className="flex items-center justify-center flex-shrink-1 md:w-1/2 flex-end md:pr-8">
+          <div className="flex items-center justify-center flex-shrink-1 md:w-1/2 flex-end md:pr-10">
             <img src={images[0]} alt="" className="rounded-lg h-auto w-full object-cover p-10 md:p-0 md:-translate-y-2/4" />
           </div>
       

@@ -21,7 +21,7 @@ export const EggYolk = () => {
     <>
       <motion.div
         drag="y"
-        dragConstraints={{ top: -500, bottom: 0 }}
+        dragConstraints={{ top: -480, bottom: 0 }}
         style={{ y }}
         animate={{ y: 0 }}
         transition={{
@@ -63,7 +63,7 @@ export const HappyEgg = () => {
 
   return (
     <motion.div
-      className="w-14 h-14 mx-auto"
+      className="w-14 h-14"
       style={{ y }}
       animate={{ y: 200 }}
       transition={{
