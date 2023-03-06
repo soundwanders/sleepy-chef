@@ -4,17 +4,17 @@ import { useRouter } from 'next/router';
 export default function SingleRecipe({ name, images, types, time, vegetarian, vegan, ingredients, nutrition, directions }) {
   const router = useRouter();
   const [visible, setVisible] = useState(false);
-
+  
   useEffect(() => {
     setVisible(true);
   }, []);
 
   return (
-    <div className={`fade-in max-w-7xl bg-slate-200 dark:bg-zinc-800 rounded-2xl shadow-md mt-8 mb-24 mx-auto py-10 px-8 md:pb-0
+    <div className={`fade-in max-w-7xl bg-slate-100 dark:bg-zinc-900 rounded-2xl shadow-md mt-8 mb-24 mx-auto py-10 px-8 md:pb-4
       ${visible ? 'opacity-100' : 'opacity-0'}`}
     >
       <div className="flex justify-between items-center mb-4">
-        <h1 className="text-3xl md:max-w-[23%] break-normal uppercase border-b border-blue-300 dark:border-blue-800 font-bold text-slate-900 dark:text-slate-200 pb-2">
+        <h1 className="text-2xl md:max-w-[22%] break-normal tracking-wide uppercase border-b border-blue-300 dark:border-blue-800 font-bold text-slate-900 dark:text-slate-200 pb-2">
           {name}
         </h1>
       </div>
@@ -26,9 +26,9 @@ export default function SingleRecipe({ name, images, types, time, vegetarian, ve
           </button>
         </div>
       
-        <div className="flex-grow flex-shrink-0 md:flex-grow-0 md:flex-shrink-0 flex flex-col md:flex-row md:-mt-32">
+        <div className="flex-grow flex-shrink-0 md:flex-grow-0 md:flex-shrink-0 flex flex-col md:flex-row md:-mt-40">
           <div className="flex items-center justify-center flex-shrink-1 md:w-1/2 flex-end md:pr-10">
-            <img src={images[0]} alt="" className="rounded-lg h-auto w-full object-cover p-10 md:p-0 md:-translate-y-2/4" />
+            <img src={images[0]} alt="" className="rounded-lg h-auto w-full object-cover p-10 md:p-0 md:-translate-y-1/3" />
           </div>
       
           <div className="md:w-1/2 py-8 px-4 -mt-12 md:mt-0">

@@ -1,14 +1,14 @@
 import { useState, useEffect } from 'react';
-import { recipes } from '@data/recipeDb';
 import { HappyEgg } from '@components/Animations';
 import ContainerBlock from '@components/ContainerBlock';
 import SingleRecipe from '@components/SingleRecipe';
 import appData from '@constants/appData';
+import { recipes } from '@data/recipeDb';
 
-const API_ENDPOINT =
-  process.env.NODE_ENV === 'production' 
-  ? `${process.env.NEXT_PUBLIC_VERCEL_URL}/api/recipes/`
-  : `${process.env.LOCAL_URL}/api/recipes/`;
+// const API_ENDPOINT =
+//   process.env.NODE_ENV === 'production' 
+//   ? `${process.env.NEXT_PUBLIC_VERCEL_URL}/api/recipes/`
+//   : `${process.env.LOCAL_URL}/api/recipes/`;
 
 export async function getStaticPaths() {
   try {
@@ -25,13 +25,15 @@ export async function getStaticPaths() {
 };
 
 export async function getStaticProps({ params }) {
+  console.log(params.id);
   try {
-    const response = await fetch(`${API_ENDPOINT}?id=${params.id}`);
-    if (!response.ok) {
-      throw new Error(`Failed to fetch recipe. Status: ${response.status}`);
-    }
-    const recipe = await response.json();
-    return { props: { recipe } };
+    const recipeData = recipes.find((recipe) => recipe.id.toString() === params.id);
+    return {
+      props: {
+        recipeData: recipeData || null,
+      },
+      revalidate: 1800,
+    };
   } catch (error) {
     console.error(error);
     return { 
@@ -40,26 +42,31 @@ export async function getStaticProps({ params }) {
   }
 };
 
-export default function Recipe({ recipe, errorMessage }) {
+export default function Recipe({ recipeData, errorMessage }) {
   const [dataLoaded, setDataLoaded] = useState(false);
   const [error, setError] = useState(null);
-  const recipeData = Array.isArray(recipe) ? recipe[0] : recipe;
-  const { name, images, types, time, vegetarian, vegan, ingredients, nutrition, directions } = recipeData;
+  const recipeInfo = Array.isArray(recipeData) ? recipeData[0] : recipeData;
+  const { name, images, types, time, vegetarian, vegan, ingredients, nutrition, directions } = recipeInfo;
+
+  console.log('name', name);
+
+  console.log('recipeInfo.name',recipeInfo.name);
+
 
   useEffect(() => {
-    if (recipe) {
+    if (recipeData) {
       setDataLoaded(true);
     }
     if (errorMessage) {
       setError(errorMessage);
     }
-  }, [recipe, errorMessage]);
+  }, [recipeData, errorMessage]);
   
   if (error) {
     return (
       <section className="bg-white dark:bg-gray-800 pb-10 md:py-8">
         <div className="max-w-6xl mx-auto h-36 md:h-40 px-8 md:px-4 py-4 bg-white dark:bg-gray-800">
-          <p className="text-red-400 font-bold text-center">{error}: {errorMessage}</p>
+          <p className="text-red-400 font-bold text-center">{errorMessage}</p>
         </div>
       </section>
     )

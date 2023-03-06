@@ -12,6 +12,9 @@ module.exports = {
         orange: {
           250: '#fdc78f'
         },
+        slate: {
+          850: "#151d2a",
+        },
         violet: {
           250: '#d5cbfd' 
         },

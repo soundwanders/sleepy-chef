@@ -41,7 +41,7 @@ export default function RecipeCards({ data, error }) {
   
   return (
     <div className="grid grid-cols-1 md:grid-cols-3 grid-flow-dense justify-self-center gap-12 
-      mb-10 -mt-4 md:-mt-0 px-8 md:px-0 py-0 md:py-2 md:pl-4"
+      mb-10 px-8 md:px-0 py-0 md:py-2 md:pl-4"
     >
       { data ? (
         data.map(recipe => (
@@ -129,7 +129,7 @@ export default function RecipeCards({ data, error }) {
       ))
       ) : (
         <section className="bg-white dark:bg-gray-800 pb-10 md:py-8">
-          <div className="max-w-6xl w-screen h-36 px-8 md:px-4 py-4 bg-transparent flex justify-center items-center">
+          <div className="max-w-6xl w-screen h-36 px-0 md:px-4 py-4 bg-transparent flex justify-center items-center">
             <HappyEgg />
           </div>
         </section>

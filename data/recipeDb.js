@@ -12,7 +12,7 @@ export const recipes = [
     "ingredients": [
       "4 garlic cloves, peeled & sliced",
       "7 oz (1 jar) sun dried tomatoes, drained",
-      "5 1/4 cups (1.25L) vegetable broth",
+      "5¼ cups (1.25L) vegetable broth",
       "1 lb penne pasta",
       "2 cups broccoli",
       "2 carrots, peeled",
@@ -41,7 +41,7 @@ export const recipes = [
       "Cook an additional 2-3 minutes, until vegetables are tender.",
       "Top with grated parmesan and you're done!"
     ]
-   },
+  },
   { 
     "id": 1,
     "name": "Buffalo Chicken Enchiladas",
@@ -60,7 +60,7 @@ export const recipes = [
       "1/4 tsp ground cumin",
       "16 corn tortillas",
       "2 tbsp crumbled blue cheese",
-      "2 tbsp blue cheese dressing (can substitute with ranch)",
+      "2 tbsp blue cheese dressing (can substitute with ranch)"
     ],
     "nutrition": {
       "calories": "726",
@@ -79,7 +79,7 @@ export const recipes = [
       "Pour the hot sauce mixture over the tortillas, then sprinkle with the remaining 1 cup cheddar and the blue cheese.",
       "Bake 15-17 minutes, until the cheese is fully melted.",
       "Drizzle the blue cheese dressing over the enchiladas and sprinkle with the scallion greens. Enjoy!"
-    ],
+    ]
   },
   { 
     "id": 2,
@@ -99,10 +99,10 @@ export const recipes = [
       "14 oz (1 can) diced tomatoes",
       "3/4 cup canned white kidney beans, drained",
       "3/4 cup canned kidney beans, drained",
-      "1 1/2 tsp chili powder",
-      "1 1/2 tsp paprika powder",
+      "1½ tsp chili powder",
+      "1½ tsp paprika powder",
       "1 tsp onion powder",
-      "1 1/2 tsp cumin",
+      "1½ tsp cumin",
       "1 tsp salt",
       "1/2 tsp ground black pepper",
       "3/4 cup shredded cheddar cheese"
@@ -121,7 +121,7 @@ export const recipes = [
       "Stir in chicken broth, tomatoes, beans, chili powder, cumin, salt and pepper.",
       "Bring to a simmer and stir in pasta. Bring to a boil, then cover, reduce heat and simmer until pasta is cooked through, about 13 minutes.",
       "Remove from heat. Top with cheese and cover until melted, about 2 minutes, then serve."
-    ],
+    ]
   },
   { 
     "id": 3,
@@ -153,7 +153,7 @@ export const recipes = [
       "Place burritos in a greased or nonstick baking dish, leaving some room between each burrito.",
       "Sprinkle burritos with remaining 1 cup of cheese. Cover and bake for 20-22 minutes.",
       "Allow to cool for 2-3 minutes before cutting and removing from pan, then it's go time!"
-    ],
+    ]
   },
   { 
     "id": 4,
@@ -165,7 +165,7 @@ export const recipes = [
     "vegan": false,
     "ingredients": [
       "12 oz dry fettuccine",
-      "4 1/2 cups of vegetable broth",
+      "4½ cups of vegetable broth",
       "1 large carrot, julienned",
       "1 red bell pepper, julienned",
       "4 green onions, thinly sliced",
@@ -182,7 +182,7 @@ export const recipes = [
       "2 tsp fresh lemongrass, minced",
       "1/2 tsp fresh chili paste",
       "1/2 tsp turmeric",
-      "1/2 lime, juiced (or 1 tbsp lime juice)",
+      "1/2 lime, juiced (or 1 tbsp lime juice)"
     ],
     "nutrition": {
       "calories": "750",
@@ -197,7 +197,7 @@ export const recipes = [
       "Stir to combine thoroughly and reduce to a simmer. Continue cooking over medium-low heat for about 10-12 minutes, stirring occasionally.",
       "Next, uncover the pot cook for another 2-3 minutes, until about 1/2 inch of sauce is remaining. Remove from heat, then stir in the lime juice.",
       "Allow to cool for 2 minutes, then dig in!"
-    ],
+    ]
   },
   { 
     "id": 5,
@@ -215,10 +215,10 @@ export const recipes = [
       "1 medium onion, chopped",
       "1 can (11 oz) Mexicorn, drained",
       "1 packet of taco seasoning",
-      "1 1/2 tsp chili powder",
+      "1½ tsp chili powder",
       "1/2 tsp salt",
       "1/4 tsp garlic powder",
-      "1 cup shredded cheddar cheese",
+      "1 cup shredded cheddar cheese"
     ],
     "nutrition": {
       "calories": "516",
@@ -249,11 +249,11 @@ export const recipes = [
       "8 cups water",
       "1/4 cup soy sauce",
       "1 tbsp chili garlic sauce",
-      "1 1/2 tsp hoisin sauce",
+      "1½ tsp hoisin sauce",
       "2 tbsp peanut oil",
       "1 lb pork shoulder, cut into 1/4 inch cubes",
       "1 large egg, lightly beaten",
-      "1 1/2 cups chopped red bell pepper",
+      "1½ cups chopped red bell pepper",
       "1 cup frozen shelled edamame",
       "2/3 cups thinly sliced green onions"
     ],
@@ -290,9 +290,9 @@ export const recipes = [
       "1/4 cup all-purpose flour",
       "1/4 tsp salt",
       "1/4 tsp pepper",
-      "1 1/2 cups 2% milk",
+      "1½ cups 2% milk",
       "3/4 cup chicken broth",
-      "1 cup cooked and chopped fresh or frozen broccoli",
+      "1 cup cooked and chopped fresh/frozen broccoli",
       "1/2 cup shredded cheddar cheese"
     ],
     "nutrition": {
@@ -308,7 +308,7 @@ export const recipes = [
       "In a small saucepan, saute onion in butter until tender. Stir in the flour, salt and pepper until blended; gradually add milk and broth.",
       "Bring to a boil; cook and stir until thickened, about 2 minutes.",
       "Chef's Tip: Curdling in a cream soup usually occurs when the milk or cream is added at too high of a heat. As you gradually pour milk and broth into the onion and flour mixture, keep heat at medium and stir continuously with a whisk. Once it is all mixed in, then proceed to heat to a boil.",
-      "Add broccoli. Cook and stir until heated through and steaming. Remove from the heat; stir in cheese until melted, then serve.",
+      "Add broccoli. Cook and stir until heated through and steaming. Remove from the heat; stir in cheese until melted, then serve."
     ]
   },
   { 
@@ -324,7 +324,7 @@ export const recipes = [
       "1 small onion, chopped",
       "2 tsp canola oil",
       "1 garlic clove, minced",
-      "3 1/2 cups water",
+      "3½ cups water",
       "2 cups uncooked elbow macaroni",
       "2 cans (14 1/2 oz) reduced-sodium chicken broth",
       "2 cans (15 1/2 oz) cannelini beans, drained and rinsed",
@@ -349,7 +349,7 @@ export const recipes = [
       "In a large saucepan, cook sausage over medium heat until no longer pink; drain, remove from pan and set aside.",
       "In the same pan, saute onion in oil until tender. Add garlic; saute 1 minute longer.",
       "Add the water, beans, tomatoes, broth, macaroni and pepper and bring to a boil. Cook, uncovered, until macaroni is tender, 8-10 minutes.",
-      "Reduce heat to low; stir in sausage and spinach. Cook until spinach is wilted, 2-3 minutes. Garnish with cheese before feasting.",
+      "Reduce heat to low; stir in sausage and spinach. Cook until spinach is wilted, 2-3 minutes. Garnish with cheese before the feast."
     ]
   },
   { 
@@ -374,7 +374,7 @@ export const recipes = [
       "1/2 cup corn rinsed",
       "1/4 cup cilantro for topping",
       "1/2 cup sour cream or Greek yogurt",
-      "1/4 cup packed cilantro with stems",
+      "1/4 cup packed cilantro with stems"
     ],
     "nutrition": {
       "calories": "516",
@@ -414,7 +414,7 @@ export const recipes = [
       "2 oz cream cheese, cut into cubes",
       "1 tsp Italian seasoning",
       "½ tsp garlic powder",
-      "¼ cup chopped fresh basil",
+      "¼ cup chopped fresh basil"
     ],
     "nutrition": {
       "calories": "301",
@@ -488,7 +488,7 @@ export const recipes = [
       "2 oz cream cheese, cut into cubes",
       "1 tsp Italian seasoning",
       "½ tsp garlic powder",
-      "¼ cup chopped fresh basil",
+      "¼ cup chopped fresh basil"
     ],
     "nutrition": {
       "calories": "516",
@@ -541,7 +541,7 @@ export const recipes = [
       "Meanwhile, heat oil in a 12-inch skillet over medium-high heat. Add garlic; cook and stir for 15 seconds. Add shrimp and cook for 2 to 4 minutes, or until shrimp turn opaque, stirring often",
       "Transfer shrimp to a serving platter using a slotted spoon or similar object to gently handle the shrimp",
       "Add wine, butter, and salt to the skillet. Cook and stir over medium heat to loosen any browned bits and to melt butter. Pour butter mixture over shrimp.",
-      "Transfer to plate on top of the Linguine, sprinkle with chives before feasting."
+      "Transfer to plate on top of the Linguine, sprinkle with chives before chowing down."
     ]
   },
   { 
@@ -561,7 +561,7 @@ export const recipes = [
       "¼ tsp ground pepper",
       "1 (28 oz) can crushed tomatoes",
       "¼ cup chopped fresh basil",
-      "8 oz small fresh mozzarella balls, divided"
+      "8 oz fresh mozzarella balls, divided"
     ],
     "nutrition": {
       "calories": "485",
@@ -594,11 +594,11 @@ export const recipes = [
       "¼ cup packed brown sugar",
       "⅓ cup reduced-sodium soy sauce",
       "3 tsp sesame oil",
-      "½ tsp ground ginger",
-      "½ tsp crushed red pepper flakes",
-      "½ tsp pepper",
-      "2 2/3 cups hot cooked brown rice",
-      "3 green onions, thinly sliced",
+      "1/2 tsp ground ginger",
+      "1/2 tsp crushed red pepper flakes",
+      "1/2 tsp pepper",
+      "2⅔ cups hot cooked brown rice",
+      "3 green onions, thinly sliced"
     ],
     "nutrition": {
       "calories": "415",
@@ -613,9 +613,140 @@ export const recipes = [
       "Meanwhile, in a small bowl, mix brown sugar, soy sauce, oil and seasonings and whisk to combine thoroughly.",
       "Stir sauce into beef, heating until sauce begins to lightly simmer.",
       "Remove skillet from heat and allow beef to absorb sauce for an additional 1 minute.",
-      "Serve with rice. Sprinkle with green onions and get ready for some flavor.",
+      "Serve with rice. Sprinkle with green onions and get ready for flavor town."
     ]
   },
+  { 
+    "id": 16,
+    "name": "Speedy Chicken Adobo", 
+    "images": ["/chicken.png"],
+    "time": "30 minutes",
+    "types": ["chicken"],
+    "vegetarian": false,
+    "vegan": false,
+    "ingredients": [
+      "1 lb chicken thighs",
+      "1/4 cup of soy sauce",
+      "1/4 cup of white or cider vinegar",
+      "1/8 cup of water",
+      "1½ cup cooked brown or white rice",
+      "3 cloves of garlic, pounded but not minced",
+      "2 bay leaves",
+      "1 tbsp fresh ground black pepper"
+    ],
+    "nutrition": {
+      "calories": "350",
+      "fat": "7g",
+      "cholesterol": "95mg",
+      "carbs": "22g",
+      "protein": "26g",
+      "sodium": "1060mg"
+    },
+    "directions": [
+      "In a large pot, combine soy sauce, vinegar, water, pounded garlic, bay leaves and pepper. Whisk to mix thoroughly.",
+      "Once the sauce is mixed, place chicken into pot, making sure it is all submerged.",
+      "Place pot on stove, raise heat to medium-low and cover the pot",
+      "Cover and bring pot to a nice simmer, adjusting heat as necessary. Keep covered, and simmer for 25 minutes.",
+      "While pot is simmering, cook your rice. If the rice happens to be done early, it's okay! Keep covered so it remains warm.",
+      "After 25 minutes, remove the pot's cover and stir ingredients gently.",
+      "Continue to simmer, uncovered, for an additional 5 minutes to allow the sauce to thicken.",
+      "Spoon rice onto your serving dish, top with chicken thighs and desired amount of sauce. Chow down!"
+    ]
+  },
+  { 
+    "id": 17,
+    "name": "Lasagna Bolognese Cups",
+    "images": ["/beef.png", "/pasta.png"],
+    "time": "25 minutes",
+    "types": ["beef", "pasta"],
+    "vegetarian": false,
+    "vegan": false,
+    "ingredients": [
+      "1 tbsp olive oil",
+      "1 lb ground beef",
+      "3 cloves crushed garlic",
+      "28 oz (1 can) crushed tomatoes",
+      "1 tbsp minced dried onions",
+      "1/2 cup red wine (or beef broth)",
+      "1 egg, beaten",
+      "1½ cups skim ricotta cheese",
+      "1/4 cup grated Parmesan cheese",
+      "1½ cups shredded mozzarella",
+      "24 wonton wrappers",
+      "1½ tbsp dried basil, divided use",
+      "1 tsp sea salt",
+      "1/2 tsp black pepper",
+      "2 tbsp fresh parsley, chopped"
+    ],
+    "nutrition": {
+      "calories": "290",
+      "fat": "15g",
+      "cholesterol": "125mg",
+      "carbs": "17g",
+      "protein": "20g",
+      "sodium": "580mg"
+    },
+    "directions": [
+      "Preheat oven to 375 degrees.",
+      "In a large frying pan, heat olive oil on medium high heat. Add ground beef and cook for 5 to 7 minutes until meat is browned.",
+      "Add garlic, tomatoes, 1 tbsp dried basil (reserve ½ tbsp), salt, pepper, onions, and wine. Bring to a simmer for 10 minutes then remove from heat. Stir well to combine.",
+      "In a medium mixing bowl, mix together ricotta cheese, reserved dried basil, egg and parmesan cheese.",
+      "Spray the muffin tin with cooking spray. Line the bottom of each muffin cup with a wonton wrapper. Spoon about 1 tbsp of sauce onto the top of each wonton wrapper. Top with ricotta mixture and sprinkle with mozzarella cheese.",
+      "Place remaining wonton wrappers on top then another 1 tbsp of meat sauce, ricotta and mozarella cheese until all the cheese is used up. Save leftover sauce to serve with main dish!",
+      "Bake in the preheated oven for about 12 minutes or until lasagnas are cooked through and cheese is melted and bubbly. Cool for 5 minutes before carefully removing from the muffin tin.",
+      "Sprinkle with fresh herbs and serve with the extra Bolognese sauce put aside from earlier. Mission complete."
+    ]
+  },
+  { 
+    "id": 18,
+    "name": "Veggie Party Stir Fry",
+    "images": ["/vegetarian.png", "/pasta.png"],
+    "time": "30 minutes",
+    "types": ["vegetarian", "pasta"],
+    "vegetarian": true,
+    "vegan": true,
+    "ingredients": [
+      "1 cup vegetable stock",
+      "1/3 cup soy sauce",
+      "2 tbsp rice vinegar",
+      "2 tbsp white cooking wine",
+      "2 tbsp brown sugar * packed",
+      "2 tbsp ketchup",
+      "1 tbsp sesame oil",
+      "1 tbsp extra virgin olive oil",
+      "1 cup carrots, thinly sliced",
+      "3 cups broccoli",
+      "1 red bell pepper, cut into thin strips",
+      "1 cup snow peas",
+      "1 8oz can sliced water chestnuts, drained",
+      "1 15oz can baby corn, drained",
+      "2 cloves garlic, minced",
+      "1 tbsp ginger, minced",
+      "1 tbsp cornstarch",
+      "1 tbsp water",
+      "sesame seeds (garnish)",
+      "cooked rice or noodles (optional)"
+    ],
+    "nutrition": {
+      "calories": "315",
+      "fat": "8g",
+      "cholesterol": "90mg",
+      "carbs": "53g",
+      "protein": "10g",
+      "sodium": "1430g"
+    },
+    "directions": [
+      "Whisk together vegetable stock, soy sauce, rice wine vinegar, wine (or broth), sugar, ketchup, and sesame oil. Set aside for now.",
+      "Add the olive oil to a large skillet over medium-high heat, then add the carrots.",
+      "Cook 2-3 minutes, stirring frequently, then add the broccoli, red bell pepper, snow peas, water chestnuts, and baby corn.",
+      "Cook an additional 5-6 minutes, until everything is tender and heated through.",
+      "Stir in the garlic and ginger and cook for 1 minute while stirring gently.",
+      "Pour in the stir fry sauce and heat for 1-2 minutes, making sure the sauce is able to get hot.",
+      "Mix together the cornstarch and water. Stir the cornstarch slurry into the vegetables and raise the heat to high.", 
+      "Heat for 30 seconds to 1 minute to thicken the sauce.",
+      "Serve as is, or over rice or noodles if you wish. Garnish with sesame seeds and begin the veggie party."
+    ]
+  }
 ];
 
 recipes.forEach(recipe => {

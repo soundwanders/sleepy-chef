@@ -63,7 +63,7 @@ export const Sidebar = () => {
 
         <ul className="list-none p-0 font-bold text-sm md:text-lg text-center">
           {SidebarLinks.map(item => (
-            <li className="py-1 md:py-2" key={item.name}>
+            <li className="py-1 md:py-2 xl:py-1" key={item.name}>
               <TypeLink
                 {...item}
                 closeSidebar={closeSidebar}
