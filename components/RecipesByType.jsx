@@ -1,8 +1,10 @@
+import { useState } from 'react';
 import { RoughNotationGroup } from 'react-rough-notation';
 import { Highlighter } from '@components/Highlighter';
 import RecipeCards from '@components/RecipeCards';
 
 export default function RecipesByType({ data, error, mainTypes, defaultColor, recipeColors}) {
+  const [sortBy, setSortBy] = useState("default");
   const highlightColor = "#60a5fa";
 
   if (error) {
@@ -15,9 +17,23 @@ export default function RecipesByType({ data, error, mainTypes, defaultColor, re
     )
   };
 
+  // Sort recipe cards alphabetically
+  const handleSortChange = (event) => {
+    setSortBy(event.target.value);
+  };
+
+  let sortedData = data;
+
+  // use Array.prototype.sort() method to sort alphbetically by recipe name
+  if (sortBy === "name-asc") {
+    sortedData = [...data].sort((a, b) => a.name.localeCompare(b.name));
+  } else if (sortBy === "name-desc") {
+    sortedData = [...data].sort((a, b) => b.name.localeCompare(a.name));
+  };
+
   return (
     <>
-      <div className="max-w-6xl mx-auto h-36 md:h-40 bg-white dark:bg-gray-800 px-4 py-4 mb-4 md:mb-0">
+      <div className="max-w-6xl mx-auto h-36 md:h-40 bg-white dark:bg-gray-800 px-8 md:px-4 py-4 mb-4 md:mb-0">
         <div className="w-full text-center">
           <div className="w-fit mt-2">
             <RoughNotationGroup show={true}>
@@ -34,8 +50,22 @@ export default function RecipesByType({ data, error, mainTypes, defaultColor, re
         </div>
       </div>
 
+      <div className="flex justify-start px-8 md:px-4 md:mt-4 mb-12">
+        <label htmlFor="sort-by" className="mr-2 sr-only">Sort by:</label>
+        <select
+          id="sort-by"
+          value={sortBy}
+          onChange={handleSortChange}
+          className="tracking-wide bg-sky-50 dark:bg-gray-900 border border-blue-300 dark:border-gray-500 rounded-md px-2 py-1"
+        >
+          <option value="default">Sort</option>
+          <option value="name-asc">Name (A-Z)</option>
+          <option value="name-desc">Name (Z-A)</option>
+        </select>
+      </div>
+
       <RecipeCards 
-        data={data} 
+        data={sortedData} 
         error={error} 
         defaultColor={defaultColor} 
         recipeColors={recipeColors}

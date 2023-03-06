@@ -9,7 +9,8 @@ export const Hero = () => {
   
   return (
     <div className="hero h-screen flex flex-column justify-center items-center px-8 overflow-hidden">
-      <div className="absolute top-0 max-w-4xl mx-auto text-center items-center pb-4 mt-52">
+      <img src="/sleepy-her2o.png" alt="" className="absolute top-1/4 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-10 h-1/5 w-auto" />
+      <div className="absolute top-1/3 max-w-4xl mx-auto text-center items-center pb-4 mt-12 md:mt-10">
         <RoughNotationGroup show={true}>
           <Highlighter color={highlightColor}>
             <h1 className="sleepy-title text-5xl md:text-8xl text-gray-800 dark:text-gray-200 py-1 md:px-4">
@@ -17,7 +18,7 @@ export const Hero = () => {
             </h1>
           </Highlighter>
         </RoughNotationGroup>
-        <h1 className="font-regular text-[0.85rem] md:text-lg dark:text-gray-100 pt-10 px-4 lg:-mb-4">
+        <h1 className="font-bold text-[0.85rem] md:text-lg dark:text-gray-100 pt-8 md:pt-10 px-4">
           {appData.description}
         </h1>
         

@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { useRouter } from 'next/router';
 import useSWR from 'swr';
 import { RoughNotationGroup } from 'react-rough-notation';
@@ -6,6 +7,7 @@ import RecipeCards from '@components/RecipeCards';
 import appData from '@constants/appData';
 
 export const SearchResults = ({ recipeColors, defaultColor }) => {
+  const [sortBy, setSortBy] = useState("default");
   const router = useRouter();
   const { query } = router;
   const { type, ingredient, name } = query;
@@ -38,10 +40,24 @@ export const SearchResults = ({ recipeColors, defaultColor }) => {
     } else if (response.status === 500) {
       throw new Error("Server error, robot mutiny! Please try again later.");
     } else {
-      throw new Error("Oops! We can't seem to find that recipe. Please try again.");
+      throw new Error("Oops! We can't find that recipe, please try again.");
     }
   }, { revalidateOnMount: true });
-  
+
+  // Sort recipe cards alphabetically
+  const handleSortChange = (event) => {
+    setSortBy(event.target.value);
+  };
+
+  let sortedData = data;
+
+  // use Array.prototype.sort() method to sort alphbetically by recipe name
+  if (sortBy === "name-asc") {
+    sortedData = [...data].sort((a, b) => a.name.localeCompare(b.name));
+  } else if (sortBy === "name-desc") {
+    sortedData = [...data].sort((a, b) => b.name.localeCompare(a.name));
+  };
+
   return (
     <section className="bg-white dark:bg-gray-800 pb-10 md:py-8">
       <div className="max-w-6xl bg-white dark:bg-gray-800 mx-auto h-36 md:h-40 px-8 md:px-4 py-4 md:py-0 md:pb-4 md:mb-4">
@@ -58,8 +74,22 @@ export const SearchResults = ({ recipeColors, defaultColor }) => {
         </div>
       </div>
 
+      <div className="flex justify-start px-4 mb-4">
+        <label htmlFor="sort-by" className="mr-2 sr-only">Sort by:</label>
+        <select
+          id="sort-by"
+          value={sortBy}
+          onChange={handleSortChange}
+          className="bg-sky-50 dark:bg-slate-900 border border-gray-300 dark:border-gray-600 rounded-md px-2 py-1"
+        >
+          <option value="default">Sort</option>
+          <option value="name-asc">Name (A-Z)</option>
+          <option value="name-desc">Name (Z-A)</option>
+        </select>
+      </div>
+
       <RecipeCards 
-        data={data} 
+        data={sortedData} 
         error={error} 
         recipeColors={recipeColors}
         defaultColor={defaultColor} 
