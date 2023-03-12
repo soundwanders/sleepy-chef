@@ -47,8 +47,8 @@ export default function RecipeCards({ data, error }) {
         data.map(recipe => (
         <Link 
           className="h-min"
-          href="/recipes/[id]" 
-          as={`/recipes/${encodeURIComponent(recipe.id)}`}
+          href="/id/[id]" 
+          as={`/id/${encodeURIComponent(recipe.id)}`}
           key={recipe.id}
         >
           <div className={`min-h-0 dark:bg-gradient-to-b from-zinc-850 to-zinc-950 shadow-lg
@@ -78,10 +78,10 @@ export default function RecipeCards({ data, error }) {
                   Type: {recipe.types.join(", ")}
                 </p>
                 <p className="py-1">
-                  Vegetarian: {recipe.vegetarian ? 'Yes' : 'No'}
+                  Vegetarian: {recipe.vegetarian ?  '😊' : '🙁'}
                 </p>
                 <p className="py-1">
-                  Vegan: {recipe.vegan ? 'Yes' : 'No'}
+                  Vegan: {recipe.vegan ?  '😊' : '🙁'}
                 </p>
                 <p className="py-1">
                   ⏰ {recipe.time}

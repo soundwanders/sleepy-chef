@@ -4,8 +4,8 @@ export const recipes = [
   { 
     "id": 0,
     "name": "One Pot Creamy Pasta",
-    "images": ["/pasta.png"],
-    "types": ["pasta"],
+    "images": ["/pasta.png", "/vegetarian.png"],
+    "types": ["pasta", "vegetarian.png"],
     "time": "25 minutes",
     "vegetarian": true,
     "vegan": false,
@@ -158,8 +158,8 @@ export const recipes = [
   { 
     "id": 4,
     "name": "Sunset Thai Pasta",
-    "images": ["/pasta.png"],
-    "types": ["pasta"],
+    "images": ["/pasta.png", "/vegetarian.png"],
+    "types": ["pasta", "vegetarian"],
     "time": "30 minutes",
     "vegetarian": true,
     "vegan": false,
@@ -398,8 +398,8 @@ export const recipes = [
     "id": 10,
     "name": "Creamy Chicken Skillet", 
     "images": ["/chicken.png"],
-    "time": "20 minutes",
     "types": ["chicken"],
+    "time": "20 minutes",
     "vegetarian": false,
     "vegan": false,
     "ingredients": [
@@ -437,8 +437,8 @@ export const recipes = [
     "id": 11,
     "name": "Coconut Chickpea Curry", 
     "images": ["/vegetarian.png", "/vegan.png"],
-    "time": "20 minutes",
     "types": ["vegetarian"],
+    "time": "20 minutes",
     "vegetarian": true,
     "vegan": true,
     "ingredients": [
@@ -472,8 +472,8 @@ export const recipes = [
     "id": 12,
     "name": "Tomato Salmon Skillet", 
     "images": ["/seafood.png"],
-    "time": "20 minutes",
     "types": ["seafood"],
+    "time": "20 minutes",
     "vegetarian": false,
     "vegan": false,
     "ingredients": [
@@ -513,8 +513,8 @@ export const recipes = [
     "id": 13,
     "name": "Super Shrimp Scampi", 
     "images": ["/seafood.png"],
-    "time": "20 minutes",
     "types": ["seafood"],
+    "time": "20 minutes",
     "vegetarian": false,
     "vegan": false,
     "ingredients": [
@@ -546,46 +546,48 @@ export const recipes = [
   },
   { 
     "id": 14,
-    "name": "Skillet Ravioli Lasagna", 
-    "images": ["/pasta.png", "/beef.png"],
-    "time": "20 minutes",
-    "types": ["pasta"],
+    "name": "Garlic Shrimp",
+    "images": ["/seafood.png"],
+    "types": ["seafood"],
+    "time": "25 minutes",
     "vegetarian": false,
     "vegan": false,
     "ingredients": [
-      "1 (24 oz) package frozen ravioli",
-      "1 lb lean ground beef",
-      "1½ tsp dried oregano",
-      "½ tsp garlic powder",
-      "½ tsp salt",
-      "¼ tsp ground pepper",
-      "1 (28 oz) can crushed tomatoes",
-      "¼ cup chopped fresh basil",
-      "8 oz fresh mozzarella balls, divided"
+      "1½ tbsp olive oil",
+      "1 pound shrimp, peeled and deveined",
+      "6 cloves garlic, finely minced",
+      "1/4 tsp red pepper flakes",
+      "3 tbsp lemon juice",
+      "1/2 tbsp salt (or desired amount)",
+      "1 tbsp caper brine",
+      "2 tbsp cold butter, cut into 4 equal pieces, divided",
+      "1/3 cup chopped flat-leaf parsley, divided",
+      "1 tsp water",
     ],
     "nutrition": {
-      "calories": "485",
-      "fat": "5g",
-      "cholesterol": "125mg",
-      "carbs": "33g",
-      "protein": "38g",
-      "sodium": "1040mg"
+      "calories": "196",
+      "fat": "12g",
+      "cholesterol": "188mg",
+      "carbs": "3g",
+      "protein": "19g",
+      "sodium": "244mg"
     },
     "directions": [
-      "Preheat broiler. Bring a large pot of water to a boil. Cook ravioli according to package directions; drain and set aside.",
-      "Meanwhile, cook ground beef in a large cast-iron or oven-safe skillet over medium-high heat until cooked through, about 5 minutes, crumbling the beef shortly after it begins to brown",
-      "Season with oregano, garlic powder, salt and pepper, then add tomatoes and basil; bring pot to a simmer.",
-      "Gently add the cooked ravioli and half of the mozzarella balls, making sure to submerge both the ravioli and mozzarella.",
-      "Scatter the remaining mozzarella balls over the top of the pasta. Carefully transfer the pan to the oven.",
-      "Broil until the cheese is melted, 2 to 3 minutes, allow to cool momentarily before serving in your favorite bowl."
+      "Heat olive oil in a heavy skillet over high heat until it begins to smoke. Place shrimp in an even layer in the pan and cook for 1 minute without stirring.",
+      "Season shrimp with salt; cook and stir until shrimp begin to turn pink, about 1 minute.",
+      "Add garlic and red pepper flakes; cook and stir for 1 minute.",
+      "Stir in lemon juice, caper brine, 1 piece of butter, and 1/2 of the parsley; cook until butter has melted, about 1 minute.",
+      "Reduce heat to low and stir in remaining butter. Cook and stir until butter has melted, sauce is thick, and shrimp are pink and opaque, 2 to 3 minutes.",
+      "Remove shrimp with a slotted spoon and transfer to a bowl; continue to cook butter sauce, adding water, 1 tsp at a time, if too thick, about 2 minutes.",
+      "Season with salt to taste; serve shrimp topped with the pan sauce and remaining parsley."
     ]
   },
   { 
     "id": 15,
     "name": "Korean Beef and Rice", 
     "images": ["/beef.png"],
-    "time": "25 minutes",
     "types": ["beef"],
+    "time": "30 minutes",
     "vegetarian": false,
     "vegan": false,
     "ingredients": [
@@ -618,10 +620,46 @@ export const recipes = [
   },
   { 
     "id": 16,
+    "name": "Skillet Ravioli Lasagna", 
+    "images": ["/pasta.png", "/beef.png"],
+    "types": ["pasta"],
+    "time": "20 minutes",
+    "vegetarian": false,
+    "vegan": false,
+    "ingredients": [
+      "1 (24 oz) package frozen ravioli",
+      "1 lb lean ground beef",
+      "1½ tsp dried oregano",
+      "½ tsp garlic powder",
+      "½ tsp salt",
+      "¼ tsp ground pepper",
+      "1 (28 oz) can crushed tomatoes",
+      "¼ cup chopped fresh basil",
+      "8 oz fresh mozzarella balls, divided"
+    ],
+    "nutrition": {
+      "calories": "485",
+      "fat": "5g",
+      "cholesterol": "125mg",
+      "carbs": "33g",
+      "protein": "38g",
+      "sodium": "1040mg"
+    },
+    "directions": [
+      "Preheat broiler. Bring a large pot of water to a boil. Cook ravioli according to package directions; drain and set aside.",
+      "Meanwhile, cook ground beef in a large cast-iron or oven-safe skillet over medium-high heat until cooked through, about 5 minutes, crumbling the beef shortly after it begins to brown",
+      "Season with oregano, garlic powder, salt and pepper, then add tomatoes and basil; bring pot to a simmer.",
+      "Gently add the cooked ravioli and half of the mozzarella balls, making sure to submerge both the ravioli and mozzarella.",
+      "Scatter the remaining mozzarella balls over the top of the pasta. Carefully transfer the pan to the oven.",
+      "Broil until the cheese is melted, 2 to 3 minutes, allow to cool momentarily before serving in your favorite bowl."
+    ]
+  },
+  { 
+    "id": 17,
     "name": "Speedy Chicken Adobo", 
     "images": ["/chicken.png"],
-    "time": "30 minutes",
     "types": ["chicken"],
+    "time": "30 minutes",
     "vegetarian": false,
     "vegan": false,
     "ingredients": [
@@ -654,11 +692,11 @@ export const recipes = [
     ]
   },
   { 
-    "id": 17,
+    "id": 18,
     "name": "Lasagna Bolognese Cups",
     "images": ["/beef.png", "/pasta.png"],
-    "time": "25 minutes",
     "types": ["beef", "pasta"],
+    "time": "25 minutes",
     "vegetarian": false,
     "vegan": false,
     "ingredients": [
@@ -698,11 +736,11 @@ export const recipes = [
     ]
   },
   { 
-    "id": 18,
+    "id": 19,
     "name": "Veggie Party Stir Fry",
-    "images": ["/vegetarian.png", "/pasta.png"],
-    "time": "30 minutes",
+    "images": ["/vegetarian.png", "/pasta.png", "/vegan.png"],
     "types": ["vegetarian", "pasta"],
+    "time": "30 minutes",
     "vegetarian": true,
     "vegan": true,
     "ingredients": [
@@ -733,7 +771,7 @@ export const recipes = [
       "cholesterol": "90mg",
       "carbs": "53g",
       "protein": "10g",
-      "sodium": "1430g"
+      "sodium": "1430mg"
     },
     "directions": [
       "Whisk together vegetable stock, soy sauce, rice wine vinegar, wine (or broth), sugar, ketchup, and sesame oil. Set aside for now.",
@@ -745,6 +783,255 @@ export const recipes = [
       "Mix together the cornstarch and water. Stir the cornstarch slurry into the vegetables and raise the heat to high.", 
       "Heat for 30 seconds to 1 minute to thicken the sauce.",
       "Serve as is, or over rice or noodles if you wish. Garnish with sesame seeds and begin the veggie party."
+    ]
+  },
+  { 
+    "id": 19,
+    "name": "The Paprika Porka",
+    "images": ["/pork.png"],
+    "types": ["pork"],
+    "time": "30 minutes",
+    "vegetarian": false,
+    "vegan": false,
+    "ingredients": [
+      "1 pork tenderloin (1 lb), cut into 1 inch cubes",
+      "1 tsp all-purpose flour",
+      "4 tsp paprika",
+      "3/4 tsp salt",
+      "1/4 tsp pepper",
+      "1 tbsp butter",
+      "3/4 cup heavy whipping cream",
+      "Hot cooked egg noodles or rice",
+      "1 pack uncooked rice or noodles",
+      "Minced fresh parsley, optional"
+    ],
+    "nutrition": {
+      "calories": "320",
+      "fat": "23g",
+      "cholesterol": "122mg",
+      "carbs": "3g",
+      "protein": "24g",
+      "sodium": "525mg"
+    },
+    "directions": [
+      "Toss pork with flour and seasonings. In a large skillet, heat butter over medium heat; saute pork until lightly browned, 4-5 minutes.",
+      "While pork is being sauteed, begin to prepare your rice or noodles if you are including them in your meal.",
+      "Add cream; bring to a boil, stirring to loosen browned bits from pan. Cook, uncovered, until cream is slightly thickened, 5-7 minutes.",
+      "Serve with prepared rice or noodles if desired. Sprinkle with parsley and turn off the stove, this dish is done!",
+    ]
+  },
+  { 
+    "id": 20,
+    "name": "Pork Tenderloin Fajitas",
+    "images": ["/pork.png"],
+    "types": ["pork"],
+    "time": "25 minutes",
+    "vegetarian": false,
+    "vegan": false,
+    "ingredients": [
+      "1/4 cup minced fresh cilantro",
+      "1/2 tsp garlic powder",
+      "1/2 tsp chili powder",
+      "1/2 tsp ground cumin",
+      "1 pork tenderloin (1 lb)",
+      "1 tbsp canola oil",
+      "1 small onion, sliced into rings",
+      "1 green pepper, julienned",
+      "1 red pepper, julienned",
+      "4 flour tortillas (8 inches), warmed",
+      "1 cup cup shredded cheese",
+      "sour cream (desired amount)"
+    ],
+    "nutrition": {
+      "calories": "327",
+      "fat": "11g",
+      "cholesterol": "63mg",
+      "carbs": "29g",
+      "protein": "28g",
+      "sodium": "300mg"
+    },
+    "directions": [
+      "In a small bowl, combine cilantro, garlic powder, chili powder and cumin; set aside.",
+      "In a large skillet, saute pork in oil until no longer pink. Add onion and peppers; cook until crisp-tender.",
+      "Sprinkle with seasoning mixture. Toss to coat until the seasoning is thoroughly combined with your fajita mix.",
+      "Spoon onto tortillas, then top with cheese and sour cream before serving. Finito!"
+    ]
+  },
+  { 
+    "id": 21,
+    "name": "Stuffed Pepper Soup",
+    "images": ["/soup.png"],
+    "types": ["soup"],
+    "time": "30 minutes",
+    "vegetarian": false,
+    "vegan": false,
+    "ingredients": [
+      "1 package ready-to-serve long grain and wild rice",
+      "1 lb ground beef",
+      "2 cups chopped green pepper",
+      "1 cup chopped onion",
+      "1 jar (26 oz) chunky tomato pasta sauce",
+      "1 can (14 oz) diced tomatoes, undrained",
+      "1 can (14 oz) beef broth",
+    ],
+    "nutrition": {
+      "calories": "238",
+      "fat": "8g",
+      "cholesterol": "31mg",
+      "carbs": "28g",
+      "protein": "14g",
+      "sodium": "920mg"
+    },
+    "directions": [
+      "Heat up a pot of water with appropriate amount of water to cook the rice.",
+      "Meanwhile, in a large saucepan, cook the beef, green peppers and onion over medium-high heat until meat is no longer pink, 5 to 7 minutes. Drain excess from pan.",
+      "Prepare the rice according to the package directions while the beef cooks. If rice is done early, keep covered so it remains warm while your skillet finishes cooking",
+      "Stir in the pasta sauce, tomatoes, broth and prepared rice; heat through and just like that you've got yourself some dinner."
+    ]
+  },
+  { 
+    "id": 22,
+    "name": "Potato Bacon Soup",
+    "images": ["/soup.png"],
+    "types": ["soup"],
+    "time": "30 minutes",
+    "vegetarian": false,
+    "vegan": false,
+    "ingredients": [
+      "6 bacon strips, diced",
+      "3 cups peeled potatoes, cubed",
+      "1 carrot, grated",
+      "1/2 cup chopped onion",
+      "1 can (14oz) chicken broth",
+      "3 tbsp all-purpose flour",
+      "3 cups whole milk (or heavy cream)",
+      "8 ounces Velveeta, cubed",
+      "1 tbsp dried parsley flakes",
+      "1/2 tsp salt",
+      "1/2 tsp pepper",
+      "1/2 tsp celery seed",
+      "2 green onions, sliced very thin (optional topping)",
+    ],
+    "nutrition": {
+      "calories": "250",
+      "fat": "13g",
+      "cholesterol": "35mg",
+      "carbs": "22g",
+      "protein": "12g",
+      "sodium": "823mg"
+    },
+    "directions": [
+      "In a large saucepan, cook bacon over medium heat until crisp, stirring occasionally; drain excess fat from pan",
+      "Add vegetables, seasonings and broth; bring to a boil. Reduce heat; simmer, covered, until potatoes are tender, 10-15 minutes.",
+      "Mix flour and milk until smooth; stir into soup. Bring to a boil, stirring constantly; cook and stir until thickened, about 2 minutes.",
+      "Stir in cheese until melted. If desired, serve topped with green onions. Hope this soup hits the spot!"
+    ]
+  },
+  { 
+    "id": 23,
+    "name": "Split Pea Soup",
+    "images": ["/soup.png"],
+    "types": ["soup"],
+    "time": "30 minutes",
+    "vegetarian": false,
+    "vegan": false,
+    "ingredients": [
+      "3 cups water",
+      "2 tsp chicken bouillon granules",
+      "1/2 tsp dried thyme",
+      "4 celery ribs and leaves",
+      "2 carrots, thinly sliced",
+      "2 cans (24 oz total) condensed split pea soup",
+      "1 cup cubed fully cooked ham",
+      "Shaved Parmesan cheese, optional"
+    ],
+    "nutrition": {
+      "calories": "249",
+      "fat": "7g",
+      "cholesterol": "23mg",
+      "carbs": "32g",
+      "protein": "16g",
+      "sodium": "1500mg"
+    },
+    "directions": [
+      "In a large saucepan, bring the water, bouillon granules and thyme to a boil.",
+      "Thinly slice celery ribs and finely chop the leaves; set leaves aside for now",
+      "Add celery ribs and carrots to water mixture; simmer, uncovered, for 5-8 minutes or until tender.",
+      "Stir in the soup, ham and celery leaves and continue to heat until soup is steaming.",
+      "Top each bowl of soup with cheese if desired before chowing down."
+    ]
+  },
+  { 
+    "id": 24,
+    "name": "Chicken Noodle Soup",
+    "images": ["/soup.png", "/chicken.png"],
+    "types": ["soup", "chicken"],
+    "time": "30 minutes",
+    "vegetarian": false,
+    "vegan": false,
+    "ingredients": [
+      "2 tbsp unsalted butter",
+      "1 tbsp olive oil",
+      "2 cups chopped yellow onion",
+      "1 cup chopped carrots (2 carrots)",
+      "1 cup chopped celery (2 stalks)",
+      "1¾ teaspoons kosher salt",
+      "3 tbsp all-purpose flour",
+      "4 cups unsalted chicken stock",
+      "2 cups whole milk",
+      "4 oz uncooked egg noodles",
+      "3 cups chopped rotisserie chicken",
+      "1 cup frozen green peas"
+    ],
+    "nutrition": {
+      "calories": "258",
+      "fat": "9g",
+      "cholesterol": "25mg",
+      "carbs": "24g",
+      "protein": "23g",
+      "sodium": "730mg"
+    },
+    "directions": [
+      "Melt butter with olive oil in a large Dutch oven (or pot) over medium-high heat.",
+      "Add onion, carrots, celery and salt and cook, stirring often, until vegetables are slightly softened, 6 to 8 minutes.",
+      "Add flour and stir to coat. Stir in broth and milk and let mixture come to a boil.",
+      "Add uncooked noodles to boiling mixture. Cover and cook until noodles are al dente, about 8 minutes.",
+      "Stir in chicken and peas and cook until soup is warmed through, about 2 minutes, then your soup is ready to roll."
+    ]
+  },
+  { 
+    "id": 25,
+    "name": "Tortellini Salad",
+    "images": ["/salad.png", "/pasta.png", "vegetarian.png"],
+    "types": ["salad", "pasta", "vegetarian"],
+    "time": "30 minutes",
+    "vegetarian": true,
+    "vegan": false,
+    "ingredients": [
+      "1 package (19 oz) frozen cheese tortellini",
+      "1/2 cup mayonnaise",
+      "1/4 cup 2% milk",
+      "1/2 cup shredded Parmesan cheese",
+      "1/2 to 1 cup cherry tomatoes, halved",
+      "2 tbsp lemon juice",
+      "2 garlic cloves, minced",
+      "8 cups romaine lettuce, shredded",
+      "1 cup croutons"
+    ],
+    "nutrition": {
+      "calories": "252",
+      "fat": "14g",
+      "cholesterol": "17mg",
+      "carbs": "22g",
+      "protein": "8g",
+      "sodium": "390mg"
+    },
+    "directions": [
+      "Begin by heating pot of water and cooking the tortellini according to package directions.",
+      "Meanwhile, in a small bowl, combine the mayonnaise, milk, 1/4 cup Parmesan cheese, lemon juice and garlic.",
+      "Drain tortellini and rinse in cold water; transfer to a large bowl. Add romaine and remaining Parmesan to the bowl.",
+      "Drizzle bowl with dressing, then toss salad to coat.",
+      "Top with croutons and you're done! Now watch it magically disappear."
     ]
   }
 ];

@@ -28,7 +28,12 @@ export async function getStaticProps({ params }) {
     // in the URL parameter and has the highest index in the 'types' array
     const mainTypes = data.map(recipe => recipe.types.find(type => type === params.type));
 
-    return { props: { data, mainTypes } };
+    return {
+      props: { 
+        data, mainTypes
+      }, 
+      revalidate: 3600,
+    };
   } catch (error) {
     console.error(error);
   }

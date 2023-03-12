@@ -5,11 +5,6 @@ import SingleRecipe from '@components/SingleRecipe';
 import appData from '@constants/appData';
 import { recipes } from '@data/recipeDb';
 
-// const API_ENDPOINT =
-//   process.env.NODE_ENV === 'production' 
-//   ? `${process.env.NEXT_PUBLIC_VERCEL_URL}/api/recipes/`
-//   : `${process.env.LOCAL_URL}/api/recipes/`;
-
 export async function getStaticPaths() {
   try {
     const paths = recipes.map((recipe) => ({
@@ -25,14 +20,13 @@ export async function getStaticPaths() {
 };
 
 export async function getStaticProps({ params }) {
-  console.log(params.id);
   try {
     const recipeData = recipes.find((recipe) => recipe.id.toString() === params.id);
     return {
       props: {
         recipeData: recipeData || null,
       },
-      revalidate: 1800,
+      revalidate: 3600,
     };
   } catch (error) {
     console.error(error);
@@ -42,16 +36,11 @@ export async function getStaticProps({ params }) {
   }
 };
 
-export default function Recipe({ recipeData, errorMessage }) {
+export default function RecipeById({ recipeData, errorMessage }) {
   const [dataLoaded, setDataLoaded] = useState(false);
   const [error, setError] = useState(null);
   const recipeInfo = Array.isArray(recipeData) ? recipeData[0] : recipeData;
   const { name, images, types, time, vegetarian, vegan, ingredients, nutrition, directions } = recipeInfo;
-
-  console.log('name', name);
-
-  console.log('recipeInfo.name',recipeInfo.name);
-
 
   useEffect(() => {
     if (recipeData) {
