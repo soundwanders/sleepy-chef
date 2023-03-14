@@ -76,7 +76,7 @@ export const Searchbar = () => {
             <EggYolk />
           </motion.div>
         ) : (
-          <div className="input-group relative flex flex-nowrap justify-center min-w-0 mb-4 rounded px-4 md:px-0">
+          <div className="input-group relative flex flex-nowrap justify-center min-w-0 mb-4 rounded px-10 md:px-0">
             <motion.form
               className="flex"
               onSubmit={handleSubmit}
@@ -87,7 +87,7 @@ export const Searchbar = () => {
               <input
                 className={`form-control relative flex-auto min-w-0 w-full text-base font-normal text-gray-700 bg-white bg-clip-padding 
                   focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none
-                  border border-gray-300 border-solid rounded-lg transition ease-in-out m-0 px-4 py-2
+                  border border-gray-300 border-solid rounded-lg transition ease-in-out m-0 px-3 py-2
                   ${error ? 'error-border' : ''}`} 
                 type="text"
                 aria-label="Search" 
@@ -100,7 +100,7 @@ export const Searchbar = () => {
               <button 
                 type="submit" 
                 className="search-main relative border-2 border-blue-400 text-blue-400 md:font-medium text-xs leading-tight uppercase 
-                  rounded-full hover:bg-black hover:bg-opacity-5 focus:outline-none focus:ring-0 transition duration-150 ease-in-out px-4 py-1 ml-4"
+                  rounded-full hover:bg-black hover:bg-opacity-5 focus:outline-none focus:ring-0 transition duration-150 ease-in-out px-3 py-1 ml-4 -mr-4"
                 aria-label="Submit search"
                 aria-controls="submit-search"
                 aria-describedby="main-search-submit"

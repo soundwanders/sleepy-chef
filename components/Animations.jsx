@@ -37,7 +37,7 @@ export const EggYolk = () => {
           src="/egg.png"
           alt=""
           style={{ display: showYolk ? "none" : "block" }}
-          className="w-12 h-12"
+          className="h-10 w-10"
         />
       </motion.div>
       {showYolk && (
@@ -45,7 +45,7 @@ export const EggYolk = () => {
           src="/yolk.png"
           alt=""
           style={{ y: yolkInitialY }}
-          className="w-12 h-12 mb-4"
+          className="h-12 w-12 mb-4"
         />
       )}
     </>

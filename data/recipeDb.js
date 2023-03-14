@@ -5,7 +5,7 @@ export const recipes = [
     "id": 0,
     "name": "One Pot Creamy Pasta",
     "images": ["/pasta.png", "/vegetarian.png"],
-    "types": ["pasta", "vegetarian.png"],
+    "types": ["pasta", "vegetarian"],
     "time": "25 minutes",
     "vegetarian": true,
     "vegan": false,
@@ -16,11 +16,11 @@ export const recipes = [
       "1 lb penne pasta",
       "2 cups broccoli",
       "2 carrots, peeled",
-      "1/2 tsp ground black pepper",
       "4 oz cream cheese",
-      "1/4 tsp salt",
+      "grated Parmesan cheese",
       "1/2 tbsp vegetable oil",
-      "Grated Parmesan cheese"
+      "1/2 tsp ground black pepper",
+      "1/4 tsp salt"
     ],
     "nutrition": {
       "calories": "410",
@@ -51,16 +51,16 @@ export const recipes = [
     "vegetarian": false,
     "vegan": false,
     "ingredients": [
+      "16 corn tortillas",
       "3 tbsp butter, melted",
       "4 cups shredded rotisserie chicken",
-      "8 oz cream cheese, room temperature",
+      "8 oz cream cheese",
       "2 cups shredded Cheddar",
-      "1 cup Buffalo sauce, plus more for serving",
+      "1 cup Buffalo sauce",
       "1 bunch scallions, thinly sliced",
       "1/4 tsp ground cumin",
-      "16 corn tortillas",
       "2 tbsp crumbled blue cheese",
-      "2 tbsp blue cheese dressing (can substitute with ranch)"
+      "2 tbsp blue cheese dressing (or ranch)"
     ],
     "nutrition": {
       "calories": "726",
@@ -92,13 +92,13 @@ export const recipes = [
     "ingredients": [
       "1 tbsp olive oil",
       "2 cloves garlic, minced",
-      "1 onion, diced",
       "8 oz ground beef",
+      "1 onion, diced",
       "16 oz (1 box) elbow macaroni",
       "4 cups chicken broth",
-      "14 oz (1 can) diced tomatoes",
       "3/4 cup canned white kidney beans, drained",
       "3/4 cup canned kidney beans, drained",
+      "14 oz (1 can) diced tomatoes",
       "1½ tsp chili powder",
       "1½ tsp paprika powder",
       "1 tsp onion powder",
@@ -174,11 +174,11 @@ export const recipes = [
       "2 tbsp fresh minced ginger",
       "2 tbsp tomato paste",
       "1 tbsp brown sugar",
-      "1 tbsp hoisin sauce",
       "1 tbsp soy sauce",
+      "2 tsp rice vinegar",
+      "1 tbsp hoisin sauce",
       "1 tbsp vegan worcestershire sauce",
       "1 tbsp apple cider vinegar",
-      "2 tsp rice vinegar",
       "2 tsp fresh lemongrass, minced",
       "1/2 tsp fresh chili paste",
       "1/2 tsp turmeric",
@@ -215,10 +215,10 @@ export const recipes = [
       "1 medium onion, chopped",
       "1 can (11 oz) Mexicorn, drained",
       "1 packet of taco seasoning",
+      "1 cup shredded cheddar cheese",
       "1½ tsp chili powder",
-      "1/2 tsp salt",
       "1/4 tsp garlic powder",
-      "1 cup shredded cheddar cheese"
+      "1/2 tsp salt"
     ],
     "nutrition": {
       "calories": "516",
@@ -251,11 +251,11 @@ export const recipes = [
       "1 tbsp chili garlic sauce",
       "1½ tsp hoisin sauce",
       "2 tbsp peanut oil",
+      "2/3 cups green onions, thinly sliced",
       "1 lb pork shoulder, cut into 1/4 inch cubes",
       "1 large egg, lightly beaten",
       "1½ cups chopped red bell pepper",
-      "1 cup frozen shelled edamame",
-      "2/3 cups thinly sliced green onions"
+      "1 cup frozen shelled edamame"
     ],
     "nutrition": {
       "calories": "516",
@@ -288,12 +288,12 @@ export const recipes = [
       "1/4 cup chopped onion",
       "1/4 cup butter, cubed",
       "1/4 cup all-purpose flour",
-      "1/4 tsp salt",
-      "1/4 tsp pepper",
+      "1/2 cup shredded cheddar cheese",
+      "1 cup cooked fresh or frozen broccoli",
       "1½ cups 2% milk",
       "3/4 cup chicken broth",
-      "1 cup cooked and chopped fresh/frozen broccoli",
-      "1/2 cup shredded cheddar cheese"
+      "1/4 tsp ground pepper",
+      "1/4 tsp salt"
     ],
     "nutrition": {
       "calories": "495",
@@ -304,7 +304,7 @@ export const recipes = [
       "sodium": "1150mg"
     },
     "directions": [
-      "This recipe serves two. To serve more deliciosuness, double the ingredients.",
+      "This recipe serves two. To serve more deliciousness, double the ingredients.",
       "In a small saucepan, saute onion in butter until tender. Stir in the flour, salt and pepper until blended; gradually add milk and broth.",
       "Bring to a boil; cook and stir until thickened, about 2 minutes.",
       "Chef's Tip: Curdling in a cream soup usually occurs when the milk or cream is added at too high of a heat. As you gradually pour milk and broth into the onion and flour mixture, keep heat at medium and stir continuously with a whisk. Once it is all mixed in, then proceed to heat to a boil.",
@@ -329,13 +329,13 @@ export const recipes = [
       "2 cans (14 1/2 oz) reduced-sodium chicken broth",
       "2 cans (15 1/2 oz) cannelini beans, drained and rinsed",
       "1 can (14 1/2 oz) diced tomatoes, undrained",
-      "1 tsp salt",
-      "1/4 tsp pepper",
       "1 tsp italian seasoning",
       "1/2 tsp oregano",
       "1 tbsp tomato paste",
       "1 cup fresh spinach leaves, chopped",
-      "2 tbsp shredded Parmesan cheese"
+      "2 tbsp shredded Parmesan cheese",
+      "1 tsp salt",
+      "1/4 tsp pepper"
     ],
     "nutrition": {
       "calories": "450",
@@ -450,7 +450,7 @@ export const recipes = [
       "1½ cups coconut curry simmer sauce",
       "½ cup vegetable broth",
       "4 cups baby spinach",
-      "2 cups precooked brown rice"
+      "2 cups cooked brown rice"
     ],
     "nutrition": {
       "calories": "470",
@@ -478,8 +478,6 @@ export const recipes = [
     "vegan": false,
     "ingredients": [
       "1¼ lb salmon, skinned and cut into 4 portions",
-      "¼ tsp salt",
-      "¼ tsp ground pepper",
       "2 tbsp olive oil, split into two portions",
       "1 zucchini, halved and thinly sliced",
       "½ cup chopped onion",
@@ -488,7 +486,9 @@ export const recipes = [
       "2 oz cream cheese, cut into cubes",
       "1 tsp Italian seasoning",
       "½ tsp garlic powder",
-      "¼ cup chopped fresh basil"
+      "¼ cup chopped fresh basil",
+      "¼ tsp salt",
+      "¼ tsp ground pepper"
     ],
     "nutrition": {
       "calories": "516",
@@ -523,9 +523,9 @@ export const recipes = [
       "1 tbsp olive oil",
       "3 cloves garlic, minced",
       "2 tbsp dry white wine or chicken broth",
+      "1 tbsp chives or parsley, chopped",
       "1 tbsp butter",
-      "⅛ tsp salt",
-      "1 tbsp chopped fresh chives or parsley"
+      "1/8 tsp salt"
     ],
     "nutrition": {
       "calories": "341",
@@ -554,15 +554,15 @@ export const recipes = [
     "vegan": false,
     "ingredients": [
       "1½ tbsp olive oil",
-      "1 pound shrimp, peeled and deveined",
+      "1 tsp water",
+      "1 lb shrimp, peeled and deveined",
       "6 cloves garlic, finely minced",
       "1/4 tsp red pepper flakes",
       "3 tbsp lemon juice",
-      "1/2 tbsp salt (or desired amount)",
+      "2 tbsp butter, cut into 4 equal pieces, divided",
+      "1/3 cup chopped parsley, divided",
       "1 tbsp caper brine",
-      "2 tbsp cold butter, cut into 4 equal pieces, divided",
-      "1/3 cup chopped flat-leaf parsley, divided",
-      "1 tsp water",
+      "1/2 tbsp salt"
     ],
     "nutrition": {
       "calories": "196",
@@ -595,10 +595,10 @@ export const recipes = [
       "3 garlic cloves, minced",
       "¼ cup packed brown sugar",
       "⅓ cup reduced-sodium soy sauce",
-      "3 tsp sesame oil",
       "1/2 tsp ground ginger",
       "1/2 tsp crushed red pepper flakes",
       "1/2 tsp pepper",
+      "3 tsp sesame oil",
       "2⅔ cups hot cooked brown rice",
       "3 green onions, thinly sliced"
     ],
@@ -630,12 +630,12 @@ export const recipes = [
       "1 (24 oz) package frozen ravioli",
       "1 lb lean ground beef",
       "1½ tsp dried oregano",
-      "½ tsp garlic powder",
-      "½ tsp salt",
-      "¼ tsp ground pepper",
+      "1/2 tsp garlic powder",
       "1 (28 oz) can crushed tomatoes",
-      "¼ cup chopped fresh basil",
-      "8 oz fresh mozzarella balls, divided"
+      "8 oz fresh mozzarella balls, divided",
+      "1/4 cup chopped fresh basil",
+      "1/4 tsp ground pepper",
+      "1/2 tsp salt"
     ],
     "nutrition": {
       "calories": "485",
@@ -656,7 +656,7 @@ export const recipes = [
   },
   { 
     "id": 17,
-    "name": "Speedy Chicken Adobo", 
+    "name": "Kickin' Chicken Adobo", 
     "images": ["/chicken.png"],
     "types": ["chicken"],
     "time": "30 minutes",
@@ -703,18 +703,18 @@ export const recipes = [
       "1 tbsp olive oil",
       "1 lb ground beef",
       "3 cloves crushed garlic",
+      "1 egg, beaten",
       "28 oz (1 can) crushed tomatoes",
       "1 tbsp minced dried onions",
       "1/2 cup red wine (or beef broth)",
-      "1 egg, beaten",
       "1½ cups skim ricotta cheese",
       "1/4 cup grated Parmesan cheese",
       "1½ cups shredded mozzarella",
       "24 wonton wrappers",
       "1½ tbsp dried basil, divided use",
-      "1 tsp sea salt",
       "1/2 tsp black pepper",
-      "2 tbsp fresh parsley, chopped"
+      "2 tbsp fresh parsley, chopped",
+      "1 tsp sea salt"
     ],
     "nutrition": {
       "calories": "290",
@@ -738,8 +738,8 @@ export const recipes = [
   { 
     "id": 19,
     "name": "Veggie Party Stir Fry",
-    "images": ["/vegetarian.png", "/pasta.png", "/vegan.png"],
-    "types": ["vegetarian", "pasta"],
+    "images": ["/vegetarian.png", "/vegan.png"],
+    "types": ["vegetarian"],
     "time": "30 minutes",
     "vegetarian": true,
     "vegan": true,
@@ -902,10 +902,10 @@ export const recipes = [
       "3 cups peeled potatoes, cubed",
       "1 carrot, grated",
       "1/2 cup chopped onion",
-      "1 can (14oz) chicken broth",
+      "1 can (14 oz) chicken broth",
       "3 tbsp all-purpose flour",
       "3 cups whole milk (or heavy cream)",
-      "8 ounces Velveeta, cubed",
+      "8 oz Velveeta, cubed",
       "1 tbsp dried parsley flakes",
       "1/2 tsp salt",
       "1/2 tsp pepper",
@@ -943,7 +943,7 @@ export const recipes = [
       "2 carrots, thinly sliced",
       "2 cans (24 oz total) condensed split pea soup",
       "1 cup cubed fully cooked ham",
-      "Shaved Parmesan cheese, optional"
+      "shaved Parmesan cheese (optional)"
     ],
     "nutrition": {
       "calories": "249",
@@ -975,7 +975,7 @@ export const recipes = [
       "2 cups chopped yellow onion",
       "1 cup chopped carrots (2 carrots)",
       "1 cup chopped celery (2 stalks)",
-      "1¾ teaspoons kosher salt",
+      "1¾ tsp kosher salt",
       "3 tbsp all-purpose flour",
       "4 cups unsalted chicken stock",
       "2 cups whole milk",
@@ -1002,7 +1002,7 @@ export const recipes = [
   { 
     "id": 25,
     "name": "Tortellini Salad",
-    "images": ["/salad.png", "/pasta.png", "vegetarian.png"],
+    "images": ["/salad.png", "/pasta.png", "/vegetarian.png"],
     "types": ["salad", "pasta", "vegetarian"],
     "time": "30 minutes",
     "vegetarian": true,
@@ -1032,6 +1032,207 @@ export const recipes = [
       "Drain tortellini and rinse in cold water; transfer to a large bowl. Add romaine and remaining Parmesan to the bowl.",
       "Drizzle bowl with dressing, then toss salad to coat.",
       "Top with croutons and you're done! Now watch it magically disappear."
+    ]
+  },
+  { 
+    "id": 26,
+    "name": "Chicken Meatball Salad",
+    "images": ["/salad.png", "/chicken.png"],
+    "types": ["salad", "chicken"],
+    "time": "30 minutes",
+    "vegetarian": false,
+    "vegan": false,
+    "ingredients": [
+      "Cooking spray",
+      "1 lb ground chicken",
+      "1 egg, beaten",
+      "1/4 cup plain breadcrumbs",
+      "1/3 cup chopped onion",
+      "1 1/2 tsp chopped garlic",
+      "1 (4 oz) Hatch chiles",
+      "1/2 tsp chili powder",
+      "1/2 tsp ground cumin",
+      "1 head romaine lettuce",
+      "kosher salt and freshly ground pepper",
+      "shredded cheese of your choice",
+      "guacamole",
+      "salsa"
+    ],
+    "nutrition": {
+      "calories": "350",
+      "fat": "10g",
+      "cholesterol": "150mg",
+      "carbs": "35g",
+      "protein": "20g",
+      "sodium": "1150mg"
+    },
+    "directions": [
+      "Preheat oven to 400°F. Coat a small sheet pan with cooking spray",
+      "Combine chicken, egg, breadcrumbs, onion, garlic, Hatch chiles, chili powder, and cumin in a bowl.",
+      "Season with salt and pepper. Form mixture into 9 (2 oz each) meatballs, and place on prepared pan.",
+      "Lightly grease meatballs with cooking spray. Bake until cooked through, 18 to 20 minutes",
+      "Serve meatballs on romaine topped with guacamole, salsa, and cheese"
+    ]
+  },
+  { 
+    "id": 27,
+    "name": "Rainbow Chicken Salad",
+    "images": ["/salad.png", "/chicken.png"],
+    "types": ["salad", "chicken"],
+    "time": "30 minutes",
+    "vegetarian": false,
+    "vegan": false,
+    "ingredients": [
+      "1/3 loaf ciabatta, cut into 1-inch cubes",
+      "2 garlic cloves, minced",
+      "1/2 lb rainbow carrots, halved lengthwise",
+      "2 cup shredded rotisserie chicken",
+      "1 cup cooked fresh or frozen peas",
+      "1 fennel bulb, cored and thinly sliced",
+      "6 cups romaine lettuce",
+      "3 tbsp olive oil",
+      "1/2 tsp ground black pepper",
+      "For the Vinaigrette Dressing:",
+      "1/4 cup olive oil",
+      "2 tbsp white balsamic vinegar",
+      "1 1/2 tbsp chopped fresh chives",
+      "1/2 minced small shallot",
+      "1 1/2 tsp Dijon mustard",
+      "1/4 tsp ground black pepper",
+      "1 tsp sugar",
+      "1 tsp salt"
+    ],
+    "nutrition": {
+      "calories": "395",
+      "fat": "23g",
+      "cholesterol": "85mg",
+      "carbs": "22g",
+      "protein": "28g",
+      "sodium": "542mg"
+    },
+    "directions": [
+      "Preheat oven to 400°F. Coat a small sheet pan with cooking spray",
+      "Combine chicken, egg, breadcrumbs, onion, garlic, Hatch chiles, chili powder, and cumin in a bowl.",
+      "Season with salt and pepper. Form mixture into 9 (2 oz each) meatballs, and place on prepared pan.",
+      "Lightly grease meatballs with cooking spray. Bake until cooked through, 18 to 20 minutes",
+      "Serve meatballs on romaine topped with guacamole, salsa, and cheese"
+    ]
+  },
+  { 
+    "id": 28,
+    "name": "White Bean Salad",
+    "images": ["/salad.png", "/chicken.png"],
+    "types": ["salad", "chicken"],
+    "time": "30 minutes",
+    "vegetarian": false,
+    "vegan": false,
+    "ingredients": [
+      "2 cups mixed salad greens",
+      "1/2 chopped cucumbers",
+      "1/2 cup halved cherry tomatoes",
+      "1/3 cup canned white beans, drained",
+      "1/2 avocado, diced",
+      "1 tbsp red-wine vinegar",
+      "2 tsp olive oil",
+      "¼ tsp kosher salt",
+      "ground pepper, to taste"
+    ],
+    "nutrition": {
+      "calories": "360",
+      "fat": "25g",
+      "cholesterol": "5mg",
+      "carbs": "30g",
+      "protein": "10g",
+      "sodium": "322mg"
+    },
+    "directions": [
+      "Combine greens, veggies, beans and avocado in a medium bowl.",
+      "Drizzle with vinegar and oil and season with salt and pepper.",
+      "Toss to combine and coat salad, then transfer to a large plate for maximum enjoyment."
+    ]
+  },
+  { 
+    "id": 29,
+    "name": "Sun-Dried Tomato and Spinach Pasta",
+    "images": ["/pasta.png", "/vegetarian.png"],
+    "types": ["pasta", "vegetarian"],
+    "time": "30 minutes",
+    "vegetarian": true,
+    "vegan": false,
+    "ingredients": [
+      "5 oz baby spinach, coarsely chopped",
+      "8 oz whole-wheat spaghetti",
+      "1/2 cup sun-dried tomatoes, in oil",
+      "1 tbsp oil from sun-dried tomatoes jar",
+      "1/2 cup onion, halved and sliced",
+      "3 cloves garlic, minced",
+      "1/4 tsp crushed red pepper",
+      "1/4 tsp salt",
+      "1/4 tsp ground pepper",
+      "1 cup vegetable broth",
+      "1/2 cup sour cream",
+      "1/4 cup grated Parmesan cheese",
+      "1 tbsp unsalted butter",
+    ],
+    "nutrition": {
+      "calories": "380",
+      "fat": "16g",
+      "cholesterol": "26mg",
+      "carbs": "51g",
+      "protein": "13g",
+      "sodium": "330mg"
+    },
+    "directions": [
+      "Place spinach in a colander in the sink. Bring a large pot of water to a boil over high heat. Add spaghetti and cook according to package directions.",
+      "Drain the pasta over the spinach; toss gently to help wilt the spinach.",
+      "Meanwhile, heat sun-dried tomato oil in a large skillet over medium heat.",
+      "Add onion and sun-dried tomatoes; cook, stirring, until softened, about 3 minutes.",
+      "Add garlic, crushed red pepper, salt and pepper; cook, stirring, for 1 minute.",
+      "Increase heat to medium-high and add broth; cook, stirring, until reduced by about half, about 2 minutes.",
+      "Stir in sour cream, Parmesan and butter. Add the spaghetti and spinach; toss to coat well."
+    ]
+  },
+  { 
+    "id": 30,
+    "name": "Beef & Cauliflower Casserole",
+    "images": ["/beef.png"],
+    "types": ["beef"],
+    "time": "30 minutes",
+    "vegetarian": false,
+    "vegan": false,
+    "ingredients": [
+      "1 tbsp olive oil",
+      "½ cup chopped onion",
+      "1  green bell pepper, chopped",
+      "1 lb lean ground beef",
+      "3 cups cauliflower florets",
+      "3 cloves garlic, minced",
+      "2 tbsp chili powder",
+      "1/4 tsp ground chipotle",
+      "1 (15 oz) can diced tomatoes",
+      "⅓ cup sliced pickled jalapeños ",
+      "2 cups shredded sharp Cheddar cheese",
+      "2 tsp ground cumin",
+      "1 tsp dried oregano",
+      "1/2 tsp salt",
+    ],
+    "nutrition": {
+      "calories": "351",
+      "fat": "23g",
+      "cholesterol": "86mg",
+      "carbs": "11g",
+      "protein": "26g",
+      "sodium": "672mg"
+    },
+    "directions": [
+      "Position rack in upper third of oven if possible. Preheat broiler to high.",
+      "Heat oil in a large oven-safe skillet over medium heat. Add onion and bell pepper; cook, stirring, until softened, about 5 minutes.",
+      "Add beef and cauliflower; cook 5 to 7 minutes, breaking the beef up into smaller pieces once it begins to brown.",
+      "Stir in garlic, chili powder, cumin, oregano, salt and chipotle; cook for about 1 minute, then add tomatoes and their juice.",
+      "Bring to a simmer and cook, stirring occasionally, until liquid is reduced and cauliflower is tender, about 3 minutes",
+      "Remove from heat, then sprinkle cheese over the beef mixture and top with sliced jalapeños.",
+      "Return dish to oven and broil until the cheese is melted and browned in spots, 2 to 3 minutes.",
+      "Allow cheese to cool for a couple of minutes before serving to make your life easier when serving out the gooey goodness."
     ]
   }
 ];
@@ -1063,7 +1264,7 @@ recipes.forEach(recipe => {
         break;
       case 'texMex':
         recipe.denotations.push("/texmex.png");
-        break;  
+        break;
       case 'vegetarian':
         recipe.denotations.push("/vegetarian.png");
         break;

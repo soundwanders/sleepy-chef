@@ -71,6 +71,14 @@ button:focus {
   transform: translateX(100%);
 }
 
+.directions {
+  scrollbar-width: thin;
+}
+
+.directions::-webkit-scrollbar-track {
+  scrollbar-width: thin;
+}
+
 @media (max-width: 768px) {
   .sidebar.open {
     width: 100%;

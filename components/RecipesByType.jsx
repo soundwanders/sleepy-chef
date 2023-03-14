@@ -50,15 +50,15 @@ export default function RecipesByType({ data, error, mainTypes, defaultColor, re
         </div>
       </div>
 
-      <div className="flex justify-start px-8 md:px-4 mb-6 mt-2 py-2">
+      <div className="flex justify-start px-8 md:px-4 mb-6 -mt-4 md:mt-2 py-2">
         <label htmlFor="sort-by" className="mr-2 sr-only">Sort by:</label>
         <select
           id="sort-by"
           value={sortBy}
           onChange={handleSortChange}
-          className="tracking-wide bg-slate-100 dark:bg-slate-800 border border-gray-200 dark:border-gray-500 rounded-md px-2 py-1"
+          className="tracking-wide bg-slate-50 dark:bg-slate-850 border border-sky-100 dark:border-yellow-50 rounded-md shadow px-2 py-1"
         >
-          <option value="default">Sort</option>
+          <option value="default">Sort...</option>
           <option value="name-asc">Name (A-Z)</option>
           <option value="name-desc">Name (Z-A)</option>
         </select>

@@ -13,12 +13,12 @@ export const Hero = () => {
       <div className="absolute top-1/3 max-w-4xl mx-auto text-center items-center pb-4 mt-11">
         <RoughNotationGroup show={true}>
           <Highlighter color={highlightColor}>
-            <h1 className="sleepy-title text-5xl md:text-8xl text-gray-800 dark:text-gray-200 py-1 md:px-4">
+            <h1 className="sleepy-title text-5xl md:text-8xl text-gray-800 dark:text-gray-200 py-1 md:px-4 mt-1 md:mt-0">
               {appData.title}
             </h1>
           </Highlighter>
         </RoughNotationGroup>
-        <h1 className="sleepy-description text-[0.85rem] md:text-lg dark:text-gray-100 pt-8 px-4">
+        <h1 className="sleepy-description text-sm md:text-lg dark:text-gray-100 pt-9 px-4">
           {appData.description}
         </h1>
         

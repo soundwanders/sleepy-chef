@@ -65,7 +65,7 @@ export const SearchResults = ({ recipeColors, defaultColor }) => {
           <div className="w-fit">
             <RoughNotationGroup show={true}>
               <Highlighter color={highlightColor} className="md:text-center">
-                <h1 className={`results-title text-center mx-auto text-[2.675rem] md:text-8xl font-bold text-gray-900 dark:text-gray-100 py-1 px-4 whitespace-nowrap`}>
+                <h1 className={`results-title text-center mx-auto text-[2.675rem] md:text-8xl font-bold text-gray-900 dark:text-gray-100 md:py-1 px-4 whitespace-nowrap`}>
                 {appData.resultsTitle}
                 </h1>
               </Highlighter>
@@ -74,15 +74,15 @@ export const SearchResults = ({ recipeColors, defaultColor }) => {
         </div>
       </div>
 
-      <div className="flex justify-start px-8 md:px-4 mb-6 mt-2 py-2">
+      <div className="flex justify-start px-8 md:px-4 mb-6 -mt-10 md:-mt-4 py-2">
         <label htmlFor="sort-by" className="mr-2 sr-only">Sort by:</label>
         <select
           id="sort-by"
           value={sortBy}
           onChange={handleSortChange}
-          className="tracking-wide bg-slate-100 dark:bg-slate-850 border border-slate-300 dark:border-slate-700 rounded-md px-2 py-1"
+          className="tracking-wide bg-slate-50 dark:bg-slate-850 border border-sky-100 dark:border-yellow-50 rounded-md shadow px-2 py-1"
         >
-          <option value="default">Sort</option>
+          <option value="default">Sort...</option>
           <option value="name-asc">Name (A-Z)</option>
           <option value="name-desc">Name (Z-A)</option>
         </select>

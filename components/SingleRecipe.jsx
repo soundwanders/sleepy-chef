@@ -28,7 +28,7 @@ export default function SingleRecipe({ name, images, types, time, vegetarian, ve
       
         <div className="flex-grow flex-shrink-0 md:flex-grow-0 md:flex-shrink-0 flex flex-col md:flex-row md:-mt-40">
           <div className="flex items-center justify-center flex-shrink-1 md:w-1/2 flex-end md:pr-10">
-            <img src={images[0]} alt="" className="rounded-lg h-auto w-full object-cover p-10 md:p-0 md:-translate-y-1/3" />
+            <img src={images[0]} alt="" className="rounded-lg h-auto w-full object-cover px-20 pt-4 pb-8 md:p-0 md:-translate-y-1/3" />
           </div>
       
           <div className="md:w-1/2 py-8 px-4 -mt-12 md:mt-0">

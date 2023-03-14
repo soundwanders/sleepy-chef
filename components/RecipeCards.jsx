@@ -40,8 +40,7 @@ export default function RecipeCards({ data, error }) {
   };
   
   return (
-    <div className="grid grid-cols-1 md:grid-cols-3 grid-flow-dense justify-self-center gap-12 
-      mb-10 px-8 md:px-0 py-0 md:py-2 md:pl-4"
+    <div className="columns-1 md:columns-3 gap-12 px-8 md:px-0 py-0 md:py-2 md:pl-4 mb-14"
     >
       { data ? (
         data.map(recipe => (
@@ -51,9 +50,9 @@ export default function RecipeCards({ data, error }) {
           as={`/id/${encodeURIComponent(recipe.id)}`}
           key={recipe.id}
         >
-          <div className={`min-h-0 dark:bg-gradient-to-b from-zinc-850 to-zinc-950 shadow-lg
+          <div className={`min-h-0 dark:bg-gradient-to-b from-zinc-850 to-zinc-950 shadow-lg mb-12
             rounded-lg overflow-hidden transform hover:scale-101 ${cardColors[recipe.types[0]] || defaultCardColor}`}
-          >  
+          > 
           <div className={`w-full rounded-t-lg py-4 ${recipeColors[recipe.types[0]] || defaultColor}`}>
               <div className="flex items-center justify-center h-full w-full">
                 <div className="title-container flex flex-col">
@@ -62,8 +61,8 @@ export default function RecipeCards({ data, error }) {
                     {recipe.name}
                   </h2>
                   <div className="images-container flex justify-center">
-                    {recipe.denotations.map((denotation, index) => (
-                      <img key={index} src={denotation} alt="" className="h-auto w-8 m-1" />
+                    {recipe.images.map((image, index) => (
+                      <img key={index} src={image} alt="" className="h-auto w-8 m-1" />
                     ))}
                   </div>
                 </div>
@@ -92,7 +91,7 @@ export default function RecipeCards({ data, error }) {
                 Ingredients:
               </h3>
               
-              <ul className="grid grid-cols-2 gap-2 md:gap-3">
+              <ul className="grid grid-cols-2 gap-2 md:gap-4">
                 {recipe.ingredients.map(ingredient => (
                   <li key={ingredient} className="text-gray-700 dark:text-gray-100 text-sm col-span-1">{ingredient}</li>
                 ))}
@@ -116,7 +115,7 @@ export default function RecipeCards({ data, error }) {
               <h3 className="text-xl font-bold text-gray-800 dark:text-gray-200 mt-6 mb-3 pt-4 border-t border-slate-500">
                 Directions:
               </h3>
-              <div className="overflow-x-hidden overflow-y-auto h-48 pb-6">
+              <div className="directions overflow-x-hidden overflow-y-auto h-48 pb-4">
                 <ul className="grid grid-cols-1 gap-2 md:gap-3">
                   {recipe.directions.map(direction => (
                     <li key={direction} className="text-gray-700 dark:text-gray-100 text-sm col-span-1">{direction}</li>
