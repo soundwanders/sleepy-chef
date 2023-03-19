@@ -5,7 +5,7 @@ import appData from '@constants/appData';
 export default function Results() {
   return (
     <ContainerBlock title={appData.title}>
-      <SearchResults />
+      <SearchResults/>
     </ContainerBlock>
   )
 };

@@ -171,7 +171,7 @@ export const recipes = [
       "4 green onions, thinly sliced",
       "4 garlic cloves, minced",
       "2 tbsp peanut butter",
-      "2 tbsp fresh minced ginger",
+      "2 tbsp fresh ginger, minced",
       "2 tbsp tomato paste",
       "1 tbsp brown sugar",
       "1 tbsp soy sauce",
@@ -394,43 +394,41 @@ export const recipes = [
       "Top with creamy cilantro dressing, and that's it!"
     ]
   },
+
   { 
     "id": 10,
-    "name": "Creamy Chicken Skillet", 
-    "images": ["/chicken.png"],
-    "types": ["chicken"],
+    "name": "Black Bean Salad",
+    "images": ["/salad.png", "/vegetarian.png", "/vegan.png"],
+    "types": ["salad", "vegetarian", "vegan"],
     "time": "20 minutes",
-    "vegetarian": false,
-    "vegan": false,
+    "vegetarian": true,
+    "vegan": true,
     "ingredients": [
-      "1 lb chicken cutlets",
-      "¼ tsp salt, divided",
-      "¼ tsp ground pepper",
-      "2 tbsp olive oil, divided",
-      "1 zucchini, thinly sliced",
-      "½ cup chopped onion",
-      "⅓ cup dry white wine",
-      "1 can (15 oz) diced tomatoes",
-      "2 oz cream cheese, cut into cubes",
-      "1 tsp Italian seasoning",
-      "½ tsp garlic powder",
-      "¼ cup chopped fresh basil"
+      "1/4 cup cilantro leaves",
+      "1 clove garlic, minced",
+      "8 cups mixed salad greens",
+      "1/2 cup red onion, thinly sliced",
+      "2 ears corn, or 2 cups thawed frozen corn",
+      "1 ripe avocado, pitted and chopped",
+      "2 tbsp extra-virgin olive oil",
+      "1 pint grape tomatoes, halved",
+      "1 (15 oz) can black beans, drained",
+      "1/2 tsp salt",
+      "1/4 cup lime juice",
     ],
     "nutrition": {
-      "calories": "301",
-      "fat": "14g",
-      "cholesterol": "97mg",
-      "carbs": "11g",
-      "protein": "27g",
-      "sodium": "250mg"
+      "calories": "322",
+      "fat": "16g",
+      "cholesterol": "0mg",
+      "carbs": "41g",
+      "protein": "11g",
+      "sodium": "406mg"
     },
     "directions": [
-      "Sprinkle chicken with 1/8 tsp each salt and pepper. Heat 1 tbsp oil in a large skillet over medium heat.",
-      "Add the chicken and cook, turning once, until browned on each side and fully cooked to atleast 165F. Transfer to a plate.",
-      "Slowly pour in the remaining 1 tbsp oil as well as the zucchini and onion to the pan. Cook, stirring, until starting to soften, about 2 minutes.",
-      "Increase heat to medium-high and add wine. Cook, scraping up any browned bits, until the liquid has mostly evaporated, about 2 minutes.",
-      "Next, add the tomatoes, cream cheese, Italian seasoning, garlic powder and the remaining 1/8 tsp each salt and pepper. Bring to a simmer and cook, stirring to melt the cream cheese, for 5 minutes.",
-      "Return the chicken to the pan and turn to coat with the sauce. Serve topped with basil and enjoy."
+      "Place onion in a medium bowl and cover with cold water. Set aside for now.",
+      "Combine avocado, cilantro, lime juice, oil, garlic and salt in a mini food processor or blender. Mix until well-blended and smooth",
+      "Just before serving, combine salad greens, corn, tomatoes and beans in a large bowl.",
+      "Then, drain the onions and add them to bowl. Pour on the avocado dressing, toss to coat and then serve to your heart's desire."
     ]
   },
   { 
@@ -438,7 +436,7 @@ export const recipes = [
     "name": "Coconut Chickpea Curry", 
     "images": ["/vegetarian.png", "/vegan.png"],
     "types": ["vegetarian"],
-    "time": "20 minutes",
+    "time": "25 minutes",
     "vegetarian": true,
     "vegan": true,
     "ingredients": [
@@ -684,10 +682,9 @@ export const recipes = [
       "In a large pot, combine soy sauce, vinegar, water, pounded garlic, bay leaves and pepper. Whisk to mix thoroughly.",
       "Once the sauce is mixed, place chicken into pot, making sure it is all submerged.",
       "Place pot on stove, raise heat to medium-low and cover the pot",
-      "Cover and bring pot to a nice simmer, adjusting heat as necessary. Keep covered, and simmer for 25 minutes.",
+      "Cover and bring pot to a fast simmer, adjusting heat as necessary. Keep covered, and simmer for 20-25 minutes.",
       "While pot is simmering, cook your rice. If the rice happens to be done early, it's okay! Keep covered so it remains warm.",
-      "After 25 minutes, remove the pot's cover and stir ingredients gently.",
-      "Continue to simmer, uncovered, for an additional 5 minutes to allow the sauce to thicken.",
+      "Remove the pot's cover and stir ingredients gently. Continue to simmer, uncovered, for an additional 5 minutes to allow the sauce to thicken.",
       "Spoon rice onto your serving dish, top with chicken thighs and desired amount of sauce. Chow down!"
     ]
   },
@@ -705,7 +702,7 @@ export const recipes = [
       "3 cloves crushed garlic",
       "1 egg, beaten",
       "28 oz (1 can) crushed tomatoes",
-      "1 tbsp minced dried onions",
+      "1 tbsp dried onions, minced",
       "1/2 cup red wine (or beef broth)",
       "1½ cups skim ricotta cheese",
       "1/4 cup grated Parmesan cheese",
@@ -862,7 +859,7 @@ export const recipes = [
     "name": "Stuffed Pepper Soup",
     "images": ["/soup.png"],
     "types": ["soup"],
-    "time": "30 minutes",
+    "time": "25 minutes",
     "vegetarian": false,
     "vegan": false,
     "ingredients": [
@@ -885,8 +882,8 @@ export const recipes = [
     "directions": [
       "Heat up a pot of water with appropriate amount of water to cook the rice.",
       "Meanwhile, in a large saucepan, cook the beef, green peppers and onion over medium-high heat until meat is no longer pink, 5 to 7 minutes. Drain excess from pan.",
-      "Prepare the rice according to the package directions while the beef cooks. If rice is done early, keep covered so it remains warm while your skillet finishes cooking",
-      "Stir in the pasta sauce, tomatoes, broth and prepared rice; heat through and just like that you've got yourself some dinner."
+      "Prepare the rice according to the package directions while the beef cooks. If rice is done early, keep covered so it remains warm while beef finishes cooking",
+      "Stir in the pasta sauce, tomatoes, broth and prepared rice; heat through and just like that, you've got some soup!"
     ]
   },
   { 
@@ -932,7 +929,7 @@ export const recipes = [
     "name": "Split Pea Soup",
     "images": ["/soup.png"],
     "types": ["soup"],
-    "time": "30 minutes",
+    "time": "25 minutes",
     "vegetarian": false,
     "vegan": false,
     "ingredients": [
@@ -966,7 +963,7 @@ export const recipes = [
     "name": "Chicken Noodle Soup",
     "images": ["/soup.png", "/chicken.png"],
     "types": ["soup", "chicken"],
-    "time": "30 minutes",
+    "time": "25 minutes",
     "vegetarian": false,
     "vegan": false,
     "ingredients": [
@@ -992,7 +989,7 @@ export const recipes = [
       "sodium": "730mg"
     },
     "directions": [
-      "Melt butter with olive oil in a large Dutch oven (or pot) over medium-high heat.",
+      "Melt butter with olive oil in a large Dutch oven or pot over medium-high heat.",
       "Add onion, carrots, celery and salt and cook, stirring often, until vegetables are slightly softened, 6 to 8 minutes.",
       "Add flour and stir to coat. Stir in broth and milk and let mixture come to a boil.",
       "Add uncooked noodles to boiling mixture. Cover and cook until noodles are al dente, about 8 minutes.",
@@ -1004,7 +1001,7 @@ export const recipes = [
     "name": "Tortellini Salad",
     "images": ["/salad.png", "/pasta.png", "/vegetarian.png"],
     "types": ["salad", "pasta", "vegetarian"],
-    "time": "30 minutes",
+    "time": "15 minutes",
     "vegetarian": true,
     "vegan": false,
     "ingredients": [
@@ -1123,7 +1120,7 @@ export const recipes = [
     "name": "White Bean Salad",
     "images": ["/salad.png", "/chicken.png"],
     "types": ["salad", "chicken"],
-    "time": "30 minutes",
+    "time": "10 minutes",
     "vegetarian": false,
     "vegan": false,
     "ingredients": [
@@ -1234,6 +1231,84 @@ export const recipes = [
       "Return dish to oven and broil until the cheese is melted and browned in spots, 2 to 3 minutes.",
       "Allow cheese to cool for a couple of minutes before serving to make your life easier when serving out the gooey goodness."
     ]
+  },
+  { 
+    "id": 31,
+    "name": "Creamy Chicken Skillet", 
+    "images": ["/chicken.png"],
+    "types": ["chicken"],
+    "time": "25 minutes",
+    "vegetarian": false,
+    "vegan": false,
+    "ingredients": [
+      "1 lb chicken cutlets",
+      "1/4 tsp salt, divided",
+      "1/4 tsp ground pepper",
+      "2 tbsp olive oil, divided",
+      "1 zucchini, thinly sliced",
+      "½ cup chopped onion",
+      "⅓ cup dry white wine",
+      "1 can (15 oz) diced tomatoes",
+      "2 oz cream cheese, cut into cubes",
+      "1 tsp Italian seasoning",
+      "1/2 tsp garlic powder",
+      "1/4 cup chopped fresh basil"
+    ],
+    "nutrition": {
+      "calories": "301",
+      "fat": "14g",
+      "cholesterol": "97mg",
+      "carbs": "11g",
+      "protein": "27g",
+      "sodium": "250mg"
+    },
+    "directions": [
+      "Sprinkle chicken with 1/8 tsp each salt and pepper. Heat 1 tbsp oil in a large skillet over medium heat.",
+      "Add the chicken and cook, turning once, until browned on each side and fully cooked to atleast 165F. Transfer to a plate.",
+      "Slowly pour in the remaining 1 tbsp oil as well as the zucchini and onion to the pan. Cook, stirring, until starting to soften, about 2 minutes.",
+      "Increase heat to medium-high and add wine. Cook, scraping up any browned bits, until the liquid has mostly evaporated, about 2 minutes.",
+      "Next, add the tomatoes, cream cheese, Italian seasoning, garlic powder and the remaining 1/8 tsp each salt and pepper. Bring to a simmer and cook, stirring to melt the cream cheese, for 5 minutes.",
+      "Return the chicken to the pan and turn to coat with the sauce. Serve topped with basil and enjoy."
+    ]
+  },
+  { 
+    "id": 32,
+    "name": "Garlic Butter Chicken", 
+    "images": ["/chicken.png"],
+    "types": ["chicken"],
+    "time": "20 minutes",
+    "vegetarian": false,
+    "vegan": false,
+    "ingredients": [
+      "3 tbsp olive oil",
+      "1½lb boneless skinless chicken breasts, pounded",
+      "1 to 2 tsp 21 Salute Seasoning (or poultry seasoning)",
+      "1/2 cup white wine* or chicken broth, or as necessary",
+      "3 tbsp unsalted butter, or more if you want extra sauce",
+      "1 tablespoon garlic, finely minced",
+      "1 tsp freshly ground black pepper",
+      "2 tsp fresh parsley",
+      "1 tsp kosher salt",
+    ],
+    "nutrition": {
+      "calories": "294",
+      "fat": "21g",
+      "cholesterol": "63mg",
+      "carbs": "6g",
+      "protein": "15g",
+      "sodium": "2900mg"
+    },
+    "directions": [
+      "In a large skillet, add the olive oil, pounded chicken, evenly season with 21 Salute, salt, pepper, and cook over medium-high heat for 5 minutes.",
+      "A little tip! Do not move, or touch the chicken while it is searing. After 5 minutes, flip chicken over. For bigger chicken breasts, sear for 6-7 minutes until golden brown.",
+      "Cook chicken on second side for about 5 minutes, until done and cooked through (remember, 165 F!).",
+      "Remove chicken with a slotted spatula and place it on a plate to rest.",
+      "Using caution to avoid the splatter, deglaze your skillet by adding wine (or broth) and allow the liquid to bubble up and steam for a few seconds.",
+      "Add butter to skillet and allow it to melt, about 30 seconds, stirring continuously until fully melted.",
+      "Add the garlic and cook until fragrant, about 1 minutes; stir continuously.",
+      "Turn the heat off, add the chicken back into the skillet, flip it to coat with garlic butter sauce, then spoon the sauce over the chicken to fully coat.",
+      "Garnish with parsley if desired, and enjoy a hot meal.",
+    ]
   }
 ];
 
@@ -1265,6 +1340,9 @@ recipes.forEach(recipe => {
       case 'texMex':
         recipe.denotations.push("/texmex.png");
         break;
+      case 'vegan':
+        recipe.denotations.push("/vegan.png");
+        break;  
       case 'vegetarian':
         recipe.denotations.push("/vegetarian.png");
         break;

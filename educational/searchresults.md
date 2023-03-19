@@ -1,3 +1,5 @@
+## __Sleepy Search Results__
+
 SearchResults is a functional component that displays a list of recipes based on a user's search query.
 
 SWR (stale-while-revalidate) is an awesome library for data-fetching in React that makes it easy to handle caching, revalidation, and focus tracking.

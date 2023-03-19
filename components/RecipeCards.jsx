@@ -40,9 +40,9 @@ export default function RecipeCards({ data, error }) {
   };
   
   return (
-    <div className="columns-1 md:columns-3 gap-12 px-8 md:px-0 py-0 md:py-2 md:pl-4 mb-14"
+    <div className="columns-1 md:columns-3 gap-10 px-8 md:px-0 py-0 md:py-2 md:pl-4 mb-12"
     >
-      { data ? (
+      {data ? (
         data.map(recipe => (
         <Link 
           className="h-min"
@@ -50,14 +50,13 @@ export default function RecipeCards({ data, error }) {
           as={`/id/${encodeURIComponent(recipe.id)}`}
           key={recipe.id}
         >
-          <div className={`min-h-0 dark:bg-gradient-to-b from-zinc-850 to-zinc-950 shadow-lg mb-12
+          <div className={`min-h-0 dark:bg-gradient-to-b from-zinc-850 to-zinc-950 shadow-lg mb-14 md:mb-12
             rounded-lg overflow-hidden transform hover:scale-101 ${cardColors[recipe.types[0]] || defaultCardColor}`}
           > 
           <div className={`w-full rounded-t-lg py-4 ${recipeColors[recipe.types[0]] || defaultColor}`}>
               <div className="flex items-center justify-center h-full w-full">
                 <div className="title-container flex flex-col">
-                  <h2 className="recipe-name mx-auto text-[1.7rem] md:text-3xl leading-8 md:leading-10 text-center text-gray-900 py-4 px-4"
-                  >
+                  <h2 className="recipe-name mx-auto text-[1.7rem] md:text-3xl leading-8 md:leading-10 tracking-[.015em] text-center text-gray-900 py-4 px-4">
                     {recipe.name}
                   </h2>
                   <div className="images-container flex justify-center">
@@ -70,8 +69,8 @@ export default function RecipeCards({ data, error }) {
             </div>
             
             <div className="px-9 py-8">
-              <div className="grid grid-cols-2 gap-4 pb-4 border-b border-slate-500 -mt-4 
-                text-center text-gray-800 dark:text-gray-300 font-medium text-sm uppercase tracking-wider"
+              <div className="grid grid-cols-2 gap-4 pb-4 border-b border-slate-500 -mt-4 text-center 
+                text-gray-800 dark:text-gray-300 font-medium text-sm uppercase tracking-wider"
               >
                 <p className="py-1">
                   Type: {recipe.types.join(", ")}

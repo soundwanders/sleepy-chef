@@ -1,4 +1,6 @@
-Sleepy Chef uses Next.js' Server-Side Rendering (SSR) capabilities to render routes at build time, which enables Sleepy Chef to brag to its friends about its dynamic routing feature.
+## __Server Side Rendering with Next.js__
+
+Sleepy Chef uses Next.js' Server-Side Rendering (SSR) capabilities to render routes at build time. This comes with a whole bunch of benefits, such as better SEO, increasing performance, reducing server load, improving accessibility, and a more predictable UX.
 
 One SSR method displays single page recipes fetched using their `id` (hence, the [id].js file located at ./pages/id/[id].js). The other way SSR is utilized is to create the Sidebar navigation pages, which use the recipe `type` to fetch all recipes of a specific type, and you can find this file at (./pages/types/[type].js).
 

@@ -7,8 +7,8 @@ const TypeLink = ({ name, url, image, closeSidebar, isActive, onClick }) => (
   <Link href={url} as={url} legacyBehavior>
     <a
       className={`
-        block px-4 py-2 pb-4 hover:bg-slate-100 hover:text-gray-800 dark:hover:bg-slate-700 theme-text-on-surface
-        ${isActive ? 'bg-blue-500 text-slate-50' : 'text-gray-800 dark:text-slate-50'}
+        block px-4 rounded py-2 pb-4 hover:bg-slate-200 hover:text-gray-800 dark:hover:bg-slate-700 theme-text-on-surface
+        ${isActive ? 'bg-blue-600 text-slate-50' : 'text-gray-800 dark:text-slate-50'}
       `}
       onClick={() => {
         onClick();
@@ -49,7 +49,7 @@ export const Sidebar = () => {
       <nav
         id="sidebar"
         className={`
-          sidebar bg-slate-200 dark:bg-gradient-to-b from-gray-800 to-gray-900 h-100 w-100 md:w-1/6 md:h-screen 
+          sidebar bg-slate-50 dark:bg-gradient-to-b from-gray-800 to-gray-900 h-100 w-100 md:w-1/6 md:h-screen 
           fixed top-0 right-0 p-4 px-0 pb-60 md:pb-40 text-center
           ${isOpen ? "open" : "close"}
         `}
@@ -59,7 +59,7 @@ export const Sidebar = () => {
           <img src="/sidebar-chef.png" alt="" className="w-16 md:w-20 h-auto mx-auto" />
         </div>
 
-        <div className="h-0.5 w-full bg-zinc-300 dark:bg-gray-700 mb-4"></div>
+        <div className="h-0.5 w-4/5 bg-slate-300 dark:bg-gray-700 mx-auto mb-4"></div>
 
         <ul className="list-none p-0 font-bold text-sm md:text-lg text-center">
           {SidebarLinks.map(item => (

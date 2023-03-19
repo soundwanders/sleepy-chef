@@ -21,7 +21,7 @@ export default function SingleRecipe({ name, images, types, time, vegetarian, ve
         
       <div className="min-h-screen flex flex-col">
         <div className="flex-grow-0 flex-shrink-0 p-2 pl-0 min-h-0 z-10">
-          <button onClick={() => router.back()} className="text-gray-700 dark:text-gray-200 hover:text-gray-800 font-bold transition-colors">
+          <button onClick={() => router.back()} className="text-zinc-600 dark:text-gray-200 hover:text-slate-800 font-bold transition-colors">
             &lt; Back to Recipes
           </button>
         </div>
@@ -108,7 +108,7 @@ export default function SingleRecipe({ name, images, types, time, vegetarian, ve
             </h2>
             <ol className="list-decimal list-inside">
               {directions && directions.map(direction => (
-                <li key={direction} className="text-gray-700 dark:text-gray-100 text-lg mb-4">{direction}</li>
+                <li key={direction} className="text-gray-700 dark:text-gray-100 text-md mb-4">{direction}</li>
               ))}
             </ol>
           </div>
