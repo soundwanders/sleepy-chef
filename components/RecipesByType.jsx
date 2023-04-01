@@ -29,8 +29,8 @@ export default function RecipesByType({ data, error, mainTypes, defaultColor, re
   } else if (sortBy === "name-desc") {
     sortedData = [...data].sort((a, b) => b.name.localeCompare(a.name));
   } else if (sortBy === "time-asc") {
-    sortedData = [...data].sort((a, b) => a.time - b.time);
-  };
+    sortedData = [...data].sort((a, b) => parseInt(a.time) - parseInt(b.time));
+  };  
   
   return (
     <>
@@ -53,7 +53,7 @@ export default function RecipesByType({ data, error, mainTypes, defaultColor, re
         </div>
       </div>
 
-      <div className="flex justify-start px-8 md:px-4 mb-6 -mt-4 md:mt-6 py-2">
+      <div className="flex-1 items-center justify-start px-8 md:px-4 mb-6 -mt-4 md:mt-6 py-2">
         <label htmlFor="sort-by" className="mr-2 sr-only">Sort by:</label>
         <select
           id="sort-by"

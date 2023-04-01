@@ -1,3 +1,5 @@
+## __Sleepy Searchbar__
+
 The Searchbar component allows a user to search for recipes by **type, ingredient, or name**. The component is using the useRouter hook from the `next/router` library to navigate to the results page with the appropriate query parameters in the URL.
 
 The `handleSubmit` function is called when the user submits the form, and it first prevents the default form submission behavior using ```e.preventDefault()```. After that's out of the way, we create arrays of all the recipe types, ingredients, and names from the recipes context data. Next, we check if the search input matches any of these types, ingredients, or names (all of which are reformatted to be case-insensitive), and assigns the input value to the appropriate variable if it does.

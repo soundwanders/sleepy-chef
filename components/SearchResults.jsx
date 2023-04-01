@@ -84,8 +84,8 @@ export const SearchResults = ({ recipeColors, defaultColor }) => {
   } else if (sortBy === "name-desc") {
     sortedData = [...data].sort((a, b) => b.name.localeCompare(a.name));
   } else if (sortBy === "time-asc") {
-    sortedData = [...data].sort((a, b) => a.time - b.time);
-  };
+    sortedData = [...data].sort((a, b) => parseInt(a.time) - parseInt(b.time));
+  };  
   
   return (
     <section className="bg-white dark:bg-gray-800 pb-10 md:py-8">
@@ -103,7 +103,7 @@ export const SearchResults = ({ recipeColors, defaultColor }) => {
         </div>
       </div>
 
-      <div className="flex items-center px-8 md:px-4 mb-6 -mt-10 md:-mt-4 py-4">
+      <div className="flex-1 items-center justify-start px-8 md:px-4 mb-6 -mt-10 md:-mt-4 py-4">
         {query && (
           <div className="md:hidden text-lg text-gray-600 dark:text-gray-200 -mt-2 mb-8">
             Search results for&nbsp;

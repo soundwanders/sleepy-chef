@@ -40,7 +40,7 @@ export default function RecipeCards({ data, error }) {
   };
   
   return (
-    <div className="columns-1 md:columns-3 gap-10 px-8 md:px-0 py-0 md:py-2 md:pl-4 mb-12"
+    <div className="fade-in columns-1 md:columns-3 gap-10 px-8 md:px-0 py-0 md:py-2 md:pl-4 mb-12"
     >
       {data ? (
         data.map(recipe => (

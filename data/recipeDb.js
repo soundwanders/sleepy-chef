@@ -1118,8 +1118,8 @@ export const recipes = [
   { 
     "id": 28,
     "name": "White Bean Salad",
-    "images": ["/salad.png", "/chicken.png"],
-    "types": ["salad", "chicken"],
+    "images": ["/salad.png", "/vegetarian.png", "/vegan.png"],
+    "types": ["salad", "vegetarian", "vegan"],
     "time": "10 minutes",
     "vegetarian": false,
     "vegan": false,

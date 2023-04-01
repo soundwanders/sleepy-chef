@@ -21,13 +21,13 @@ export const EggYolk = () => {
     <>
       <motion.div
         drag="y"
-        dragConstraints={{ top: -480, bottom: 0 }}
+        dragConstraints={{ top: -460, bottom: 0 }}
         style={{ y }}
         animate={{ y: 0 }}
         transition={{
-          duration: 0.8,
+          duration: 0.6,
           ease: [0.6, -0.05, 0.01, 0.99],
-          keyframes: [0, -200, 0, -90, 0],
+          keyframes: [0, -200, 30, -80, 0],
         }}
         
         onAnimationComplete={onAnimationComplete}
