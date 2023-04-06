@@ -10,8 +10,7 @@ export const EggYolk = () => {
   };
 
   const y = useMotionValue(-200);
-
-  const yolkInitialY = eggFinalY !== null ? eggFinalY : y.get();
+  // const yolkInitialY = eggFinalY !== null ? eggFinalY : y;
 
   const onAnimationComplete = () => {
     setShowYolk(true);
@@ -21,33 +20,33 @@ export const EggYolk = () => {
     <>
       <motion.div
         drag="y"
-        dragConstraints={{ top: -460, bottom: 0 }}
+        dragConstraints={{ top: -220, bottom: 0 }}
         style={{ y }}
         animate={{ y: 0 }}
         transition={{
-          duration: 0.6,
-          ease: [0.6, -0.05, 0.01, 0.99],
-          keyframes: [0, -200, 30, -80, 0],
+          duration: 0.5,
+          ease: 'easeInOut',
+          times: [0, 0.3, 0.7, 1],
         }}
-        
         onAnimationComplete={onAnimationComplete}
         onDragEnd={onDragEnd}
       >
         <motion.img
           src="/egg.png"
           alt=""
-          style={{ display: showYolk ? "none" : "block" }}
+          style={{ display: showYolk ? 'none' : 'block' }}
           className="h-10 w-10"
         />
       </motion.div>
-      {showYolk && (
-        <motion.img
-          src="/yolk.png"
-          alt=""
-          style={{ y: yolkInitialY }}
-          className="h-12 w-12 mb-4"
-        />
-      )}
+        {/* {showYolk && (
+            <motion.img
+              src="/yolk.png"
+              alt=""
+              style={{ y: yolkInitialY }}
+              className="h-12 w-12 mb-4"
+            />
+          )} 
+        */}
     </>
   );
 };

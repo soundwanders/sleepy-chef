@@ -54,7 +54,7 @@ export const Searchbar = () => {
         pathname: '/results',
         query: { type, ingredient, name },
       });
-    }, 850);
+    }, 550);
   };
 
   // clear error to allow search form resubmission
