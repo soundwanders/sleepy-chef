@@ -5,12 +5,12 @@ export const EggYolk = () => {
     <motion.div
       initial={{ opacity: 0, scale: 0 }}
       animate={{ opacity: 1, scale: 1}}
-      transition={{ duration: 0.4 }}
+      transition={{ duration: 0.3 }}
     >
       <img
         src="/yolk.png"
         alt=""
-        className="h-10 w-10"
+        className="w-10 h-auto"
       />
     </motion.div>
   )

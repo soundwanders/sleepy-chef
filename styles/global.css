@@ -43,6 +43,7 @@ a {
 
 button:focus {
   outline: 0;
+  background-color: rgba(0, 0, 0, 0.05);
   -webkit-tap-highlight-color: transparent;
 }
 
