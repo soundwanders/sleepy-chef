@@ -131,7 +131,7 @@ export const SearchResults = ({ recipeColors, defaultColor }) => {
         </select>
 
         {query && (
-          <div className="hidden md:inline-block w-5/6 text-center text-xl text-gray-600 dark:text-gray-200">
+          <div className="hidden md:inline-block w-5/6 text-center text-lg text-gray-600 dark:text-gray-200">
             Search results for&nbsp;
             <span className="font-bold text-2xl text-gray-800 dark:text-gray-100">
               {searchQuery.split(' ').map((word, i) => ( 

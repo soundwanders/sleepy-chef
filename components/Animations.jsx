@@ -1,56 +1,20 @@
-import { useState } from 'react';
 import { motion, useMotionValue, useTransform } from 'framer-motion';
 
 export const EggYolk = () => {
-  const [showYolk, setShowYolk] = useState(false);
-  const [eggFinalY, setEggFinalY] = useState(null);
-
-  const onDragEnd = (event, info) => {
-    setEggFinalY(info.point.y);
-  };
-
-  const y = useMotionValue(-200);
-  // const yolkInitialY = eggFinalY !== null ? eggFinalY : y;
-
-  const onAnimationComplete = () => {
-    setShowYolk(true);
-  };
-
   return (
-    <>
-      <motion.div
-        drag="y"
-        dragConstraints={{ top: -220, bottom: 0 }}
-        style={{ y }}
-        animate={{ y: 0 }}
-        transition={{
-          duration: 0.5,
-          ease: 'easeInOut',
-          times: [0, 0.3, 0.7, 1],
-        }}
-        onAnimationComplete={onAnimationComplete}
-        onDragEnd={onDragEnd}
-      >
-        <motion.img
-          src="/egg.png"
-          alt=""
-          style={{ display: showYolk ? 'none' : 'block' }}
-          className="h-10 w-10"
-        />
-      </motion.div>
-        {/* {showYolk && (
-            <motion.img
-              src="/yolk.png"
-              alt=""
-              style={{ y: yolkInitialY }}
-              className="h-12 w-12 mb-4"
-            />
-          )} 
-        */}
-    </>
-  );
+    <motion.div
+      initial={{ opacity: 0, scale: 0 }}
+      animate={{ opacity: 1, scale: 1}}
+      transition={{ duration: 0.4 }}
+    >
+      <img
+        src="/yolk.png"
+        alt=""
+        className="h-10 w-10"
+      />
+    </motion.div>
+  )
 };
-
 
 export const HappyEgg = () => {
   const y = useMotionValue(0);

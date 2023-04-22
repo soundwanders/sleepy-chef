@@ -1,4 +1,5 @@
 ## __API & Next.js API Handler Function__
+motion-container flex items-center justify-end mr-2 md:mr-28 md:ml-4 overflow-x-hidden
 
 This `recipes.js` file powers our Sleepy Chef API, as well as the handler function that controls how our application responds to with user search queries.
 
