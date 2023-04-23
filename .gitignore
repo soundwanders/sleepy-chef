@@ -27,6 +27,7 @@ yarn.lock
 *.pem
 educational/feature-multipleTypes.md
 educational/recipe-data-structure.md
+educational/framer-motion.md
 
 # debug
 npm-debug.log*

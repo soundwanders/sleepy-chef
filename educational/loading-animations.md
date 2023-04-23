@@ -1,76 +1,52 @@
 ## __Let's Talk Loading Animations__
+<br>
 
-The `Animations` component is a page transition animation, created using the Framer Motion library, which shows an egg that drops and bounces, then reveals the yolk inside.
+__Egg Yolk Search Submission Animation__
 
-`Animations` uses the useMotionValue and useTransform hooks from Framer Motion to control the egg's position and opacity.
+For our searchbar submission animation, we bring in the big dog EggYolk, which replaces our 'Submit' button with an egg yolk, but only if the form submission is successful. The egg yolk and button's visibility is controlled by the state [showYolk, setShowYolk] which is initialized as 'false'. If showYolk is true, we render a motion.div element (from the framer-motion library) which contains the egg yolk image. 
+
+The whole purpose is to serve as a visual cue to the user that their search was accepted. A successful submission sets showYolk to true, the yolk image appears, then off to the results we go. Here's the simplified run-down:
+
+1. The motion.div element has an initial state that sets the opacity and scale to 0.
+
+2. The motion.div element has an animate state that sets the opacity and scale to 1.
+
+3. The motion.div element has a transition property that sets the duration of the animation to 0.3 seconds.
+
+4. When the EggYolk component is mounted, the motion.div element will be hidden.
+
+5. After a successful form submission, the showYolk state variable will be set to true, causing the EggYolk component to be rendered.
+
+6. When the motion.div element is rendered, it will transition from an initial state of opacity and scale 0 to an animate state of opacity and scale 1 over a duration of 0.3 seconds.
+
+7. As the motion.div element scales up, the img element inside of it will also scale up and display the egg yolk image.
+
 <br>
 __________________
 <br>
 
-The component defines two states: showYolk, which determines whether the yolk should be shown, and y, which represents the vertical position of the egg.
+__Happy Egg Loading Animation__
 
-The MotionValue `eggOpacity` is derived from the value of the y MotionValue (the y position of the Egg). 
+The HappyEgg component is a little bit more complex. We display a loading animation while the user waits for search results. Hopefully they won't have to wait too long. Here's the play-by-play:
 
-The useTransform function maps the range of y from [0, 100, 120, 130, 140] to [1, 1, 0, 1, 0]. This means that as the y position of the egg changes during the animation, the eggOpacity will transition from 1 to 0 to 1, creating a fade-out and fade-in effect for the egg.
+1. The HappyEgg component is defined as a functional component that returns some JSX.
 
-When y is between 100 and 120, eggOpacity will be 1, so our egg will be fully visible. When y is less than 100 or greater than 120, eggOpacity will be 0, hiding the egg image to allow for bigger and better yolks to appear.
+2. Inside the component, there are two variables defined using the useMotionValue and useTransform hooks from the framer-motion library.
 
-The onAnimationComplete function is called when the animation is finished, and it sets the showYolk state to true after a 100 millisecond delay that is assigned using setTimeout.
-<br>
-__________________
-<br>
+3. We define the 'y' variable, which is the vertical position of the egg image.
 
-The motion.div related to the Egg image defines an animated div that moves from its initial position, specified by ```style={{ y }}```, to a new position, specified by animate={{ y: 200 }}. The y value is controlled by the useMotionValue(0) hook and represents the vertical position of the motion.div.
+4. The second variable, eggOpacity, uses the y value to set the opacity of the egg image. When y is between 0 and 100 or between 130 and 140, the opacity is set to 1, but when y is between 120 and 130, the opacity is set to 0.
 
-The transition prop defines the animation transition that occurs when the motion.div moves from its initial position to the new position. In this case, the transition is set to have a duration of 1 second and an ease-out easing function. 
+5. The component returns a div element wrapped in a motion.div component from framer-motion.
 
-The times and keyframes arrays define a multi-step animation, where the motion.div is translated up and down to simulate the egg falling, bouncing, then settling into its final resting place before it disappears, making way for the yolk.
+6. The motion.div is given our lovely `animate` prop that sets the y position of the egg image to 200. This causes the egg image to bounce up and down. We'll smooth out the bouncing later so we don't run into a Humpty-Dumpty sort of situation.
 
-The onAnimationComplete prop defines a callback function that runs when the bouncing egg animation is completed. In this case, it sets the showYolk state to true after a short delay using the setTimeout function, which, you guessed it, shows the yolk image. Good times!
+7. The transition prop of the motion.div component specifies the duration of the animation, the easing function, and the keyframes to use during the animation.
 
-We use the motion.img elements are used to control the visibility of the egg and yolk images, as well as any additional styles you'd like to implement such as opacity, scaling, etc.
-<br>
-__________________
+8. We define our keyframes in an array with several values to smooth out the animation. No sudden movements, egg.
+
+9. The motion.img component inside the motion.div renders the image of our happy bouncing egg until our recipe data is fully loaded.
+
 <br>
 
-The second animation is the same exact egg dropping and bouncing animation, but the yolk does not appear. This secondary animation is used in place of a progress bar or similar loading device on the search results page. Since UseSWR loads data at blazing fast speeds, the search results loading animation will not always be displayed.
-
-Overall, it is a relatively simple page transition animation which I hope will serve as a useful example for somebody interested in working with the framer-motion library.
-<br><br>
-
-## Process Notes
-
-Using the Framer Motion library to create an animation of an egg breaking and revealing a yolk. Here's some general notes on what's under the hood...
-<br>
-
-- useMotionValue(0) creates a motion value that we'll use to animate the position of the egg. y is the current value of that motion value.
-- useState(false) creates a state variable that will be used to determine when to show the yolk. showYolk is the current value of that state variable.
-- useTransform(y, [0, 100, 120, 130, 140], [1, 1, 0, 1, 0]) creates a transform that maps the y value to an opacity value for the egg. 
-- When y is between 0 and 100, the opacity is 1 (fully visible). When y is between 120 and 130, the opacity drops to 0 (fully transparent). 
-- Then it goes back up to 1 between 130 and 140 before disappearing again.
-- onAnimationComplete is a function that will be called when the animation is finished. It sets showYolk to true after a short delay.
-- The motion.div component wraps everything and is used to animate the position of the egg. The animate prop specifies the final position of the egg (y=200), 
-- the transition prop specifies the animation parameters (duration, easing, etc.), and the style prop applies the y value to the position of the egg.
-- There are two motion.img components inside the motion.div component. The first one displays the egg and uses the opacity value from eggOpacity.
-- The display property is set to "none" when showYolk is true so that it disappears when the yolk appears. 
-- The second motion.img component displays the yolk and is only shown when showYolk is true.
-
-__________________
-
-
-useTransform is a function from the Framer Motion library that allows you to map a value from one range to another range. In this case, y is the current position of the egg during its animation, and it is being mapped to a range of opacity values.
-
-In our use-case, the input range is y, which is the vertical position of the falling egg. The output range is an array of opacity values ```[1, 1, 1, 1, 1]```, which means that the opacity of the egg will always be 1 (100% opacity) while it is falling and bouncing, and will only disappear once the yolk's state is set to visible.
-
-__________________
-
-
-The keyframes property defines an array of values that the y property should take at specific points in time. In this particular example, the keyframes array has five values: ```0, -300, 0, -100, 0```.
-
-- At 0 (the beginning of the animation) the y property is set to 0, which means .
-- At time 0.2 (20% into the animation), the y property is set to -300. This means that the motion div has been translated 300 pixels upwards from its original position.
-- At time 0.5 (50% into the animation), the y property is set to 0 again. This means that the motion div has returned to its original position.
-- At time 0.8 (80% into the animation), the y property is set to -100. This means that the motion div has been translated 100 pixels upwards from its original position.
-- At time 1 (the end of the animation), the y property is set to 0 again, which means the motion div has returned to its original position.
-
-The entire sequence creates a bounce effect as the egg falls and bounces, then finally the yolk appears.
+That's a wrap. Thanks for reading!

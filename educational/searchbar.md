@@ -8,4 +8,4 @@ If the search input is empty or it doesn't match any types names, or ingredients
 
 The Searchbar leverages the power of React hooks and Next.js to handle routing and search functionality, with the added benefit of using context feature to share the recipe data with other components throughout the app, without having to pass it down through props. Using context is a great way to avoid prop drilling. As an added bonus, using context is an easy way to improve scalability throughout our application. 
 
-Hope that's 
+And that's about it!
