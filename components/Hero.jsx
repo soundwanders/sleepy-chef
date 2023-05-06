@@ -1,7 +1,7 @@
 import React from 'react';
 import { RoughNotationGroup } from 'react-rough-notation';
-import { Highlighter } from './Highlighter';
-import { Searchbar } from './Searchbar';
+import { Highlighter } from './ui/Highlighter';
+import { Searchbar } from '@components/nav/Searchbar';
 import appData from '@constants/appData';
 
 export const Hero = () => {

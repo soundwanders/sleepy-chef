@@ -1,10 +1,10 @@
 import React from 'react';
 import Head from 'next/head';
 import { useRouter } from 'next/router';
-import Navbar from './Navbar';
-import Footer from './Footer';
+import Navbar from '@components/nav/Navbar';
+import Footer from '@components/nav/Footer';
 
-export default function ContainerBlock({ children, ...customMeta}) {
+export default function MainContainer({ children, ...customMeta}) {
   const router = useRouter();
 
   const meta = {

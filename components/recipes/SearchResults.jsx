@@ -2,8 +2,8 @@ import { useState } from 'react';
 import { useRouter } from 'next/router';
 import useSWR from 'swr';
 import { RoughNotationGroup } from 'react-rough-notation';
-import { Highlighter } from './Highlighter';
-import RecipeCards from '@components/RecipeCards';
+import { Highlighter } from '@components/ui/Highlighter';
+import RecipeCards from '@components/recipes/RecipeCards';
 import appData from '@constants/appData';
 
 export const SearchResults = ({ recipeColors, defaultColor }) => {

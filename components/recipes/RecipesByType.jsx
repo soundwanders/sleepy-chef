@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { RoughNotationGroup } from 'react-rough-notation';
-import { Highlighter } from '@components/Highlighter';
+import { Highlighter } from '@components/ui/Highlighter';
 import RecipeCards from '@components/RecipeCards';
 
 export default function RecipesByType({ data, error, mainTypes, defaultColor, recipeColors}) {

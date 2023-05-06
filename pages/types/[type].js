@@ -1,6 +1,6 @@
-import ContainerBlock from '@components/ContainerBlock';
+import MainContainer from '@components/MainContainer';
+import RecipesByType from '@components/recipes/RecipesByType';
 import appData from '@constants/appData';
-import RecipesByType from '@components/RecipesByType';
 import { recipes } from '@data/recipeDb';
 
 export async function getStaticPaths() {
@@ -43,7 +43,7 @@ export default function RecipeTypeLinks({ data, mainTypes, highlightColor, defau
 
   return (
     <section className="bg-white dark:bg-gray-800">
-      <ContainerBlock title={appData.title}>
+      <MainContainer title={appData.title}>
         <RecipesByType
           data={data} 
           mainTypes={mainTypes} 
@@ -51,7 +51,7 @@ export default function RecipeTypeLinks({ data, mainTypes, highlightColor, defau
           defaultColor={defaultColor} 
           recipeColors={recipeColors}
         />
-      </ContainerBlock>
+      </MainContainer>
     </section> 
   )
 };

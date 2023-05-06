@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { HappyEgg } from '@components/Animations';
+import { HappyEgg } from '@components/ui/Animations';
 
 export default function RecipeCards({ data, error }) {
   const defaultColor = "bg-green-300";

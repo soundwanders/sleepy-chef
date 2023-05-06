@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import Link from 'next/link';
-import { Close, Hamburger } from './Icons';
+import { Close, Hamburger } from '@components/ui/Icons';
 import SidebarLinks from '@constants/links';
 
 const TypeLink = ({ name, url, image, closeSidebar, isActive, onClick }) => (

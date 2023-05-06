@@ -2,8 +2,8 @@ import React, { useEffect, useState } from 'react';
 import Link from 'next/link';
 import { useTheme } from 'next-themes';
 import { useRouter } from 'next/router';
-import { Sidebar } from './Sidebar';
-import NavSearchbar from './NavSearchbar';
+import { Sidebar } from '@components/nav/Sidebar';
+import NavSearchbar from '@components/nav/NavSearchbar';
 import appData from '@constants/appData';
 
 export default function Navbar() {

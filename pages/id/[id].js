@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
-import { HappyEgg } from '@components/Animations';
-import ContainerBlock from '@components/ContainerBlock';
-import SingleRecipe from '@components/SingleRecipe';
+import { HappyEgg } from '@components/ui/Animations';
+import MainContainer from '@components/MainContainer';
+import SingleRecipe from '@components/recipes/SingleRecipe';
 import appData from '@constants/appData';
 import { recipes } from '@data/recipeDb';
 
@@ -72,7 +72,7 @@ export default function RecipeById({ recipeData, errorMessage }) {
   };
   
   return (
-    <ContainerBlock title={name} description={appData.description}>
+    <MainContainer title={name} description={appData.description}>
       <SingleRecipe
         name={name}
         images={images}
@@ -85,6 +85,6 @@ export default function RecipeById({ recipeData, errorMessage }) {
         directions={directions}
         errorMessage={errorMessage}
       />
-    </ContainerBlock> 
+    </MainContainer> 
   )
 };
