@@ -1,6 +1,6 @@
 import { useState, useContext } from 'react';
 import { useRouter } from 'next/router';
-import { RecipesContext } from '../data/recipeDb';
+import { RecipesContext } from '@data/recipeDb';
 
 // This is the same searchbar that is used on the Home page, but restyled to become a navbar element.
 // The main purpose of the NavSearchbar is to create a better experience searching for recipes.

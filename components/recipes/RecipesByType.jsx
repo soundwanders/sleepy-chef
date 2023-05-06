@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { RoughNotationGroup } from 'react-rough-notation';
 import { Highlighter } from '@components/ui/Highlighter';
-import RecipeCards from '@components/RecipeCards';
+import RecipeCards from '@components/recipes/RecipeCards';
 
 export default function RecipesByType({ data, error, mainTypes, defaultColor, recipeColors}) {
   const [sortBy, setSortBy] = useState("default");
