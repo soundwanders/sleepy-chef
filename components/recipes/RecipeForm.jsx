@@ -36,8 +36,8 @@ export default function RecipeForm() {
           [propertyName]: value
         } 
       }));
-      // we also allow user to add a new line of directions using Enter key (keycode 13)
-    } else if (name === 'directions' && keyCode === 13) {
+      // we also allow user to add a new line of directions using Enter key (key 13)
+    } else if (name === 'directions' && key === 'Enter') {
       setRecipe(prevState => ({
         ...prevState,
         directions: [...prevState.directions, '']
