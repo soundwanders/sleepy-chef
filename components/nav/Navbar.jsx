@@ -68,7 +68,6 @@ export default function Navbar() {
             )}
           </button>
           <span id="toggle-sleepy-theme" className="sr-only">Toggle Light/Dark Mode</span>
-
           <Sidebar isOpen={isOpen} setIsOpen={setIsOpen} />
         </div>
       </div>

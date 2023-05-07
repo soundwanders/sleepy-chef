@@ -1,6 +1,9 @@
-import { useState } from 'react';
+import React, { useState } from 'react';
 import { RoughNotationGroup } from 'react-rough-notation';
 import { Highlighter } from '@components/ui/Highlighter';
+import { AddLine } from '@components/ui/Icons';
+import { RemoveLine } from '@components/ui/Icons';
+import { useRecipeDirections } from '@hooks/useRecipeDirections';
 
 export default function RecipeForm() {
   const highlightColor = "#60a5fa";
@@ -17,10 +20,18 @@ export default function RecipeForm() {
     directions: []
   });
 
+  const [
+    directions, 
+    handleDirectionChange, 
+    handleAddDirection, 
+    handleRemoveDirection
+  ] = useRecipeDirections(recipe.directions)
+
   // handle form input fields change
   const handleChange = (event, index) => {
     const { name, value, type, checked } = event.target;
-  
+    const { key } = event;
+
     if (name === 'types') {
       const selectedOptions = Array.from(event.target.selectedOptions, option => option.value);
       setRecipe(prevState => ({ ...prevState, types: selectedOptions }));
@@ -36,7 +47,6 @@ export default function RecipeForm() {
           [propertyName]: value
         } 
       }));
-      // we also allow user to add a new line of directions using Enter key (key 13)
     } else if (name === 'directions' && key === 'Enter') {
       setRecipe(prevState => ({
         ...prevState,
@@ -46,23 +56,17 @@ export default function RecipeForm() {
       const newValue = type === 'checkbox' ? checked : value;
       setRecipe(prevState => ({ ...prevState, [name]: newValue }));
     }
-  };  
-
-  // add a new line of recipe instructions
-  const handleAddDirection = () => {
-    setRecipe(prevState => ({
-      ...prevState,
-      directions: [...prevState.directions, '']
-    }));
   };
-  
-  // remove most recently submitted line of recipe instructions
-  const handleRemoveDirection = (indexToRemove) => {
-    setRecipe(prevState => ({
-      ...prevState,
-      directions: prevState.directions.filter((_, index) => index !== indexToRemove)
-    }));
-  };  
+
+  // add event listener for 'Enter' keydown event, store the key in state when it's pressed
+  const handleKeyDown = (event) => {
+    const { name, key } = event;
+    if (name === 'directions' && key === 'Enter') {
+      event.preventDefault();
+    } else {
+      setKey(key);
+    }
+  };
   
   // handle form submission
   const handleSubmit = (event) => {
@@ -88,14 +92,14 @@ export default function RecipeForm() {
           </div>
         </div>
 
-        <div className="flex-1 items-center justify-start px-8 md:px-4 mb-6 -mt-4 md:mt-6 py-2">
+        <div className="flex-1 items-center justify-start px-8 md:px-4 mb-6 -mt-4 md:mt-6 py-2 pb-20">
           <form onSubmit={handleSubmit}>
             <div className="mb-4">
-              <label className="block text-gray-700 font-bold mb-2" htmlFor="name">
+              <label className="block text-gray-700 dark:text-gray-200 font-bold mb-2" htmlFor="name">
                 Recipe Name
               </label>
               <input
-                className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline focus:placeholder-transparent"
+                className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 dark:text-gray-200 leading-tight focus:outline-none focus:shadow-outline focus:placeholder-transparent"
                 id="name"
                 name="name"
                 type="text"
@@ -105,12 +109,12 @@ export default function RecipeForm() {
               />
             </div>
             <div className="mb-4">
-              <label className="block text-gray-700 font-bold mb-2" htmlFor="types">
+              <label className="block text-gray-700 dark:text-gray-200 font-bold mb-2" htmlFor="types">
                 Recipe Types
               </label>
 
               <select
-                className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 dark:text-gray-200 leading-tight focus:outline-none focus:shadow-outline"
                 id="types"
                 name="types"
                 multiple
@@ -118,24 +122,23 @@ export default function RecipeForm() {
                 onChange={handleChange}
               >
                 <option value="">Select a Type</option>
-                <option value="beef">Beef</option>
-                <option value="chicken">Chicken</option>
-                <option value="pork">Pork</option>
-                <option value="salad">Salad</option>
-                <option value="seafood">Seafood</option>
-                <option value="soup">Soup</option>
-                <option value="texmex">TexMex</option>
-                <option value="vegan">Vegan</option>
-                <option value="vegetarian">Vegetarian</option>
+                <option value="beef" selected={recipe.types.includes("beef")}>Beef</option>
+                <option value="chicken" selected={recipe.types.includes("chicken")}>Chicken</option>
+                <option value="pork" selected={recipe.types.includes("pork")}>Pork</option>
+                <option value="salad" selected={recipe.types.includes("salad")}>Salad</option>
+                <option value="seafood" selected={recipe.types.includes("seafood")}>Seafood</option>
+                <option value="soup" selected={recipe.types.includes("soup")}>Soup</option>
+                <option value="texmex" selected={recipe.types.includes("texmex")}>TexMex</option>
+                <option value="vegan" selected={recipe.types.includes("vegan")}>Vegan</option>
               </select>
             </div>
 
           <div className="mb-4">
-            <label className="block text-gray-700 font-bold mb-2" htmlFor="time">
+            <label className="block text-gray-700 dark:text-gray-200 font-bold mb-2" htmlFor="time">
               Total Time
             </label>
             <input
-              className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+              className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 dark:text-gray-200 leading-tight focus:outline-none focus:shadow-outline"
               id="time"
               name="time"
               type="text"
@@ -144,38 +147,43 @@ export default function RecipeForm() {
               onChange={handleChange}
             />
           </div>
-          <div className="mb-4">
-            <label className="block text-gray-700 font-bold mb-2" htmlFor="vegetarian">
-              Vegetarian
-            </label>
-            <input
-              className="mr-2 leading-tight"
-              id="vegetarian"
-              name="vegetarian"
-              type="checkbox"
-              checked={recipe.vegetarian}
-              onChange={handleChange}
-            />
+
+          <div className="flex mb-4">
+            <div className="mr-8">
+              <label className="block text-gray-700 dark:text-gray-200 font-bold mb-2" htmlFor="vegetarian">
+                Vegetarian
+              </label>
+              <input
+                className="ml-1 mr-2 leading-tight"
+                id="vegetarian"
+                name="vegetarian"
+                type="checkbox"
+                checked={recipe.vegetarian}
+                onChange={handleChange}
+              />
+            </div>
+            
+            <div>
+              <label className="block text-gray-700 dark:text-gray-200 font-bold mb-2" htmlFor="vegan">
+                Vegan
+              </label>
+              <input
+                className="mr-2 leading-tight"
+                id="vegan"
+                name="vegan"
+                type="checkbox"
+                checked={recipe.vegan}
+                onChange={handleChange}
+              />
+            </div>
           </div>
+
           <div className="mb-4">
-            <label className="block text-gray-700 font-bold mb-2" htmlFor="vegan">
-              Vegan
-            </label>
-            <input
-              className="mr-2 leading-tight"
-              id="vegan"
-              name="vegan"
-              type="checkbox"
-              checked={recipe.vegan}
-              onChange={handleChange}
-            />
-          </div>
-          <div className="mb-4">
-            <label className="block text-gray-700 font-bold mb-2" htmlFor="ingredients">
+            <label className="block text-gray-700 dark:text-gray-200 font-bold mb-2" htmlFor="ingredients">
               Ingredients
             </label>
             <textarea
-              className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline focus:placeholder-transparent"
+              className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 dark:text-gray-200 leading-tight focus:outline-none focus:shadow-outline focus:placeholder-transparent"
               id="ingredients"
               name="ingredients"
               placeholder="Enter ingredients, separated by commas"
@@ -185,16 +193,16 @@ export default function RecipeForm() {
           </div>
 
           <div className="mb-4">
-            <label className="block text-gray-700 font-bold mb-2" htmlFor="nutrition">
+            <label className="block text-gray-700 dark:text-gray-200 font-bold mb-2" htmlFor="nutrition">
               Nutrition Information
             </label>
             <div className="grid grid-cols-2 gap-4">
               <div>
-                <label className="block text-gray-700 font-bold mb-2" htmlFor="calories">
+                <label className="block text-gray-700 dark:text-gray-200 font-bold mb-2" htmlFor="calories">
                   Calories
                 </label>
                 <input
-                  className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline focus:placeholder-transparent"
+                  className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 dark:text-gray-200 leading-tight focus:outline-none focus:shadow-outline focus:placeholder-transparent"
                   id="calories"
                   name="calories"
                   type="text"
@@ -205,11 +213,11 @@ export default function RecipeForm() {
               </div>
 
               <div>
-                <label className="block text-gray-700 font-bold mb-2" htmlFor="carbs">
+                <label className="block text-gray-700 dark:text-gray-200 font-bold mb-2" htmlFor="carbs">
                   Carbs
                 </label>
                 <input
-                  className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline focus:placeholder-transparent"
+                  className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 dark:text-gray-200 leading-tight focus:outline-none focus:shadow-outline focus:placeholder-transparent"
                   id="carbs"
                   name="carbs"
                   placeholder="Enter carbs"
@@ -219,11 +227,11 @@ export default function RecipeForm() {
               </div>
 
               <div>
-                <label className="block text-gray-700 font-bold mb-2" htmlFor="cholesterol">
+                <label className="block text-gray-700 dark:text-gray-200 font-bold mb-2" htmlFor="cholesterol">
                   Cholesterol
                 </label>
                 <input
-                  className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline focus:placeholder-transparent"
+                  className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 dark:text-gray-200 leading-tight focus:outline-none focus:shadow-outline focus:placeholder-transparent"
                   id="cholesterol"
                   name="cholesterol"
                   placeholder="Enter cholesterol (milligrams)"
@@ -233,11 +241,11 @@ export default function RecipeForm() {
               </div>
 
               <div>
-                <label className="block text-gray-700 font-bold mb-2" htmlFor="fat">
+                <label className="block text-gray-700 dark:text-gray-200 font-bold mb-2" htmlFor="fat">
                   Fat
                 </label>
                 <input
-                  className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline focus:placeholder-transparent"
+                  className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 dark:text-gray-200 leading-tight focus:outline-none focus:shadow-outline focus:placeholder-transparent"
                   id="fat"
                   name="fat"
                   type="text"
@@ -248,11 +256,11 @@ export default function RecipeForm() {
               </div>
 
               <div>
-                <label className="block text-gray-700 font-bold mb-2" htmlFor="protein">
+                <label className="block text-gray-700 dark:text-gray-200 font-bold mb-2" htmlFor="protein">
                   Protein
                 </label>
                 <input
-                  className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline focus:placeholder-transparent"
+                  className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 dark:text-gray-200 leading-tight focus:outline-none focus:shadow-outline focus:placeholder-transparent"
                   id="protein"
                   name="protein"
                   placeholder="Enter protein (grams)"
@@ -262,11 +270,11 @@ export default function RecipeForm() {
               </div>
 
               <div>
-                <label className="block text-gray-700 font-bold mb-2" htmlFor="sodium">
+                <label className="block text-gray-700 dark:text-gray-200 font-bold mb-2" htmlFor="sodium">
                   Sodium
                 </label>
                 <input
-                  className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline focus:placeholder-transparent"
+                  className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 dark:text-gray-200 leading-tight focus:outline-none focus:shadow-outline focus:placeholder-transparent"
                   id="sodium"
                   name="sodium"
                   placeholder="Enter sodium (milligrams)"
@@ -277,59 +285,54 @@ export default function RecipeForm() {
             </div>
           </div>
 
-          <div className="mb-4 flex">
-            <div className="w-full mr-2">
-              <label className="block text-gray-700 font-bold mb-2" htmlFor="directions">
-                Directions
-              </label>
-              <textarea
-                className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline focus:placeholder-transparent h-48 resize-none"
-                id="directions"
-                name="directions"
-                placeholder="Add recipe directions, line by line"
-                value={recipe.directions.join('\n')}
-                onChange={handleChange}
-                style={{ height: `${(recipe.directions.length + 1) * 25}px` }}
-              ></textarea>
-              {recipe.directions.length > 0 &&
-                <div className="flex justify-end">
-                  <button onClick={handleAddDirection} className="inline-flex items-center">
-                    <svg className="w-4 h-4 mr-2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
-                      <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm0-2a6 6 0 100-12 6 6 0 000 12z" clipRule="evenodd" />
-                      <path d="M10 14a1 1 0 100-2 1 1 0 000 2z" />
-                      <path fillRule="evenodd" d="M6.293 7.293a1 1 0 011.414 0L10 8.586l2.293-2.293a1 1 0 011.414 1.414L11.414 10l2.293 2.293a1 1 0 01-1.414 1.414L10 11.414l-2.293 2.293a1 1 0 01-1.414-1.414L8.586 10 6.293 7.707a1 1 0 010-1.414z" clipRule="evenodd" />
-                    </svg>
-                    Add Direction
-                  </button>
-                </div>
-              }
-            </div>
-            <ul>
-              {recipe.directions.map((direction, index) => (
-                <li key={index} className="flex items-center">
-                  <div className="flex-1">
+          <div className="mb-4">
+            <label className="block text-gray-700 dark:text-gray-200 font-bold mb-2" htmlFor="directions">
+              Directions
+            </label>
+            <div className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 dark:text-gray-200 leading-tight focus:outline-none focus:shadow-outline focus:placeholder-transparent">
+              {directions.map((direction, index) => (
+                <div key={`direction-${index}`} className="flex mb-2">
+                  <div className="w-10">
+                    <span className="inline-flex items-center justify-center h-6 w-6 rounded-full bg-blue-100 text-slate-900 text-sm">
+                      {index + 1}
+                    </span>
+                  </div>
+                  <div className="flex-1 ml-4">
                     <input
+                      className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 dark:text-gray-200 leading-tight focus:outline-none focus:shadow-outline focus:placeholder-transparent"
                       type="text"
-                      placeholder={`Direction ${index + 1}`}
+                      name={`directions-${index}`}
                       value={direction}
                       onChange={(event) => handleDirectionChange(index, event)}
-                      className="w-full mr-2 rounded border py-1 px-2"
+                      onKeyDown={handleKeyDown}
+                      placeholder="Add a step"
                     />
                   </div>
-                  {index === recipe.directions.length - 1 &&
-                    <div className="flex">
-                      <button onClick={() => handleRemoveDirection(index)} className="inline-flex items-center">
-                        <svg className="w-4 h-4 mr-2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
-                          <path fillRule="evenodd" d="M13.414 6.414a2 2 0 000-2.828L12.828 2.586a2 2 0 00-2.828 0L8.586 3.172a2 2 0 000 2.828L9.172 7l-2.414 2.414a2 2 0 000 2.828l.586.586a2 2 0 002.828 0L11 10.828l2.414 2.414a2 2 0 002.828 0l.586-.586a2 2 0 000-2.828L13.414 9l2.414-2.414a2 2 0 000-2.828l-.586-.586z" clipRule="evenodd" />
-                        </svg>
-                        Remove
-                      </button>
-                    </div>
-                  }
-                </li>
+                  <div className="w-10 ml-2 flex justify-end">
+                    <button
+                      type="button"
+                      className="inline-flex items-center justify-center h-6 w-6 rounded-full bg-red-100 hover:bg-red-200 text-red-500 hover:text-red-800 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500"
+                      onClick={() => handleRemoveDirection(index)}
+                    >
+                      <span className="sr-only">Remove Line</span>
+                      <RemoveLine />
+                    </button>
+                  </div>
+                </div>
               ))}
-            </ul>
+              <div className="flex items-center mt-2 ml-10 p-3">
+                <button
+                  type="button"
+                  className="inline-flex items-center justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-green-400 hover:bg-green-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
+                  onClick={handleAddDirection}
+                >
+                  <span class="sr-only">New Line</span>
+                  <AddLine />
+                </button>
+              </div>
+            </div>
           </div>
+
         </form>
       </div>
     </div>
