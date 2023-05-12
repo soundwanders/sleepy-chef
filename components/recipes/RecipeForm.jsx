@@ -1,8 +1,7 @@
 import React, { useState } from 'react';
 import { RoughNotationGroup } from 'react-rough-notation';
 import { Highlighter } from '@components/ui/Highlighter';
-import { AddLine } from '@components/ui/Icons';
-import { RemoveLine } from '@components/ui/Icons';
+import { AddLine, RemoveLine, ClearAll } from '@components/ui/Icons';
 import { useRecipeDirections } from '@hooks/useRecipeDirections';
 
 export default function RecipeForm() {
@@ -68,11 +67,46 @@ export default function RecipeForm() {
     }
   };
   
-  // handle form submission
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    // TODO: handle the form submission here
+  const handleClearDirections = () => {
+    setDirections([]);
   };
+
+  // handle form submission
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+  
+    try {
+      const client = await MongoClient.connect(process.env.MONGODB_URI, { useUnifiedTopology: true });
+      
+      // select our MongoDB `recipes` collection
+      const recipesCollection = client.db().collection('recipes');
+
+      // insert the recipe data into the collection
+      const result = await recipesCollection.insertOne(recipe);
+  
+      if (result.insertedCount === 1) {
+        alert('Recipe saved successfully!');
+        setRecipe({
+          name: '',
+          types: [],
+          time: '',
+          vegetarian: false,
+          vegan: false,
+          ingredients: [],
+          nutrition: {},
+          directions: [],
+        });
+      } else {
+        alert('Error saving recipe');
+      }
+
+      // close the MongoDB connection
+      client.close();
+    } catch (err) {
+      console.log(err);
+      alert('Error saving recipe');
+    }
+  };  
 
   return (
     <div>
@@ -311,7 +345,7 @@ export default function RecipeForm() {
                   <div className="w-10 ml-2 flex justify-end">
                     <button
                       type="button"
-                      className="inline-flex items-center justify-center h-6 w-6 rounded-full bg-red-100 hover:bg-red-200 text-red-500 hover:text-red-800 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500"
+                      className="inline-flex items-center justify-center h-6 w-6 rounded-full hover:text-red-800 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500"
                       onClick={() => handleRemoveDirection(index)}
                     >
                       <span className="sr-only">Remove Line</span>
@@ -323,16 +357,24 @@ export default function RecipeForm() {
               <div className="flex items-center mt-2 ml-10 p-3">
                 <button
                   type="button"
-                  className="inline-flex items-center justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-green-400 hover:bg-green-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
+                  className="inline-flex items-center justify-center py-2 px-4 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 mr-4"
                   onClick={handleAddDirection}
                 >
                   <span class="sr-only">New Line</span>
                   <AddLine />
                 </button>
+                
+                <button
+                  type="button"
+                  className="inline-flex items-center justify-center py-2 px-4 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
+                  onClick={handleClearDirections}
+                >
+                  <span className="sr-only">Clear Directions</span>
+                  <ClearAll />
+                </button>
               </div>
             </div>
           </div>
-
         </form>
       </div>
     </div>
