@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { RoughNotationGroup } from 'react-rough-notation';
 import { Highlighter } from '@components/ui/Highlighter';
 import { FormUI } from '@components/ui/FormUI';
@@ -9,7 +9,7 @@ export default function RecipeForm() {
   const [key, setKey] = useState('');
 
   // use states to keep track of user input
-  const [recipe, setRecipe] = useState({
+  const [newRecipe, setRecipe] = useState({
     name: '',
     types: [],
     time: '',
@@ -25,8 +25,19 @@ export default function RecipeForm() {
     handleDirectionChange, 
     handleAddDirection, 
     handleRemoveDirection
-  ] = useRecipeDirections(recipe.directions)
+  ] = useRecipeDirections(newRecipe.directions)
 
+  useEffect(() => {
+    const storedData = localStorage.getItem('recipeFormData');
+    if (storedData) {
+      setRecipe(JSON.parse(storedData));
+    }
+  }, []);
+  
+  useEffect(() => {
+    localStorage.setItem('recipeFormData', JSON.stringify(newRecipe));
+  }, [newRecipe]);
+  
   // handle change for form field inputs
   const handleChange = (event, index) => {
     const { name, value, type, checked } = event.target;
@@ -35,8 +46,8 @@ export default function RecipeForm() {
     if (name === 'types') {
       const selectedType = value;
       const newTypes = checked
-        ? [...recipe.types, selectedType]
-        : recipe.types.filter((type) => type !== selectedType);
+        ? [...newRecipe.types, selectedType]
+        : newRecipe.types.filter((type) => type !== selectedType);
       setRecipe((prevState) => ({ ...prevState, types: newTypes }));
     } else if (name === 'ingredients') {
       const ingredients = value.split(',').map((str) => str.trim());
@@ -60,8 +71,9 @@ export default function RecipeForm() {
       setRecipe((prevState) => ({ ...prevState, [name]: newValue }));
     }
   };  
-  
-  // add event listener for 'Enter' keydown event, store the key in state when it's pressed
+
+  // add event listener to store key in state when 'Enter' is pressed
+  // allows user to submit a new line of directions and move to a new line
   const handleKeyDown = (event) => {
     const { name, key } = event;
     if (name === 'directions' && key === 'Enter') {
@@ -90,19 +102,24 @@ export default function RecipeForm() {
     props.setDirections(newDirections);
   };
 
+
   // handle recipe form submission
-  const handleSubmit = async (recipe) => {
+  const handleSubmit = async (newRecipe) => {
     try {
+      // Create a deep copy of the newRecipe object without any circular references
+      const cleanedRecipe = JSON.parse(JSON.stringify(newRecipe));
+      
       const res = await fetch('/api/submit-recipe', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify(recipe),
+        body: JSON.stringify(cleanedRecipe),
       });
       if (res.ok) {
         const data = await res.json();
         alert('Recipe saved successfully!');
+        localStorage.removeItem('recipeFormData');
         setRecipe({
           name: '',
           types: [],
@@ -111,13 +128,13 @@ export default function RecipeForm() {
           vegan: false,
           ingredients: [],
           nutrition: {},
-          directions: [],
+          directions: []
         });
       } else {
-        throw new Error('Failed to submit recipe');
+        throw new Error('Error saving recipe');
       }
-    } catch (err) {
-      console.error(err);
+    } catch (error) {
+      console.error(error);
       alert('Error saving recipe');
     }
   };  
@@ -132,7 +149,7 @@ export default function RecipeForm() {
                 <h1 className={`results-title text-[1.7rem] md:text-[4rem] font-bold text-gray-900 dark:text-gray-100
                   py-1 px-2 break-words text-center`}
                 >
-                  Submit Your Favorite Recipe
+                  Submit Your Recipe
                 </h1>
               </Highlighter>
             </RoughNotationGroup>
@@ -141,7 +158,7 @@ export default function RecipeForm() {
       </div>
 
       <FormUI 
-        recipe={recipe}
+        newRecipe={newRecipe}
         directions={directions}
         handleChange={handleChange}
         handleSubmit={handleSubmit}

@@ -16,7 +16,7 @@ export const FormUI = (props) => {
             name="name"
             type="text"
             placeholder="Enter recipe name"
-            value={props.recipe.name}
+            value={props.newRecipe.name}
             onChange={props.handleChange}
           />
         </div>
@@ -32,7 +32,7 @@ export const FormUI = (props) => {
                 type="checkbox"
                 name="types"
                 value="beef"
-                checked={props.recipe.types?.includes("beef")}
+                checked={props.newRecipe.types?.includes("beef")}
                 onChange={props.handleChange}
                 className="form-checkbox h-5 w-5 text-orange-600 checked:bg-orange-500 border border-gray-400 rounded shadow-sm"
               />
@@ -44,7 +44,7 @@ export const FormUI = (props) => {
                 type="checkbox"
                 name="types"
                 value="chicken"
-                checked={props.recipe.types?.includes("chicken")}
+                checked={props.newRecipe.types?.includes("chicken")}
                 onChange={props.handleChange}
                 className="form-checkbox h-5 w-5 text-orange-600 checked:bg-orange-350"
               />
@@ -56,7 +56,7 @@ export const FormUI = (props) => {
                 type="checkbox"
                 name="types"
                 value="pork"
-                checked={props.recipe.types?.includes("pork")}
+                checked={props.newRecipe.types?.includes("pork")}
                 onChange={props.handleChange}
                 className="form-checkbox h-5 w-5 text-orange-600 checked:bg-orange-350"
               />
@@ -68,7 +68,7 @@ export const FormUI = (props) => {
                 type="checkbox"
                 name="types"
                 value="salad"
-                checked={props.recipe.types?.includes("salad")}
+                checked={props.newRecipe.types?.includes("salad")}
                 onChange={props.handleChange}
                 className="form-checkbox h-5 w-5 text-orange-600 checked:bg-orange-350"
               />
@@ -80,7 +80,7 @@ export const FormUI = (props) => {
                 type="checkbox"
                 name="types"
                 value="seafood"
-                checked={props.recipe.types?.includes("seafood")}
+                checked={props.newRecipe.types?.includes("seafood")}
                 onChange={props.handleChange}
                 className="form-checkbox h-5 w-5 text-orange-600 checked:bg-orange-350"
               />
@@ -92,7 +92,7 @@ export const FormUI = (props) => {
                 type="checkbox"
                 name="types"
                 value="soup"
-                checked={props.recipe.types?.includes("soup")}
+                checked={props.newRecipe.types?.includes("soup")}
                 onChange={props.handleChange}
                 className="form-checkbox h-5 w-5 text-orange-600 checked:bg-orange-350"
               />
@@ -104,7 +104,7 @@ export const FormUI = (props) => {
                 type="checkbox"
                 name="types"
                 value="texmex"
-                checked={props.recipe.types?.includes("texmex")}
+                checked={props.newRecipe.types?.includes("texmex")}
                 onChange={props.handleChange}
                 className="form-checkbox h-5 w-5 text-orange-600 checked:bg-orange-350"
               />
@@ -116,7 +116,7 @@ export const FormUI = (props) => {
                 type="checkbox"
                 name="types"
                 value="vegan"
-                checked={props.recipe.types?.includes("vegan")}
+                checked={props.newRecipe.types?.includes("vegan")}
                 onChange={props.handleChange}
                 className="form-checkbox h-5 w-5 text-orange-600 checked:bg-orange-350"
               />
@@ -136,7 +136,7 @@ export const FormUI = (props) => {
             name="time"
             type="text"
             placeholder="Enter total time"
-            value={props.recipe.time}
+            value={props.newRecipe.time}
             onChange={props.handleChange}
           />
         </div>
@@ -151,7 +151,7 @@ export const FormUI = (props) => {
               id="vegetarian"
               name="vegetarian"
               type="checkbox"
-              checked={props.recipe.vegetarian}
+              checked={props.newRecipe.vegetarian}
               onChange={props.handleChange}
             />
           </div>
@@ -165,7 +165,7 @@ export const FormUI = (props) => {
               id="vegan"
               name="vegan"
               type="checkbox"
-              checked={props.recipe.vegan}
+              checked={props.newRecipe.vegan}
               onChange={props.handleChange}
             />
           </div>
@@ -181,7 +181,7 @@ export const FormUI = (props) => {
             id="ingredients"
             name="ingredients"
             placeholder="Enter ingredients, separated by commas"
-            value={props.recipe.ingredients}
+            value={props.newRecipe.ingredients}
             onChange={props.handleChange}
           />
         </div>
@@ -202,7 +202,7 @@ export const FormUI = (props) => {
                 name="calories"
                 type="text"
                 placeholder="Enter calories"
-                value={props.recipe.nutrition.calories}
+                value={props.newRecipe.nutrition.calories}
                 onChange={props.handleChange}
               />
             </div>
@@ -217,7 +217,7 @@ export const FormUI = (props) => {
                 id="carbs"
                 name="carbs"
                 placeholder="Enter carbs"
-                value={props.recipe.nutrition.carbs}
+                value={props.newRecipe.nutrition.carbs}
                 onChange={props.handleChange}
               />
             </div>
@@ -232,7 +232,7 @@ export const FormUI = (props) => {
                 id="cholesterol"
                 name="cholesterol"
                 placeholder="Enter cholesterol (milligrams)"
-                value={props.recipe.nutrition.cholesterol}
+                value={props.newRecipe.nutrition.cholesterol}
                 onChange={props.handleChange}
               />
             </div>
@@ -248,7 +248,7 @@ export const FormUI = (props) => {
                 name="fat"
                 type="text"
                 placeholder="Enter fat (grams)"
-                value={props.recipe.nutrition.fat}
+                value={props.newRecipe.nutrition.fat}
                 onChange={props.handleChange}
               />
             </div>
@@ -263,7 +263,7 @@ export const FormUI = (props) => {
                 id="protein"
                 name="protein"
                 placeholder="Enter protein (grams)"
-                value={props.recipe.nutrition.protein}
+                value={props.newRecipe.nutrition.protein}
                 onChange={props.handleChange}
               />
             </div>
@@ -278,7 +278,7 @@ export const FormUI = (props) => {
                 id="sodium"
                 name="sodium"
                 placeholder="Enter sodium (milligrams)"
-                value={props.recipe.nutrition.sodium}
+                value={props.newRecipe.nutrition.sodium}
                 onChange={props.handleChange}
               />
             </div>
