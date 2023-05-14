@@ -5,12 +5,13 @@ export const FormUI = (props) => {
   return (
     <div className="flex-1 items-center justify-start px-8 md:px-4 mb-6 -mt-4 md:mt-6 py-2 pb-20">
       <form onSubmit={props.handleSubmit}>
-        <div className="mb-4">
+        <div className="mb-8">
           <label className="block text-gray-700 dark:text-gray-200 font-bold mb-2" htmlFor="name">
             Recipe Name
           </label>
           <input
-            className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 dark:text-gray-200 leading-tight focus:outline-none focus:shadow-outline focus:placeholder-transparent"
+            className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 dark:text-gray-200 
+            leading-tight focus:outline-none focus:shadow-outline focus:placeholder-transparent"
             id="name"
             name="name"
             type="text"
@@ -20,17 +21,14 @@ export const FormUI = (props) => {
           />
         </div>
 
-        <div className="mb-4">
+        <div className="mb-8">
           <label className="block text-gray-700 dark:text-gray-200 font-bold mb-2" htmlFor="types">
             Recipe Types
           </label>
 
           <select
-            className="
-              shadow appearance-none border rounded w-full py-2 px-3 
-              text-gray-700 dark:text-gray-200 leading-tight 
-              focus:outline-none focus:shadow-outline
-            "
+            className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 dark:text-gray-200 
+            leading-tight focus:outline-none focus:shadow-outline"
             id="types"
             name="types"
             multiple
@@ -89,12 +87,13 @@ export const FormUI = (props) => {
           </select>
         </div>
 
-        <div className="mb-4">
+        <div className="mb-8">
           <label className="block text-gray-700 dark:text-gray-200 font-bold mb-2" htmlFor="time">
             Total Time
           </label>
           <input
-            className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 dark:text-gray-200 leading-tight focus:outline-none focus:shadow-outline"
+            className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 dark:text-gray-200 
+            leading-tight focus:outline-none focus:shadow-outline"
             id="time"
             name="time"
             type="text"
@@ -134,12 +133,13 @@ export const FormUI = (props) => {
           </div>
         </div>
 
-        <div className="mb-4">
+        <div className="mb-8">
           <label className="block text-gray-700 dark:text-gray-200 font-bold mb-2" htmlFor="ingredients">
             Ingredients
           </label>
           <textarea
-            className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 dark:text-gray-200 leading-tight focus:outline-none focus:shadow-outline focus:placeholder-transparent"
+            className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 dark:text-gray-200 
+            leading-tight focus:outline-none focus:shadow-outline focus:placeholder-transparent"
             id="ingredients"
             name="ingredients"
             placeholder="Enter ingredients, separated by commas"
@@ -148,7 +148,7 @@ export const FormUI = (props) => {
           />
         </div>
 
-        <div className="mb-4">
+        <div className="mb-8">
           <label className="block text-gray-700 dark:text-gray-200 font-bold mb-2" htmlFor="nutrition">
             Nutrition Information
           </label>
@@ -158,7 +158,8 @@ export const FormUI = (props) => {
                 Calories
               </label>
               <input
-                className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 dark:text-gray-200 leading-tight focus:outline-none focus:shadow-outline focus:placeholder-transparent"
+                className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 dark:text-gray-200 
+                leading-tight focus:outline-none focus:shadow-outline focus:placeholder-transparent"
                 id="calories"
                 name="calories"
                 type="text"
@@ -173,7 +174,8 @@ export const FormUI = (props) => {
                 Carbs
               </label>
               <input
-                className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 dark:text-gray-200 leading-tight focus:outline-none focus:shadow-outline focus:placeholder-transparent"
+                className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 dark:text-gray-200 
+                leading-tight focus:outline-none focus:shadow-outline focus:placeholder-transparent"
                 id="carbs"
                 name="carbs"
                 placeholder="Enter carbs"
@@ -187,7 +189,8 @@ export const FormUI = (props) => {
                 Cholesterol
               </label>
               <input
-                className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 dark:text-gray-200 leading-tight focus:outline-none focus:shadow-outline focus:placeholder-transparent"
+                className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 dark:text-gray-200 
+                leading-tight focus:outline-none focus:shadow-outline focus:placeholder-transparent"
                 id="cholesterol"
                 name="cholesterol"
                 placeholder="Enter cholesterol (milligrams)"
@@ -201,7 +204,8 @@ export const FormUI = (props) => {
                 Fat
               </label>
               <input
-                className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 dark:text-gray-200 leading-tight focus:outline-none focus:shadow-outline focus:placeholder-transparent"
+                className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 dark:text-gray-200 
+                leading-tight focus:outline-none focus:shadow-outline focus:placeholder-transparent"
                 id="fat"
                 name="fat"
                 type="text"
@@ -216,7 +220,8 @@ export const FormUI = (props) => {
                 Protein
               </label>
               <input
-                className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 dark:text-gray-200 leading-tight focus:outline-none focus:shadow-outline focus:placeholder-transparent"
+                className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 dark:text-gray-200 
+                leading-tight focus:outline-none focus:shadow-outline focus:placeholder-transparent"
                 id="protein"
                 name="protein"
                 placeholder="Enter protein (grams)"
@@ -230,7 +235,8 @@ export const FormUI = (props) => {
                 Sodium
               </label>
               <input
-                className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 dark:text-gray-200 leading-tight focus:outline-none focus:shadow-outline focus:placeholder-transparent"
+                className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 dark:text-gray-200 
+                leading-tight focus:outline-none focus:shadow-outline focus:placeholder-transparent"
                 id="sodium"
                 name="sodium"
                 placeholder="Enter sodium (milligrams)"
@@ -241,12 +247,14 @@ export const FormUI = (props) => {
           </div>
         </div>
 
-        <div className="mb-4">
+        <div className="mb-8">
           <label className="block text-gray-700 dark:text-gray-200 font-bold mb-2" htmlFor="directions">
             Directions
           </label>
 
-          <div className="bg-white dark:bg-gray-800 shadow rounded-lg p-4">
+          <div className="p-4 bg-white dark:bg-[#2b2a33] border dark:border-slate-100 shadow rounded-lg
+            leading-tight focus:outline-none focus:shadow-outline focus:placeholder-transparent z-2"
+          >
             <DragDropContext onDragEnd={props.handleDragEnd}>
               <Droppable droppableId="directions">
                 {(provided) => (
@@ -257,25 +265,30 @@ export const FormUI = (props) => {
                           <div ref={provided.innerRef} {...provided.draggableProps} {...provided.dragHandleProps}>
                             <div className="flex mb-2">
                               <div className="w-10">
-                                <span className="inline-flex items-center justify-center h-4 w-4 mt-9 ml-2 rounded-full border border-slate-700 bg-transparent text-slate-900 text-xs">
+                                <span className="inline-flex items-center justify-center w-4 h-4 p-2 mt-9 ml-2 rounded-full 
+                                  border border-slate-700 dark:border-slate-100 bg-transparent text-slate-900 dark:text-white text-[10px]"
+                                >
                                   {index + 1}
                                 </span>
                               </div>
                               <div className="flex-1 ml-2 pt-6">
                                 <input
-                                  className="shadow appearance-none rounded-lg w-full py-2 px-4 text-gray-700 dark:text-gray-200 leading-tight focus:outline-none focus:shadow-outline focus:placeholder-transparent"
+                                  className="shadow appearance-none rounded-lg dark:border dark:border-slate-100 w-full h-auto py-2 px-4 text-gray-700 dark:text-gray-200 
+                                  leading-tight focus:outline-none focus:shadow-outline focus:placeholder-transparent"
                                   type="text"
                                   name={`directions-${index}`}
                                   value={direction}
                                   onChange={(event) => props.handleDirectionChange(index, event)}
                                   onKeyDown={props.handleKeyDown}
                                   placeholder="Add a step"
+                                  {...provided.dragHandleProps}
                                 />
                               </div>
-                              <div className="w-10 ml-2 flex justify-end">
+                              <div className="w-10 ml-2 flex justify-end p-2">
                                 <button
                                   type="button"
-                                  className="inline-flex items-center justify-center h-6 w-6 mt-8 mr-2 rounded-full hover:text-red-600 focus:outline-none focus:bg-transparent focus:translate-y-[1px]"
+                                  className="inline-flex items-center justify-center mt-6 mr-2 rounded-full
+                                  hover:text-red-500 focus:outline-none focus:bg-transparent focus:translate-y-[1px]"
                                   onClick={() => props.handleRemoveDirection(index)}
                                 >
                                   <span className="sr-only">Remove Line</span>
@@ -295,16 +308,18 @@ export const FormUI = (props) => {
               <div className="flex items-center mt-2 ml-10 p-3">
                 <button
                   type="button"
-                  className="inline-flex items-center justify-center py-2 mr-4 hover:text-green-500 focus:outline-none focus:bg-transparent focus:translate-y-[1px]"
+                  className="inline-flex items-center justify-center py-2 mr-4 
+                  hover:text-green-400 focus:outline-none focus:bg-transparent focus:translate-y-[1px]"
                   onClick={props.handleAddDirection}
                 >
-                  <span class="sr-only">New Line</span>
+                  <span className="sr-only">New Line</span>
                   <AddLine />
                 </button>
 
                 <button
                   type="button"
-                  className="inline-flex items-center justify-center py-2 px-4 hover:text-orange-500 focus:outline-none focus:bg-transparent focus:translate-y-[1px]"
+                  className="inline-flex items-center justify-center py-2 px-4 
+                  hover:text-red-400 dark:hover:text-red-300 focus:outline-none focus:bg-transparent focus:translate-y-[1px]"
                   onClick={props.handleClearDirections}
                 >
                   <span className="sr-only">Clear Directions</span>
@@ -315,7 +330,7 @@ export const FormUI = (props) => {
           </div>
         </div>
 
-        <button type="submit">Submit</button>
+        <button className="rounded-xl py-1 px-4 border border-slate-600 dark:border-slate-100" type="submit">Submit</button>
         
       </form>
     </div>

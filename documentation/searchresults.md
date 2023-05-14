@@ -10,7 +10,7 @@ Additionally, SWR also provides a way to handle revalidation, which means that i
 
 In comparison, if you were to use a typical useEffect and Fetch/await to handle data-fetching, it would not provide these caching and revalidation features. The data would have to be fetched from the network every time the component re-renders. This can result in slower response time for the user and increased load on the server.
 
-So, we continue on down the path, finding ourselves destructuring the `query` object from the `router` object, which contains the search query, and assigning it to variables `type`, `ingredient`, and `name`.
+So, we mosey on down the path, finding ourselves destructuring the `query` object from the `router` object, which contains the search query, and assigning it to variables `type`, `ingredient`, and `name`.
 
 The component then defines an empty array called `queryParams` and a variable `endpoint` which is used to store our conditional statement that decides which API endpoint to use. The code then checks if the `type`, `ingredient`, and 'name' variables are truthy, and if so, pushes the corresponding key-value pairs to the 'queryParams' array using template literals.
 
