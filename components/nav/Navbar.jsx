@@ -39,7 +39,7 @@ export default function Navbar() {
             aria-controls="dark-mode"
             aria-describedby="toggle-sleepy-theme"
             type="button"
-            className="toggle-theme w-14 h-14 p-3 rounded focus:outline-none"
+            className="toggle-theme w-14 h-14 p-3 rounded focus:outline-none focus:bg-transparent"
             onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
           >
             {mounted && (

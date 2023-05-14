@@ -7,7 +7,6 @@ import { useRecipeDirections } from '@hooks/useRecipeDirections';
 
 export default function RecipeForm() {
   const highlightColor = "#f9a947";
-
   const [key, setKey] = useState('');
 
   // use states to keep track of user input
@@ -29,37 +28,40 @@ export default function RecipeForm() {
     handleRemoveDirection
   ] = useRecipeDirections(recipe.directions)
 
-  // handle form input fields change
+  // handle change for form field inputs
   const handleChange = (event, index) => {
     const { name, value, type, checked } = event.target;
     const { key } = event;
-
+  
     if (name === 'types') {
-      const selectedOptions = [...event.target.selectedOptions].map(option => option.value);
-      setRecipe(prevState => ({ ...prevState, types: selectedOptions }));
+      const selectedType = value;
+      const newTypes = checked
+        ? [...recipe.types, selectedType]
+        : recipe.types.filter((type) => type !== selectedType);
+      setRecipe((prevState) => ({ ...prevState, types: newTypes }));
     } else if (name === 'ingredients') {
-      const ingredients = value.split(',').map(str => str.trim());
-      setRecipe(prevState => ({ ...prevState, ingredients }));
+      const ingredients = value.split(',').map((str) => str.trim());
+      setRecipe((prevState) => ({ ...prevState, ingredients }));
     } else if (name.startsWith('nutrition.')) {
       const propertyName = name.slice('nutrition.'.length);
-      setRecipe(prevState => ({ 
-        ...prevState, 
+      setRecipe((prevState) => ({
+        ...prevState,
         nutrition: {
           ...prevState.nutrition,
-          [propertyName]: value
-        } 
+          [propertyName]: value,
+        },
       }));
     } else if (name === 'directions' && key === 'Enter') {
-      setRecipe(prevState => ({
+      setRecipe((prevState) => ({
         ...prevState,
-        directions: [...prevState.directions, '']
+        directions: [...prevState.directions, ''],
       }));
     } else {
       const newValue = type === 'checkbox' ? checked : value;
-      setRecipe(prevState => ({ ...prevState, [name]: newValue }));
+      setRecipe((prevState) => ({ ...prevState, [name]: newValue }));
     }
-  };
-
+  };  
+  
   // add event listener for 'Enter' keydown event, store the key in state when it's pressed
   const handleKeyDown = (event) => {
     const { name, key } = event;

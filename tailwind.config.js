@@ -10,7 +10,8 @@ module.exports = {
           250: '#fdf0b8'
         },
         orange: {
-          250: '#fdc78f'
+          250: '#fdc78f',
+          350: '#f9a947'
         },
         slate: {
           850: "#151d2a",
