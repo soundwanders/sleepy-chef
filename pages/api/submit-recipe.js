@@ -3,7 +3,6 @@ import { MongoClient } from 'mongodb';
 export default async function handler(req, res) {
   if (req.method === 'POST') {
     try {
-      // check if request body is empty
       if (!req.body) {
         res.status(400).json({ error: 'Request body is empty' });
         return;
@@ -35,8 +34,8 @@ export default async function handler(req, res) {
           }
 
           // check if user has exceeded submission limit
-          const now = new Date();
-          const hourAgo = new Date(now - 60 * 60 * 1000);
+          const moment = new Date();
+          const hourAgo = new Date(moment - 60 * 60 * 1000);
           const submissions = await submissionsCollection.find({
             user,
             timestamp: { $gte: hourAgo },
@@ -56,7 +55,7 @@ export default async function handler(req, res) {
           }
 
           // log submission
-          await submissionsCollection.insertOne({ user, timestamp: now }, { session });
+          await submissionsCollection.insertOne({ user, timestamp: moment }, { session });
 
           // return response with recipe ID
           res.status(201).json({ id: result.insertedId });
