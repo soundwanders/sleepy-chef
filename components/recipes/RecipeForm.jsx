@@ -4,7 +4,6 @@ import { Highlighter } from '@components/ui/Highlighter';
 import { FormUI } from '@components/ui/FormUI';
 import { useRecipeDirections } from '@hooks/useRecipeDirections';
 
-
 export default function RecipeForm() {
   const highlightColor = "#f9a947";
   const [key, setKey] = useState('');
@@ -91,20 +90,18 @@ export default function RecipeForm() {
     props.setDirections(newDirections);
   };
 
-  // handle form submission
-  const handleSubmit = async (event) => {
-    event.preventDefault();
-  
+  // handle recipe form submission
+  const handleSubmit = async (recipe) => {
     try {
-      const client = await MongoClient.connect(process.env.MONGODB_URI, { useUnifiedTopology: true });
-      
-      // select our MongoDB `recipes` collection
-      const recipesCollection = client.db().collection('recipes');
-
-      // insert the recipe data into the collection
-      const result = await recipesCollection.insertOne(recipe);
-  
-      if (result.insertedCount === 1) {
+      const res = await fetch('/api/submit-recipe', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(recipe),
+      });
+      if (res.ok) {
+        const data = await res.json();
         alert('Recipe saved successfully!');
         setRecipe({
           name: '',
@@ -117,16 +114,13 @@ export default function RecipeForm() {
           directions: [],
         });
       } else {
-        alert('Error saving recipe');
+        throw new Error('Failed to submit recipe');
       }
-
-      // close the MongoDB connection
-      client.close();
     } catch (err) {
-      console.log(err);
-      alert('Error saving recipe.');
+      console.error(err);
+      alert('Error saving recipe');
     }
-  };
+  };  
   
   return (
     <div>

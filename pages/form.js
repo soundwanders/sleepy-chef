@@ -5,7 +5,7 @@ import appData from '@constants/appData';
 export default function Form() {
   return (
     <MainContainer title={appData.title}>
-      <RecipeForm/>
+      <RecipeForm />
     </MainContainer>
   )
 };
