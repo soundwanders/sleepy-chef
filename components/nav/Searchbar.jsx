@@ -75,10 +75,10 @@ export const Searchbar = () => {
               transition={{ duration: 0.7 }}
             >
               <input
-                className={`form-control relative flex-initial min-w-0 w-full max-w-[304px] max-h-[42px] text-base font-normal text-gray-700 bg-white bg-clip-padding 
-                  focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none
-                  border border-gray-300 border-solid rounded-lg transition ease-in-out m-0 px-3 py-2
-                  ${error ? 'error-border' : ''}`} 
+                className={`form-control relative flex-initial min-w-0 w-full max-w-[304px] max-h-[42px] text-base 
+                font-normal text-gray-700 bg-white bg-clip-padding focus:text-gray-700 focus:bg-white focus:border-blue-600 
+                focus:outline-none border border-gray-300 border-solid rounded-lg transition ease-in-out m-0 px-3 py-2
+                ${error ? 'error-border' : ''}`} 
                 type="text"
                 aria-label="Search" 
                 id="query"
