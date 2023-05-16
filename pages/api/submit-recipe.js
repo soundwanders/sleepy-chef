@@ -10,7 +10,7 @@ export default async function handler(req, res) {
 
       const client = await MongoClient.connect(process.env.MONGODB_URI, {
         useUnifiedTopology: true,
-      });      
+      });
 
       const recipesCollection = client.db().collection('recipes');
       const submissionsCollection = client.db().collection('submissions');
@@ -33,12 +33,12 @@ export default async function handler(req, res) {
             return;
           }
 
-          // check if user has exceeded submission limit
+          // check if user has exceeded submission limit in the past hour
           const moment = new Date();
-          const hourAgo = new Date(moment - 60 * 60 * 1000);
+          const oneHourAgo = new Date(moment - 60 * 60 * 1000);
           const submissions = await submissionsCollection.find({
             user,
-            timestamp: { $gte: hourAgo },
+            timestamp: { $gte: oneHourAgo },
           }).toArray();
 
           if (submissions.length >= 20) {
@@ -75,4 +75,4 @@ export default async function handler(req, res) {
   } else {
     res.status(405).json({ message: 'Method not allowed' });
   }
-}
+};
