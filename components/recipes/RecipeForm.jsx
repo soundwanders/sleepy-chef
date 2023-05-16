@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { v4 as uuidv4 } from 'uuid';
 import { RoughNotationGroup } from 'react-rough-notation';
 import { Highlighter } from '@components/ui/Highlighter';
 import { FormUI } from '@components/ui/FormUI';
@@ -91,24 +92,28 @@ export default function RecipeForm() {
     }));
   };  
 
-  // handler to drag/reorder list of directions
   const handleDragEnd = (result) => {
     if (!result.destination) return;
   
-    const newDirections = [...props.directions];
+    const newDirections = [...directions];
     const [removed] = newDirections.splice(result.source.index, 1);
     newDirections.splice(result.destination.index, 0, removed);
   
-    props.setDirections(newDirections);
+    setDirections(newDirections);
   };
-
-
+  
   // handle recipe form submission
   const handleSubmit = async (newRecipe) => {
     try {
-      // Create a deep copy of the newRecipe object without any circular references
-      const cleanedRecipe = JSON.parse(JSON.stringify(newRecipe));
-      
+      // Create a new object without circular references
+      const cleanedRecipe = {
+        ...newRecipe,
+        nutrition: JSON.parse(JSON.stringify(newRecipe.nutrition)),
+      };
+  
+      // Assign a unique ID to the new recipe
+      cleanedRecipe._id = uuidv4();
+
       const res = await fetch('/api/submit-recipe', {
         method: 'POST',
         headers: {
@@ -116,6 +121,7 @@ export default function RecipeForm() {
         },
         body: JSON.stringify(cleanedRecipe),
       });
+
       if (res.ok) {
         const data = await res.json();
         alert('Recipe saved successfully!');
@@ -128,7 +134,7 @@ export default function RecipeForm() {
           vegan: false,
           ingredients: [],
           nutrition: {},
-          directions: []
+          directions: [],
         });
       } else {
         throw new Error('Error saving recipe');
@@ -137,7 +143,7 @@ export default function RecipeForm() {
       console.error(error);
       alert('Error saving recipe');
     }
-  };  
+  };
   
   return (
     <div>

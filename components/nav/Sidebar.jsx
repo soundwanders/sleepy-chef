@@ -32,7 +32,7 @@ export const Sidebar = () => {
       <div className="flex">
         <button
           className={`
-            hamburger text-gray-900 dark:text-slate-100 p-4 rounded focus:outline-none
+            hamburger text-gray-900 dark:text-slate-100 p-4 rounded focus:outline-none focus:bg-transparent
             ${isOpen ? "close-icon" : ""}
           `}
           onClick={() => setIsOpen(!isOpen)}
@@ -60,7 +60,7 @@ export const Sidebar = () => {
           <img src="/sidebar-chef.png" alt="" className="w-16 md:w-20 h-auto mx-auto" />
         </div>
 
-        <div className="h-0.5 w-4/5 bg-slate-300 dark:bg-gray-700 mx-auto mb-4"></div>
+        <div className="h-0.5 w-4/5 bg-slate-200 dark:bg-gray-700 mx-auto mb-4"></div>
 
         <ul className="list-none p-0 font-bold text-sm md:text-lg text-center">
           {SidebarLinks.map(item => (
@@ -74,6 +74,8 @@ export const Sidebar = () => {
             </li>
           ))}
         </ul>
+
+        <div className="h-0.5 w-4/5 bg-slate-200 dark:bg-gray-700 mx-auto mt-4"></div>
 
         <FormLink />
       </nav>

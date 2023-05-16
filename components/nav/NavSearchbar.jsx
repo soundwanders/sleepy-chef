@@ -48,7 +48,6 @@ export default function NavSearchbar() {
       query: { type, ingredient, name },
     });
   };
-  
 
   const handleInputFocus = () => {
     setError('');
