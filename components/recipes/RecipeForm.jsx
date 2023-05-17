@@ -31,15 +31,22 @@ export default function RecipeForm() {
   useEffect(() => {
     const storedData = localStorage.getItem('recipeFormData');
     if (storedData) {
-      setRecipe(JSON.parse(storedData));
+      const storedRecipe = JSON.parse(storedData);
+      setRecipe(prevState => ({
+        ...prevState,
+        nutrition: {
+          ...prevState.nutrition,
+          ...storedRecipe.nutrition,
+        },
+        directions: storedRecipe.directions,
+      }));
     }
-  }, []);
+  }, []);  
   
   useEffect(() => {
     localStorage.setItem('recipeFormData', JSON.stringify(newRecipe));
   }, [newRecipe]);
   
-  // handle change for form field inputs
   const handleChange = (event, index) => {
     const { name, value, type, checked } = event.target;
     const { key } = event;
@@ -51,7 +58,14 @@ export default function RecipeForm() {
         : newRecipe.types.filter((type) => type !== selectedType);
       setRecipe((prevState) => ({ ...prevState, types: newTypes }));
     } else if (name === 'ingredients') {
-      const ingredients = value.split(',').map((str) => str.trim());
+      const ingredients = value
+        .split('\n')
+        .map((line) => {
+          const parts = line.trim().split(/\s+/); // Split each line by whitespace
+          const quantity = parts.shift(); // Extract the quantity (first element)
+          const ingredient = parts.join(' '); // Rejoin the remaining parts as the full ingredient name
+          return { quantity, ingredient };
+        });
       setRecipe((prevState) => ({ ...prevState, ingredients }));
     } else if (name.startsWith('nutrition.')) {
       const propertyName = name.slice('nutrition.'.length);
@@ -62,7 +76,7 @@ export default function RecipeForm() {
           [propertyName]: value,
         },
       }));
-    } else if (name === 'directions' && key === 'Enter') {
+    } else if (name === 'directions') {
       setRecipe((prevState) => ({
         ...prevState,
         directions: [...prevState.directions, ''],
@@ -71,18 +85,28 @@ export default function RecipeForm() {
       const newValue = type === 'checkbox' ? checked : value;
       setRecipe((prevState) => ({ ...prevState, [name]: newValue }));
     }
-  };  
+  }; 
 
   // add event listener to store key in state when 'Enter' is pressed
   // allows user to submit a new line of directions and move to a new line
   const handleKeyDown = (event) => {
-    const { name, key } = event;
-    if (name === 'directions' && key === 'Enter') {
-      event.preventDefault();
+    const { name, key, shiftKey, target } = event;
+    if (name === 'directions' && key === 'Enter' && !shiftKey) {
+      const trimmedValue = target.value.trim();
+      
+      // add a check to disallow empty lines of directions from being submitted
+      if (trimmedValue !== '') {
+        event.preventDefault();
+        setRecipe((prevState) => ({
+          ...prevState,
+          directions: [...prevState.directions, trimmedValue, ''],
+        }));
+        target.value = '';
+      }
     } else {
       setKey(key);
     }
-  };
+  };  
 
   // clear all directions and start over
   const handleClearDirections = () => {
@@ -90,7 +114,7 @@ export default function RecipeForm() {
       ...prevState,
       directions: []
     }));
-  };  
+  }; 
 
   const handleDragEnd = (result) => {
     if (!result.destination) return;
@@ -103,7 +127,7 @@ export default function RecipeForm() {
   };
   
   // handle recipe form submission
-  const handleSubmit = async (newRecipe) => {
+  const handleSubmit = async () => {
     try {
       // Create a new object without circular references
       const cleanedRecipe = {
