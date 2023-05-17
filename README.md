@@ -4,9 +4,10 @@
 
 ### https://sleepychef.vercel.app/
 
-- Sleepy Chef lets users search for recipes based on type, name, or ingredients.
+- Sleepy Chef lets you search for recipes based on type, name, or ingredients.
+- A search-engine type UI for simple, straightforward recipes with no nonsense.
 - Built with Next.js + Tailwind CSS, deployed with Vercel.
-- useSWR provides a convenient way to handle caching, revalidation, and focus tracking in addition to some spicy syntax for data fetching.
+- useSWR provides a convenient way to handle caching, revalidation, and focus tracking. Plus some extra spicy syntax for data fetching.
 - Next's useRouter hook sends and receives the user's query & query parameters, which we use to filter and sort the recipe API data.
 - API responds to user-submitted queries, filtering appropriate response by using key-value pairs to return all matching recipes as Objects.
 - getStaticPaths and getStaticProps generate our static Recipe pages at build time, which eliminates the need for on-demand server-side rendering and greatly reduces the load placed on the servers.

@@ -14,7 +14,6 @@ export const FormUI = (props) => {
             leading-tight focus:outline-none focus:shadow-outline focus:placeholder-transparent"
             id="name"
             name="name"
-            type="text"
             placeholder="Enter recipe name"
             value={props.newRecipe.name}
             onChange={props.handleChange}
@@ -134,7 +133,6 @@ export const FormUI = (props) => {
             leading-tight focus:outline-none focus:shadow-outline"
             id="time"
             name="time"
-            type="text"
             placeholder="Enter total time"
             value={props.newRecipe.time}
             onChange={props.handleChange}
@@ -200,7 +198,6 @@ export const FormUI = (props) => {
                 leading-tight focus:outline-none focus:shadow-outline focus:placeholder-transparent"
                 id="calories"
                 name="calories"
-                type="text"
                 placeholder="Enter calories"
                 value={props.newRecipe.nutrition.calories}
                 onChange={props.handleChange}
@@ -246,7 +243,6 @@ export const FormUI = (props) => {
                 leading-tight focus:outline-none focus:shadow-outline focus:placeholder-transparent"
                 id="fat"
                 name="fat"
-                type="text"
                 placeholder="Enter fat (grams)"
                 value={props.newRecipe.nutrition.fat}
                 onChange={props.handleChange}
@@ -313,7 +309,6 @@ export const FormUI = (props) => {
                                 <input
                                   className="shadow appearance-none rounded-lg dark:border dark:border-slate-100 w-full h-auto py-2 px-4 text-gray-700 dark:text-gray-200 
                                   leading-tight focus:outline-none focus:shadow-outline focus:placeholder-transparent"
-                                  type="text"
                                   name={`directions-${index}`}
                                   value={direction}
                                   onChange={(event) => props.handleDirectionChange(index, event)}

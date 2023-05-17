@@ -1,78 +1,83 @@
 import { MongoClient } from 'mongodb';
 
+// Create MongoDB connection outside of the handler
+let client;
+
+async function connectToDatabase() {
+  if (!client || !client.isConnected()) {
+    client = await MongoClient.connect(process.env.MONGODB_URI, {
+      useUnifiedTopology: true,
+    });
+  }
+
+  return client;
+}
+
 export default async function handler(req, res) {
   if (req.method === 'POST') {
     try {
       if (!req.body) {
-        res.status(400).json({ error: 'Request body is empty' });
-        return;
+        return res.status(400).json({ error: 'Request body is empty' });
       }
 
-      const client = await MongoClient.connect(process.env.MONGODB_URI, {
-        useUnifiedTopology: true,
-      });
+      const db = (await connectToDatabase()).db();
+      const recipesCollection = db.collection('recipes');
+      const submissionsCollection = db.collection('submissions');
 
-      const recipesCollection = client.db().collection('recipes');
-      const submissionsCollection = client.db().collection('submissions');
-
-      // start transaction
+      // Start transaction
       const session = client.startSession();
       try {
         await session.withTransaction(async () => {
           const recipe = JSON.parse(req.body);
 
-          // check if recipe is valid
+          // Validate recipe object
           if (!recipe || typeof recipe !== 'object') {
-            res.status(400).json({ error: 'Invalid recipe object' });
-            return;
+            return res.status(400).json({ error: 'Invalid recipe object' });
           }
 
           const { user } = recipe;
           if (!user || typeof user !== 'string') {
-            res.status(400).json({ error: 'Invalid user string' });
-            return;
+            return res.status(400).json({ error: 'Invalid user string' });
           }
 
-          // check if user has exceeded submission limit in the past hour
-          const moment = new Date();
-          const oneHourAgo = new Date(moment - 60 * 60 * 1000);
+          // Check if user has exceeded submission limit in the past hour
+          const oneHourAgo = new Date(Date.now() - 60 * 60 * 1000);
           const submissions = await submissionsCollection.find({
             user,
             timestamp: { $gte: oneHourAgo },
           }).toArray();
 
           if (submissions.length >= 20) {
-            res.status(429).json({
+            return res.status(429).json({
               error: 'Sorry, too many submissions within the last hour. Please try again later.',
             });
-            return;
           }
 
-          // insert recipe into database
+          // Insert recipe into database
           const result = await recipesCollection.insertOne(recipe, { session });
           if (result.insertedCount !== 1) {
             throw new Error('Failed to insert recipe');
           }
 
-          // log submission
-          await submissionsCollection.insertOne({ user, timestamp: moment }, { session });
+          // Log submission
+          await submissionsCollection.insertOne({ user, timestamp: new Date() }, { session });
 
-          // return response with recipe ID
-          res.status(201).json({ id: result.insertedId });
+          // Return response with recipe ID
+          return res.status(201).json({ id: result.insertedId });
         });
-      } catch (error) {
+      }
+      catch (error) {
         console.error(error);
-        res.status(500).json({ error: 'Failed to submit recipe' });
         await session.abortTransaction();
+        return res.status(500).json({ error: 'Failed to submit recipe' });
       } finally {
         session.endSession();
-        client.close();
       }
     } catch (err) {
       console.error(err);
-      res.status(503).json({ error: 'Failed to connect to database' });
+      return res.status(503).json({ error: 'Failed to connect to database' });
     }
   } else {
-    res.status(405).json({ message: 'Method not allowed' });
+  return res.status(405).json({ message: 'Method not allowed' });
   }
 };
