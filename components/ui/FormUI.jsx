@@ -179,8 +179,9 @@ export const FormUI = (props) => {
             id="ingredients"
             name="ingredients"
             placeholder="Enter ingredients, separated by commas"
-            value={props.newRecipe.ingredients}
-            onChange={props.handleChange}
+            value={props.newRecipe.ingredients.map((ingredient) => ingredient.quantity + ' ' + ingredient.ingredient).join(', ')}
+            onChange={(e) => props.handleChange(e, 'ingredients')}
+            onKeyDown={(e) => props.handleCommaKey(e)}
           />
         </div>
 
@@ -312,7 +313,7 @@ export const FormUI = (props) => {
                                   name={`directions-${index}`}
                                   value={direction}
                                   onChange={(event) => props.handleDirectionChange(index, event)}
-                                  onKeyDown={props.handleKeyDown}
+                                  onKeyDown={props.handleEnterKey}
                                   placeholder="Add a step"
                                   {...provided.dragHandleProps}
                                 />

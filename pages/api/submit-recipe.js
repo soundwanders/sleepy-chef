@@ -1,6 +1,5 @@
 import { MongoClient } from 'mongodb';
 
-// Create MongoDB connection outside of the handler
 let client;
 
 async function connectToDatabase() {
@@ -11,7 +10,7 @@ async function connectToDatabase() {
   }
 
   return client;
-}
+};
 
 export default async function handler(req, res) {
   if (req.method === 'POST') {
