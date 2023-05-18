@@ -2,7 +2,7 @@ import { useState } from 'react';
 import Link from 'next/link';
 import { Close, Hamburger } from '@components/ui/Icons';
 import { FormLink } from '@components/nav/FormLink';
-import SidebarLinks from '@constants/links';
+import SidebarLinks from '@constants/sidebar-links';
 
 const TypeLink = ({ name, url, image, closeSidebar, isActive, onClick }) => (
   <Link href={url} as={url} legacyBehavior>

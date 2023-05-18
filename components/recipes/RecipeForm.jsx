@@ -4,6 +4,13 @@ import { RoughNotationGroup } from 'react-rough-notation';
 import { Highlighter } from '@components/ui/Highlighter';
 import { FormUI } from '@components/ui/FormUI';
 import { useRecipeDirections } from '@hooks/useRecipeDirections';
+import {
+  handleTypesChange,
+  handleIngredientsChange,
+  handleNutritionChange,
+  handleDirectionsChange,
+  handleGenericChange,
+} from '@utils/form-handlers';
 
 export default function RecipeForm() {
   const highlightColor = "#f9a947";
@@ -49,47 +56,23 @@ export default function RecipeForm() {
   
   const handleChange = (event, index) => {
     const { name, value, type, checked } = event.target;
-    const { key } = event;
   
     if (name === 'types') {
-      const selectedType = value;
-      const newTypes = checked
-        ? [...newRecipe.types, selectedType]
-        : newRecipe.types.filter((type) => type !== selectedType);
-      setRecipe((prevState) => ({ ...prevState, types: newTypes }));
+      handleTypesChange(setRecipe, value, checked);
     } else if (name === 'ingredients') {
-      const ingredients = value
-        .split('\n')
-        .map((line) => {
-          const parts = line.trim().split(/\s+/); // Split each line by whitespace
-          const quantity = parts.shift(); // Extract the quantity (first element)
-          const ingredient = parts.join(' '); // Rejoin the remaining parts as the full ingredient name
-          return { quantity, ingredient };
-        });
-      setRecipe((prevState) => ({ ...prevState, ingredients }));
+      handleIngredientsChange(setRecipe, value);
     } else if (name.startsWith('nutrition.')) {
-      const propertyName = name.slice('nutrition.'.length);
-      setRecipe((prevState) => ({
-        ...prevState,
-        nutrition: {
-          ...prevState.nutrition,
-          [propertyName]: value,
-        },
-      }));
+      handleNutritionChange(setRecipe, name, value);
     } else if (name === 'directions') {
-      setRecipe((prevState) => ({
-        ...prevState,
-        directions: [...prevState.directions, ''],
-      }));
+      handleDirectionsChange(setRecipe);
     } else {
-      const newValue = type === 'checkbox' ? checked : value;
-      setRecipe((prevState) => ({ ...prevState, [name]: newValue }));
+      handleGenericChange(setRecipe, name, type, checked, value);
     }
   }; 
 
   // add event listener to store key in state when 'Enter' is pressed
   // allows user to submit a new line of directions and move to a new line
-  const handleKeyDown = (event) => {
+  const handleEnterKey = (event) => {
     const { name, key, shiftKey, target } = event;
     if (name === 'directions' && key === 'Enter' && !shiftKey) {
       const trimmedValue = target.value.trim();
@@ -108,6 +91,25 @@ export default function RecipeForm() {
     }
   };  
 
+  // allow users to use commas to separate items in their recipe ingredients list
+  const handleCommaKey = (event) => {
+    if (event.key === ',') {
+      event.preventDefault();
+      const textarea = event.target;
+      const { selectionStart, value } = textarea;
+  
+      // Insert a comma at the current caret position
+      const newValue = value.slice(0, selectionStart) + ', ' + value.slice(selectionStart);
+  
+      // Update the textarea value and caret position
+      textarea.value = newValue;
+      textarea.setSelectionRange(selectionStart + 2, selectionStart + 2);
+  
+      // Trigger the form change handler with the updated value
+      handleChange({ target: { name: 'ingredients', value: newValue } });
+    }
+  };  
+  
   // clear all directions and start over
   const handleClearDirections = () => {
     setRecipe(prevState => ({
@@ -132,7 +134,7 @@ export default function RecipeForm() {
       // Create a new object without circular references
       const cleanedRecipe = {
         ...newRecipe,
-        nutrition: JSON.parse(JSON.stringify(newRecipe.nutrition)),
+        nutrition: newRecipe.nutrition,
       };
   
       // Assign a unique ID to the new recipe
@@ -192,7 +194,8 @@ export default function RecipeForm() {
         directions={directions}
         handleChange={handleChange}
         handleSubmit={handleSubmit}
-        handleKeyDown={handleKeyDown}
+        handleEnterKey={handleEnterKey}
+        handleCommaKey={handleCommaKey}
         handleClearDirections={handleClearDirections}
         handleDirectionChange={handleDirectionChange}
         handleAddDirection={handleAddDirection}
