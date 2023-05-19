@@ -173,15 +173,14 @@ export const FormUI = (props) => {
           <label className="block text-gray-700 dark:text-gray-200 font-bold mb-2" htmlFor="ingredients">
             Ingredients
           </label>
-          <textarea
+          <input
             className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 dark:text-gray-200 
             leading-tight focus:outline-none focus:shadow-outline focus:placeholder-transparent"
             id="ingredients"
             name="ingredients"
             placeholder="Enter ingredients, separated by commas"
-            value={props.newRecipe.ingredients.map((ingredient) => ingredient.quantity + ' ' + ingredient.ingredient).join(', ')}
-            onChange={(e) => props.handleChange(e, 'ingredients')}
-            onKeyDown={(e) => props.handleCommaKey(e)}
+            value={props.ingredientInput}
+            onChange={props.handleChange}
           />
         </div>
 

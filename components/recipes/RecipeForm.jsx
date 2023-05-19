@@ -15,6 +15,7 @@ import {
 export default function RecipeForm() {
   const highlightColor = "#f9a947";
   const [key, setKey] = useState('');
+  const [ingredientInput, setIngredientInput] = useState('');
 
   // use states to keep track of user input
   const [newRecipe, setRecipe] = useState({
@@ -27,13 +28,6 @@ export default function RecipeForm() {
     nutrition: {},
     directions: []
   });
-
-  const [
-    directions, 
-    handleDirectionChange, 
-    handleAddDirection, 
-    handleRemoveDirection
-  ] = useRecipeDirections(newRecipe.directions)
 
   useEffect(() => {
     const storedData = localStorage.getItem('recipeFormData');
@@ -48,7 +42,7 @@ export default function RecipeForm() {
         directions: storedRecipe.directions,
       }));
     }
-  }, []);  
+  }, []);
   
   useEffect(() => {
     localStorage.setItem('recipeFormData', JSON.stringify(newRecipe));
@@ -61,6 +55,7 @@ export default function RecipeForm() {
       handleTypesChange(setRecipe, value, checked);
     } else if (name === 'ingredients') {
       handleIngredientsChange(setRecipe, value);
+      setIngredientInput(value);
     } else if (name.startsWith('nutrition.')) {
       handleNutritionChange(setRecipe, name, value);
     } else if (name === 'directions') {
@@ -91,31 +86,17 @@ export default function RecipeForm() {
     }
   };  
 
-  // allow users to use commas to separate items in their recipe ingredients list
-  const handleCommaKey = (event) => {
-    if (event.key === ',') {
-      event.preventDefault();
-      const textarea = event.target;
-      const { selectionStart, value } = textarea;
-  
-      // Insert a comma at the current caret position
-      const newValue = value.slice(0, selectionStart) + ', ' + value.slice(selectionStart);
-  
-      // Update the textarea value and caret position
-      textarea.value = newValue;
-      textarea.setSelectionRange(selectionStart + 2, selectionStart + 2);
-  
-      // Trigger the form change handler with the updated value
-      handleChange({ target: { name: 'ingredients', value: newValue } });
-    }
-  };  
+  const [
+    directions, 
+    handleDirectionChange, 
+    handleAddDirection, 
+    handleRemoveDirection, 
+    setDirections
+  ] = useRecipeDirections(newRecipe.directions);
   
   // clear all directions and start over
   const handleClearDirections = () => {
-    setRecipe(prevState => ({
-      ...prevState,
-      directions: []
-    }));
+    setDirections([]);
   }; 
 
   const handleDragEnd = (result) => {
@@ -195,7 +176,6 @@ export default function RecipeForm() {
         handleChange={handleChange}
         handleSubmit={handleSubmit}
         handleEnterKey={handleEnterKey}
-        handleCommaKey={handleCommaKey}
         handleClearDirections={handleClearDirections}
         handleDirectionChange={handleDirectionChange}
         handleAddDirection={handleAddDirection}

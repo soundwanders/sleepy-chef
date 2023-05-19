@@ -9,18 +9,10 @@ export const handleTypesChange = (setRecipe, value, checked) => {
 };
 
 export const handleIngredientsChange = (setRecipe, value) => {
-  setRecipe((newRecipe) => {
-    const ingredientsList = value
-      .split(/,\s*/) // Split based on commas followed by optional spaces
-      .filter((ingredient) => ingredient.trim() !== '')
-      .map((ingredient) => {
-        const [quantity, ...parts] = ingredient.split(/\s+/);
-        const ingredientName = parts.join(' ');
-        return { quantity, ingredient: ingredientName };
-      });
-
-    return { ...newRecipe, ingredients: ingredientsList };
-  });
+  setRecipe((prevRecipe) => ({
+    ...prevRecipe,
+    ingredients: value
+  }));
 };
 
 export const handleNutritionChange = (setRecipe, name, value) => {
