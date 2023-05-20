@@ -7,6 +7,8 @@ import { useRecipeDirections } from '@hooks/useRecipeDirections';
 import {
   handleTypesChange,
   handleIngredientsChange,
+  handleAddIngredient,
+  handleRemoveIngredient,
   handleNutritionChange,
   handleDirectionsChange,
   handleGenericChange,
@@ -15,10 +17,10 @@ import {
 export default function RecipeForm() {
   const highlightColor = "#f9a947";
   const [key, setKey] = useState('');
-  const [ingredientInput, setIngredientInput] = useState('');
+  const [ingredients, setIngredients] = useState([]);
 
   // use states to keep track of user input
-  const [newRecipe, setRecipe] = useState({
+  const [newRecipe, setNewRecipe] = useState({
     name: '',
     types: [],
     time: '',
@@ -29,11 +31,19 @@ export default function RecipeForm() {
     directions: []
   });
 
+  const [
+    directions, 
+    handleDirectionChange, 
+    handleAddDirection, 
+    handleRemoveDirection, 
+    setDirections
+  ] = useRecipeDirections(newRecipe.directions);
+  
   useEffect(() => {
     const storedData = localStorage.getItem('recipeFormData');
     if (storedData) {
       const storedRecipe = JSON.parse(storedData);
-      setRecipe(prevState => ({
+      setNewRecipe(prevState => ({
         ...prevState,
         nutrition: {
           ...prevState.nutrition,
@@ -52,16 +62,16 @@ export default function RecipeForm() {
     const { name, value, type, checked } = event.target;
   
     if (name === 'types') {
-      handleTypesChange(setRecipe, value, checked);
-    } else if (name === 'ingredients') {
-      handleIngredientsChange(setRecipe, value);
-      setIngredientInput(value);
+      handleTypesChange(setNewRecipe, value, checked);
+    } else if (name.startsWith === 'ingredients') {
+      const ingredientIndex = Number(name.split('[')[1].split(']')[0]);
+      handleIngredientsChange(ingredientIndex)(event);
     } else if (name.startsWith('nutrition.')) {
-      handleNutritionChange(setRecipe, name, value);
-    } else if (name === 'directions') {
-      handleDirectionsChange(setRecipe);
+      handleNutritionChange(setNewRecipe, name, value);
+    } else if (name.startsWith === 'directions') {
+      handleDirectionsChange(setNewRecipe);
     } else {
-      handleGenericChange(setRecipe, name, type, checked, value);
+      handleGenericChange(setNewRecipe, name, type, checked, value);
     }
   }; 
 
@@ -75,7 +85,7 @@ export default function RecipeForm() {
       // add a check to disallow empty lines of directions from being submitted
       if (trimmedValue !== '') {
         event.preventDefault();
-        setRecipe((prevState) => ({
+        setNewRecipe((prevState) => ({
           ...prevState,
           directions: [...prevState.directions, trimmedValue, ''],
         }));
@@ -86,14 +96,6 @@ export default function RecipeForm() {
     }
   };  
 
-  const [
-    directions, 
-    handleDirectionChange, 
-    handleAddDirection, 
-    handleRemoveDirection, 
-    setDirections
-  ] = useRecipeDirections(newRecipe.directions);
-  
   // clear all directions and start over
   const handleClearDirections = () => {
     setDirections([]);
@@ -116,6 +118,7 @@ export default function RecipeForm() {
       const cleanedRecipe = {
         ...newRecipe,
         nutrition: newRecipe.nutrition,
+        ingredients: ingredients,
       };
   
       // Assign a unique ID to the new recipe
@@ -133,7 +136,7 @@ export default function RecipeForm() {
         const data = await res.json();
         alert('Recipe saved successfully!');
         localStorage.removeItem('recipeFormData');
-        setRecipe({
+        setNewRecipe({
           name: '',
           types: [],
           time: '',
@@ -180,6 +183,8 @@ export default function RecipeForm() {
         handleDirectionChange={handleDirectionChange}
         handleAddDirection={handleAddDirection}
         handleRemoveDirection={handleRemoveDirection}
+        handleAddIngredient={handleAddIngredient}
+        handleRemoveIngredient={handleRemoveIngredient}
         handleDragEnd={handleDragEnd}
       />
     </div>

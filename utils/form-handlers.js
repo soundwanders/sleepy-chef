@@ -1,5 +1,5 @@
-export const handleTypesChange = (setRecipe, value, checked) => {
-  setRecipe(newRecipe => {
+export const handleTypesChange = (setNewRecipe, value, checked) => {
+  setNewRecipe(newRecipe => {
     const selectedType = value;
     const newTypes = checked
       ? [...newRecipe.types, selectedType]
@@ -8,15 +8,25 @@ export const handleTypesChange = (setRecipe, value, checked) => {
   });
 };
 
-export const handleIngredientsChange = (setRecipe, value) => {
-  setRecipe((prevRecipe) => ({
-    ...prevRecipe,
-    ingredients: value
-  }));
+export const handleIngredientsChange = (index) => (event) => {
+  const updatedIngredients = [...ingredients];
+  updatedIngredients[index] = event.target.value;
+  setIngredients(updatedIngredients);
 };
 
-export const handleNutritionChange = (setRecipe, name, value) => {
-  setRecipe(newRecipe => {
+export const handleAddIngredient = () => {
+  const updatedIngredients = [...ingredients, ''];
+  setIngredients(updatedIngredients);
+};
+
+export const handleRemoveIngredient = (index) => () => {
+  const updatedIngredients = [...ingredients];
+  updatedIngredients.splice(index, 1);
+  setIngredients(updatedIngredients);
+};
+
+export const handleNutritionChange = (setNewRecipe, name, value) => {
+  setNewRecipe(newRecipe => {
     const propertyName = name.slice('nutrition.'.length);
     return {
       ...newRecipe,
@@ -25,8 +35,8 @@ export const handleNutritionChange = (setRecipe, name, value) => {
   });
 };
 
-export const handleDirectionsChange = (setRecipe) => {
-  setRecipe(newRecipe => {
+export const handleDirectionsChange = (setNewRecipe) => {
+  setNewRecipe(newRecipe => {
     return {
       ...newRecipe,
       directions: [...newRecipe.directions, '']
@@ -34,8 +44,8 @@ export const handleDirectionsChange = (setRecipe) => {
   });
 };
 
-export const handleGenericChange = (setRecipe, name, type, checked, value) => {
-  setRecipe(newRecipe => {
+export const handleGenericChange = (setNewRecipe, name, type, checked, value) => {
+  setNewRecipe(newRecipe => {
     const newValue = type === 'checkbox' ? checked : value;
     return { ...newRecipe, [name]: newValue };
   });
