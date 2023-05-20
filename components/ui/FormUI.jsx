@@ -173,15 +173,32 @@ export const FormUI = (props) => {
           <label className="block text-gray-700 dark:text-gray-200 font-bold mb-2" htmlFor="ingredients">
             Ingredients
           </label>
-          <input
-            className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 dark:text-gray-200 
-            leading-tight focus:outline-none focus:shadow-outline focus:placeholder-transparent"
-            id="ingredients"
-            name="ingredients"
-            placeholder="Enter ingredients, separated by commas"
-            value={props.ingredientInput}
-            onChange={props.handleChange}
-          />
+          {props.ingredients.map((ingredient, index) => (
+            <div key={index} className="flex mb-2">
+              <input
+                className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 dark:text-gray-200 
+                leading-tight focus:outline-none focus:shadow-outline"
+                name={`ingredients[${index}]`}
+                placeholder="Enter ingredient"
+                value={ingredient}
+                onChange={props.handleIngredientsChange(index)}
+              />
+              <button
+                type="button"
+                className="ml-2 py-1 px-2 rounded bg-red-500 text-white hover:bg-red-600 focus:outline-none"
+                onClick={props.handleRemoveIngredient(index)}
+              >
+                Remove
+              </button>
+            </div>
+          ))}
+          <button
+            type="button"
+            className="py-1 px-2 rounded bg-green-500 text-white hover:bg-green-600 focus:outline-none"
+            onClick={props.handleAddIngredient}
+          >
+            Add Ingredient
+          </button>
         </div>
 
         <div className="mb-8">
