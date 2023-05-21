@@ -185,7 +185,8 @@ export const FormUI = (props) => {
               />
               <button
                 type="button"
-                className="ml-3 rounded-full hover:text-red-500 focus:outline-none focus:bg-transparent focus:translate-y-[1px]"
+                className="ml-3 rounded-full hover:text-red-400 focus:outline-none focus:bg-transparent focus:translate-y-[1px]"          
+                onClick={() => props.handleRemoveIngredient()}
               >
                 <span className="sr-only">Remove Line</span>
                 <RemoveLine />
@@ -194,10 +195,12 @@ export const FormUI = (props) => {
           ))}
           <button
             type="button"
-            className="mt-2 py-1 px-3 rounded bg-green-300 text-zinc-900 hover:bg-green-600 focus:outline-none focus:bg-green-300"
+            className="mt-2 py-1 px-2 shadow rounded-md bg-green-400 dark:bg-green-600 text-zinc-800 dark:text-neutral-50 text-sm hover:bg-green-500
+            focus:outline-none focus:bg-green-300 focus:translate-y-1"
             onClick={() => props.handleAddIngredient()}
           >
-            Add Ingredient
+            <span className="sr-only">New Line</span>
+            <AddLine />
           </button>
         </div>
 
