@@ -1,4 +1,5 @@
 import { MongoClient } from 'mongodb';
+import { sendNotificationEmail } from '@utils/notification-email';
 
 let client;
 
@@ -61,7 +62,9 @@ export default async function handler(req, res) {
           // Log submission
           await submissionsCollection.insertOne({ user, timestamp: new Date() }, { session });
 
-          // Return response with recipe ID
+          // Send email notification
+          await sendNotificationEmail(recipe);
+
           return res.status(201).json({ id: result.insertedId });
         });
       }
@@ -77,6 +80,6 @@ export default async function handler(req, res) {
       return res.status(503).json({ error: 'Failed to connect to database' });
     }
   } else {
-  return res.status(405).json({ message: 'Method not allowed' });
+    return res.status(405).json({ message: 'Method not allowed' });
   }
 };
