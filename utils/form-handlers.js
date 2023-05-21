@@ -8,21 +8,13 @@ export const handleTypesChange = (setNewRecipe, value, checked) => {
   });
 };
 
-export const handleIngredientsChange = (index) => (event) => {
-  const updatedIngredients = [...ingredients];
-  updatedIngredients[index] = event.target.value;
-  setIngredients(updatedIngredients);
-};
-
-export const handleAddIngredient = () => {
-  const updatedIngredients = [...ingredients, ''];
-  setIngredients(updatedIngredients);
-};
-
-export const handleRemoveIngredient = (index) => () => {
-  const updatedIngredients = [...ingredients];
-  updatedIngredients.splice(index, 1);
-  setIngredients(updatedIngredients);
+export const handleIngredientsChange = (setNewRecipe) => {
+  setNewRecipe(newRecipe => {
+    return {
+      ...newRecipe,
+      ingredients: [...newRecipe.ingredients, '']
+    };
+  });
 };
 
 export const handleNutritionChange = (setNewRecipe, name, value) => {
