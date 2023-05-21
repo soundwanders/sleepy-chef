@@ -23,7 +23,7 @@ export const useRecipeDirections = (initialDirections) => {
   const handleAddDirection = () => {
     const lastDirection = directions[directions.length - 1];
 
-    // do not add a new line if the last direction is empty
+    // do not add a new line if the current line is empty
     if (lastDirection && lastDirection.trim() === '') {
       return;
     }

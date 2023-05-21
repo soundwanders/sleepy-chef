@@ -170,32 +170,32 @@ export const FormUI = (props) => {
         </div>
 
         <div className="mb-8">
-          <label className="block text-gray-700 dark:text-gray-200 font-bold mb-2" htmlFor="ingredients">
+          <label className="block text-gray-700 dark:text-gray-200 font-bold mt-6 mb-2" htmlFor="ingredients">
             Ingredients
           </label>
           {props.ingredients.map((ingredient, index) => (
             <div key={index} className="flex mb-2">
               <input
-                className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 dark:text-gray-200 
-                leading-tight focus:outline-none focus:shadow-outline"
+                className="shadow appearance-none border rounded w-full py-2 px-3 my-1 text-gray-700 dark:text-gray-200 
+                leading-tight focus:outline-none"
                 name={`ingredients[${index}]`}
                 placeholder="Enter ingredient"
                 value={ingredient}
-                onChange={props.handleIngredientsChange(index)}
+                onChange={(event) => props.handleIngredientChange(index, event)}
               />
               <button
                 type="button"
-                className="ml-2 py-1 px-2 rounded bg-red-500 text-white hover:bg-red-600 focus:outline-none"
-                onClick={props.handleRemoveIngredient(index)}
+                className="ml-3 rounded-full hover:text-red-500 focus:outline-none focus:bg-transparent focus:translate-y-[1px]"
               >
-                Remove
+                <span className="sr-only">Remove Line</span>
+                <RemoveLine />
               </button>
             </div>
           ))}
           <button
             type="button"
-            className="py-1 px-2 rounded bg-green-500 text-white hover:bg-green-600 focus:outline-none"
-            onClick={props.handleAddIngredient}
+            className="mt-2 py-1 px-3 rounded bg-green-300 text-zinc-900 hover:bg-green-600 focus:outline-none focus:bg-green-300"
+            onClick={() => props.handleAddIngredient()}
           >
             Add Ingredient
           </button>
@@ -299,7 +299,7 @@ export const FormUI = (props) => {
         </div>
 
         <div className="mb-8">
-          <label className="block text-gray-700 dark:text-gray-200 font-bold mb-2" htmlFor="directions">
+          <label className="block text-gray-700 dark:text-gray-200 font-bold my-2" htmlFor="directions">
             Directions
           </label>
 

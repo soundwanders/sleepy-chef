@@ -4,11 +4,10 @@ import { RoughNotationGroup } from 'react-rough-notation';
 import { Highlighter } from '@components/ui/Highlighter';
 import { FormUI } from '@components/ui/FormUI';
 import { useRecipeDirections } from '@hooks/useRecipeDirections';
+import { useRecipeIngredients } from '@hooks/useRecipeIngredients';
 import {
   handleTypesChange,
   handleIngredientsChange,
-  handleAddIngredient,
-  handleRemoveIngredient,
   handleNutritionChange,
   handleDirectionsChange,
   handleGenericChange,
@@ -17,7 +16,6 @@ import {
 export default function RecipeForm() {
   const highlightColor = "#f9a947";
   const [key, setKey] = useState('');
-  const [ingredients, setIngredients] = useState([]);
 
   // use states to keep track of user input
   const [newRecipe, setNewRecipe] = useState({
@@ -38,7 +36,15 @@ export default function RecipeForm() {
     handleRemoveDirection, 
     setDirections
   ] = useRecipeDirections(newRecipe.directions);
-  
+
+  const [
+    ingredients,
+    handleIngredientChange,
+    handleAddIngredient,
+    handleRemoveIngredient,
+    setIngredients
+  ] = useRecipeIngredients(newRecipe.ingredients);
+    
   useEffect(() => {
     const storedData = localStorage.getItem('recipeFormData');
     if (storedData) {
@@ -49,6 +55,7 @@ export default function RecipeForm() {
           ...prevState.nutrition,
           ...storedRecipe.nutrition,
         },
+        ingredients: storedRecipe.ingredients,
         directions: storedRecipe.directions,
       }));
     }
@@ -63,17 +70,16 @@ export default function RecipeForm() {
   
     if (name === 'types') {
       handleTypesChange(setNewRecipe, value, checked);
-    } else if (name.startsWith === 'ingredients') {
-      const ingredientIndex = Number(name.split('[')[1].split(']')[0]);
-      handleIngredientsChange(ingredientIndex)(event);
     } else if (name.startsWith('nutrition.')) {
       handleNutritionChange(setNewRecipe, name, value);
-    } else if (name.startsWith === 'directions') {
+    } else if (name.startsWith('ingredients')) {
+      handleIngredientsChange(setNewRecipe);
+    } else if (name.startsWith('directions')) {
       handleDirectionsChange(setNewRecipe);
     } else {
       handleGenericChange(setNewRecipe, name, type, checked, value);
     }
-  }; 
+  };  
 
   // add event listener to store key in state when 'Enter' is pressed
   // allows user to submit a new line of directions and move to a new line
@@ -176,11 +182,13 @@ export default function RecipeForm() {
       <FormUI 
         newRecipe={newRecipe}
         directions={directions}
+        ingredients={ingredients}
         handleChange={handleChange}
         handleSubmit={handleSubmit}
         handleEnterKey={handleEnterKey}
         handleClearDirections={handleClearDirections}
         handleDirectionChange={handleDirectionChange}
+        handleIngredientChange={handleIngredientChange}
         handleAddDirection={handleAddDirection}
         handleRemoveDirection={handleRemoveDirection}
         handleAddIngredient={handleAddIngredient}
