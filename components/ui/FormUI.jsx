@@ -195,7 +195,7 @@ export const FormUI = (props) => {
           ))}
           <button
             type="button"
-            className="mt-2 py-1 px-2 shadow rounded-md bg-green-400 dark:bg-green-600 text-zinc-800 dark:text-neutral-50 text-sm hover:bg-green-500
+            className="mt-2 py-1 px-2 shadow rounded-md bg-green-300 dark:bg-green-500 text-zinc-800 dark:text-neutral-50 text-sm hover:bg-green-500
             focus:outline-none focus:bg-green-300 focus:translate-y-1"
             onClick={() => props.handleAddIngredient()}
           >
@@ -316,8 +316,8 @@ export const FormUI = (props) => {
                     {props.directions.map((direction, index) => (
                       <Draggable key={`direction-${index}`} draggableId={`direction-${index}`} index={index}>
                         {(provided) => (
-                          <div ref={provided.innerRef} {...provided.draggableProps} {...provided.dragHandleProps}>
-                            <div className="flex mb-2">
+                          <div ref={provided.innerRef} {...provided.draggableProps}>
+                            <div className="flex mb-2" {...provided.dragHandleProps}>
                               <div className="w-10">
                                 <span className="inline-flex items-center justify-center w-4 h-4 p-2 mt-9 mx-1 rounded-full 
                                   border border-slate-700 dark:border-slate-100 bg-transparent text-slate-900 dark:text-white text-[10px]"
@@ -328,20 +328,19 @@ export const FormUI = (props) => {
                               <div className="flex-1 pt-6">
                                 <input
                                   className="shadow appearance-none rounded-lg dark:border dark:border-slate-100 w-full h-auto py-2 px-4 text-gray-700 dark:text-gray-200 
-                                  leading-tight focus:outline-none focus:shadow-outline focus:placeholder-transparent"
+                                    leading-tight focus:outline-none focus:shadow-outline focus:placeholder-transparent"
                                   name={`directions-${index}`}
                                   value={direction}
                                   onChange={(event) => props.handleDirectionChange(index, event)}
                                   onKeyDown={props.handleEnterKey}
                                   placeholder="Add a step"
-                                  {...provided.dragHandleProps}
                                 />
                               </div>
                               <div className="w-10 mx-2 flex justify-end p-2">
                                 <button
                                   type="button"
                                   className="inline-flex items-center justify-center mt-6 mr-1 rounded-full
-                                  hover:text-red-500 focus:outline-none focus:bg-transparent focus:translate-y-[1px]"
+                                    hover:text-red-500 focus:outline-none focus:bg-transparent focus:translate-y-[1px]"
                                   onClick={() => props.handleRemoveDirection(index)}
                                 >
                                   <span className="sr-only">Remove Line</span>
@@ -383,9 +382,9 @@ export const FormUI = (props) => {
           </div>
         </div>
 
-        <button className="rounded-xl py-1 px-4 border border-slate-600 dark:border-slate-100" type="submit">Submit</button>
+      <button className="rounded-xl py-1 px-4 border border-slate-600 dark:border-slate-100" type="submit">Submit</button>
         
-      </form>
-    </div>
+    </form>
+  </div>
   )
 };

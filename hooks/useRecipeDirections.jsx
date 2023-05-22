@@ -36,5 +36,6 @@ export const useRecipeDirections = (initialDirections) => {
     setDirections(directions.filter((_, index) => index !== indexToRemove));
   };
 
-  return [directions, handleDirectionChange, handleAddDirection, handleRemoveDirection];
+  // Return the directions and the related functions
+  return [directions, handleDirectionChange, handleAddDirection, handleRemoveDirection, setDirections];
 };
