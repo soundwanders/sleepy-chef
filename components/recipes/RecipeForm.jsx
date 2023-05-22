@@ -79,7 +79,7 @@ export default function RecipeForm() {
     } else {
       handleGenericChange(setNewRecipe, name, type, checked, value);
     }
-  };  
+  }; 
 
   // add event listener to store key in state when 'Enter' is pressed
   // allows user to submit a new line of directions and move to a new line
@@ -126,9 +126,12 @@ export default function RecipeForm() {
         nutrition: newRecipe.nutrition,
         ingredients: ingredients,
       };
-  
+
       // Assign a unique ID to the new recipe
       cleanedRecipe._id = uuidv4();
+
+      console.log('cleanedRecipe', cleanedRecipe);
+      console.log('cleanedRecipe JSON', JSON.stringify(cleanedRecipe));
 
       const res = await fetch('/api/submit-recipe', {
         method: 'POST',
@@ -142,6 +145,8 @@ export default function RecipeForm() {
         const data = await res.json();
         alert('Recipe saved successfully!');
         localStorage.removeItem('recipeFormData');
+
+        // reset recipe state after successful submission to prevent stale data
         setNewRecipe({
           name: '',
           types: [],
@@ -153,11 +158,12 @@ export default function RecipeForm() {
           directions: [],
         });
       } else {
-        throw new Error('Error saving recipe');
+        const errorData = await res.json();
+        throw new Error(errorData.error);
       }
     } catch (error) {
       console.error(error);
-      alert('Error saving recipe');
+      alert(`Error saving recipe: ${error.message}`);
     }
   };
   
