@@ -16,6 +16,9 @@ import {
 export default function RecipeForm() {
   const highlightColor = "#f9a947";
   const [key, setKey] = useState('');
+  const [loading, setLoading] = useState(false);
+  const [success, setSuccess] = useState(false);
+  const [error, setError] = useState(null);
 
   // use states to keep track of user input
   const [newRecipe, setNewRecipe] = useState({
@@ -75,34 +78,38 @@ export default function RecipeForm() {
     } else if (name.startsWith('ingredients')) {
       handleIngredientsChange(setNewRecipe);
     } else if (name.startsWith('directions')) {
-      handleDirectionsChange(setNewRecipe);
+      handleDirectionsChange(index, event);
+      setNewRecipe((prevState) => {
+        const updatedDirections = [...prevState.directions];
+        updatedDirections[index] = value;
+        return { ...prevState, directions: updatedDirections };
+      });
     } else {
       handleGenericChange(setNewRecipe, name, type, checked, value);
     }
   }; 
 
-  // add event listener to store key in state when 'Enter' is pressed
-  // allows user to submit a new line of directions and move to a new line
   const handleEnterKey = (event) => {
     const { name, key, shiftKey, target } = event;
     if (name === 'directions' && key === 'Enter' && !shiftKey) {
       const trimmedValue = target.value.trim();
-      
-      // add a check to disallow empty lines of directions from being submitted
       if (trimmedValue !== '') {
         event.preventDefault();
-        setNewRecipe((prevState) => ({
-          ...prevState,
-          directions: [...prevState.directions, trimmedValue, ''],
-        }));
+        setDirections((prevDirections) => [...prevDirections, trimmedValue, '']);
         target.value = '';
+      }
+    } else if (key === 'Backspace' && target.value === '') {
+      event.preventDefault();
+      const currentIndex = parseInt(target.dataset.index);
+      const previousInput = findPreviousNonEmptyInput(currentIndex);
+      if (previousInput) {
+        previousInput.focus();
       }
     } else {
       setKey(key);
     }
-  };  
+  };
 
-  // clear all directions and start over
   const handleClearDirections = () => {
     setDirections([]);
   }; 
@@ -117,22 +124,24 @@ export default function RecipeForm() {
     setDirections(newDirections);
   };
   
-  // handle recipe form submission
   const handleSubmit = async () => {
+    // Perform client-side form validation
+    if (!newRecipe.name || !newRecipe.time || ingredients.length === 0 || directions.length === 0) {
+      setError('Please fill out all required fields.');
+      return;
+    }
+  
+    const cleanedRecipe = {
+      ...newRecipe,
+      nutrition: newRecipe.nutrition,
+      ingredients: ingredients,
+    };
+  
+    cleanedRecipe._id = uuidv4();
+  
     try {
-      // Create a new object without circular references
-      const cleanedRecipe = {
-        ...newRecipe,
-        nutrition: newRecipe.nutrition,
-        ingredients: ingredients,
-      };
-
-      // Assign a unique ID to the new recipe
-      cleanedRecipe._id = uuidv4();
-
-      console.log('cleanedRecipe', cleanedRecipe);
-      console.log('cleanedRecipe JSON', JSON.stringify(cleanedRecipe));
-
+      setLoading(true);
+  
       const res = await fetch('/api/submit-recipe', {
         method: 'POST',
         headers: {
@@ -140,13 +149,11 @@ export default function RecipeForm() {
         },
         body: JSON.stringify(cleanedRecipe),
       });
-
+  
       if (res.ok) {
         const data = await res.json();
-        alert('Recipe saved successfully!');
+        setSuccess(true);
         localStorage.removeItem('recipeFormData');
-
-        // reset recipe state after successful submission to prevent stale data
         setNewRecipe({
           name: '',
           types: [],
@@ -163,9 +170,11 @@ export default function RecipeForm() {
       }
     } catch (error) {
       console.error(error);
-      alert(`Error saving recipe: ${error.message}`);
+      setError('Error saving recipe. Please try again.');
+    } finally {
+      setLoading(false);
     }
-  };
+  };  
   
   return (
     <div>
@@ -200,6 +209,9 @@ export default function RecipeForm() {
         handleAddIngredient={handleAddIngredient}
         handleRemoveIngredient={handleRemoveIngredient}
         handleDragEnd={handleDragEnd}
+        loading={loading}
+        success={success}
+        error={error}
       />
     </div>
   )

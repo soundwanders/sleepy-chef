@@ -1,3 +1,4 @@
+import React from 'react';
 import { AddLine, RemoveLine, ClearAll } from '@components/ui/Icons';
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
 
