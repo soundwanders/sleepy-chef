@@ -67,17 +67,16 @@ export default async function handler(req, res) {
 
           return res.status(201).json({ id: result.insertedId });
         });
-      }
-      catch (error) {
-        console.error(error);
+      } catch (error) {
+        console.error('Transaction error:', error);
         await session.abortTransaction();
         return res.status(500).json({ error: 'Failed to submit recipe' });
       } finally {
         session.endSession();
       }
     } catch (err) {
-      console.error(err);
-      return res.status(503).json({ error: 'Failed to connect to database' });
+      console.error('Database connection error:', err);
+      return res.status(503).json({ error: 'Failed to connect to the database' });
     }
   } else {
     return res.status(405).json({ message: 'Method not allowed' });

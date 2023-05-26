@@ -124,6 +124,7 @@ export default function RecipeForm() {
     setDirections(newDirections);
   };
   
+  // submit recipe form
   const handleSubmit = async () => {
     // Perform client-side form validation
     if (!newRecipe.name || !newRecipe.time || ingredients.length === 0 || directions.length === 0) {
@@ -209,6 +210,7 @@ export default function RecipeForm() {
         handleAddIngredient={handleAddIngredient}
         handleRemoveIngredient={handleRemoveIngredient}
         handleDragEnd={handleDragEnd}
+        key={key}
         loading={loading}
         success={success}
         error={error}
