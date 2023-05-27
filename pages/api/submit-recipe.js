@@ -3,10 +3,11 @@ import { sendNotificationEmail } from '@utils/notification-email';
 
 let client;
 
-async function connectToDatabase() {
+async function connectToDatabase(session) {
   if (!client || !client.isConnected()) {
     client = await MongoClient.connect(process.env.MONGODB_URI, {
       useUnifiedTopology: true,
+      session,
     });
   }
 
@@ -20,7 +21,7 @@ export default async function handler(req, res) {
         return res.status(400).json({ error: 'Request body is empty' });
       }
 
-      const db = (await connectToDatabase()).db();
+      const db = (await connectToDatabase(session)).db();
       const recipesCollection = db.collection('recipes');
       const submissionsCollection = db.collection('submissions');
 
@@ -77,6 +78,8 @@ export default async function handler(req, res) {
     } catch (err) {
       console.error('Database connection error:', err);
       return res.status(503).json({ error: 'Failed to connect to the database' });
+    } finally {
+      session.endSession();
     }
   } else {
     return res.status(405).json({ message: 'Method not allowed' });

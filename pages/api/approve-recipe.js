@@ -56,7 +56,8 @@ export default async function handler(req, res) {
 
       // If the recipe is approved, update the recipeDb.js file
       if (approvalStatus === 'approved') {
-        updateRecipeDb(recipe);
+        // updateRecipeDb(recipe);
+        return;
       }
 
       return res.status(200).json({ message: 'Recipe approval status updated!' });
