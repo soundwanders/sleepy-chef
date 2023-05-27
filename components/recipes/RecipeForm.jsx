@@ -16,7 +16,6 @@ import {
 export default function RecipeForm() {
   const highlightColor = "#f9a947";
   const [key, setKey] = useState('');
-  const [loading, setLoading] = useState(false);
   const [success, setSuccess] = useState(false);
   const [error, setError] = useState(null);
 
@@ -98,7 +97,7 @@ export default function RecipeForm() {
         setDirections((prevDirections) => [...prevDirections, trimmedValue, '']);
         target.value = '';
       }
-    } else if (key === 'Backspace' && target.value === '') {
+    } else if (key === 'Backspace') {
       event.preventDefault();
       const currentIndex = parseInt(target.dataset.index);
       const previousInput = findPreviousNonEmptyInput(currentIndex);
@@ -124,10 +123,14 @@ export default function RecipeForm() {
     setDirections(newDirections);
   };
   
-  const handleSubmit = async () => {
-    // Perform client-side form validation
+  // submit recipe form
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    const endpoint = '/api/submit-recipe';
+
+    // Client-side form validation
     if (!newRecipe.name || !newRecipe.time || ingredients.length === 0 || directions.length === 0) {
-      setError('Please fill out all required fields.');
+      setError('Please make sure to fill out all required recipe fields. Thank you!');
       return;
     }
   
@@ -138,17 +141,20 @@ export default function RecipeForm() {
     };
   
     cleanedRecipe._id = uuidv4();
+
+    const recipeData = JSON.stringify(cleanedRecipe);
   
     try {
-      setLoading(true);
-  
-      const res = await fetch('/api/submit-recipe', {
+
+      const options = {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify(cleanedRecipe),
-      });
+        body: recipeData,
+      };
+
+      const res = await fetch(endpoint, options);
   
       if (res.ok) {
         const data = await res.json();
@@ -171,10 +177,8 @@ export default function RecipeForm() {
     } catch (error) {
       console.error(error);
       setError('Error saving recipe. Please try again.');
-    } finally {
-      setLoading(false);
     }
-  };  
+  }; 
   
   return (
     <div>
@@ -209,7 +213,6 @@ export default function RecipeForm() {
         handleAddIngredient={handleAddIngredient}
         handleRemoveIngredient={handleRemoveIngredient}
         handleDragEnd={handleDragEnd}
-        loading={loading}
         success={success}
         error={error}
       />

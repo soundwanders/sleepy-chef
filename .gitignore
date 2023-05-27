@@ -25,9 +25,10 @@ yarn.lock
 # misc
 .DS_Store
 *.pem
-educational/feature-multipleTypes.md
-educational/recipe-data-structure.md
-educational/framer-motion.md
+documentation/feature-multipleTypes.md
+documentation/recipe-data-structure.md
+documentation/framer-motion.md
+documentation/submit-form.md
 
 # debug
 npm-debug.log*
