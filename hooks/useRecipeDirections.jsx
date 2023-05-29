@@ -5,20 +5,13 @@ export const useRecipeDirections = (initialDirections) => {
 
   const handleDirectionChange = (index, event) => {
     const newDirections = directions.slice();
-    const newDirection = event.target.value.trim();
-    if (newDirection === "") {
-      // remove the step if the new direction is empty
-      newDirections.splice(index, 1);
-    } else {
-      // split the direction into multiple steps and update the array
-      const steps = newDirection.split(/[\n\r]+/);
-
-      // replace old direction with the new one
-      newDirections.splice(index, 1, ...steps);
-    }
+    const newDirection = event.target.value;
+  
+    // Update the array with the new direction
+    newDirections.splice(index, 1, newDirection);
     setDirections(newDirections);
-  };  
-
+  };
+  
   // add a new line of recipe instructions
   const handleAddDirection = () => {
     const lastDirection = directions[directions.length - 1];

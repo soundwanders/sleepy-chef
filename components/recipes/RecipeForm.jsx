@@ -14,7 +14,7 @@ import {
 } from '@utils/form-handlers';
 
 export default function RecipeForm() {
-  const highlightColor = "#f9a947";
+  const highlightColor = '#f9a947';
   const [key, setKey] = useState('');
   const [success, setSuccess] = useState(false);
   const [error, setError] = useState(null);
@@ -28,15 +28,15 @@ export default function RecipeForm() {
     vegan: false,
     ingredients: [],
     nutrition: {},
-    directions: []
+    directions: [],
   });
 
   const [
-    directions, 
-    handleDirectionChange, 
-    handleAddDirection, 
-    handleRemoveDirection, 
-    setDirections
+    directions,
+    handleDirectionChange,
+    handleAddDirection,
+    handleRemoveDirection,
+    setDirections,
   ] = useRecipeDirections(newRecipe.directions);
 
   const [
@@ -44,14 +44,14 @@ export default function RecipeForm() {
     handleIngredientChange,
     handleAddIngredient,
     handleRemoveIngredient,
-    setIngredients
+    setIngredients,
   ] = useRecipeIngredients(newRecipe.ingredients);
-    
+
   useEffect(() => {
     const storedData = localStorage.getItem('recipeFormData');
     if (storedData) {
       const storedRecipe = JSON.parse(storedData);
-      setNewRecipe(prevState => ({
+      setNewRecipe((prevState) => ({
         ...prevState,
         nutrition: {
           ...prevState.nutrition,
@@ -62,11 +62,11 @@ export default function RecipeForm() {
       }));
     }
   }, []);
-  
+
   useEffect(() => {
     localStorage.setItem('recipeFormData', JSON.stringify(newRecipe));
   }, [newRecipe]);
-  
+
   const handleChange = (event, index) => {
     const { name, value, type, checked } = event.target;
   
@@ -88,27 +88,6 @@ export default function RecipeForm() {
     }
   }; 
 
-  const handleEnterKey = (event) => {
-    const { name, key, shiftKey, target } = event;
-    if (name === 'directions' && key === 'Enter' && !shiftKey) {
-      const trimmedValue = target.value.trim();
-      if (trimmedValue !== '') {
-        event.preventDefault();
-        setDirections((prevDirections) => [...prevDirections, trimmedValue, '']);
-        target.value = '';
-      }
-    } else if (key === 'Backspace') {
-      event.preventDefault();
-      const currentIndex = parseInt(target.dataset.index);
-      const previousInput = findPreviousNonEmptyInput(currentIndex);
-      if (previousInput) {
-        previousInput.focus();
-      }
-    } else {
-      setKey(key);
-    }
-  };
-
   const handleClearDirections = () => {
     setDirections([]);
   }; 
@@ -122,10 +101,33 @@ export default function RecipeForm() {
   
     setDirections(newDirections);
   };
+
+  const handleDirectionKeys = (event) => {
+    const { name, key, shiftKey, target } = event;
+    if (name === 'directions' && key === 'Enter' && !shiftKey) {
+      const trimmedValue = target.value.trim();
+      if (trimmedValue !== '') {
+        event.preventDefault();
+        setDirections((prevDirections) => [...prevDirections, trimmedValue, '']);
+        target.value = '';
+      }
+    } else if (key === 'Backspace') {
+      // prevent line deletion on Backspace in an empty directions container
+      event.preventDefault();
+    } else {
+      setKey(key);
+    }
+  };
   
-  // submit recipe form
-  const handleSubmit = async (event) => {
+  // handle form submission
+  // preventDefault to prevent page refresh and preserve form values on failed submission
+  const handleSubmit = (event) => {
     event.preventDefault();
+    submitForm();
+  };
+
+  // submit recipe form
+  const submitForm = async () => {
     const endpoint = '/api/submit-recipe';
 
     // Client-side form validation
@@ -145,7 +147,6 @@ export default function RecipeForm() {
     const recipeData = JSON.stringify(cleanedRecipe);
   
     try {
-
       const options = {
         method: 'POST',
         headers: {
@@ -155,6 +156,8 @@ export default function RecipeForm() {
       };
 
       const res = await fetch(endpoint, options);
+      console.log(`!!!!!!! fetch res`, res);
+      console.log(`!!!!!!! options`, options);
   
       if (res.ok) {
         const data = await res.json();
@@ -179,7 +182,7 @@ export default function RecipeForm() {
       setError('Error saving recipe. Please try again.');
     }
   }; 
-  
+
   return (
     <div>
       <div className="max-w-6xl mx-auto h-36 md:h-40 bg-white dark:bg-gray-800 px-8 md:px-4 py-4 mb-4 md:mb-0">
@@ -197,25 +200,27 @@ export default function RecipeForm() {
           </div>
         </div>
       </div>
-
-      <FormUI 
-        newRecipe={newRecipe}
-        directions={directions}
-        ingredients={ingredients}
-        handleChange={handleChange}
-        handleSubmit={handleSubmit}
-        handleEnterKey={handleEnterKey}
-        handleClearDirections={handleClearDirections}
-        handleDirectionChange={handleDirectionChange}
-        handleIngredientChange={handleIngredientChange}
-        handleAddDirection={handleAddDirection}
-        handleRemoveDirection={handleRemoveDirection}
-        handleAddIngredient={handleAddIngredient}
-        handleRemoveIngredient={handleRemoveIngredient}
-        handleDragEnd={handleDragEnd}
-        success={success}
-        error={error}
-      />
+  
+      {success ? (
+        <div className="success-message">Your recipe has been successfully submitted!</div>
+      ) : (
+        <FormUI
+          newRecipe={newRecipe}
+          directions={directions}
+          ingredients={ingredients}
+          handleChange={handleChange}
+          handleSubmit={handleSubmit}
+          handleDirectionKeys={handleDirectionKeys}
+          handleClearDirections={handleClearDirections}
+          handleDirectionChange={handleDirectionChange}
+          handleIngredientChange={handleIngredientChange}
+          handleAddDirection={handleAddDirection}
+          handleRemoveDirection={handleRemoveDirection}
+          handleAddIngredient={handleAddIngredient}
+          handleRemoveIngredient={handleRemoveIngredient}
+          handleDragEnd={handleDragEnd}
+        />
+      )}
     </div>
-  )
+  )  
 };

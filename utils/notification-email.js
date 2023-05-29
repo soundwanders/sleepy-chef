@@ -1,8 +1,8 @@
-import nodemailer from 'nodemailer';
+const nodemailer = require('nodemailer');
 
 const createTransporter = () => {
   return nodemailer.createTransport({
-    host: 'smtp.gmail.com',
+    host: 'smtp.elasticemail.com',
     port: 587,
     secure: false,
     auth: {
@@ -31,13 +31,13 @@ export const sendNotificationEmail = async (recipe) => {
   const mailOptions = {
     from: process.env.NODEMAILER_EMAIL,
     to: process.env.NODEMAILER_EMAIL,
-    subject: 'New Recipe Submission',
+    subject: 'ATTN: New Recipe Submission',
     html: createEmailTemplate(recipe),
   };
 
   try {
     await transporter.sendMail(mailOptions);
-    console.log('Notification email sent successfully');
+    console.log('Notification email successfully sent!');
   } catch (error) {
     console.error('Error sending notification email:', error);
   }

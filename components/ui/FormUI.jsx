@@ -186,7 +186,7 @@ export const FormUI = (props) => {
               />
               <button
                 type="button"
-                className="ml-3 rounded-full hover:text-red-400 focus:outline-none focus:bg-transparent focus:translate-y-[1px]"          
+                className="ml-3 rounded-full text-red-400 hover:text-red-500 focus:outline-none focus:bg-transparent focus:translate-y-[1px]"          
                 onClick={() => props.handleRemoveIngredient()}
               >
                 <span className="sr-only">Remove Line</span>
@@ -196,8 +196,8 @@ export const FormUI = (props) => {
           ))}
           <button
             type="button"
-            className="mt-2 py-1 px-2 shadow rounded-md bg-green-300 dark:bg-green-500 text-zinc-800 dark:text-neutral-50 text-sm hover:bg-green-500
-            focus:outline-none focus:bg-green-300 focus:translate-y-1"
+            className="mt-2 p-1 shadow rounded-lg bg-orange-200 text-slate-800 hover:bg-orange-300
+            focus:outline-none focus:bg-orange-300 focus:translate-y-[1px]"
             onClick={() => props.handleAddIngredient()}
           >
             <span className="sr-only">New Line</span>
@@ -333,7 +333,7 @@ export const FormUI = (props) => {
                                   name={`directions-${index}`}
                                   value={direction}
                                   onChange={(event) => props.handleDirectionChange(index, event)}
-                                  onKeyDown={props.handleEnterKey}
+                                  onKeyUp={props.handleDirectionKeys}
                                   placeholder="Add a step"
                                 />
                               </div>
@@ -361,8 +361,8 @@ export const FormUI = (props) => {
               <div className="flex items-center mt-2 ml-10 p-3">
                 <button
                   type="button"
-                  className="inline-flex items-center justify-center py-2 mr-4 
-                  hover:text-green-500 dark:hover:text-green-300 focus:outline-none focus:bg-transparent focus:translate-y-[1px]"
+                  className="inline-flex items-center justify-center py-2 mr-4 hover:text-green-500 
+                  dark:hover:text-green-300 focus:outline-none focus:bg-transparent focus:translate-y-[1px]"
                   onClick={props.handleAddDirection}
                 >
                   <span className="sr-only">New Line</span>
@@ -371,8 +371,8 @@ export const FormUI = (props) => {
 
                 <button
                   type="button"
-                  className="inline-flex items-center justify-center py-2 px-4 
-                  hover:text-orange-500 dark:hover:text-yellow-200 focus:outline-none focus:bg-transparent focus:translate-y-[1px]"
+                  className="inline-flex items-center justify-center py-2 px-4 hover:text-orange-500 
+                  dark:hover:text-yellow-200 focus:outline-none focus:bg-transparent focus:translate-y-[1px]"
                   onClick={props.handleClearDirections}
                 >
                   <span className="sr-only">Clear Directions</span>
@@ -383,7 +383,12 @@ export const FormUI = (props) => {
           </div>
         </div>
 
-      <button className="rounded-xl py-1 px-4 border border-slate-600 dark:border-slate-100" type="submit">Submit</button>
+      <button 
+        className="rounded-xl py-1 px-4 border border-slate-600 dark:border-slate-100 active:translate-y-[1px]"
+        type="submit"
+      >
+          Submit
+      </button>
         
     </form>
   </div>
