@@ -135,13 +135,21 @@ export default function RecipeForm() {
       setError('Please make sure to fill out all required recipe fields. Thank you!');
       return;
     }
+
+    const recipeTime = parseInt(newRecipe.time);
+    if (recipeTime > 30) {
+      setError('Sorry! We only accept recipes that take 30 minutes or less to prepare.');
+      return;
+    }
   
     const cleanedRecipe = {
       ...newRecipe,
       nutrition: newRecipe.nutrition,
       ingredients: ingredients,
     };
-  
+
+    // Generate userId and recipe id using uuid
+    cleanedRecipe.userId = uuidv4();
     cleanedRecipe._id = uuidv4();
 
     const recipeData = JSON.stringify(cleanedRecipe);
@@ -156,8 +164,7 @@ export default function RecipeForm() {
       };
 
       const res = await fetch(endpoint, options);
-      console.log(`!!!!!!! fetch res`, res);
-      console.log(`!!!!!!! options`, options);
+      console.log(`!!! fetch res`, res);
   
       if (res.ok) {
         const data = await res.json();

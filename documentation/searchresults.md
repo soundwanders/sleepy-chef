@@ -8,15 +8,15 @@ When using SWR, the data is first fetched from the cache, if it's not there it w
 
 Additionally, SWR also provides a way to handle revalidation, which means that it will automatically check if the data in the cache is still valid and if it's not, it will fetch fresh data from the network. This ensures that the data displayed to the user is always up-to-date.
 
-In comparison, if you were to use a typical useEffect and Fetch/await to handle data-fetching, it would not provide these caching and revalidation features. The data would have to be fetched from the network every time the component re-renders. This can result in slower response time for the user and increased load on the server.
+In comparison, if you were to use a typical useEffect and Fetch/await to handle data-fetching, it would not provide these caching and revalidation features. The data would have to be fetched from the network __every time__ the component re-renders (boo! slow!). This almost always results in slower response time for the user and increased load on the server.
 
-So, we mosey on down the path, finding ourselves destructuring the `query` object from the `router` object, which contains the search query, and assigning it to variables `type`, `ingredient`, and `name`.
+So, we mosey on down the path, and we find ourselves destructuring the `query` object from the `router` object, which contains the search query, and assigning it to variables `type`, `ingredient`, and `name`.
 
 The component then defines an empty array called `queryParams` and a variable `endpoint` which is used to store our conditional statement that decides which API endpoint to use. The code then checks if the `type`, `ingredient`, and 'name' variables are truthy, and if so, pushes the corresponding key-value pairs to the 'queryParams' array using template literals.
 
 Then, we declare the `queryString` variable to become the result of joining the `queryParams` array using the '&' separator. The `endpoint` variable is then set to the concatenation of the base endpoint `/api/recipes` and the `queryString` variable.
 
-The next step is to use the useSWR hook to fetch the data from our API. The hook takes in two arguments, the first being the endpoint, and the second being an async function that makes the fetch request. The function takes in the 'url' as a parameter, which is our API endpoint. The function makes the fetch request and checks if the status is ok, if so it returns the JSON response, otherwise, it throws an error based on the status code.
+Still with me? No? Okay great, the next step is to use the useSWR hook to fetch the data from our API. The hook takes in two arguments, the first being the endpoint, and the second being an async function that makes the fetch request. The function takes in the 'url' as a parameter, which is our API endpoint. The function makes the fetch request and checks if the status is ok, if so it returns the JSON response, otherwise, it throws an error based on the status code.
 
 Before displaying the data, it has to pass checks to see if there is an error or if the data has fully loaded, and handles each case appropriately. If we're good to go, then we allow our component to move on and render our search results. 
 

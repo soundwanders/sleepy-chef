@@ -178,7 +178,7 @@ export const FormUI = (props) => {
             <div key={index} className="flex mb-2">
               <input
                 className="shadow appearance-none border rounded w-full py-2 px-3 my-1 text-gray-700 dark:text-gray-200 
-                leading-tight focus:outline-none"
+                  leading-tight focus:outline-none"
                 name={`ingredients[${index}]`}
                 placeholder="Enter ingredient"
                 value={ingredient}
@@ -187,7 +187,7 @@ export const FormUI = (props) => {
               <button
                 type="button"
                 className="ml-3 rounded-full text-red-400 hover:text-red-500 focus:outline-none focus:bg-transparent focus:translate-y-[1px]"          
-                onClick={() => props.handleRemoveIngredient()}
+                onClick={() => props.handleRemoveIngredient(index)}
               >
                 <span className="sr-only">Remove Line</span>
                 <RemoveLine />
@@ -197,7 +197,7 @@ export const FormUI = (props) => {
           <button
             type="button"
             className="mt-2 p-1 shadow rounded-lg bg-orange-200 text-slate-800 hover:bg-orange-300
-            focus:outline-none focus:bg-orange-300 focus:translate-y-[1px]"
+              focus:outline-none focus:bg-orange-300 focus:translate-y-[1px]"
             onClick={() => props.handleAddIngredient()}
           >
             <span className="sr-only">New Line</span>

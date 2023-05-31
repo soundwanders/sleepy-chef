@@ -60,24 +60,26 @@ export const Sidebar = () => {
           <img src="/sidebar-chef.png" alt="" className="w-16 md:w-20 h-auto mx-auto" />
         </div>
 
-        <div className="h-0.5 w-4/5 bg-slate-200 dark:bg-gray-700 mx-auto mb-4"></div>
+        <div className="h-0.5 w-4/5 bg-gray-300 dark:bg-gray-700 mx-auto mb-4"></div>
 
-        <ul className="list-none p-0 font-bold text-sm md:text-lg text-center">
-          {SidebarLinks.map(item => (
-            <li className="py-1 md:py-2 xl:py-1" key={item.name}>
-              <TypeLink
-                {...item}
-                closeSidebar={closeSidebar}
-                isActive={activeLink === item.url}
-                onClick={() => setActiveLink(item.url)}
-              />
-            </li>
-          ))}
-        </ul>
+        <div className="sidebar-links-container max-h-96 md:max-h-max overflow-y-auto">
+          <ul className="list-none p-0 font-bold text-sm md:text-lg text-center">
+            {SidebarLinks.map(item => (
+              <li className="py-1 md:py-2 xl:py-1" key={item.name}>
+                <TypeLink
+                  {...item}
+                  closeSidebar={closeSidebar}
+                  isActive={activeLink === item.url}
+                  onClick={() => setActiveLink(item.url)}
+                />
+              </li>
+            ))}
+          </ul>
 
-        <div className="h-0.5 w-4/5 bg-slate-200 dark:bg-gray-700 mx-auto mt-4"></div>
+          <div className="h-0.5 w-4/5 bg-gray-300 dark:bg-gray-700 mx-auto mt-4"></div>
+          <FormLink />
 
-        <FormLink />
+        </div>
       </nav>
     </>
   )
