@@ -1,8 +1,9 @@
 import { MongoClient } from 'mongodb';
 import { sendNotificationEmail } from '@utils/notification-email';
-import { rateLimitMiddleware } from '@utils/middleware/rate-limit';
 
 let client;
+const MAX_SUBMISSIONS_PER_HOUR = 30;
+const submissionsTracker = {};
 
 async function connectToDatabase() {
   try {
@@ -17,16 +18,13 @@ async function connectToDatabase() {
         }
       });
       await client.connect();
-
-      // Create a new session
-      client.startSession();
     }
     return client;
   } catch (error) {
     console.error('Failed to connect to the database:', error);
     throw error;
   }
-}
+};
 
 export default async function handler(req, res) {
   if (req.method === 'POST') {
@@ -35,67 +33,62 @@ export default async function handler(req, res) {
         return res.status(400).json({ error: 'Request body is empty' });
       }
 
-      const db = (await connectToDatabase()).db();
-      const recipesCollection = db.collection('recipes');
-      const submissionsCollection = db.collection('submissions');
+      const { userId } = req.body;
 
-      // Rate limiting middleware
-      await rateLimitMiddleware(req, res, submissionsCollection, async () => {
-        const recipe = req.body;
+      if (!userId || typeof userId !== 'string' || userId.trim() === '') {
+        return res.status(400).json({ error: 'Invalid userId string' });
+      }
 
-        // Validate recipe object
-        if (!recipe || typeof recipe !== 'object') {
-          return res.status(400).json({ error: 'Invalid recipe object' });
-        }
+      const userSubmissionCount = submissionsTracker[userId] || 0;
 
-        const { userId } = recipe;
-
-        if (!userId || typeof userId !== 'string' || userId.trim() === '') {
-          return res.status(400).json({ error: 'Invalid userId string' });
-        }
-
-        // Check if user has exceeded submission limit in the past hour
-        const oneHourAgo = new Date(Date.now() - 60 * 60 * 1000);
-        const submissions = await submissionsCollection.find({
-          userId,
-          timestamp: { $gte: oneHourAgo },
-        }).toArray();
-
-        if (submissions.length >= 20) {
-          return res.status(429).json({
-            error: 'Sorry, too many submissions within the last hour. Please try again later.',
-          });
-        }
-
-        await client.withSession(async (session) => {
-          try {
-            await session.withTransaction(async () => {
-              const result = await recipesCollection.insertOne(recipe, { session });
-              if (result.insertedCount !== 1) {
-                throw new Error('Failed to insert recipe');
-              }
-
-              // Log submission
-              await submissionsCollection.insertOne({ userId, timestamp: new Date() }, { session });
-
-              // Send email notification
-              await sendNotificationEmail(recipe);
-
-              return res.status(201).json({ id: result.insertedId });
-            });
-          } catch (error) {
-            console.error('Transaction error:', error);
-            await session.abortTransaction();
-            return res.status(500).json({ error: 'Failed to submit recipe' });
-          } finally {
-            // End the session
-            session.endSession();
-          }
+      if (userSubmissionCount >= MAX_SUBMISSIONS_PER_HOUR) {
+        return res.status(429).json({
+          error: 'Sorry, too many submissions within the last hour. Please try again later.',
         });
-      });
+      }
 
-      // Close the client connection after the session completes
-      await client.close();
+      const db = (await connectToDatabase()).db('SleepyChefRecipes');
+      const recipesCollection = db.collection('recipes');
+      
+      const session = (await connectToDatabase()).startSession();
+
+      try {
+        await session.withTransaction(async () => {
+          const recipe = req.body;
+
+          // Validate recipe object
+          if (!recipe || typeof recipe !== 'object') {
+            return res.status(400).json({ error: 'Invalid recipe object' });
+          }
+          
+          const result = await recipesCollection.insertOne(recipe, { session });
+
+          if (!result.insertedId) {
+            throw new Error('Failed to insert recipe');
+          }
+
+          // Increment the user submission count
+          submissionsTracker[userId] = userSubmissionCount + 1;
+
+          // Send email notification
+          await sendNotificationEmail(recipe);
+
+          return res.status(201).json({ id: result.insertedId });
+        });
+      } catch (error) {
+        console.error('Transaction error:', error);
+        console.error('Transaction Error stack:', error.stack);
+
+        // only abort the transaction if session is active
+        if (session.inTransaction()) {
+          await session.abortTransaction();
+        }
+
+        return res.status(500).json({ error: 'Failed to submit recipe' });
+      } finally {
+        session.endSession();
+      }
+
     } catch (err) {
       console.error('Database connection error:', err);
       console.error('Error stack:', err.stack);

@@ -3,6 +3,7 @@ import { v4 as uuidv4 } from 'uuid';
 import { RoughNotationGroup } from 'react-rough-notation';
 import { Highlighter } from '@components/ui/Highlighter';
 import { FormUI } from '@components/ui/FormUI';
+import { SuccessPage } from '@components/ui/SuccessPage';
 import { useRecipeDirections } from '@hooks/useRecipeDirections';
 import { useRecipeIngredients } from '@hooks/useRecipeIngredients';
 import {
@@ -14,7 +15,7 @@ import {
 } from '@utils/form-handlers';
 
 export default function RecipeForm() {
-  const highlightColor = '#f9a947';
+  const highlightColor = '#fea231';
   const [key, setKey] = useState('');
   const [success, setSuccess] = useState(false);
   const [error, setError] = useState(null);
@@ -164,8 +165,7 @@ export default function RecipeForm() {
       };
 
       const res = await fetch(endpoint, options);
-      console.log(`!!! fetch res`, res);
-  
+
       if (res.ok) {
         const data = await res.json();
         setSuccess(true);
@@ -209,7 +209,7 @@ export default function RecipeForm() {
       </div>
   
       {success ? (
-        <div className="success-message">Your recipe has been successfully submitted!</div>
+        <SuccessPage />
       ) : (
         <FormUI
           newRecipe={newRecipe}

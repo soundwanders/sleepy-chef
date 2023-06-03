@@ -3,11 +3,11 @@ const nodemailer = require('nodemailer');
 const createTransporter = () => {
   return nodemailer.createTransport({
     host: 'smtp.elasticemail.com',
-    port: 587,
+    port: 2525,
     secure: false,
     auth: {
-      user: process.env.NODEMAILER_EMAIL,
-      pass: process.env.NODEMAILER_PASSWORD,
+      user: process.env.ELASTIC_EMAIL,
+      pass: process.env.ELASTIC_PASSWORD,
     },
   });
 };
@@ -40,5 +40,6 @@ export const sendNotificationEmail = async (recipe) => {
     console.log('Notification email successfully sent!');
   } catch (error) {
     console.error('Error sending notification email:', error);
+    console.error('Nodemailer Email error stack:', error.stack);
   }
 };

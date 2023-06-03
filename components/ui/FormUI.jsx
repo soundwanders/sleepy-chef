@@ -7,7 +7,7 @@ export const FormUI = (props) => {
     <div className="flex-1 items-center justify-start px-8 md:px-4 mb-6 -mt-4 md:mt-6 py-2 pb-20">
       <form onSubmit={props.handleSubmit}>
         <div className="mb-8">
-          <label className="block text-gray-700 dark:text-gray-200 font-bold mb-2" htmlFor="name">
+          <label className="block text-gray-700 dark:text-gray-200 text-lg font-bold mb-3" htmlFor="name">
             Recipe Name
           </label>
           <input
@@ -22,7 +22,7 @@ export const FormUI = (props) => {
         </div>
 
         <div className="mb-8">
-          <label className="block text-gray-700 dark:text-gray-200 font-bold mb-2" htmlFor="types">
+          <label className="block text-gray-700 dark:text-gray-200 text-lg font-bold mb-3" htmlFor="types">
             Recipe Types
           </label>
 
@@ -34,7 +34,7 @@ export const FormUI = (props) => {
                 value="beef"
                 checked={props.newRecipe.types?.includes("beef")}
                 onChange={props.handleChange}
-                className="form-checkbox h-5 w-5 text-orange-600 checked:bg-orange-500 border border-gray-400 rounded shadow-sm"
+                className="form-checkbox md:h-5 md:w-5 text-orange-600 checked:bg-orange-500 border border-gray-400 rounded shadow-sm"
               />
               <span className="ml-2 text-gray-700 dark:text-gray-200">Beef</span>
             </label>
@@ -46,7 +46,7 @@ export const FormUI = (props) => {
                 value="chicken"
                 checked={props.newRecipe.types?.includes("chicken")}
                 onChange={props.handleChange}
-                className="form-checkbox h-5 w-5 text-orange-600 checked:bg-orange-350"
+                className="form-checkbox md:h-5 md:w-5 text-orange-600 checked:bg-orange-350"
               />
               <span className="ml-2 text-gray-700 dark:text-gray-200">Chicken</span>
             </label>
@@ -58,7 +58,7 @@ export const FormUI = (props) => {
                 value="pork"
                 checked={props.newRecipe.types?.includes("pork")}
                 onChange={props.handleChange}
-                className="form-checkbox h-5 w-5 text-orange-600 checked:bg-orange-350"
+                className="form-checkbox md:h-5 md:w-5 text-orange-600 checked:bg-orange-350"
               />
               <span className="ml-2 text-gray-700 dark:text-gray-200">Pork</span>
             </label>
@@ -70,7 +70,7 @@ export const FormUI = (props) => {
                 value="salad"
                 checked={props.newRecipe.types?.includes("salad")}
                 onChange={props.handleChange}
-                className="form-checkbox h-5 w-5 text-orange-600 checked:bg-orange-350"
+                className="form-checkbox md:h-5 md:w-5 text-orange-600 checked:bg-orange-350"
               />
               <span className="ml-2 text-gray-700 dark:text-gray-200">Salad</span>
             </label>
@@ -82,7 +82,7 @@ export const FormUI = (props) => {
                 value="seafood"
                 checked={props.newRecipe.types?.includes("seafood")}
                 onChange={props.handleChange}
-                className="form-checkbox h-5 w-5 text-orange-600 checked:bg-orange-350"
+                className="form-checkbox md:h-5 md:w-5 text-orange-600 checked:bg-orange-350"
               />
               <span className="ml-2 text-gray-700 dark:text-gray-200">Seafood</span>
             </label>
@@ -94,7 +94,7 @@ export const FormUI = (props) => {
                 value="soup"
                 checked={props.newRecipe.types?.includes("soup")}
                 onChange={props.handleChange}
-                className="form-checkbox h-5 w-5 text-orange-600 checked:bg-orange-350"
+                className="form-checkbox md:h-5 md:w-5 text-orange-600 checked:bg-orange-350"
               />
               <span className="ml-2 text-gray-700 dark:text-gray-200">Soup</span>
             </label>
@@ -106,7 +106,7 @@ export const FormUI = (props) => {
                 value="texmex"
                 checked={props.newRecipe.types?.includes("texmex")}
                 onChange={props.handleChange}
-                className="form-checkbox h-5 w-5 text-orange-600 checked:bg-orange-350"
+                className="form-checkbox md:h-5 md:w-5 text-orange-600 checked:bg-orange-350"
               />
               <span className="ml-2 text-gray-700 dark:text-gray-200">TexMex</span>
             </label>
@@ -118,7 +118,7 @@ export const FormUI = (props) => {
                 value="vegan"
                 checked={props.newRecipe.types?.includes("vegan")}
                 onChange={props.handleChange}
-                className="form-checkbox h-5 w-5 text-orange-600 checked:bg-orange-350"
+                className="form-checkbox md:h-5 md:w-5 text-orange-600 checked:bg-orange-350"
               />
               <span className="ml-2 text-gray-700 dark:text-gray-200">Vegan</span>
             </label>
@@ -126,7 +126,7 @@ export const FormUI = (props) => {
         </div>
 
         <div className="mb-8">
-          <label className="block text-gray-700 dark:text-gray-200 font-bold mb-2" htmlFor="time">
+          <label className="block text-gray-700 dark:text-gray-200 text-lg font-bold mb-3" htmlFor="time">
             Total Time
           </label>
           <input
@@ -142,11 +142,11 @@ export const FormUI = (props) => {
 
         <div className="flex mb-4">
           <div className="mr-8">
-            <label className="block text-gray-700 dark:text-gray-200 font-bold mb-2" htmlFor="vegetarian">
+            <label className="block text-gray-700 dark:text-gray-200 text-lg font-bold mb-3" htmlFor="vegetarian">
               Vegetarian
             </label>
             <input
-              className="ml-1 mr-2 leading-tight"
+              className="ml-1 mr-5 md:h-5 md:w-5 leading-tight"
               id="vegetarian"
               name="vegetarian"
               type="checkbox"
@@ -156,11 +156,11 @@ export const FormUI = (props) => {
           </div>
           
           <div>
-            <label className="block text-gray-700 dark:text-gray-200 font-bold mb-2" htmlFor="vegan">
+            <label className="block text-gray-700 dark:text-gray-200 text-lg font-bold mb-3" htmlFor="vegan">
               Vegan
             </label>
             <input
-              className="mr-2 leading-tight"
+              className="mr-2 md:h-5 md:w-5 leading-tight"
               id="vegan"
               name="vegan"
               type="checkbox"
@@ -171,7 +171,7 @@ export const FormUI = (props) => {
         </div>
 
         <div className="mb-8">
-          <label className="block text-gray-700 dark:text-gray-200 font-bold mt-6 mb-2" htmlFor="ingredients">
+          <label className="block text-gray-700 dark:text-gray-200 mt-6 text-lg font-bold mb-3" htmlFor="ingredients">
             Ingredients
           </label>
           {props.ingredients.map((ingredient, index) => (
@@ -206,12 +206,12 @@ export const FormUI = (props) => {
         </div>
 
         <div className="mb-8">
-          <label className="block text-gray-700 dark:text-gray-200 font-bold mb-2" htmlFor="nutrition">
+          <label className="block text-gray-700 dark:text-gray-200 text-lg font-bold mb-3" htmlFor="nutrition">
             Nutrition Information
           </label>
           <div className="grid grid-cols-2 gap-4">
             <div>
-              <label className="block text-gray-700 dark:text-gray-200 font-bold mb-2" htmlFor="calories">
+              <label className="block text-gray-700 dark:text-gray-200 text-base font-bold mb-3" htmlFor="calories">
                 Calories
               </label>
               <input
@@ -226,7 +226,7 @@ export const FormUI = (props) => {
             </div>
 
             <div>
-              <label className="block text-gray-700 dark:text-gray-200 font-bold mb-2" htmlFor="carbs">
+              <label className="block text-gray-700 dark:text-gray-200 text-base font-bold mb-3" htmlFor="carbs">
                 Carbs
               </label>
               <input
@@ -241,7 +241,7 @@ export const FormUI = (props) => {
             </div>
 
             <div>
-              <label className="block text-gray-700 dark:text-gray-200 font-bold mb-2" htmlFor="cholesterol">
+              <label className="block text-gray-700 dark:text-gray-200 text-base font-bold mb-3" htmlFor="cholesterol">
                 Cholesterol
               </label>
               <input
@@ -256,7 +256,7 @@ export const FormUI = (props) => {
             </div>
 
             <div>
-              <label className="block text-gray-700 dark:text-gray-200 font-bold mb-2" htmlFor="fat">
+              <label className="block text-gray-700 dark:text-gray-200 text-base font-bold mb-3" htmlFor="fat">
                 Fat
               </label>
               <input
@@ -271,7 +271,7 @@ export const FormUI = (props) => {
             </div>
 
             <div>
-              <label className="block text-gray-700 dark:text-gray-200 font-bold mb-2" htmlFor="protein">
+              <label className="block text-gray-700 dark:text-gray-200 text-base font-bold mb-3" htmlFor="protein">
                 Protein
               </label>
               <input
@@ -286,7 +286,7 @@ export const FormUI = (props) => {
             </div>
 
             <div>
-              <label className="block text-gray-700 dark:text-gray-200 font-bold mb-2" htmlFor="sodium">
+              <label className="block text-gray-700 dark:text-gray-200 text-base font-bold mb-3" htmlFor="sodium">
                 Sodium
               </label>
               <input
@@ -303,7 +303,7 @@ export const FormUI = (props) => {
         </div>
 
         <div className="mb-8">
-          <label className="block text-gray-700 dark:text-gray-200 font-bold my-2" htmlFor="directions">
+          <label className="block text-gray-700 dark:text-gray-200 text-lg font-bold my-2 mb-3" htmlFor="directions">
             Directions
           </label>
 
@@ -384,7 +384,7 @@ export const FormUI = (props) => {
         </div>
 
       <button 
-        className="rounded-xl py-1 px-4 border border-slate-600 dark:border-slate-100 active:translate-y-[1px]"
+        className="rounded-xl py-[5px] px-4 border border-slate-600 dark:border-slate-100 active:translate-y-[1px]"
         type="submit"
       >
           Submit
