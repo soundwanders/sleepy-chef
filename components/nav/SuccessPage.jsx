@@ -1,9 +1,10 @@
 import { useRouter } from 'next/router';
 
-export const SuccessPage = () => {
+export const SuccessPage = ({ resetForm }) => {
   const router = useRouter();
 
   const handleGoBack = () => {
+    resetForm();
     router.push('/form');
   };
 
@@ -12,19 +13,19 @@ export const SuccessPage = () => {
   };
 
   return (
-    <div className="flex justify-center items-center h-screen">
-      <div className="text-center">
-        <div className="success-message">
+    <div className="flex justify-center items-start h-screen pt-10">
+      <div className="text-center p-8">
+        <div className="success-message text-xl mb-3">
           Your recipe has been successfully submitted!
         </div>
         <button
-          className="mt-4 mr-4 px-4 py-2 rounded-md bg-gray-500 text-white hover:bg-blue-600"
+          className="mt-4 mr-4 px-4 py-2 rounded-md bg-gray-500 text-white hover:bg-gray-600"
           onClick={handleGoBack}
         >
           Turn Back
         </button>
         <button
-          className="mt-2 px-4 py-2 rounded-md bg-blue-600 text-white hover:bg-gray-600"
+          className="mt-2 px-4 py-2 rounded-md bg-blue-600 text-white hover:bg-blue-600"
           onClick={handleGoHome}
         >
           Let's Go Home

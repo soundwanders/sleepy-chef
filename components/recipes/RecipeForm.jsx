@@ -3,7 +3,7 @@ import { v4 as uuidv4 } from 'uuid';
 import { RoughNotationGroup } from 'react-rough-notation';
 import { Highlighter } from '@components/ui/Highlighter';
 import { FormUI } from '@components/ui/FormUI';
-import { SuccessPage } from '@components/ui/SuccessPage';
+import { SuccessPage } from '@components/nav/SuccessPage';
 import { useRecipeDirections } from '@hooks/useRecipeDirections';
 import { useRecipeIngredients } from '@hooks/useRecipeIngredients';
 import {
@@ -99,7 +99,6 @@ export default function RecipeForm() {
     const newDirections = [...directions];
     const [removed] = newDirections.splice(result.source.index, 1);
     newDirections.splice(result.destination.index, 0, removed);
-  
     setDirections(newDirections);
   };
 
@@ -113,7 +112,7 @@ export default function RecipeForm() {
         target.value = '';
       }
     } else if (key === 'Backspace') {
-      // prevent line deletion on Backspace in an empty directions container
+      // prevent line deletion on Backspace in an empty input field
       event.preventDefault();
     } else {
       setKey(key);
@@ -188,7 +187,12 @@ export default function RecipeForm() {
       console.error(error);
       setError('Error saving recipe. Please try again.');
     }
-  }; 
+  };
+
+  // Reset the form state after successful submission
+  const resetForm = () => {
+    setSuccess(false);
+  };
 
   return (
     <div>
@@ -209,7 +213,7 @@ export default function RecipeForm() {
       </div>
   
       {success ? (
-        <SuccessPage />
+        <SuccessPage resetForm={resetForm} />
       ) : (
         <FormUI
           newRecipe={newRecipe}

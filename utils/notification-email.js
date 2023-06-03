@@ -29,8 +29,8 @@ export const sendNotificationEmail = async (recipe) => {
   const transporter = createTransporter();
 
   const mailOptions = {
-    from: process.env.NODEMAILER_EMAIL,
-    to: process.env.NODEMAILER_EMAIL,
+    from: process.env.PROTONMAIL_EMAIL,
+    to: process.env.GMAIL_EMAIL,
     subject: 'ATTN: New Recipe Submission',
     html: createEmailTemplate(recipe),
   };
