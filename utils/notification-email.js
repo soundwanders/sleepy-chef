@@ -18,11 +18,12 @@ const createEmailTemplate = (recipe) => {
     <p>A new recipe has been submitted:</p>
     <p>Recipe ID: ${recipe._id}</p>
     <p>Recipe Name: ${recipe.name}</p>
-    <p>Submitted By: ${recipe.user}</p>
+    <p>Submitted By: ${recipe.userId}</p>
 
-    <a href="/api/approve-recipe?recipeId=${recipe._id}&approvalStatus=true">Approve</a>
-    <a href="/api/approve-recipe?recipeId=${recipe._id}&approvalStatus=false">Reject</a>
-  `
+    <a href="${process.env.NEXT_PUBLIC_VERCEL_URL}/api/approve-recipe?recipeId=${recipe._id}&approvalStatus=true">Approve</a>
+    <br>
+    <a href="${process.env.NEXT_PUBLIC_VERCEL_URL}/api/approve-recipe?recipeId=${recipe._id}&approvalStatus=false">Reject</a>
+  `;
 };
 
 export const sendNotificationEmail = async (recipe) => {

@@ -21,4 +21,4 @@ const updateRecipeDb = (approvedRecipe) => {
   console.log('RecipeDb updated successfully!');
 };
 
-module.exports = updateRecipeDb;
+export default updateRecipeDb;

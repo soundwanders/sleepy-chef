@@ -4,13 +4,25 @@ import updateRecipeDb from '@utils/updateRecipeDb';
 let client;
 
 async function connectToDatabase() {
-  if (!client || !client.isConnected()) {
-    client = await MongoClient.connect(process.env.MONGODB_URI, {
-      useUnifiedTopology: true,
-    });
+  try {
+    if (!client || (client && typeof client.isConnected === 'function' && !client.isConnected())) {
+      client = new MongoClient(process.env.MONGODB_URI, {
+        useNewUrlParser: true,
+        useUnifiedTopology: true,
+        serverApi: {
+          version: '1',
+          strict: true,
+          deprecationErrors: true,
+        }
+      });
+      await client.connect();
+    }
+    return client;
+  } catch (error) {
+    console.error('Failed to connect to the database:', error);
+    throw error;
   }
-  return client;
-};
+}
 
 export default async function handler(req, res) {
   if (req.method === 'POST') {
@@ -22,7 +34,7 @@ export default async function handler(req, res) {
         return res.status(400).json({ error: 'Recipe ID and approval status are required' });
       }
 
-      const db = (await connectToDatabase()).db();
+      const db = (await connectToDatabase()).db('SleepyChefRecipes');
       const recipesCollection = db.collection('recipes');
 
       // Validate recipe ID
@@ -56,8 +68,16 @@ export default async function handler(req, res) {
 
       // If the recipe is approved, update the recipeDb.js file
       if (approvalStatus === 'approved') {
-        // updateRecipeDb(recipe);
-        return;
+        const recipeDB = await recipesCollection.find().toArray();
+        const recipeToAdd = recipeDB.find((r) => r._id.toString() === recipeId);
+        if (recipeToAdd) {
+          const recipesArray = [...recipeDB];
+          recipesArray.push(recipeToAdd);
+          // updateRecipeDb(recipesArray);
+          return res.status(200).json({ message: 'Recipe approval status updated!' });
+        } else {
+          return res.status(404).json({ error: 'Recipe not found in the recipeDB' });
+        }
       }
 
       return res.status(200).json({ message: 'Recipe approval status updated!' });
@@ -68,4 +88,4 @@ export default async function handler(req, res) {
   } else {
     return res.status(405).json({ message: 'Method not allowed' });
   }
-};
+}
