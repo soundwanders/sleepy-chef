@@ -4,8 +4,7 @@ import { AnimatePresence, motion } from 'framer-motion';
 import { RecipesContext } from '@data/recipeDb';
 import { EggYolk } from '@components/ui/Animations';
 
-// The Searchbar component allows a user to search the sleepy chef API for recipes by type, ingredient, or name.
-// Uses the `useRouter` hook to navigate to the results page with the appropriate query parameters in the URL.
+// The Searchbar component allows user to search the sleepy chef API for recipes by type, ingredient, or name
 // The `handleSubmit` function checks whether the search input matches a recipe type, ingredient, or name,
 // then if the search input is valid, `setError` is called with an empty string to clear the error message
 // Finally, `router.push` navigates to the results page and resets the URL based on which query params passed the checks

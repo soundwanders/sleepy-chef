@@ -30,7 +30,7 @@ export default function Navbar() {
           </Link>
         </div>
 
-        {/* Display NavSearchbar in all routes EXCEPT for Home page */}
+        {/* Display NavSearchbar in all routes EXCEPT on Home page */}
         { router.pathname !== '/' && <NavSearchbar /> }
         
         <div className={`space-x-4 flex flex-row items-center`}>

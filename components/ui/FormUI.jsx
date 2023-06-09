@@ -19,6 +19,7 @@ export const FormUI = (props) => {
             value={props.newRecipe.name}
             onChange={props.handleChange}
           />
+          {props.errors && props.errors.name && <small className="error">{props.errors.name}</small>}
         </div>
 
         <div className="mb-8">
@@ -138,6 +139,7 @@ export const FormUI = (props) => {
             value={props.newRecipe.time}
             onChange={props.handleChange}
           />
+          {props.errors && props.errors.time && <small className="error">{props.errors.time}</small>}
         </div>
 
         <div className="flex mb-4">
@@ -184,6 +186,7 @@ export const FormUI = (props) => {
                 value={ingredient}
                 onChange={(event) => props.handleIngredientChange(index, event)}
               />
+              {props.errors && props.errors.ingredients && <small className="error">{props.errors.ingredients}</small>}
               <button
                 type="button"
                 className="ml-3 rounded-full text-red-400 hover:text-red-500 focus:outline-none focus:bg-transparent focus:translate-y-[1px]"          
@@ -223,6 +226,7 @@ export const FormUI = (props) => {
                 value={props.newRecipe.nutrition.calories}
                 onChange={props.handleChange}
               />
+              {props.errors && props.errors.nutrition && <small className="error">{props.errors.nutrition}</small>}
             </div>
 
             <div>
@@ -238,6 +242,7 @@ export const FormUI = (props) => {
                 value={props.newRecipe.nutrition.carbs}
                 onChange={props.handleChange}
               />
+              {props.errors && props.errors.nutrition && <small className="error">{props.errors.nutrition}</small>}
             </div>
 
             <div>
@@ -253,6 +258,7 @@ export const FormUI = (props) => {
                 value={props.newRecipe.nutrition.cholesterol}
                 onChange={props.handleChange}
               />
+              {props.errors && props.errors.nutrition && <small className="error">{props.errors.nutrition}</small>}
             </div>
 
             <div>
@@ -268,6 +274,7 @@ export const FormUI = (props) => {
                 value={props.newRecipe.nutrition.fat}
                 onChange={props.handleChange}
               />
+              {props.errors && props.errors.nutrition && <small className="error">{props.errors.nutrition}</small>}
             </div>
 
             <div>
@@ -283,6 +290,7 @@ export const FormUI = (props) => {
                 value={props.newRecipe.nutrition.protein}
                 onChange={props.handleChange}
               />
+              {props.errors && props.errors.nutrition && <small className="error">{props.errors.nutrition}</small>}
             </div>
 
             <div>
@@ -298,6 +306,7 @@ export const FormUI = (props) => {
                 value={props.newRecipe.nutrition.sodium}
                 onChange={props.handleChange}
               />
+              {props.errors && props.errors.nutrition && <small className="error">{props.errors.nutrition}</small>}
             </div>
           </div>
         </div>
@@ -380,7 +389,7 @@ export const FormUI = (props) => {
                 </button>
               </div>
             </DragDropContext>
-          </div>
+            {props.errors && props.errors.direction && <small className="error">{props.errors.directions}</small>}          </div>
         </div>
 
       <button 
@@ -389,7 +398,6 @@ export const FormUI = (props) => {
       >
           Submit
       </button>
-        
     </form>
   </div>
   )

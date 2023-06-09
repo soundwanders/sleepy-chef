@@ -19,6 +19,7 @@ export default function RecipeForm() {
   const [key, setKey] = useState('');
   const [success, setSuccess] = useState(false);
   const [error, setError] = useState(null);
+  const [errors, setErrors] = useState({});
 
   // use states to keep track of user input
   const [newRecipe, setNewRecipe] = useState({
@@ -131,17 +132,40 @@ export default function RecipeForm() {
     const endpoint = '/api/submit-recipe';
 
     // Client-side form validation
+    const validationErrors = {};
+
     if (!newRecipe.name || !newRecipe.time || ingredients.length === 0 || directions.length === 0) {
       setError('Please make sure to fill out all required recipe fields. Thank you!');
       return;
     }
 
+    if (!newRecipe.name) {
+      validationErrors.name = 'Please enter the recipe name';
+    }
+
     const recipeTime = parseInt(newRecipe.time);
-    if (recipeTime > 30) {
-      setError('Sorry! We only accept recipes that take 30 minutes or less to prepare.');
-      return;
+
+    if (!recipeTime) {
+      validationErrors.time = 'Please enter the recipe time';
     }
   
+    if (ingredients.length === 0) {
+      validationErrors.ingredients = 'Please add at least one ingredient';
+    }
+
+    if (nutrition.length === 0) {
+      validationErrors.nutrition = `Please fill out all nutritional values. If you don't know, just enter 'unknown'`;
+    }
+
+    if (directions.length === 0) {
+      validationErrors.directions = 'Please add at least one line of directions';
+    }
+
+    if (Object.keys(validationErrors).length > 0) {
+      setErrors(validationErrors);
+      return;
+    }
+
     const cleanedRecipe = {
       ...newRecipe,
       nutrition: newRecipe.nutrition,
@@ -230,6 +254,7 @@ export default function RecipeForm() {
           handleAddIngredient={handleAddIngredient}
           handleRemoveIngredient={handleRemoveIngredient}
           handleDragEnd={handleDragEnd}
+          errors={errors}
         />
       )}
     </div>
