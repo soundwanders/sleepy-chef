@@ -14,7 +14,7 @@ export default function Footer() {
                 <a
                   target="_blank"
                   href="https://github.com/soundwanders/sleepy-chef"
-                  rel="noopener"
+                  rel="noopener noreferrer"
                 >
                   Built with &#10084; 
                 </a>
@@ -25,7 +25,7 @@ export default function Footer() {
                 <a
                   target="_blank"
                   href="https://www.flaticon.com/authors/freepik"
-                  rel="noopener"
+                  rel="noopener noreferrer"
                 >
                   Icons from <span className="">Freepik</span>
                 </a>

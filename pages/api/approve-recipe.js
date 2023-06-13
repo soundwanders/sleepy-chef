@@ -22,7 +22,7 @@ async function connectToDatabase() {
     console.error('Failed to connect to the database:', error);
     throw error;
   }
-}
+};
 
 export default async function handler(req, res) {
   if (req.method === 'POST') {
@@ -88,4 +88,4 @@ export default async function handler(req, res) {
   } else {
     return res.status(405).json({ message: 'Method not allowed' });
   }
-}
+};

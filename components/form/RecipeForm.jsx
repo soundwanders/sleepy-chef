@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { v4 as uuidv4 } from 'uuid';
 import { RoughNotationGroup } from 'react-rough-notation';
 import { Highlighter } from '@components/ui/Highlighter';
-import { FormUI } from '@components/ui/FormUI';
+import { FormUI } from '@components/form/FormUI';
 import { SuccessPage } from '@components/nav/SuccessPage';
 import { useRecipeDirections } from '@hooks/useRecipeDirections';
 import { useRecipeIngredients } from '@hooks/useRecipeIngredients';
@@ -18,8 +18,8 @@ export default function RecipeForm() {
   const highlightColor = '#fea231';
   const [key, setKey] = useState('');
   const [success, setSuccess] = useState(false);
-  const [error, setError] = useState(null);
   const [errors, setErrors] = useState({});
+  const [captchaVerified, setCaptchaVerified] = useState(false);
 
   // use states to keep track of user input
   const [newRecipe, setNewRecipe] = useState({
@@ -49,6 +49,7 @@ export default function RecipeForm() {
     setIngredients,
   ] = useRecipeIngredients(newRecipe.ingredients);
 
+  // Store form data in local storage
   useEffect(() => {
     const storedData = localStorage.getItem('recipeFormData');
     if (storedData) {
@@ -69,6 +70,18 @@ export default function RecipeForm() {
     localStorage.setItem('recipeFormData', JSON.stringify(newRecipe));
   }, [newRecipe]);
 
+  // Recaptcha
+  const handleCaptchaVerify = (token) => {
+    setCaptchaVerified(true);
+    // Store the captcha token or perform any necessary actions
+  };
+
+  const handleCaptchaExpire = () => {
+    setCaptchaVerified(false);
+    // Handle captcha expiration if needed
+  };
+
+  // Handle input changes using our form handler functions
   const handleChange = (event, index) => {
     const { name, value, type, checked } = event.target;
   
@@ -90,10 +103,12 @@ export default function RecipeForm() {
     }
   }; 
 
+  // Clear all entered recipe directions
   const handleClearDirections = () => {
     setDirections([]);
   }; 
 
+  // Drag and drop recipe direction input fields
   const handleDragEnd = (result) => {
     if (!result.destination) return;
   
@@ -120,24 +135,12 @@ export default function RecipeForm() {
     }
   };
   
-  // handle form submission
-  // preventDefault to prevent page refresh and preserve form values on failed submission
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    submitForm();
-  };
-
-  // submit recipe form
+  // Handle recipe form submission
   const submitForm = async () => {
     const endpoint = '/api/submit-recipe';
 
     // Client-side form validation
     const validationErrors = {};
-
-    if (!newRecipe.name || !newRecipe.time || ingredients.length === 0 || directions.length === 0) {
-      setError('Please make sure to fill out all required recipe fields. Thank you!');
-      return;
-    }
 
     if (!newRecipe.name) {
       validationErrors.name = 'Please enter the recipe name';
@@ -153,7 +156,8 @@ export default function RecipeForm() {
       validationErrors.ingredients = 'Please add at least one ingredient';
     }
 
-    if (nutrition.length === 0) {
+    // Add nullish coalescing operator to provide a default empty object for nutrition
+    if (!newRecipe.nutrition ?? Object.keys(newRecipe.nutrition).length === 0) {
       validationErrors.nutrition = `Please fill out all nutritional values. If you don't know, just enter 'unknown'`;
     }
 
@@ -177,6 +181,10 @@ export default function RecipeForm() {
     cleanedRecipe._id = uuidv4();
 
     const recipeData = JSON.stringify(cleanedRecipe);
+
+    const reqBody = {
+      recipeData,
+    };
   
     try {
       const options = {
@@ -184,7 +192,7 @@ export default function RecipeForm() {
         headers: {
           'Content-Type': 'application/json',
         },
-        body: recipeData,
+        body: reqBody,
       };
 
       const res = await fetch(endpoint, options);
@@ -193,6 +201,7 @@ export default function RecipeForm() {
         const data = await res.json();
         setSuccess(true);
         localStorage.removeItem('recipeFormData');
+
         setNewRecipe({
           name: '',
           types: [],
@@ -203,17 +212,24 @@ export default function RecipeForm() {
           nutrition: {},
           directions: [],
         });
+        reset();
       } else {
         const errorData = await res.json();
         throw new Error(errorData.error);
       }
     } catch (error) {
       console.error(error);
-      setError('Error saving recipe. Please try again.');
+      setErrors('Error saving recipe. Please try again.');
     }
   };
 
-  // Reset the form state after successful submission
+  // Use preventDefault to prevent page refresh on failed submissions
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    submitForm();
+  };
+
+  // Reset success state after successful submission prevent
   const resetForm = () => {
     setSuccess(false);
   };
@@ -255,6 +271,9 @@ export default function RecipeForm() {
           handleRemoveIngredient={handleRemoveIngredient}
           handleDragEnd={handleDragEnd}
           errors={errors}
+          captchaVerified={captchaVerified}
+          handleCaptchaVerify={handleCaptchaVerify}
+          handleCaptchaExpire={handleCaptchaExpire}
         />
       )}
     </div>

@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import React, { useState } from 'react';
 import Link from 'next/link';
 import { Close, Hamburger } from '@components/ui/Icons';
 import { FormLink } from '@components/nav/FormLink';
@@ -50,7 +50,7 @@ export const Sidebar = () => {
       <nav
         id="sidebar"
         className={`
-          sidebar bg-slate-50 dark:bg-gradient-to-b from-gray-800 to-gray-900 h-100 w-100 md:w-1/6 md:h-screen 
+          sidebar bg-slate-50 dark:bg-gradient-to-b from-gray-800 to-gray-900 h-screen w-100 md:w-1/6 
           fixed top-0 right-0 p-4 px-0 pb-60 md:pb-40 text-center
           ${isOpen ? "open" : "close"}
         `}
@@ -62,23 +62,25 @@ export const Sidebar = () => {
 
         <div className="h-0.5 w-4/5 bg-gray-300 dark:bg-gray-700 mx-auto mb-4"></div>
 
-        <div className="sidebar-links-container max-h-96 md:max-h-max overflow-y-auto">
-          <ul className="list-none p-0 font-bold text-sm md:text-lg text-center">
-            {SidebarLinks.map(item => (
-              <li className="py-1 md:py-2 xl:py-1" key={item.name}>
-                <TypeLink
-                  {...item}
-                  closeSidebar={closeSidebar}
-                  isActive={activeLink === item.url}
-                  onClick={() => setActiveLink(item.url)}
-                />
-              </li>
-            ))}
-          </ul>
+        <div className="flex flex-col h-full">
+          <div className="sidebar-links-container overflow-y-auto">
+            <ul className="list-none p-0 font-bold text-sm md:text-lg text-center">
+              {SidebarLinks.map(item => (
+                <li className="py-1 md:py-2 xl:py-1" key={item.name}>
+                  <TypeLink
+                    {...item}
+                    closeSidebar={closeSidebar}
+                    isActive={activeLink === item.url}
+                    onClick={() => setActiveLink(item.url)}
+                  />
+                </li>
+              ))}
+            </ul>
 
-          <div className="h-0.5 w-4/5 bg-gray-300 dark:bg-gray-700 mx-auto mt-4"></div>
-          <FormLink />
-
+            <div className="h-0.5 w-4/5 bg-gray-300 dark:bg-gray-700 mx-auto mt-4"></div>
+          
+            <FormLink />
+          </div>
         </div>
       </nav>
     </>

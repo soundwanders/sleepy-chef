@@ -7,6 +7,7 @@
     "clean": "rm -rf .next"
   },
   "dependencies": {
+    "@hcaptcha/react-hcaptcha": "^1.8.1",
     "@next/font": "13.1.6",
     "cross-env": "^7.0.3",
     "dotenv": "^16.0.3",
