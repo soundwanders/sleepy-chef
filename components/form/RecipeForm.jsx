@@ -278,7 +278,6 @@ export default function RecipeForm() {
           handleCaptchaVerify={handleCaptchaVerify}
           handleCaptchaExpire={handleCaptchaExpire}
           hCaptchaRef={hCaptchaRef}
-          hCaptchaSitekey={hCaptchaSitekey}
           captchaVerified={captchaVerified}
           errors={errors}
         />
