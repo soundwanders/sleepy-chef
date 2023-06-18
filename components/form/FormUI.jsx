@@ -1,4 +1,5 @@
 import React from 'react';
+import { useTheme } from 'next-themes';
 import { CheckboxOption } from '@components/form/CheckboxOption';
 import { NutritionInput } from './NutritionInput';
 import { DirectionsInput } from './DirectionsInput';
@@ -7,10 +8,12 @@ import { DragDropContext, Droppable } from 'react-beautiful-dnd';
 import HCaptcha from '@hcaptcha/react-hcaptcha';
 
 export const FormUI = (props) => {
+  const { resolvedTheme } = useTheme();
+  
   return (
     <div className="flex-1 items-center justify-start px-8 md:px-4 mb-6 -mt-4 md:mt-6 py-2 pb-20">
       <form onSubmit={props.handleSubmit}>
-        <div className="mb-8">
+        <div className="-mt-10 md:mt-0 mb-8">
           <label className="block text-gray-700 dark:text-gray-200 text-lg font-bold mb-3" htmlFor="name">
             Recipe Name
           </label>
@@ -299,13 +302,15 @@ export const FormUI = (props) => {
         </div>
 
         <HCaptcha
-          sitekey={process.env.RECAPTCHA_SITEKEY}
-          onVerify={props.handleCaptchaVerify}
+          sitekey= {process.env.NEXT_PUBLIC_RECAPTCHA_SITEKEY}
           onExpire={props.handleCaptchaExpire}
+          onVerify={props.onVerifyCaptcha }
+          theme={resolvedTheme === 'dark' ? 'dark' : 'light'}
+          ref={props.hCaptchaRef}
         />
 
         <button 
-          className="rounded-xl py-[5px] px-4 border border-slate-600 dark:border-slate-100 active:translate-y-[1px]"
+          className="rounded-xl py-[5px] px-4 mt-7 border border-slate-600 dark:border-slate-100 active:translate-y-[1px]"
           type="submit"
         >
           Submit

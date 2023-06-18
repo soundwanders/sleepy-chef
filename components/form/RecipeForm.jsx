@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { v4 as uuidv4 } from 'uuid';
 import { RoughNotationGroup } from 'react-rough-notation';
 import { Highlighter } from '@components/ui/Highlighter';
@@ -20,7 +20,8 @@ export default function RecipeForm() {
   const [success, setSuccess] = useState(false);
   const [errors, setErrors] = useState({});
   const [captchaVerified, setCaptchaVerified] = useState(false);
-
+  const hCaptchaRef = useRef();
+  
   // use states to keep track of user input
   const [newRecipe, setNewRecipe] = useState({
     name: '',
@@ -70,15 +71,16 @@ export default function RecipeForm() {
     localStorage.setItem('recipeFormData', JSON.stringify(newRecipe));
   }, [newRecipe]);
 
-  // Recaptcha
-  const handleCaptchaVerify = (token) => {
+  // HCaptcha verification
+  const onVerifyCaptcha = (token, ekey) => {
+    console.log('Captcha ekey:', ekey);
     setCaptchaVerified(true);
-    // Store the captcha token or perform any necessary actions
   };
 
+  // Reset state if hCaptcha expires
   const handleCaptchaExpire = () => {
     setCaptchaVerified(false);
-    // Handle captcha expiration if needed
+    console.log("Captcha challenge has expired. Please complete it again.");
   };
 
   // Handle input changes using our form handler functions
@@ -184,6 +186,7 @@ export default function RecipeForm() {
 
     const reqBody = {
       recipeData,
+      token,
     };
   
     try {
@@ -222,11 +225,16 @@ export default function RecipeForm() {
       setErrors('Error saving recipe. Please try again.');
     }
   };
-
+  
+  // Handle form submission
   // Use preventDefault to prevent page refresh on failed submissions
   const handleSubmit = (event) => {
     event.preventDefault();
-    submitForm();
+    if (captchaVerified) {
+      submitForm();
+    } else {
+      console.log('Please complete the hCaptcha before submitting your recipe :)');
+    }
   };
 
   // Reset success state after successful submission prevent
@@ -270,10 +278,11 @@ export default function RecipeForm() {
           handleAddIngredient={handleAddIngredient}
           handleRemoveIngredient={handleRemoveIngredient}
           handleDragEnd={handleDragEnd}
-          errors={errors}
-          captchaVerified={captchaVerified}
-          handleCaptchaVerify={handleCaptchaVerify}
           handleCaptchaExpire={handleCaptchaExpire}
+          onVerifyCaptcha={ onVerifyCaptcha }
+          hCaptchaRef={hCaptchaRef}
+          captchaVerified={captchaVerified}
+          errors={errors}
         />
       )}
     </div>

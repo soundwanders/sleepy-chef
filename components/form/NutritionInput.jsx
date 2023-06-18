@@ -12,6 +12,6 @@ export const NutritionInput = ({ label, id, name, placeholder, value, onChange, 
       value={value}
       onChange={onChange}
     />
-    {errors && <small className="error">{errors.nutrition}</small>}
+    {errors && <small className="error text-red-300">{errors.nutrition}</small>}
   </div>
 );
