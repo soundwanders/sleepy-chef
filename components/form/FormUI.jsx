@@ -299,13 +299,16 @@ export const FormUI = (props) => {
         </div>
 
         <HCaptcha
-          sitekey={process.env.RECAPTCHA_SITEKEY}
-          onVerify={props.handleCaptchaVerify}
+          sitekey= {process.env.NEXT_PUBLIC_HCAPTCHA_SITEKEY}
           onExpire={props.handleCaptchaExpire}
+          onVerify={props.handleCaptchaVerify}
+          data-theme="dark"
+          size="invisible"
+          ref={props.hCaptchaRef}
         />
 
         <button 
-          className="rounded-xl py-[5px] px-4 border border-slate-600 dark:border-slate-100 active:translate-y-[1px]"
+          className="rounded-xl py-[5px] px-4 mt-2 border border-slate-600 dark:border-slate-100 active:translate-y-[1px]"
           type="submit"
         >
           Submit

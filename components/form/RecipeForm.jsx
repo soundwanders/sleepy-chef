@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { v4 as uuidv4 } from 'uuid';
 import { RoughNotationGroup } from 'react-rough-notation';
 import { Highlighter } from '@components/ui/Highlighter';
@@ -20,7 +20,8 @@ export default function RecipeForm() {
   const [success, setSuccess] = useState(false);
   const [errors, setErrors] = useState({});
   const [captchaVerified, setCaptchaVerified] = useState(false);
-
+  const hCaptchaRef = useRef();
+  
   // use states to keep track of user input
   const [newRecipe, setNewRecipe] = useState({
     name: '',
@@ -70,15 +71,18 @@ export default function RecipeForm() {
     localStorage.setItem('recipeFormData', JSON.stringify(newRecipe));
   }, [newRecipe]);
 
-  // Recaptcha
-  const handleCaptchaVerify = (token) => {
+  // HCaptcha
+  const handleCaptchaVerify = (token, ekey) => {
+    console.log('Captcha token:', token);
+    console.log('Captcha ekey:', ekey);
     setCaptchaVerified(true);
-    // Store the captcha token or perform any necessary actions
+    submitForm(token); // Pass the token to the submitForm function
   };
 
+  // Reset state if hCaptcha expires
   const handleCaptchaExpire = () => {
     setCaptchaVerified(false);
-    // Handle captcha expiration if needed
+    console.log("Captcha challenge has expired. Please complete it again.");
   };
 
   // Handle input changes using our form handler functions
@@ -184,6 +188,7 @@ export default function RecipeForm() {
 
     const reqBody = {
       recipeData,
+      token: token,
     };
   
     try {
@@ -270,10 +275,12 @@ export default function RecipeForm() {
           handleAddIngredient={handleAddIngredient}
           handleRemoveIngredient={handleRemoveIngredient}
           handleDragEnd={handleDragEnd}
-          errors={errors}
-          captchaVerified={captchaVerified}
           handleCaptchaVerify={handleCaptchaVerify}
           handleCaptchaExpire={handleCaptchaExpire}
+          hCaptchaRef={hCaptchaRef}
+          hCaptchaSitekey={hCaptchaSitekey}
+          captchaVerified={captchaVerified}
+          errors={errors}
         />
       )}
     </div>
