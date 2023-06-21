@@ -1,8 +1,11 @@
 import { MongoClient } from 'mongodb';
 import { sendNotificationEmail } from '@utils/notification-email';
 
+const RECAPTCHA_SECRET = process.env.RECAPTCHA_SECRET;
+
 let client;
 const MAX_SUBMISSIONS_PER_HOUR = 30;
+const HOUR_IN_MILLISECONDS = 60 * 60 * 1000;
 const submissionsTracker = {};
 
 async function connectToDatabase() {
@@ -33,19 +36,80 @@ export default async function handler(req, res) {
         return res.status(400).json({ error: 'Request body is empty' });
       }
 
-      const { userId } = req.body;
+      console.log('Raw Request Body:', req.rawBody);
+      console.log('Parsed Request Body:', req.body);
+
+      const { userId, token } = req.body;
 
       if (!userId || typeof userId !== 'string' || userId.trim() === '') {
         return res.status(400).json({ error: 'Invalid userId string' });
       }
 
-      const userSubmissionCount = submissionsTracker[userId] || 0;
+      if (!token || typeof token !== 'string' || token.trim() === '') {
+        return res.status(400).json({ error: 'Invalid token string' });
+      }
 
-      if (userSubmissionCount >= MAX_SUBMISSIONS_PER_HOUR) {
+      // Verify hCaptcha token
+      const verificationEndpoint = 'https://hcaptcha.com/siteverify';
+      const verificationUrl = `${verificationEndpoint}?secret=${RECAPTCHA_SECRET}&response=${encodeURIComponent(
+        token
+      )}`;
+
+      const verificationResponse = await fetch(verificationUrl, { method: 'POST' });
+      const verificationResult = await verificationResponse.json();
+
+      console.log('Verification Response:', verificationResult);
+      console.log('back end token', token);
+      
+      if (!verificationResult.success) {
+        let errorMessage = 'Failed to verify hCaptcha token';
+
+        if (verificationResult['error-codes'] && verificationResult['error-codes'].length > 0) {
+          errorMessage += ` (${verificationResult['error-codes'].join(', ')})`;
+        }
+
+        return res.status(400).json({ error: errorMessage });
+      }
+
+      // Rate limiting
+      // Rate limiting
+      const userSubmissionKey = `${userId}:${req.socket.remoteAddress}`;
+      const submissionTimestamp = Date.now();
+
+      const userSubmissions = submissionsTracker[userSubmissionKey] || [];
+
+      // Remove older submissions that fall outside the 1-hour window
+      const recentSubmissions = userSubmissions.filter(
+        (timestamp) => timestamp > submissionTimestamp - HOUR_IN_MILLISECONDS
+      );
+
+      if (recentSubmissions.length >= MAX_SUBMISSIONS_PER_HOUR) {
         return res.status(429).json({
-          error: 'Sorry, too many submissions within the last hour. Please try again later.',
+          error: 'Sorry, too many submissions from this user within the last hour. Please try again later.',
         });
       }
+
+      // Add the current submission timestamp
+      userSubmissions.push(submissionTimestamp);
+      submissionsTracker[userSubmissionKey] = userSubmissions;
+
+      const ipSubmissionKey = `IP:${req.socket.remoteAddress}`;
+      const ipSubmissions = submissionsTracker[ipSubmissionKey] || [];
+
+      // Remove older submissions that fall outside the 1-hour window
+      const recentIpSubmissions = ipSubmissions.filter(
+        (timestamp) => timestamp > submissionTimestamp - HOUR_IN_MILLISECONDS
+      );
+
+      if (recentIpSubmissions.length >= MAX_SUBMISSIONS_PER_HOUR) {
+        return res.status(429).json({
+          error: 'Sorry, too many submissions from this IP address within the last hour. Please try again later.',
+        });
+      }
+
+      // Add the current submission timestamp
+      ipSubmissions.push(submissionTimestamp);
+      submissionsTracker[ipSubmissionKey] = ipSubmissions;
 
       const db = (await connectToDatabase()).db('SleepyChefRecipes');
       const recipesCollection = db.collection('recipes');
@@ -54,7 +118,10 @@ export default async function handler(req, res) {
 
       try {
         await session.withTransaction(async () => {
-          const recipe = req.body;
+          const recipe = {
+            ...req.body,
+            token: token,
+          };
 
           // Validate recipe object
           if (!recipe || typeof recipe !== 'object') {

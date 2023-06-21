@@ -74,6 +74,7 @@ export default function RecipeForm() {
   // HCaptcha verification
   const onVerifyCaptcha = (token, ekey) => {
     console.log('Captcha ekey:', ekey);
+    hCaptchaRef.current.token = token;
     setCaptchaVerified(true);
   };
 
@@ -183,6 +184,9 @@ export default function RecipeForm() {
     cleanedRecipe._id = uuidv4();
 
     const recipeData = JSON.stringify(cleanedRecipe);
+
+    const hCaptchatoken = hCaptchaRef.current?.token;
+    const token = JSON.stringify(hCaptchatoken);
 
     const reqBody = {
       recipeData,

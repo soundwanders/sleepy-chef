@@ -64,9 +64,9 @@ export const Sidebar = () => {
 
         <div className="flex flex-col h-full">
           <div className="sidebar-links-container overflow-y-auto">
-            <ul className="list-none p-0 font-bold text-sm md:text-lg text-center">
+            <ul className="list-none p-0 font-bold text-sm md:text-base text-center">
               {SidebarLinks.map(item => (
-                <li className="py-1 md:py-2 xl:py-1" key={item.name}>
+                <li className="py-1" key={item.name}>
                   <TypeLink
                     {...item}
                     closeSidebar={closeSidebar}
