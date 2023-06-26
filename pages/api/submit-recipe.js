@@ -30,25 +30,37 @@ async function connectToDatabase() {
 };
 
 export default async function handler(req, res) {
+
+  console.log(`reqbdy`, req.body);
+
   if (req.method === 'POST') {
     try {
       if (!req.body) {
         return res.status(400).json({ error: 'Request body is empty' });
       }
 
-      console.log('Raw Request Body:', req.rawBody);
-      console.log('Parsed Request Body:', req.body);
-
-      const { userId, token } = req.body;
+      const { userId, recipeData, token } = req.body;
 
       if (!userId || typeof userId !== 'string' || userId.trim() === '') {
         return res.status(400).json({ error: 'Invalid userId string' });
       }
-
+      
+      if (!recipeData || typeof recipeData !== 'string') {
+        return res.status(400).json({ error: 'Invalid recipeData' });
+      }
+      
       if (!token || typeof token !== 'string' || token.trim() === '') {
         return res.status(400).json({ error: 'Invalid token string' });
       }
 
+      let parsedRecipeData;
+      try {
+        parsedRecipeData = JSON.parse(recipeData);
+      } catch (error) {
+        console.error('Error parsing recipeData:', error);
+        return res.status(400).json({ error: 'Invalid recipeData JSON' });
+      }
+      
       // Verify hCaptcha token
       const verificationEndpoint = 'https://hcaptcha.com/siteverify';
       const verificationUrl = `${verificationEndpoint}?secret=${RECAPTCHA_SECRET}&response=${encodeURIComponent(
@@ -71,7 +83,6 @@ export default async function handler(req, res) {
         return res.status(400).json({ error: errorMessage });
       }
 
-      // Rate limiting
       // Rate limiting
       const userSubmissionKey = `${userId}:${req.socket.remoteAddress}`;
       const submissionTimestamp = Date.now();
@@ -119,10 +130,10 @@ export default async function handler(req, res) {
       try {
         await session.withTransaction(async () => {
           const recipe = {
-            ...req.body,
-            token: token,
+            ...parsedRecipeData,
+            token,
           };
-
+          
           // Validate recipe object
           if (!recipe || typeof recipe !== 'object') {
             return res.status(400).json({ error: 'Invalid recipe object' });
@@ -135,7 +146,7 @@ export default async function handler(req, res) {
           }
 
           // Increment the user submission count
-          submissionsTracker[userId] = userSubmissionCount + 1;
+          submissionsTracker[userId] = (submissionsTracker[userId] || 0) + 1;
 
           // Send email notification
           await sendNotificationEmail(recipe);
@@ -155,12 +166,9 @@ export default async function handler(req, res) {
       } finally {
         session.endSession();
       }
-
     } catch (err) {
       console.error('Database connection error:', err);
       console.error('Error stack:', err.stack);
-      console.error('Error name:', err.name);
-      console.error('Error message:', err.message);
       return res.status(503).json({ error: 'Failed to connect to the database' });
     }
   } else {

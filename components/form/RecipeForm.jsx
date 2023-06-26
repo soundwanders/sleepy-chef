@@ -71,19 +71,6 @@ export default function RecipeForm() {
     localStorage.setItem('recipeFormData', JSON.stringify(newRecipe));
   }, [newRecipe]);
 
-  // HCaptcha verification
-  const onVerifyCaptcha = (token, ekey) => {
-    console.log('Captcha ekey:', ekey);
-    hCaptchaRef.current.token = token;
-    setCaptchaVerified(true);
-  };
-
-  // Reset state if hCaptcha expires
-  const handleCaptchaExpire = () => {
-    setCaptchaVerified(false);
-    console.log("Captcha challenge has expired. Please complete it again.");
-  };
-
   // Handle input changes using our form handler functions
   const handleChange = (event, index) => {
     const { name, value, type, checked } = event.target;
@@ -138,6 +125,19 @@ export default function RecipeForm() {
     }
   };
   
+  // HCaptcha verification
+  const onVerifyCaptcha = (token, ekey) => {
+    console.log('Captcha ekey:', ekey);
+    hCaptchaRef.current.token = token;
+    setCaptchaVerified(true);
+  };
+
+  // Reset state if hCaptcha expires
+  const handleCaptchaExpire = () => {
+    setCaptchaVerified(false);
+    console.log("Oops! Captcha has expired. Please complete it again before submitting your recipe.");
+  };
+
   // Handle recipe form submission
   const submitForm = async () => {
     const endpoint = '/api/submit-recipe';
@@ -191,18 +191,21 @@ export default function RecipeForm() {
     const reqBody = {
       recipeData,
       token,
+      userId: cleanedRecipe.userId,
     };
-  
+
     try {
       const options = {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: reqBody,
+        body: JSON.stringify(reqBody),
       };
-
+      
       const res = await fetch(endpoint, options);
+
+      console.log('client response:', res);
 
       if (res.ok) {
         const data = await res.json();
@@ -219,7 +222,7 @@ export default function RecipeForm() {
           nutrition: {},
           directions: [],
         });
-        reset();
+        resetForm();
       } else {
         const errorData = await res.json();
         throw new Error(errorData.error);
