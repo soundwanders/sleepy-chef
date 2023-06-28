@@ -57,7 +57,7 @@ export const Sidebar = () => {
         role="navigation"
       >
         <div className="pt-8 mb-8 opacity-90">
-          <img src="/sidebar-chef.png" alt="" className="w-16 md:w-20 h-auto mx-auto" />
+          <img src="/sidebar-chef.png" alt="" className="w-12 md:w-16 h-auto mx-auto" />
         </div>
 
         <div className="h-0.5 w-4/5 bg-gray-300 dark:bg-gray-700 mx-auto mb-4"></div>
