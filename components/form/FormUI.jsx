@@ -11,7 +11,7 @@ export const FormUI = (props) => {
   const { resolvedTheme } = useTheme();
   
   return (
-    <div className="flex-1 items-center justify-start px-8 md:px-4 mb-6 -mt-4 md:mt-6 py-2 pb-20">
+    <div className="flex-1 items-center justify-start px-8 md:px-4 mb-6 -mt-6 md:mt-6 py-2 pb-20">
       <form onSubmit={props.handleSubmit}>
         <div className="-mt-10 md:mt-0 mb-8">
           <label className="block text-gray-700 dark:text-gray-200 text-lg font-bold mb-3" htmlFor="name">

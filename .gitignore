@@ -25,21 +25,24 @@ yarn.lock
 # misc
 .DS_Store
 *.pem
+
+# documentation
 documentation/feature-multipleTypes.md
-documentation/recipe-data-structure.md
-documentation/framer-motion.md
 documentation/submit-form.md
 documentation/working-api-submit.md
+
 # debug
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 .pnpm-debug.log*
 
-# local env files
-.env*.local
-.env.dev
+# env files
+.env
 .env*
+.env*.local
+.env*.dev
+.env*.prod
 
 # vercel
 .vercel

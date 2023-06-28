@@ -1,11 +1,10 @@
 import { MongoClient } from 'mongodb';
 import { sendNotificationEmail } from '@utils/notification-email';
 
-const RECAPTCHA_SECRET = process.env.RECAPTCHA_SECRET;
-
 let client;
 const MAX_SUBMISSIONS_PER_HOUR = 30;
 const HOUR_IN_MILLISECONDS = 60 * 60 * 1000;
+const RECAPTCHA_SECRET = process.env.RECAPTCHA_SECRET;
 const submissionsTracker = {};
 
 async function connectToDatabase() {
@@ -30,9 +29,6 @@ async function connectToDatabase() {
 };
 
 export default async function handler(req, res) {
-
-  console.log(`reqbdy`, req.body);
-
   if (req.method === 'POST') {
     try {
       if (!req.body) {
@@ -63,23 +59,19 @@ export default async function handler(req, res) {
       
       // Verify hCaptcha token
       const verificationEndpoint = 'https://hcaptcha.com/siteverify';
-      const verificationUrl = `${verificationEndpoint}?secret=${RECAPTCHA_SECRET}&response=${encodeURIComponent(
-        token
-      )}`;
+      const verificationUrl = `${verificationEndpoint}?secret=${encodeURIComponent(RECAPTCHA_SECRET)}&response=${encodeURIComponent(token)}`;
 
-      const verificationResponse = await fetch(verificationUrl, { method: 'POST' });
+      const verificationResponse = await fetch(verificationUrl);
       const verificationResult = await verificationResponse.json();
 
-      console.log('Verification Response:', verificationResult);
-      console.log('back end token', token);
-      
       if (!verificationResult.success) {
+        console.log('Verification Result:', verificationResult);
+        console.log(verificationUrl);
         let errorMessage = 'Failed to verify hCaptcha token';
 
         if (verificationResult['error-codes'] && verificationResult['error-codes'].length > 0) {
           errorMessage += ` (${verificationResult['error-codes'].join(', ')})`;
         }
-
         return res.status(400).json({ error: errorMessage });
       }
 

@@ -17,7 +17,7 @@ const updateRecipeDb = (approvedRecipe) => {
   // Write updated recipes back to the recipeDb.js file
   fs.writeFileSync(recipeDbPath, updatedContent, 'utf8');
 
-  console.log('RecipeDb updated successfully!');
+  console.log('Recipe Database has been successfully updated.');
 };
 
 export default updateRecipeDb;

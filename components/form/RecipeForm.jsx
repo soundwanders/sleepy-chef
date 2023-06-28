@@ -127,7 +127,6 @@ export default function RecipeForm() {
   
   // HCaptcha verification
   const onVerifyCaptcha = (token, ekey) => {
-    console.log('Captcha ekey:', ekey);
     hCaptchaRef.current.token = token;
     setCaptchaVerified(true);
   };
@@ -161,7 +160,7 @@ export default function RecipeForm() {
 
     // Add nullish coalescing operator to provide a default empty object for nutrition
     if (!newRecipe.nutrition ?? Object.keys(newRecipe.nutrition).length === 0) {
-      validationErrors.nutrition = `Please fill out all nutritional values. If you don't know, just enter 'unknown'`;
+      validationErrors.nutrition = `Please fill out all nutritional info. If you don't know, please enter 'unknown'`;
     }
 
     if (directions.length === 0) {
@@ -186,7 +185,7 @@ export default function RecipeForm() {
     const recipeData = JSON.stringify(cleanedRecipe);
 
     const hCaptchatoken = hCaptchaRef.current?.token;
-    const token = JSON.stringify(hCaptchatoken);
+    const token = hCaptchatoken;
 
     const reqBody = {
       recipeData,
@@ -209,8 +208,8 @@ export default function RecipeForm() {
 
       if (res.ok) {
         const data = await res.json();
-        setSuccess(true);
         localStorage.removeItem('recipeFormData');
+        setSuccess(true);
 
         setNewRecipe({
           name: '',
@@ -221,12 +220,12 @@ export default function RecipeForm() {
           ingredients: [],
           nutrition: {},
           directions: [],
-        });
-        resetForm();
+        })
       } else {
         const errorData = await res.json();
         throw new Error(errorData.error);
       }
+      
     } catch (error) {
       console.error(error);
       setErrors('Error saving recipe. Please try again.');
@@ -244,9 +243,19 @@ export default function RecipeForm() {
     }
   };
 
-  // Reset success state after successful submission prevent
+  // Reset success state after successful submission
   const resetForm = () => {
     setSuccess(false);
+    setNewRecipe({
+      name: '',
+      types: [],
+      time: '',
+      vegetarian: false,
+      vegan: false,
+      ingredients: [],
+      nutrition: {},
+      directions: [],
+    })
   };
 
   return (
