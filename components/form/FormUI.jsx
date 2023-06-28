@@ -302,7 +302,7 @@ export const FormUI = (props) => {
         </div>
 
         <HCaptcha
-          sitekey={process.env.RECAPTCHA_SITEKEY}
+          sitekey='10000000-ffff-ffff-ffff-000000000001'
           onExpire={props.handleCaptchaExpire}
           onVerify={props.onVerifyCaptcha }
           theme={resolvedTheme === 'dark' ? 'dark' : 'light'}
