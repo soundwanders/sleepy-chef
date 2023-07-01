@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { Close, Hamburger } from '@components/ui/Icons';
 import { FormLink } from '@components/nav/FormLink';
@@ -27,6 +27,10 @@ export const Sidebar = () => {
   const [activeLink, setActiveLink] = useState(null);
   const closeSidebar = () => setIsOpen(false);
 
+  useEffect(() => {
+    document.body.classList.toggle('overflow-hidden', isOpen);
+  }, [isOpen]);
+
   return (
     <>
       <div className="flex">
@@ -51,13 +55,13 @@ export const Sidebar = () => {
         id="sidebar"
         className={`
           sidebar bg-slate-50 dark:bg-gradient-to-b from-gray-800 to-gray-900 h-screen w-100 md:w-1/6 
-          fixed top-0 right-0 p-4 px-0 pb-60 md:pb-40 text-center
+          fixed top-0 right-0 p-4 px-0
           ${isOpen ? "open" : "close"}
         `}
         role="navigation"
       >
-        <div className="pt-8 mb-8 opacity-90">
-          <img src="/sidebar-chef.png" alt="" className="w-12 md:w-16 h-auto mx-auto" />
+        <div className="pt-8 mb-6 opacity-90">
+          <img src="/sidebar-chef.png" alt="" className="w-16 h-auto mx-auto" />
         </div>
 
         <div className="h-0.5 w-4/5 bg-gray-300 dark:bg-gray-700 mx-auto mb-4"></div>
@@ -66,7 +70,7 @@ export const Sidebar = () => {
           <div className="sidebar-links-container overflow-y-auto">
             <ul className="list-none p-0 font-bold text-sm md:text-base text-center">
               {SidebarLinks.map(item => (
-                <li className="py-1" key={item.name}>
+                <li className="md:py-1" key={item.name}>
                   <TypeLink
                     {...item}
                     closeSidebar={closeSidebar}
@@ -84,5 +88,5 @@ export const Sidebar = () => {
         </div>
       </nav>
     </>
-  )
+  );
 };
