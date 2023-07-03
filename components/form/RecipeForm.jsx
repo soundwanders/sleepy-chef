@@ -17,6 +17,7 @@ import {
 export default function RecipeForm() {
   const highlightColor = '#fea231';
   const [key, setKey] = useState('');
+  const [loading, setLoading] = useState(false);
   const [success, setSuccess] = useState(false);
   const [errors, setErrors] = useState({});
   const [captchaVerified, setCaptchaVerified] = useState(false);
@@ -137,9 +138,11 @@ export default function RecipeForm() {
     console.log("Oops! Captcha has expired. Please complete it again before submitting your recipe.");
   };
 
-  // Handle recipe form submission
+  // SUBMIT FORM FUNCTION handles recipe form submission
   const submitForm = async () => {
     const endpoint = '/api/submit-recipe';
+
+    setLoading(true);
 
     // Client-side form validation
     const validationErrors = {};
@@ -225,25 +228,28 @@ export default function RecipeForm() {
         const errorData = await res.json();
         throw new Error(errorData.error);
       }
-      
     } catch (error) {
       console.error(error);
-      setErrors('Error saving recipe. Please try again.');
+      setErrors({ submit: 'Error saving recipe. Please try again.' });
+    } finally {
+      setLoading(false);
     }
   };
   
   // Handle form submission
-  // Use preventDefault to prevent page refresh on failed submissions
-  const handleSubmit = (event) => {
+  // preventDefault prevents page refresh after a failed submission
+  const handleSubmit = async (event) => {
     event.preventDefault();
     if (captchaVerified) {
-      submitForm();
+      setLoading(true);
+      await submitForm();
     } else {
       console.log('Please complete the hCaptcha before submitting your recipe :)');
     }
   };
 
   // Reset success state after successful submission
+  // clears form fields and prevents user from getting stuck on Success page
   const resetForm = () => {
     setSuccess(false);
     setNewRecipe({
@@ -299,6 +305,7 @@ export default function RecipeForm() {
           hCaptchaRef={hCaptchaRef}
           captchaVerified={captchaVerified}
           errors={errors}
+          loading={loading}
         />
       )}
     </div>

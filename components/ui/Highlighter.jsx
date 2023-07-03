@@ -1,4 +1,3 @@
-import React from 'react';
 import { RoughNotation } from 'react-rough-notation';
 
 export const Highlighter = ({ color, children }) => {

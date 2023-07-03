@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { Close, Hamburger } from '@components/ui/Icons';
 import { FormLink } from '@components/nav/FormLink';

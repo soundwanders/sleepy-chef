@@ -13,8 +13,8 @@ export const SuccessPage = ({ resetForm }) => {
   };
 
   return (
-    <div className="flex justify-center items-start h-screen pt-10">
-      <div className="text-center p-8">
+    <div className="flex justify-center items-start h-screen pt-8">
+      <div className="text-center -mt-20 md:mt-0 p-8">
         <div className="success-message text-xl mb-3">
           Your recipe has been successfully submitted! Thank you for contributing to Sleepy Chef.
         </div>

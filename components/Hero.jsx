@@ -1,4 +1,3 @@
-import React from 'react';
 import { RoughNotationGroup } from 'react-rough-notation';
 import { Highlighter } from './ui/Highlighter';
 import { Searchbar } from '@components/nav/Searchbar';
