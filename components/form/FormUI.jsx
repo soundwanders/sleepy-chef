@@ -315,7 +315,7 @@ export const FormUI = (props) => {
             ref={props.hCaptchaRef}
           />
 
-        <button 
+          <button 
             className="rounded-xl py-[5px] px-4 mt-7 border border-slate-600 dark:border-slate-100 active:translate-y-[1px]"
             type="submit"
           >

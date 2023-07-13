@@ -226,28 +226,27 @@ export default function RecipeForm() {
         })
       } else {
         const errorData = await res.json();
-        throw new Error(errorData.error);
+        setErrors({ submit: errorData.error });
       }
     } catch (error) {
       console.error(error);
       setErrors({ submit: 'Error saving recipe. Please try again.' });
-    } finally {
-      setLoading(false);
+    }
+  
+    setLoading(false);
+  };
+
+  // Handle form submission
+  // preventDefault prevents page refresh after a failed submission
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    if (captchaVerified) {
+      submitForm();
+    } else {
+      console.log('Oops! Please complete the reCAPTCHA before submitting your recipe.');
     }
   };
   
-  // Handle form submission
-  // preventDefault prevents page refresh after a failed submission
-  const handleSubmit = async (event) => {
-    event.preventDefault();
-    if (captchaVerified) {
-      setLoading(true);
-      await submitForm();
-    } else {
-      console.log('Please complete the hCaptcha before submitting your recipe :)');
-    }
-  };
-
   // Reset success state after successful submission
   // clears form fields and prevents user from getting stuck on Success page
   const resetForm = () => {

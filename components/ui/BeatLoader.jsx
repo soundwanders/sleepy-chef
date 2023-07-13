@@ -1,4 +1,4 @@
-const BeatLoader = () => {
+export const BeatLoader = () => {
   return (
     <>
       <div className="flex justify-center items-center space-x-2">
@@ -9,5 +9,3 @@ const BeatLoader = () => {
     </>
   )
 };
-
-export default BeatLoader;
