@@ -6,7 +6,7 @@ export default function Footer() {
         {/* Decorative dividing line*/}
         <div className="h-0.5 w-full bg-white dark:bg-gray-700"></div>
 
-          <div className="flex flex-col space-y-4 md:space-y-0 md:flex-row justify-between md:items-center text-sm md:text-base mt-12">
+          <div className="flex flex-col mt-12 space-y-4 md:space-y-0 md:flex-row justify-between md:items-center text-sm">
             <div className="text-red-400 hover:bg-red-100 rounded-md px-2 py-1 hover:text-red-600">
               <div className="inline-block hover:scale-110 hover:-rotate-2 transition duration-300">
                 <a

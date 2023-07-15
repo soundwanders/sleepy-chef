@@ -76,7 +76,9 @@ export default async function handler(req, res) {
       }
 
       // Rate limiting
-      const userSubmissionKey = `${userId}:${req.socket.remoteAddress}`;
+      const ip = req.headers['x-forwarded-for'] || req.socket.remoteAddress;
+      const userSubmissionKey = req.cookies.userId || `${ip}:${Date.now()}`;
+
       const submissionTimestamp = Date.now();
 
       const userSubmissions = submissionsTracker[userSubmissionKey] || [];
@@ -96,7 +98,7 @@ export default async function handler(req, res) {
       userSubmissions.push(submissionTimestamp);
       submissionsTracker[userSubmissionKey] = userSubmissions;
 
-      const ipSubmissionKey = `IP:${req.socket.remoteAddress}`;
+      const ipSubmissionKey = `IP:${ip}`;
       const ipSubmissions = submissionsTracker[ipSubmissionKey] || [];
 
       // Remove older submissions that fall outside the 1-hour window
@@ -137,11 +139,11 @@ export default async function handler(req, res) {
             throw new Error('Failed to insert recipe');
           }
 
-          // Increment the user submission count
-          submissionsTracker[userId] = (submissionsTracker[userId] || 0) + 1;
-
           // Send email notification
           await sendNotificationEmail(recipe);
+
+          // Set the userId cookie
+          res.setHeader('Set-Cookie', `userId=${userSubmissionKey}; Max-Age=${HOUR_IN_MILLISECONDS}; HttpOnly`);
 
           return res.status(201).json({ id: result.insertedId });
         });
