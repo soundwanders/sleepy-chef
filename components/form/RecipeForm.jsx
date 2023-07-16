@@ -66,7 +66,7 @@ export default function RecipeForm() {
         directions: storedRecipe.directions,
       }));
     }
-  }, []);
+  }, [setNewRecipe]);
 
   useEffect(() => {
     localStorage.setItem('recipeFormData', JSON.stringify(newRecipe));
@@ -75,7 +75,7 @@ export default function RecipeForm() {
   // Handle input changes using our form handler functions
   const handleChange = (event, index) => {
     const { name, value, type, checked } = event.target;
-  
+
     if (name === 'types') {
       handleTypesChange(setNewRecipe, value, checked);
     } else if (name.startsWith('nutrition.')) {
@@ -92,7 +92,7 @@ export default function RecipeForm() {
     } else {
       handleGenericChange(setNewRecipe, name, type, checked, value);
     }
-  }; 
+  };
 
   // Clear all entered recipe directions
   const handleClearDirections = () => {
