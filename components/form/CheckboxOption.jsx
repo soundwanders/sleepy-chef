@@ -1,3 +1,5 @@
+import React from 'react';
+
 export const CheckboxOption = ({ name, value, checked, onChange, label }) => (
   <label className="inline-flex items-center">
     <input
