@@ -1,7 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { v4 as uuidv4 } from 'uuid';
-import { RoughNotationGroup } from 'react-rough-notation';
-import { Highlighter } from '@components/ui/Highlighter';
 import { FormUI } from '@components/form/FormUI';
 import { SuccessPage } from '@components/form/SuccessPage';
 import { useRecipeDirections } from '@hooks/useRecipeDirections';
@@ -15,7 +13,6 @@ import {
 } from '@utils/form-handlers';
 
 export default function RecipeForm() {
-  const highlightColor = '#fea231';
   const [key, setKey] = useState('');
   const [loading, setLoading] = useState(false);
   const [success, setSuccess] = useState(false);
@@ -267,17 +264,11 @@ export default function RecipeForm() {
     <div>
       <div className="max-w-6xl mx-auto h-36 md:h-40 bg-white dark:bg-gray-800 px-8 md:px-4 py-4 mb-4 md:mb-0">
         <div className="w-full text-center">
-          <div className="w-fit mt-2">
-            <RoughNotationGroup show={true}>
-              <Highlighter color={highlightColor}>
-                <h1 className={`results-title text-[1.7rem] md:text-[4rem] font-bold text-gray-900 dark:text-gray-100
-                  py-1 px-2 break-words text-center`}
-                >
-                  Submit Your Recipe
-                </h1>
-              </Highlighter>
-            </RoughNotationGroup>
-          </div>
+          <h1 className={`results-title text-[1.7rem] md:text-[4rem] font-bold text-gray-900 dark:text-gray-100
+            py-1 px-2 break-words text-center`}
+          >
+            Submit Your Recipe
+          </h1>
         </div>
       </div>
   

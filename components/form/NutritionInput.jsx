@@ -1,3 +1,5 @@
+import React from 'react';
+
 export const NutritionInput = ({ label, id, name, placeholder, value, onChange, errors }) => (
   <div>
     <label className="block text-gray-700 dark:text-gray-200 text-base font-bold mb-3" htmlFor={id}>
