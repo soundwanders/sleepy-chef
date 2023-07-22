@@ -258,7 +258,7 @@ export const FormUI = (props) => {
           </div>
 
           <div className="mb-8">
-            <label className="block text-gray-700 dark:text-gray-200 text-lg font-bold my-2 mb-3" htmlFor="directions">
+            <label className="block text-gray-700 dark:text-gray-200 text-lg font-bold my-2 mb-3" htmlFor={`direction-${index}`}>
               Directions
             </label>
             <div className="p-4 bg-white dark:bg-[#2b2a33] border dark:border-slate-100 shadow rounded-lg
