@@ -187,8 +187,8 @@ export default function RecipeForm() {
 
     const recipeData = JSON.stringify(cleanedRecipe);
 
-    const hCaptchatoken = hCaptchaRef.current?.token;
-    const token = hCaptchatoken;
+    const hCaptchaToken = hCaptchaRef.current?.token;
+    const token = hCaptchaToken;
 
     const reqBody = {
       recipeData,

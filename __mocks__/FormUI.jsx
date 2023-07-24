@@ -1,16 +1,11 @@
 import React from 'react';
-import { useTheme } from 'next-themes';
 import { CheckboxOption } from '@components/form/CheckboxOption';
-import { NutritionInput } from './NutritionInput';
-import { DirectionsInput } from './DirectionsInput';
+import { NutritionInput } from '@components/form/NutritionInput';
+import { DirectionsInput } from '@components/form/DirectionsInput';
 import { BeatLoader } from '@components/ui/BeatLoader';
 import { AddLine, ClearAll, RemoveLine } from '@components/ui/Icons';
-import { DragDropContext, Droppable } from 'react-beautiful-dnd';
-import HCaptcha from '@hcaptcha/react-hcaptcha';
 
-export const FormUI = (props) => {
-  const { resolvedTheme } = useTheme();
-  
+const MockedFormUI = (props) => {
   return (
     <div className="flex-1 items-center justify-start px-8 md:px-4 mb-6 -mt-6 md:mt-6 py-2 pb-20">
       {props.loading ? (
@@ -260,64 +255,44 @@ export const FormUI = (props) => {
           </div>
 
           <div className="mb-8">
-            <label className="block text-gray-700 dark:text-gray-200 text-lg font-bold my-2 mb-3"
-             htmlFor="directions"
-            >
+            <label className="block text-gray-700 dark:text-gray-200 text-lg font-bold my-2 mb-3" htmlFor="directions">
               Directions
             </label>
             <div className="p-4 bg-white dark:bg-[#2b2a33] border dark:border-slate-100 shadow rounded-lg
-              leading-tight focus:outline-none focus:shadow-outline focus:placeholder-transparent z-2"
-            >
-              <DragDropContext onDragEnd={props.handleDragEnd}>
-                <Droppable droppableId="directions">
-                  {(provided) => (
-                    <div ref={provided.innerRef} {...provided.droppableProps}>
-                      {props.directions.map((direction, index) => (
-                        <DirectionsInput
-                          key={`direction-${index}`}
-                          direction={direction}
-                          handleDirectionChange={props.handleDirectionChange}
-                          handleRemoveDirection={props.handleRemoveDirection}
-                        />
-                      ))}
-                      {provided.placeholder}
-                    </div>
-                  )}
-                </Droppable>
+              leading-tight focus:outline-none focus:shadow-outline focus:placeholder-transparent z-2">
+              {props.directions.map((direction, index) => (
+                <DirectionsInput
+                  key={`direction-${index}`}
+                  direction={direction}
+                  handleDirectionChange={props.handleDirectionChange}
+                  handleRemoveDirection={props.handleRemoveDirection}
+                />
+              ))}
 
-                <div className="flex items-center mt-2 ml-10 p-3">
-                  <button
-                    type="button"
-                    className="inline-flex items-center justify-center py-2 mr-4 hover:text-green-500 
-                    dark:hover:text-green-300 focus:outline-none focus:bg-transparent focus:translate-y-[1px]"
-                    onClick={props.handleAddDirection}
-                  >
-                    <span className="sr-only">New Line</span>
-                    <AddLine />
-                  </button>
+              <div className="flex items-center mt-2 ml-10 p-3">
+                <button
+                  type="button"
+                  className="inline-flex items-center justify-center py-2 mr-4 hover:text-green-500 
+                  dark:hover:text-green-300 focus:outline-none focus:bg-transparent focus:translate-y-[1px]"
+                  onClick={props.handleAddDirection}
+                >
+                  <span className="sr-only">New Line</span>
+                  <AddLine />
+                </button>
 
-                  <button
-                    type="button"
-                    className="inline-flex items-center justify-center py-2 px-4 hover:text-orange-500 
-                      dark:hover:text-orange-300 focus:outline-none focus:bg-transparent focus:translate-y-[1px]"
-                    onClick={props.handleClearDirections}
-                  >
-                    <span className="sr-only">Clear Directions</span>
-                    <ClearAll />
-                  </button>
-                </div>
-              </DragDropContext>
+                <button
+                  type="button"
+                  className="inline-flex items-center justify-center py-2 px-4 hover:text-orange-500 
+                    dark:hover:text-orange-300 focus:outline-none focus:bg-transparent focus:translate-y-[1px]"
+                  onClick={props.handleClearDirections}
+                >
+                  <span className="sr-only">Clear Directions</span>
+                  <ClearAll />
+                </button>
+              </div>
             </div>
             {props.errors && props.errors.direction && <small className="error">{props.errors.directions}</small>}
           </div>
-
-          <HCaptcha
-            sitekey={process.env.NEXT_PUBLIC_RECAPTCHA_SITEKEY}
-            onExpire={props.handleCaptchaExpire}
-            onVerify={props.onVerifyCaptcha}
-            theme={resolvedTheme === 'dark' ? 'dark' : 'light'}
-            ref={props.hCaptchaRef}
-          />
 
           <button 
             className="rounded-xl py-[5px] px-4 mt-7 border border-slate-600 dark:border-slate-100 active:translate-y-[1px]"
@@ -330,3 +305,5 @@ export const FormUI = (props) => {
     </div>
   )
 };
+
+export { MockedFormUI as FormUI };

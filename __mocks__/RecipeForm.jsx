@@ -1,5 +1,5 @@
 // Mock RecipeForm Component
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect } from 'react';
 import { v4 as uuidv4 } from 'uuid';
 import { FormUI } from '@components/form/FormUI';
 import { SuccessPage } from '@components/form/SuccessPage';
@@ -19,7 +19,6 @@ export default function RecipeForm() {
   const [success, setSuccess] = useState(false);
   const [errors, setErrors] = useState({});
   const [captchaVerified, setCaptchaVerified] = useState(false);
-  const hCaptchaRef = useRef();
   
   // use states to keep track of user input
   const [newRecipe, setNewRecipe] = useState({
@@ -79,7 +78,7 @@ export default function RecipeForm() {
     } else if (name.startsWith('nutrition.')) {
       handleNutritionChange(setNewRecipe, name, value);
     } else if (name.startsWith('ingredients')) {
-      handleIngredientsChange(setNewRecipe);
+      handleIngredientsChange(setNewRecipe, index);
     } else if (name.startsWith('directions')) {
       handleDirectionsChange(index, event);
       setNewRecipe((prevState) => {
@@ -126,7 +125,8 @@ export default function RecipeForm() {
   
   // HCaptcha verification
   const onVerifyCaptcha = (token, ekey) => {
-    hCaptchaRef.current.token = token;
+    let dummyToken = 'mock-hcaptcha-token';
+    dummyToken = token;
     setCaptchaVerified(true);
   };
 
@@ -185,8 +185,8 @@ export default function RecipeForm() {
 
     const recipeData = JSON.stringify(cleanedRecipe);
 
-    const hCaptchatoken = hCaptchaRef.current?.token;
-    const token = hCaptchatoken;
+    const hCaptchaToken = '10000000-aaaa-bbbb-cccc-000000000001';
+    const token = hCaptchaToken;
 
     const reqBody = {
       recipeData,
@@ -292,8 +292,7 @@ export default function RecipeForm() {
           handleRemoveIngredient={handleRemoveIngredient}
           handleDragEnd={handleDragEnd}
           handleCaptchaExpire={handleCaptchaExpire}
-          onVerifyCaptcha={ onVerifyCaptcha }
-          hCaptchaRef={hCaptchaRef}
+          onVerifyCaptcha={onVerifyCaptcha}
           captchaVerified={captchaVerified}
           errors={errors}
           loading={loading}
