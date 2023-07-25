@@ -1,4 +1,3 @@
-// jest.config.js
 // Regular expressions to map module paths
 // ^@path/: The caret (^) matches the start of the module path
 // (.*): The parentheses () capture any characters after @path/ and save them as a group. The .* matches any sequence of characters.
@@ -18,6 +17,6 @@ module.exports = {
   setupFilesAfterEnv: ['@testing-library/jest-dom/extend-expect'],
   testEnvironment: 'jsdom',
   transform: {
-    '^.+\\.(js|jsx|ts|tsx)$': 'babel-jest',
+    '^.+\\.(js|jsx|ts|tsx)$': '<rootDir>/babel.config.test.js',
   },
 };

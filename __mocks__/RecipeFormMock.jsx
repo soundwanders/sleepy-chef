@@ -1,7 +1,6 @@
-// Mock RecipeForm Component
 import React, { useState, useEffect } from 'react';
 import { v4 as uuidv4 } from 'uuid';
-import { FormUI } from '@components/form/FormUI';
+import { FormUIMock } from '../__mocks__/FormUIMock';
 import { SuccessPage } from '@components/form/SuccessPage';
 import { useRecipeDirections } from '@hooks/useRecipeDirections';
 import { useRecipeIngredients } from '@hooks/useRecipeIngredients';
@@ -13,7 +12,7 @@ import {
   handleGenericChange,
 } from '@utils/form-handlers';
 
-export default function RecipeForm() {
+export default function RecipeFormMock() {
   const [key, setKey] = useState('');
   const [loading, setLoading] = useState(false);
   const [success, setSuccess] = useState(false);
@@ -276,7 +275,7 @@ export default function RecipeForm() {
       {success ? (
         <SuccessPage resetForm={resetForm} />
       ) : (
-        <FormUI
+        <FormUIMock
           newRecipe={newRecipe}
           directions={directions}
           ingredients={ingredients}

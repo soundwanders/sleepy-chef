@@ -1,13 +1,28 @@
-const React = require('react');
-const { render, fireEvent, screen } = require('@testing-library/react');
-import RecipeForm from '../__mocks__/RecipeForm';
+import React from 'react';
+import { render, fireEvent, screen } from '@testing-library/react';
+import RecipeFormMock from '../__mocks__/RecipeFormMock'; 
+import { hCaptchaMock } from '../__mocks__/hCaptchaMock'; 
+import { FormUIMock } from '__mocks__/FormUIMock';
 
-const mockHcaptchaVerify = jest.fn().mockResolvedValue(true);
-jest.mock('../__mocks__/FormUI', () => require('../__mocks__/FormUI').default);
+// Mock the hCaptcha module
+jest.mock('@hCaptcha/react-hCaptcha', () => {
+  return {
+    __esModule: true,
+    default: hCaptchaMock,
+  };
+});
+
+// Mock the dependency (@components/form/FormUI) for the RecipeForm component
+jest.mock('@components/form/FormUI', () => {
+  return {
+    __esModule: true,
+    default: FormUIMock,
+  };
+});
 
 describe('RecipeForm', () => {
   it('displays the form and inputs', () => {
-    render(<RecipeForm />);
+    render(<RecipeFormMock />);
   
     // Check if the form and inputs are displayed
     expect(screen.getByLabelText('Recipe Name')).toBeInTheDocument();
@@ -29,7 +44,7 @@ describe('RecipeForm', () => {
   });
 
   it('displays validation errors for incomplete or invalid data', () => {
-    render(<RecipeForm />);
+    render(<RecipeFormMock />);
 
     // Fill in required fields with invalid data (e.g., empty recipe name)
     fireEvent.change(screen.getByLabelText('Recipe Name'), { target: { value: '' } });
@@ -44,23 +59,16 @@ describe('RecipeForm', () => {
   });
 
   it('submits the form with valid data and displays the SuccessPage', async () => {
-    render(<RecipeForm />);
-  
-    // Fill in valid data in all required fields
-    fireEvent.change(screen.getByLabelText('Recipe Name'), { target: { value: 'Delicious Recipe' } });
-    fireEvent.change(screen.getByLabelText('Total Time'), { target: { value: '30' } });
-  
+    render(<RecipeFormMock />);
     // Mock the hCaptcha verification
     const mockHcaptchaToken = 'mock-hcaptcha-token';
-    mockHcaptchaVerify(mockHcaptchaToken)
-      .then(() => {
-        fireEvent.submit(screen.getByRole('form'));
-      })
-      .catch((error) => {
-        // The hCaptcha verification failed, handle the error (if needed)
-        console.error('hCaptcha verification failed:', error);
-      });
-  
+    mockHcaptchaVerify.mockResolvedValue(true); // Assuming verification succeeds
+    fireEvent.change(screen.getByLabelText('Recipe Name'), { target: { value: 'Delicious Recipe' } });
+    fireEvent.change(screen.getByLabelText('Total Time'), { target: { value: '30' } });
+
+    // Simulate form submission without actually triggering the captcha verification
+    fireEvent.submit(screen.getByRole('form'));
+
     // Wait for the success page to appear
     const successText = await screen.findByText('Success!');
     expect(successText).toBeInTheDocument();

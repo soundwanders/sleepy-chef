@@ -5,7 +5,8 @@
     "build": "next build",
     "start": "next start",
     "clean": "rm -rf .next",
-    "test": "jest"
+    "test": "BABEL_ENV=test jest",
+    "test:default": "jest"
   },
   "dependencies": {
     "@hcaptcha/react-hcaptcha": "^1.8.1",

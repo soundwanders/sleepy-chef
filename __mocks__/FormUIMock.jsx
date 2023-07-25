@@ -5,7 +5,7 @@ import { DirectionsInput } from '@components/form/DirectionsInput';
 import { BeatLoader } from '@components/ui/BeatLoader';
 import { AddLine, ClearAll, RemoveLine } from '@components/ui/Icons';
 
-const MockedFormUI = (props) => {
+export const FormUIMock = (props) => {
   return (
     <div className="flex-1 items-center justify-start px-8 md:px-4 mb-6 -mt-6 md:mt-6 py-2 pb-20">
       {props.loading ? (
@@ -305,5 +305,3 @@ const MockedFormUI = (props) => {
     </div>
   )
 };
-
-export { MockedFormUI as FormUI };
