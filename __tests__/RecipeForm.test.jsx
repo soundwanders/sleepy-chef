@@ -1,24 +1,8 @@
 import React from 'react';
 import { render, fireEvent, screen } from '@testing-library/react';
 import RecipeFormMock from '../__mocks__/RecipeFormMock'; 
-import { hCaptchaMock } from '../__mocks__/hCaptchaMock'; 
-import { FormUIMock } from '__mocks__/FormUIMock';
 
-// Mock the hCaptcha module
-jest.mock('@hCaptcha/react-hCaptcha', () => {
-  return {
-    __esModule: true,
-    default: hCaptchaMock,
-  };
-});
-
-// Mock the dependency (@components/form/FormUI) for the RecipeForm component
-jest.mock('@components/form/FormUI', () => {
-  return {
-    __esModule: true,
-    default: FormUIMock,
-  };
-});
+jest.mock('node-fetch', () => require('../__mocks__/fetch').default);
 
 describe('RecipeForm', () => {
   it('displays the form and inputs', () => {
@@ -43,31 +27,35 @@ describe('RecipeForm', () => {
     expect(vegetarianCheckbox).not.toBeChecked();
   });
 
-  it('displays validation errors for incomplete or invalid data', () => {
+  it('displays validation error for invalid recipe name', () => {
     render(<RecipeFormMock />);
+  
+    // Simulate user input with an invalid name
+    fireEvent.change(screen.getByLabelText('Recipe Name'), { target: { value: 'A' } });
+    fireEvent.submit(screen.getByRole('button', { name: 'Submit' }));
+  
+    // Check if the validation error message is displayed
+    expect(screen.getByTestId('name-error')).toBeInTheDocument();
+    expect(screen.getByTestId('name-error').textContent).toBe('Please enter the recipe name');
+  });
 
-    // Fill in required fields with invalid data (e.g., empty recipe name)
-    fireEvent.change(screen.getByLabelText('Recipe Name'), { target: { value: '' } });
+  it('displays validation error for empty recipe time', () => {
+    render(<RecipeFormMock />);
+  
     fireEvent.change(screen.getByLabelText('Total Time'), { target: { value: '' } });
-
-    // No need to simulate form submission here as validation errors should be displayed without submitting the form
-
-    // Check if validation errors are displayed
-    expect(screen.getByText('Please enter the recipe name')).toBeInTheDocument();
-    expect(screen.getByText('Please enter the recipe time')).toBeInTheDocument();
-    // Add more checks for other validation errors if needed
+    fireEvent.submit(screen.getByRole('button', { name: 'Submit' }));
+  
+    expect(screen.getByTestId('time-error')).toBeInTheDocument();
+    expect(screen.getByTestId('time-error').textContent).toBe('Please enter the recipe time');
   });
 
   it('submits the form with valid data and displays the SuccessPage', async () => {
     render(<RecipeFormMock />);
-    // Mock the hCaptcha verification
-    const mockHcaptchaToken = 'mock-hcaptcha-token';
-    mockHcaptchaVerify.mockResolvedValue(true); // Assuming verification succeeds
-    fireEvent.change(screen.getByLabelText('Recipe Name'), { target: { value: 'Delicious Recipe' } });
-    fireEvent.change(screen.getByLabelText('Total Time'), { target: { value: '30' } });
 
-    // Simulate form submission without actually triggering the captcha verification
-    fireEvent.submit(screen.getByRole('form'));
+    fireEvent.change(screen.getByLabelText('Recipe Name'), { target: { value: 'One Bad Larry' } });
+    fireEvent.change(screen.getByLabelText('Total Time'), { target: { value: '25' } });
+
+    fireEvent.submit(screen.getByTestId('recipe-form'));
 
     // Wait for the success page to appear
     const successText = await screen.findByText('Success!');

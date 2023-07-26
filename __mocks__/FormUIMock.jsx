@@ -14,7 +14,7 @@ export const FormUIMock = (props) => {
           <span className="sr-only">Submitting...</span>
         </div>
       ) : (
-        <form onSubmit={props.handleSubmit}>
+        <form onSubmit={props.handleSubmit} data-testid="recipe-form">
           <div className="-mt-10 md:mt-0 mb-8">
             <label className="block text-gray-700 dark:text-gray-200 text-lg font-bold mb-3" htmlFor="name">
               Recipe Name
@@ -28,7 +28,12 @@ export const FormUIMock = (props) => {
               value={props.newRecipe.name}
               onChange={props.handleChange}
             />
-            {props.errors && props.errors.name && <small className="error">{props.errors.name}</small>}
+            {
+              props.errors && props.errors.name && 
+              <div data-testid="name-error" className="error">
+                {props.errors.name}
+              </div>
+            }
           </div>
 
           <div className="mb-8">
@@ -116,7 +121,12 @@ export const FormUIMock = (props) => {
               value={props.newRecipe.time}
               onChange={props.handleChange}
             />
-            {props.errors && props.errors.time && <small className="error">{props.errors.time}</small>}
+            {
+              props.errors && props.errors.time &&
+              <div data-testid="time-error" className="error">
+                {props.errors.time}
+              </div>
+            }
           </div>
 
           <div className="flex mb-4">
@@ -165,7 +175,12 @@ export const FormUIMock = (props) => {
                   value={ingredient}
                   onChange={(event) => props.handleIngredientChange(index, event)}
                 />
-                {props.errors && props.errors.ingredients && <small className="error">{props.errors.ingredients}</small>}
+                {
+                  props.errors && props.errors.ingredients && 
+                  <div data-testid="ingredients-error" className="error">
+                    {props.errors.ingredients}
+                  </div>
+                }
                 <button
                   type="button"
                   className="ml-3 rounded-full text-red-400 hover:text-red-500 focus:outline-none focus:bg-transparent focus:translate-y-[1px]"          
@@ -252,6 +267,12 @@ export const FormUIMock = (props) => {
                   errors={props.errors}
                 />
             </div>
+            {
+              props.errors && props.errors.nutrition && 
+              <div data-testid="nutrition-error" className="error">
+                {props.errors.nutrition}
+              </div>
+            }
           </div>
 
           <div className="mb-8">
@@ -291,7 +312,12 @@ export const FormUIMock = (props) => {
                 </button>
               </div>
             </div>
-            {props.errors && props.errors.direction && <small className="error">{props.errors.directions}</small>}
+            {
+              props.errors && props.errors.direction && 
+              <div data-testid="directions-error" className="error">
+                {props.errors.directions}
+              </div>
+            }
           </div>
 
           <button 

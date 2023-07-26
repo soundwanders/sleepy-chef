@@ -12,10 +12,12 @@ module.exports = {
     '^@data/(.*)$': '<rootDir>/data/$1',
     '^@hooks/(.*)$': '<rootDir>/hooks/$1',
     '^@utils/(.*)$': '<rootDir>/utils/$1',
-    '^@styles/(.*)$': '<rootDir>/styles/$1'
+    '^@styles/(.*)$': '<rootDir>/styles/$1',
+    '^node-fetch$': 'node-fetch/src/index.js',
   },
   setupFilesAfterEnv: ['@testing-library/jest-dom/extend-expect'],
   testEnvironment: 'jsdom',
+  testPathIgnorePatterns: ['<rootDir>/babel.config.test.js'], 
   transform: {
     '^.+\\.(js|jsx|ts|tsx)$': '<rootDir>/babel.config.test.js',
   },

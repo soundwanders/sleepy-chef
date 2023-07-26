@@ -17,7 +17,6 @@ export default function RecipeFormMock() {
   const [loading, setLoading] = useState(false);
   const [success, setSuccess] = useState(false);
   const [errors, setErrors] = useState({});
-  const [captchaVerified, setCaptchaVerified] = useState(false);
   
   // use states to keep track of user input
   const [newRecipe, setNewRecipe] = useState({
@@ -122,22 +121,9 @@ export default function RecipeFormMock() {
     }
   };
   
-  // HCaptcha verification
-  const onVerifyCaptcha = (token, ekey) => {
-    let dummyToken = 'mock-hcaptcha-token';
-    dummyToken = token;
-    setCaptchaVerified(true);
-  };
-
-  // Reset state if hCaptcha expires
-  const handleCaptchaExpire = () => {
-    setCaptchaVerified(false);
-    console.log("Oops! Captcha has expired. Please complete it again before submitting your recipe.");
-  };
-
   // SUBMIT FORM FUNCTION handles recipe form submission
-  const submitForm = async () => {
-    const endpoint = '/api/submit-recipe';
+  const submitForm = async () => {  
+    const endpoint = '/api/mock-submit-recipe';
 
     setLoading(true);
 
@@ -184,12 +170,8 @@ export default function RecipeFormMock() {
 
     const recipeData = JSON.stringify(cleanedRecipe);
 
-    const hCaptchaToken = '10000000-aaaa-bbbb-cccc-000000000001';
-    const token = hCaptchaToken;
-
     const reqBody = {
       recipeData,
-      token,
       userId: cleanedRecipe.userId,
     };
 
@@ -203,8 +185,6 @@ export default function RecipeFormMock() {
       };
       
       const res = await fetch(endpoint, options);
-
-      console.log('client response:', res);
 
       if (res.ok) {
         const data = await res.json();
@@ -237,11 +217,7 @@ export default function RecipeFormMock() {
   // preventDefault prevents page refresh after a failed submission
   const handleSubmit = (event) => {
     event.preventDefault();
-    if (captchaVerified) {
-      submitForm();
-    } else {
-      console.log('Oops! Please complete the reCAPTCHA before submitting your recipe.');
-    }
+    submitForm();
   };
   
   // Reset success state after successful submission
@@ -290,9 +266,6 @@ export default function RecipeFormMock() {
           handleAddIngredient={handleAddIngredient}
           handleRemoveIngredient={handleRemoveIngredient}
           handleDragEnd={handleDragEnd}
-          handleCaptchaExpire={handleCaptchaExpire}
-          onVerifyCaptcha={onVerifyCaptcha}
-          captchaVerified={captchaVerified}
           errors={errors}
           loading={loading}
         />
