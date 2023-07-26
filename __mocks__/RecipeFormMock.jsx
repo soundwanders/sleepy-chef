@@ -14,7 +14,6 @@ import {
 
 export default function RecipeFormMock() {
   const [key, setKey] = useState('');
-  const [loading, setLoading] = useState(false);
   const [success, setSuccess] = useState(false);
   const [errors, setErrors] = useState({});
   
@@ -125,14 +124,13 @@ export default function RecipeFormMock() {
   const submitForm = async () => {  
     const endpoint = '/api/mock-submit-recipe';
 
-    setLoading(true);
-
     // Client-side form validation
     const validationErrors = {};
 
-    if (!newRecipe.name) {
-      validationErrors.name = 'Please enter the recipe name';
-    }
+    const nameRegex = /^[a-zA-Z0-9\s]+$/;
+    if (!newRecipe.name || !nameRegex.test(newRecipe.name)) {
+      validationErrors.name = 'Please enter a valid recipe name';
+    }  
 
     const recipeTime = parseInt(newRecipe.time);
 
@@ -189,6 +187,9 @@ export default function RecipeFormMock() {
       if (res.ok) {
         const data = await res.json();
         localStorage.removeItem('recipeFormData');
+        
+        // Clear validation errors on successful submission
+        setErrors({});
         setSuccess(true);
 
         setNewRecipe({
@@ -209,8 +210,6 @@ export default function RecipeFormMock() {
       console.error(error);
       setErrors({ submit: 'Error saving recipe. Please try again.' });
     }
-  
-    setLoading(false);
   };
 
   // Handle form submission
@@ -267,7 +266,6 @@ export default function RecipeFormMock() {
           handleRemoveIngredient={handleRemoveIngredient}
           handleDragEnd={handleDragEnd}
           errors={errors}
-          loading={loading}
         />
       )}
     </div>

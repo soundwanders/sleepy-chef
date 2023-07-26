@@ -212,6 +212,9 @@ export default function RecipeForm() {
       if (res.ok) {
         const data = await res.json();
         localStorage.removeItem('recipeFormData');
+        
+        // Clear validation errors on successful submission
+        setErrors({});
         setSuccess(true);
 
         setNewRecipe({
