@@ -164,6 +164,7 @@ export const FormUIMock = (props) => {
                 leading-tight focus:outline-none"
               name={`ingredients[${index}]`}
               placeholder="Enter ingredient"
+              aria-label="Enter ingredient"
               value={ingredient}
               onChange={(event) => props.handleIngredientChange(index, event)}
             />
@@ -178,7 +179,7 @@ export const FormUIMock = (props) => {
               className="ml-3 rounded-full text-red-400 hover:text-red-500 focus:outline-none focus:bg-transparent focus:translate-y-[1px]"          
               onClick={() => props.handleRemoveIngredient(index)}
             >
-              <span className="sr-only">Remove Line</span>
+              <span className="sr-only">Remove Ingredient</span>
               <RemoveLine />
             </button>
           </div>
@@ -189,7 +190,7 @@ export const FormUIMock = (props) => {
             focus:outline-none focus:bg-orange-300 focus:translate-y-[1px]"
           onClick={() => props.handleAddIngredient()}
         >
-          <span className="sr-only">New Line</span>
+          <span className="sr-only">New Ingredient</span>
           <AddLine />
         </button>
       </div>
@@ -277,6 +278,7 @@ export const FormUIMock = (props) => {
             <DirectionsInput
               key={`direction-${index}`}
               direction={direction}
+              aria-label="Enter direction"
               handleDirectionChange={props.handleDirectionChange}
               handleRemoveDirection={props.handleRemoveDirection}
             />

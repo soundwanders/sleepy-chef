@@ -51,7 +51,7 @@ export default function RecipeForm() {
     setIngredients,
   ] = useRecipeIngredients(newRecipe.ingredients);
 
-  // Store form data in local storage
+  // Load form data from localStorage on mount
   useEffect(() => {
     const storedData = localStorage.getItem('recipeFormData');
     if (storedData) {
@@ -264,6 +264,7 @@ export default function RecipeForm() {
       nutrition: {},
       directions: [],
     })
+    localStorage.removeItem('recipeFormData');
   };
 
   return (

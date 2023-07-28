@@ -11,6 +11,7 @@ export const NutritionInput = ({ label, id, name, placeholder, value, onChange, 
       id={id}
       name={name}
       placeholder={placeholder}
+      aria-label="Nutrition information"
       value={value}
       onChange={onChange}
     />

@@ -45,7 +45,8 @@ export default function RecipeFormMock() {
     setIngredients,
   ] = useRecipeIngredients(newRecipe.ingredients);
 
-  // Store form data in local storage
+
+  // Load form data from localStorage on mount
   useEffect(() => {
     const storedData = localStorage.getItem('recipeFormData');
     if (storedData) {
@@ -202,6 +203,9 @@ export default function RecipeFormMock() {
           nutrition: {},
           directions: [],
         })
+
+        resetForm();
+
       } else {
         const errorData = await res.json();
         setErrors({ submit: errorData.error });
@@ -232,7 +236,9 @@ export default function RecipeFormMock() {
       ingredients: [],
       nutrition: {},
       directions: [],
-    })
+    });
+  
+    localStorage.removeItem('recipeFormData');
   };
 
   return (
