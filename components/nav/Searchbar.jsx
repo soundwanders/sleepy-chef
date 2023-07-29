@@ -1,4 +1,4 @@
-import { useState, useContext } from 'react';
+import React, { useState, useContext } from 'react';
 import { useRouter } from 'next/router';
 import { AnimatePresence, motion } from 'framer-motion';
 import { RecipesContext } from '@data/recipeDb';
@@ -122,7 +122,7 @@ export const Searchbar = () => {
                     </span>
                   </button>
 
-                  <span id="main-search-submit" className="sr-only">
+                  <span id="main-search-submit" className="sr-only" aria-label="Submit search">
                     Submit search
                   </span>
                   {error && (

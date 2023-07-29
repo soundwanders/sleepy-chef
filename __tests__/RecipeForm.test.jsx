@@ -1,5 +1,5 @@
 import React from 'react';
-import { render, screen, fireEvent, waitFor, queryByText } from '@testing-library/react';
+import { render, screen, fireEvent } from '@testing-library/react';
 import RecipeFormMock from '../__mocks__/RecipeFormMock';
 import { SuccessPage } from '@components/form/SuccessPage';
 

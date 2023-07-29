@@ -87,8 +87,9 @@ export default function NavSearchbar() {
               <span className="sr-only">Search</span>
             </span>
           </button>
-          <span id="nav-search-submit" className="sr-only">Submit search</span>
-
+          <span id="main-search-submit" className="sr-only" aria-label="Submit search">
+            Submit search
+          </span>
           {error && (
             <span
               className="error absolute z-10 self-center right-5 md:right-20 px-0 md:px-4 mr-10 md:mr-0"
