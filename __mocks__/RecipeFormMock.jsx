@@ -45,7 +45,6 @@ export default function RecipeFormMock() {
     setIngredients,
   ] = useRecipeIngredients(newRecipe.ingredients);
 
-
   // Load form data from localStorage on mount
   useEffect(() => {
     const storedData = localStorage.getItem('recipeFormData');
@@ -191,6 +190,8 @@ export default function RecipeFormMock() {
         
         // Clear validation errors on successful submission
         setErrors({});
+
+        // Set success to true to display our success page
         setSuccess(true);
 
         setNewRecipe({
@@ -203,9 +204,6 @@ export default function RecipeFormMock() {
           nutrition: {},
           directions: [],
         })
-
-        resetForm();
-
       } else {
         const errorData = await res.json();
         setErrors({ submit: errorData.error });
@@ -254,7 +252,8 @@ export default function RecipeFormMock() {
       </div>
   
       {success ? (
-        <SuccessPage resetForm={resetForm} />
+        <SuccessPage resetForm={resetForm}
+      />
       ) : (
         <FormUIMock
           newRecipe={newRecipe}

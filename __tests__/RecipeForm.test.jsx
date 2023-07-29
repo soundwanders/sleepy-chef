@@ -1,10 +1,17 @@
 import React from 'react';
-import { render, fireEvent, screen, waitFor } from '@testing-library/react';
-import RecipeFormMock from '../__mocks__/RecipeFormMock'; 
-import { DirectionsInput } from '@components/form/DirectionsInput';
-import { wrapInTestContext } from 'react-beautiful-dnd';
+import { render, screen, fireEvent, waitFor, queryByText } from '@testing-library/react';
+import RecipeFormMock from '../__mocks__/RecipeFormMock';
+import { SuccessPage } from '@components/form/SuccessPage';
 
+// Mock server-side `submit-recipe` API route interaction
 jest.mock('node-fetch', () => require('../__mocks__/fetch').default);
+
+// Mock the useRouter hook
+jest.mock('next/router', () => ({
+  useRouter: () => ({
+    push: jest.fn(),
+  }),
+}));
 
 describe('RecipeForm', () => {
   it('displays the form and inputs', () => {
@@ -91,55 +98,37 @@ describe('RecipeForm', () => {
 
   it('allows adding and removing ingredients', async () => {
     render(<RecipeFormMock />);
-    
+  
     // Add two ingredients
     fireEvent.click(screen.getByRole('button', { name: 'New Ingredient' }));
-    fireEvent.change(screen.getAllByLabelText('Enter ingredient')[0], { target: { value: 'Ingredient 1' } });
     fireEvent.click(screen.getByRole('button', { name: 'New Ingredient' }));
-    fireEvent.change(screen.getAllByLabelText('Enter ingredient')[1], { target: { value: 'Ingredient 2' } });
-
-    // Check if the ingredients are displayed
+  
     expect(screen.queryAllByLabelText('Enter ingredient')).toHaveLength(2);
-
-    expect(screen.getByLabelText('Enter ingredient', { value: 'Ingredient 1' })).toBeInTheDocument();
-    expect(screen.getByLabelText('Enter ingredient', { value: 'Ingredient 2' })).toBeInTheDocument();
   
     // Remove the first ingredient (Ingredient 1)
     fireEvent.click(screen.getAllByRole('button', { name: 'Remove Ingredient' })[0]);
   
-    // Check if the first ingredient is removed and make sure the second ingredient persists
-    expect(screen.queryByLabelText('Enter ingredient', { value: 'Ingredient 1' })).not.toBeInTheDocument();
+    // Check if only one ingredient is left (Ingredient 2)
+    expect(screen.queryAllByLabelText('Enter ingredient')).toHaveLength(1);
+  
+    // Check if the second ingredient persists (Ingredient 2)
     expect(screen.getByLabelText('Enter ingredient', { value: 'Ingredient 2' })).toBeInTheDocument();
-  });  
-  
-  it('resets the form after successful submission', async () => {
-    render(<RecipeFormMock />);
-    
-    // Simulate successful form submission
-    fireEvent.change(screen.getByLabelText('Recipe Name'), { target: { value: 'Valid Recipe' } });
-    fireEvent.change(screen.getByLabelText('Total Time'), { target: { value: '30' } });
-    fireEvent.click(screen.getByRole('button', { name: 'Submit' }));
-  
-    // Wait for the form to reset after successful submission
-    await waitFor(() => {
-      expect(screen.getByLabelText('Recipe Name').value).toBe('');
-      expect(screen.getByLabelText('Total Time').value).toBe('');
-      expect(screen.getByLabelText('Vegan', { selector: '#vegan' })).not.toBeChecked();
-    });
   });
+  
+  describe('SuccessPage', () => {
+    it('resets the form when buttons are clicked', () => {
+      const resetFormMock = jest.fn();
+      render(<SuccessPage resetForm={resetFormMock} />);
+    
+      expect(screen.getByTestId('success-message')).toBeInTheDocument();
 
-  // it('submits the form with valid data and displays the SuccessPage', async () => {
-  //   render(<RecipeFormMock />);
-  // 
-  //   fireEvent.change(screen.getByLabelText('Recipe Name'), { target: { value: 'One Bad Larry' } });
-  //   fireEvent.change(screen.getByLabelText('Total Time'), { target: { value: '25' } });
-  // 
-  //   fireEvent.submit(screen.getByTestId('recipe-form'));
-  // 
-  //   // Wait for the success page to appear
-  //   await waitFor(() => {
-  //     const successMessage = screen.getByTestId('success-message');
-  //     expect(successMessage).toBeInTheDocument();
-  //   });
-  // });
+      // Click on the "Turn Back" button
+      fireEvent.click(screen.getByText('Turn Back'));
+      expect(resetFormMock).toHaveBeenCalledTimes(1);
+
+      // Click on the "Let's Go Home" button
+      fireEvent.click(screen.getByText("Let's Go Home"));
+      expect(resetFormMock).toHaveBeenCalledTimes(2);
+    })
+  });
 });

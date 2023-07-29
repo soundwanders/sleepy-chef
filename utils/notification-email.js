@@ -3,8 +3,8 @@ const nodemailer = require('nodemailer');
 const createTransporter = () => {
   return nodemailer.createTransport({
     host: 'smtp.elasticemail.com',
-    port: 2525,
-    secure: false,
+    port: 465,
+    secure: true,
     auth: {
       user: process.env.ELASTIC_EMAIL,
       pass: process.env.ELASTIC_PASSWORD,
@@ -32,7 +32,7 @@ export const sendNotificationEmail = async (recipe) => {
   const mailOptions = {
     from: process.env.PROTONMAIL_EMAIL,
     to: process.env.GMAIL_EMAIL,
-    subject: 'ATTN: New Recipe Submission',
+    subject: 'New Sleepy Chef Submission',
     html: createEmailTemplate(recipe),
   };
 

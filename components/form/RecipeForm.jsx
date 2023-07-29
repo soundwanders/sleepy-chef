@@ -81,7 +81,7 @@ export default function RecipeForm() {
     } else if (name.startsWith('nutrition.')) {
       handleNutritionChange(setNewRecipe, name, value);
     } else if (name.startsWith('ingredients')) {
-      handleIngredientsChange(setNewRecipe);
+      handleIngredientsChange(setNewRecipe, index);
     } else if (name.startsWith('directions')) {
       handleDirectionsChange(index, event);
       setNewRecipe((prevState) => {
@@ -147,9 +147,10 @@ export default function RecipeForm() {
     // Client-side form validation
     const validationErrors = {};
 
-    if (!newRecipe.name) {
-      validationErrors.name = 'Please enter the recipe name';
-    }
+    const nameRegex = /^[a-zA-Z0-9\s]+$/;
+    if (!newRecipe.name || !nameRegex.test(newRecipe.name)) {
+      validationErrors.name = 'Please enter a valid recipe name';
+    }  
 
     const recipeTime = parseInt(newRecipe.time);
 
@@ -159,11 +160,6 @@ export default function RecipeForm() {
   
     if (ingredients.length === 0) {
       validationErrors.ingredients = 'Please add at least one ingredient';
-    }
-
-    // Add nullish coalescing operator to provide a default empty object for nutrition
-    if (!newRecipe.nutrition ?? Object.keys(newRecipe.nutrition).length === 0) {
-      validationErrors.nutrition = `Please fill out all nutritional info. If you don't know, please enter 'unknown'`;
     }
 
     if (directions.length === 0) {
