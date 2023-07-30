@@ -103,7 +103,7 @@ export const SearchResultsMock = ({ recipeColors, defaultColor }) => {
               {searchQuery.split(' ').map((word, i) => ( 
                 <span key={i} className={`queryColor ${queryColor}`}>
                   {word}
-                </span>  
+                </span> 
               ))}
             </span>...
           </div>

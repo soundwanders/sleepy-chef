@@ -23,7 +23,7 @@ jest.mock('swr', () => {
     },
   ];
 
-  useSWR.mockImplementation((key, fetcher) => {
+  useSWR.mockImplementation((url, fetcher) => {
     // Return a function that returns the mock data and error
     return () => ({
       data: mockData,
