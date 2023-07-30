@@ -276,6 +276,7 @@ export const FormUI = (props) => {
                       {props.directions.map((direction, index) => (
                         <DirectionsInput
                           key={`direction-${index}`}
+                          index={index}
                           direction={direction}
                           handleDirectionChange={props.handleDirectionChange}
                           handleRemoveDirection={props.handleRemoveDirection}
