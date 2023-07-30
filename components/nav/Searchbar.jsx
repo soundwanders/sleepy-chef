@@ -1,4 +1,4 @@
-import { useState, useContext } from 'react';
+import React, { useState, useContext } from 'react';
 import { useRouter } from 'next/router';
 import { AnimatePresence, motion } from 'framer-motion';
 import { RecipesContext } from '@data/recipeDb';
@@ -17,7 +17,7 @@ export const Searchbar = () => {
 
   const recipes = useContext(RecipesContext);
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
     // create an array of all recipe types, ingredients, names
@@ -45,15 +45,29 @@ export const Searchbar = () => {
       return;
     }
 
-    setError('');
-    setShowYolk(true);
+    try {
+      const response = await fetch(`/api/recipes?query=${query}`);
+      const data = await response.json();
 
-    setTimeout(() => {
-      router.push({
-        pathname: '/results',
-        query: { type, ingredient, name },
-      });
-    }, 300);
+      if (response.ok) {
+        // If the response is successful, proceed with navigation
+        setError('');
+        setShowYolk(true);
+
+        setTimeout(() => {
+          router.push({
+            pathname: '/results',
+            query: { type, ingredient, name },
+          });
+        }, 300);
+      } else {
+        // If the response contains an error, set the error state accordingly
+        setError(data.error);
+      }
+    } catch (error) {
+      // If there's an error with the fetch or parsing the response, handle it here
+      setError('An error occurred while fetching data.');
+    }
   };
 
   // clear error to allow search form resubmission
@@ -122,7 +136,7 @@ export const Searchbar = () => {
                     </span>
                   </button>
 
-                  <span id="main-search-submit" className="sr-only">
+                  <span id="main-search-submit" className="sr-only" aria-label="Submit search">
                     Submit search
                   </span>
                   {error && (

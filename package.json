@@ -4,7 +4,9 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "clean": "rm -rf .next"
+    "clean": "rm -rf .next",
+    "test": "BABEL_ENV=test jest",
+    "test:default": "jest"
   },
   "dependencies": {
     "@hcaptcha/react-hcaptcha": "^1.8.1",
@@ -25,12 +27,22 @@
     "uuid": "^9.0.0"
   },
   "devDependencies": {
+    "@babel/core": "^7.22.9",
+    "@babel/preset-env": "^7.22.9",
+    "@babel/preset-react": "^7.22.5",
+    "@testing-library/jest-dom": "^5.17.0",
+    "@testing-library/react": "^14.0.0",
+    "@testing-library/user-event": "^14.4.3",
     "autoprefixer": "^10.4.7",
+    "babel-jest": "^29.6.1",
+    "jest": "^29.6.1",
+    "jest-environment-jsdom": "^29.6.1",
+    "msw": "^1.2.3",
     "postcss": "^8.4.14",
     "tailwindcss": "^3.1.2"
   },
   "name": "sleepy-chef",
-  "description": "Got an empty belly and running short on time? We've got your back, all recipes take 30 minutes or less to prepare",
+  "description": "Got an empty belly and running short on time? We've got your back! All recipes ready in 30 minutes or less.",
   "version": "1.0.0",
   "main": "next.config.js",
   "repository": {

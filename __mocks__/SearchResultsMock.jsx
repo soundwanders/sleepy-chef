@@ -1,13 +1,9 @@
 import React, { useState } from 'react';
 import { useRouter } from 'next/router';
-import useSWR from 'swr';
-import { RoughNotationGroup } from 'react-rough-notation';
-import { Highlighter } from '@components/ui/Highlighter';
-import RecipeCards from '@components/recipes/RecipeCards';
-import appData from '@constants/appData';
+import { useSWR } from 'swr';
+import RecipeCardsMock from './RecipeCardsMock';
 
-export const SearchResults = ({ recipeColors, defaultColor }) => {
-  const highlightColor = "#60a5fa";
+export const SearchResultsMock = ({ recipeColors, defaultColor }) => {
   const [sortBy, setSortBy] = useState("default");
   const router = useRouter();
   const { query } = router;
@@ -92,13 +88,9 @@ export const SearchResults = ({ recipeColors, defaultColor }) => {
       <div className="max-w-6xl bg-white dark:bg-gray-800 mx-auto h-36 md:h-40 px-8 md:px-4 py-4 md:py-0 md:pb-4 mb-0">
         <div className="flex justify-center">
           <div className="w-fit">
-            <RoughNotationGroup show={true}>
-              <Highlighter color={highlightColor} className="md:text-center">
-                <h1 className={`results-title text-center mx-auto text-[2.675rem] md:text-8xl font-bold text-gray-900 dark:text-gray-100 md:py-1 px-4 whitespace-nowrap`}>
-                {appData.resultsTitle}
-                </h1>
-              </Highlighter>
-            </RoughNotationGroup>
+            <h1 className={`results-title text-center mx-auto text-[2.675rem] md:text-8xl font-bold text-gray-900 dark:text-gray-100 md:py-1 px-4 whitespace-nowrap`}>
+              Search Results
+            </h1>
           </div>
         </div>
       </div>
@@ -144,12 +136,24 @@ export const SearchResults = ({ recipeColors, defaultColor }) => {
         )}
       </div>
 
-      <RecipeCards 
-        data={sortedData} 
-        error={error} 
-        recipeColors={recipeColors}
-        defaultColor={defaultColor} 
-      />
+      { data ? (
+        data.length > 0 ? (
+          <RecipeCardsMock
+            data={sortedData}
+            error={error}
+            recipeColors={recipeColors}
+            defaultColor={defaultColor}
+          />
+        ) : (
+          <p>No matching recipes found.</p>
+        )
+      ) : error ? (
+        <div className="max-w-6xl mx-auto h-36 md:h-40 px-8 md:px-4 py-4 bg-white dark:bg-gray-800 font-bold text-lg">
+          <div className="text-center">{error.message}</div>
+        </div>
+      ) : (
+        <div>Loading...</div>
+      )}
     </section>
   )
 };

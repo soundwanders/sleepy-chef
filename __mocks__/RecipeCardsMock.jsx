@@ -1,8 +1,7 @@
 import React from 'react';
 import Link from 'next/link';
-import { HappyEgg } from '@components/ui/Animations';
 
-export default function RecipeCards({ data, error }) {
+export default function RecipeCardsMock({ data, error }) {
   const defaultColor = "bg-green-300";
   const defaultCardColor = "bg-neutral-100";
 
@@ -43,8 +42,7 @@ export default function RecipeCards({ data, error }) {
   return (
     <div className="fade-in columns-1 md:columns-3 gap-10 px-8 md:px-0 py-0 md:py-2 md:pl-4 mb-12"
     >
-      {data ? (
-        data.map(recipe => (
+      {data.map(recipe => (
         <Link 
           className="h-min"
           href="/id/[id]" 
@@ -125,14 +123,7 @@ export default function RecipeCards({ data, error }) {
             </div>
           </div>
         </Link>
-      ))
-      ) : (
-        <section className="bg-white dark:bg-gray-800 pb-10 md:py-8">
-          <div className="max-w-6xl w-screen h-36 px-0 md:px-4 py-4 bg-transparent flex justify-center items-center">
-            <HappyEgg />
-          </div>
-        </section>
-      )}
+      ))}
     </div>
   )
 };

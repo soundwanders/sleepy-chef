@@ -1,3 +1,4 @@
+import React from 'react';
 import { useTheme } from 'next-themes';
 import { CheckboxOption } from '@components/form/CheckboxOption';
 import { NutritionInput } from './NutritionInput';
@@ -154,7 +155,9 @@ export const FormUI = (props) => {
           </div>
 
           <div className="mb-8">
-            <label className="block text-gray-700 dark:text-gray-200 mt-6 text-lg font-bold mb-3" htmlFor="ingredients">
+            <label className="block text-gray-700 dark:text-gray-200 mt-6 text-lg font-bold mb-3"
+              htmlFor="ingredients"
+            >
               Ingredients
             </label>
             {props.ingredients.map((ingredient, index) => (
@@ -164,6 +167,7 @@ export const FormUI = (props) => {
                     leading-tight focus:outline-none"
                   name={`ingredients[${index}]`}
                   placeholder="Enter ingredient"
+                  aria-label="Enter ingredient"
                   value={ingredient}
                   onChange={(event) => props.handleIngredientChange(index, event)}
                 />
@@ -173,7 +177,7 @@ export const FormUI = (props) => {
                   className="ml-3 rounded-full text-red-400 hover:text-red-500 focus:outline-none focus:bg-transparent focus:translate-y-[1px]"          
                   onClick={() => props.handleRemoveIngredient(index)}
                 >
-                  <span className="sr-only">Remove Line</span>
+                  <span className="sr-only">Remove Ingredient</span>
                   <RemoveLine />
                 </button>
               </div>
@@ -184,7 +188,7 @@ export const FormUI = (props) => {
                 focus:outline-none focus:bg-orange-300 focus:translate-y-[1px]"
               onClick={() => props.handleAddIngredient()}
             >
-              <span className="sr-only">New Line</span>
+              <span className="sr-only">New Ingredient</span>
               <AddLine />
             </button>
           </div>
@@ -257,7 +261,9 @@ export const FormUI = (props) => {
           </div>
 
           <div className="mb-8">
-            <label className="block text-gray-700 dark:text-gray-200 text-lg font-bold my-2 mb-3" htmlFor="directions">
+            <label className="block text-gray-700 dark:text-gray-200 text-lg font-bold my-2 mb-3"
+             htmlFor="directions"
+            >
               Directions
             </label>
             <div className="p-4 bg-white dark:bg-[#2b2a33] border dark:border-slate-100 shadow rounded-lg
@@ -270,7 +276,6 @@ export const FormUI = (props) => {
                       {props.directions.map((direction, index) => (
                         <DirectionsInput
                           key={`direction-${index}`}
-                          index={index}
                           direction={direction}
                           handleDirectionChange={props.handleDirectionChange}
                           handleRemoveDirection={props.handleRemoveDirection}
@@ -310,7 +315,7 @@ export const FormUI = (props) => {
           <HCaptcha
             sitekey={process.env.NEXT_PUBLIC_RECAPTCHA_SITEKEY}
             onExpire={props.handleCaptchaExpire}
-            onVerify={props.onVerifyCaptcha }
+            onVerify={props.onVerifyCaptcha}
             theme={resolvedTheme === 'dark' ? 'dark' : 'light'}
             ref={props.hCaptchaRef}
           />

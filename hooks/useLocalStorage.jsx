@@ -11,4 +11,4 @@ export function useLocalStorage(key, initialValue) {
   }, [key, value]);
 
   return [value, setValue];
-}
+};

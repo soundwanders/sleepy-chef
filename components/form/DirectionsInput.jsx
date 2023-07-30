@@ -1,3 +1,4 @@
+import React from 'react';
 import { Draggable } from 'react-beautiful-dnd';
 import { RemoveLine } from '@components/ui/Icons';
 
@@ -20,6 +21,7 @@ export const DirectionsInput = (props) => {
                   leading-tight focus:outline-none focus:shadow-outline focus:placeholder-transparent"
                 name={`directions-${props.index}`}
                 value={props.direction}
+                aria-label="Enter direction"
                 onChange={(event) => props.handleDirectionChange(props.index, event)}
                 onKeyUp={props.handleDirectionKeys}
                 placeholder="Add a step"

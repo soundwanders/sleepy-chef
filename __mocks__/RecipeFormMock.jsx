@@ -1,8 +1,6 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect } from 'react';
 import { v4 as uuidv4 } from 'uuid';
-import { RoughNotationGroup } from 'react-rough-notation';
-import { Highlighter } from '@components/ui/Highlighter';
-import { FormUI } from '@components/form/FormUI';
+import { FormUIMock } from '../__mocks__/FormUIMock';
 import { SuccessPage } from '@components/form/SuccessPage';
 import { useRecipeDirections } from '@hooks/useRecipeDirections';
 import { useRecipeIngredients } from '@hooks/useRecipeIngredients';
@@ -14,14 +12,10 @@ import {
   handleGenericChange,
 } from '@utils/form-handlers';
 
-export default function RecipeForm() {
-  const highlightColor = '#fea231';
+export default function RecipeFormMock() {
   const [key, setKey] = useState('');
-  const [loading, setLoading] = useState(false);
   const [success, setSuccess] = useState(false);
   const [errors, setErrors] = useState({});
-  const [captchaVerified, setCaptchaVerified] = useState(false);
-  const hCaptchaRef = useRef();
   
   // use states to keep track of user input
   const [newRecipe, setNewRecipe] = useState({
@@ -126,23 +120,9 @@ export default function RecipeForm() {
     }
   };
   
-  // HCaptcha verification
-  const onVerifyCaptcha = (token, ekey) => {
-    hCaptchaRef.current.token = token;
-    setCaptchaVerified(true);
-  };
-
-  // Reset state if hCaptcha expires
-  const handleCaptchaExpire = () => {
-    setCaptchaVerified(false);
-    console.log("Oops! Captcha has expired. Please complete it again before submitting your recipe.");
-  };
-
   // SUBMIT FORM FUNCTION handles recipe form submission
-  const submitForm = async () => {
-    const endpoint = '/api/submit-recipe';
-
-    setLoading(true);
+  const submitForm = async () => {  
+    const endpoint = '/api/mock-submit-recipe';
 
     // Client-side form validation
     const validationErrors = {};
@@ -160,6 +140,11 @@ export default function RecipeForm() {
   
     if (ingredients.length === 0) {
       validationErrors.ingredients = 'Please add at least one ingredient';
+    }
+
+    // Add nullish coalescing operator to provide a default empty object for nutrition
+    if (!newRecipe.nutrition ?? Object.keys(newRecipe.nutrition).length === 0) {
+      validationErrors.nutrition = `Please fill out all nutritional info. If you don't know, please enter 'unknown'`;
     }
 
     if (directions.length === 0) {
@@ -183,12 +168,8 @@ export default function RecipeForm() {
 
     const recipeData = JSON.stringify(cleanedRecipe);
 
-    const hCaptchaToken = hCaptchaRef.current?.token;
-    const token = hCaptchaToken;
-
     const reqBody = {
       recipeData,
-      token,
       userId: cleanedRecipe.userId,
     };
 
@@ -203,14 +184,14 @@ export default function RecipeForm() {
       
       const res = await fetch(endpoint, options);
 
-      console.log('client response:', res);
-
       if (res.ok) {
         const data = await res.json();
         localStorage.removeItem('recipeFormData');
         
         // Clear validation errors on successful submission
         setErrors({});
+
+        // Set success to true to display our success page
         setSuccess(true);
 
         setNewRecipe({
@@ -231,19 +212,13 @@ export default function RecipeForm() {
       console.error(error);
       setErrors({ submit: 'Error saving recipe. Please try again.' });
     }
-  
-    setLoading(false);
   };
 
   // Handle form submission
   // preventDefault prevents page refresh after a failed submission
   const handleSubmit = (event) => {
     event.preventDefault();
-    if (captchaVerified) {
-      submitForm();
-    } else {
-      console.log('Oops! Please complete the reCAPTCHA before submitting your recipe.');
-    }
+    submitForm();
   };
   
   // Reset success state after successful submission
@@ -259,7 +234,8 @@ export default function RecipeForm() {
       ingredients: [],
       nutrition: {},
       directions: [],
-    })
+    });
+  
     localStorage.removeItem('recipeFormData');
   };
 
@@ -267,24 +243,19 @@ export default function RecipeForm() {
     <div>
       <div className="max-w-6xl mx-auto h-36 md:h-40 bg-white dark:bg-gray-800 px-8 md:px-4 py-4 mb-4 md:mb-0">
         <div className="w-full text-center">
-          <div className="w-fit mt-2">
-            <RoughNotationGroup show={true}>
-              <Highlighter color={highlightColor}>
-                <h1 className={`results-title text-[1.7rem] md:text-[4rem] font-bold text-gray-900 dark:text-gray-100
-                  py-1 px-2 break-words text-center`}
-                >
-                  Submit Your Recipe
-                </h1>
-              </Highlighter>
-            </RoughNotationGroup>
-          </div>
+          <h1 className={`results-title text-[1.7rem] md:text-[4rem] font-bold text-gray-900 dark:text-gray-100
+            py-1 px-2 break-words text-center`}
+          >
+            Submit Your Recipe
+          </h1>
         </div>
       </div>
   
       {success ? (
-        <SuccessPage resetForm={resetForm} />
+        <SuccessPage resetForm={resetForm}
+      />
       ) : (
-        <FormUI
+        <FormUIMock
           newRecipe={newRecipe}
           directions={directions}
           ingredients={ingredients}
@@ -299,12 +270,7 @@ export default function RecipeForm() {
           handleAddIngredient={handleAddIngredient}
           handleRemoveIngredient={handleRemoveIngredient}
           handleDragEnd={handleDragEnd}
-          handleCaptchaExpire={handleCaptchaExpire}
-          onVerifyCaptcha={ onVerifyCaptcha }
-          hCaptchaRef={hCaptchaRef}
-          captchaVerified={captchaVerified}
           errors={errors}
-          loading={loading}
         />
       )}
     </div>
