@@ -67,13 +67,13 @@ describe('RecipeForm', () => {
   it('allows selecting and deselecting recipe types', async () => {
     render(<RecipeFormMock />);
     
-    // Select "Vegan" checkbox
-    fireEvent.click(screen.getByLabelText('Vegan', { selector: '#vegan' }));
-    expect(screen.getByLabelText('Vegan', { selector: '#vegan' })).toBeChecked();
+    // Select "Vegetarian" checkbox
+    fireEvent.click(screen.getByLabelText('Vegetarian', { selector: '#vegetarian' }));
+    expect(screen.getByLabelText('Vegetarian', { selector: '#vegetarian' })).toBeChecked();
   
     // Deselect "Vegan" checkbox
-    fireEvent.click(screen.getByLabelText('Vegan', { selector: '#vegan' }));
-    expect(screen.getByLabelText('Vegan', { selector: '#vegan' })).not.toBeChecked();
+    fireEvent.click(screen.getByLabelText('Vegetarian', { selector: '#vegetarian' }));
+    expect(screen.getByLabelText('Vegetarian', { selector: '#vegetarian' })).not.toBeChecked();
   });
 
   it('allows entering valid nutrition information', async () => {

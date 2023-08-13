@@ -92,10 +92,10 @@ export const FormUIMock = (props) => {
                   
           <CheckboxOption
             name="types"
-            value="vegan"
-            checked={props.newRecipe.types?.includes("vegan")}
+            value="vegetarian"
+            checked={props.newRecipe.types?.includes("vegetarian")}
             onChange={props.handleChange}
-            label="Vegan"
+            label="Vegetarianan"
           />
         </div>
       </div>

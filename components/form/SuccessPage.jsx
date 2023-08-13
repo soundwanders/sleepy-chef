@@ -21,7 +21,7 @@ export const SuccessPage = ({ resetForm }) => {
           Your recipe has been successfully submitted! Thank you for contributing to Sleepy Chef.
         </div>
         <button
-          className="mt-4 mr-4 px-4 py-2 rounded-md bg-gray-500 text-white hover:bg-gray-600"
+          className="mt-4 mr-4 px-4 py-2 rounded-md bg-gray-600 text-white hover:bg-gray-700"
           onClick={handleGoBack}
         >
           Turn Back

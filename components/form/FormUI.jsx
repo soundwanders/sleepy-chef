@@ -60,6 +60,14 @@ export const FormUI = (props) => {
 
               <CheckboxOption
                 name="types"
+                value="pasta"
+                checked={props.newRecipe.types?.includes("pasta")}
+                onChange={props.handleChange}
+                label="pasta"
+              />
+
+              <CheckboxOption
+                name="types"
                 value="pork"
                 checked={props.newRecipe.types?.includes("pork")}
                 onChange={props.handleChange}
@@ -100,10 +108,10 @@ export const FormUI = (props) => {
                       
               <CheckboxOption
                 name="types"
-                value="vegan"
-                checked={props.newRecipe.types?.includes("vegan")}
+                value="Vegetarian"
+                checked={props.newRecipe.types?.includes("vegetarian")}
                 onChange={props.handleChange}
-                label="Vegan"
+                label="Vegetarian"
               />
             </div>
           </div>
