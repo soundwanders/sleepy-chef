@@ -29,7 +29,3 @@ If you encounter any buggy things, broken things, or have a great idea for a shi
 -    Commit your Changes (git commit -m 'Hey change this thing')
 -    Push to the Branch (git push origin update/BugSquash)
 -    Open a Pull Request and I'll take a look!
-
-<br/>
-
-#### __*This project is currently in development__
