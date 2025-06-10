@@ -223,12 +223,6 @@ We welcome contributions! Here's how to get started:
    ```
 7. **Open a Pull Request**
 
-### Development Guidelines
-
-- Follow the existing code style and patterns
-- Add tests for new features
-- Update documentation as needed
-- Ensure all tests pass before submitting
 
 ## 📄 License
 
@@ -238,13 +232,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 - **Icons**: [Freepik](https://www.flaticon.com/authors/freepik) from Flaticon
 - **Font Optimization**: Glyphhanger for web font subsetting
-- **Inspiration**: Built with ❤️ for busy home cooks everywhere
-
-## 📞 Support
-
-- **Issues**: [GitHub Issues](https://github.com/soundwanders/sleepy-chef/issues)
-- **Discussions**: [GitHub Discussions](https://github.com/soundwanders/sleepy-chef/discussions)
-- **Email**: [Contact the maintainer](mailto:your-email@example.com)
+- **Inspiration**: Built with ❤️ for busy  cooks everywhere
 
 ---
 
